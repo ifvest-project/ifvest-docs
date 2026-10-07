@@ -13,6 +13,26 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    # Servidor PlantUML próprio, que só existe durante este build: os diagramas do site
+    # publicado deixam de depender do plantuml.com, que às vezes devolve o SVG de
+    # diagramas de componentes quebrado (https://github.com/plantuml/plantuml/issues/2197).
+    # A etiqueta fixa a versão do PlantUML; para atualizar, troque v1.2026.8 por outra.
+    services:
+      plantuml:
+        image: plantuml/plantuml-server:jetty-v1.2026.8
+        ports:
+          - 8080:8080
+        # Os passos só começam quando o servidor já desenha um diagrama de teste
+        options: >-
+          --health-cmd "curl -fsS -o /dev/null http://localhost:8080/svg/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000"
+          --health-interval 5s
+          --health-timeout 10s
+          --health-retries 24
+
+    env:
+      PLANTUML_SERVER: http://localhost:8080 # lido pelo mkdocs.yml, no lugar do plantuml.com
+
     steps:
       - uses: actions/checkout@v7
 

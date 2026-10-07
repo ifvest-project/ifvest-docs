@@ -118,12 +118,34 @@
 
 /* Ajustes finos  */
 
-/* Diagramas PlantUML centralizados e responsivos */
-.md-typeset p > img[src*="plantuml"],
-.md-typeset .plantuml {
+/* Diagramas PlantUML centralizados e responsivos
+   (o plantuml_markdown gera <img class="uml"> com a imagem embutida no próprio src) */
+.md-typeset img.uml {
   display: block;
   margin: 1.5em auto;
   max-width: 100%;
+}
+
+/* Diagramas C4 nos dois temas: hooks/diagramas_tema.py gera uma versão clara e uma
+   escura de cada um, dentro de <div class="diagrama-c4">. As duas ficam na mesma célula
+   da grade, uma sobre a outra, e a do outro tema fica invisível (visibility), mas
+   continua ocupando o espaço: por isso trocar o tema não muda a altura da página */
+.md-typeset .diagrama-c4 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  align-items: start;
+  margin: 1.5em 0;
+}
+
+.md-typeset .diagrama-c4 > img.uml {
+  grid-area: 1 / 1;
+  margin: 0;
+}
+
+[data-md-color-scheme="default"] .md-typeset .diagrama-c4 > .c4_escuro,
+[data-md-color-scheme="slate"] .md-typeset .diagrama-c4 > .c4_claro {
+  visibility: hidden;
 }
 
 /* Blocos de código com cantos levemente arredondados */

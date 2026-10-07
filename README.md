@@ -69,6 +69,7 @@ ifvest-docs/
 ├── requirements.txt        # dependências
 ├── tutorial.html           # guia de instalação e execução
 ├── .github/workflows/      # publicação automática no GitHub Pages
+├── hooks/                  # código que roda no build (versão escura dos diagramas C4)
 ├── overrides/              # templates que substituem os do tema (logo da plataforma)
 ├── scripts/                # geradores da especificação da API e do modelo de dados
 └── docs/
@@ -109,6 +110,8 @@ git push
 ```
 
 A publicação é **automática**: a cada push na `main`, o workflow `.github/workflows/deploy.yml` reconstrói o site e atualiza o GitHub Pages em um ou dois minutos. O andamento aparece na aba **Actions** do repositório, onde o botão **Run workflow** também publica sem precisar de commit. Não é preciso rodar `mkdocs gh-deploy` na máquina.
+
+Os diagramas PlantUML são desenhados durante o build: na máquina local, pelo servidor público plantuml.com; na publicação, por um servidor PlantUML próprio que o workflow cria só enquanto roda, com a versão fixada no `deploy.yml`. Se um diagrama aparecer quebrado apenas na pré-visualização local (caixas estreitas, palavras umas sobre as outras), o defeito é do servidor público; aumentar `REVISAO` em `hooks/diagramas_tema.py` força um desenho novo.
 
 Cada página do site tem um ícone de edição que leva diretamente ao arquivo correspondente neste repositório.
 

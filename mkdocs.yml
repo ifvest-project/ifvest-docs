@@ -62,6 +62,9 @@ theme:
     - content.action.edit         # lápis de editar a página no GitHub
     - content.tooltips
 
+hooks:
+  - hooks/diagramas_tema.py   # versões clara e escura dos diagramas C4
+
 extra_css:
   - stylesheets/extra.css
   - stylesheets/logo-ifvest.css
@@ -105,7 +108,10 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - plantuml_markdown:
-      server: https://www.plantuml.com/plantuml
+      # Na máquina local, os diagramas são desenhados pelo servidor público plantuml.com.
+      # No GitHub Actions, PLANTUML_SERVER aponta para um servidor PlantUML próprio,
+      # criado só durante o build (ver .github/workflows/deploy.yml)
+      server: !ENV [PLANTUML_SERVER, "https://www.plantuml.com/plantuml"]
       format: svg
 
 nav:
