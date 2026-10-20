@@ -4,6 +4,9 @@ Este documento registra o histórico de evolução da plataforma IFVest, organiz
 
 As datas de cada versão são inferidas a partir das migrations do banco de dados, dos TCCs e dos relatórios de extensão disponíveis.
 
+!!! info "Versão atual: IFVest V3"
+    A plataforma em produção é o **IFVest V3**, reconstruído do zero em 2026 e descrito na [última entrada](#v30-ifvest-v3-nova-plataforma-2026) desta página. As versões anteriores permanecem registradas como histórico.
+
 ---
 
 ## v1.0 — Plataforma PHP/MariaDB (2021)
@@ -165,16 +168,80 @@ Análise de conformidade com a Lei Geral de Proteção de Dados (LGPD) e impleme
 
 ---
 
-## Em desenvolvimento
+## v3.0 — IFVest V3: nova plataforma (2026)
 
-Os itens abaixo estão em desenvolvimento ativo e não possuem data de entrega definida:
+**Período:** 2026  
+**Responsáveis:** ⬜ *A confirmar com a coordenação do projeto*  
+**Tipo:** ⬜ *A confirmar com a coordenação do projeto*
 
-| Funcionalidade | Equipe |
+Reconstrução completa da plataforma, desenvolvida do zero e referida internamente como **IFVest V3**. Substituiu a versão anterior no mesmo endereço, com nova stack, novo modelo de dados e autorização por permissões granulares no lugar dos perfis fixos de aluno e professor.
+
+A data de entrada no ar não está registrada no repositório. O registro datado mais antigo é a migration inicial, de **18/09/2026**. Como as tabelas já existiam, o banco de produção foi apenas marcado como estando nessa versão, em data que também não está registrada.
+
+No código, a aplicação se identifica como versão **0.1.0**, numeração própria da nova base. Esta página mantém a sequência histórica e a registra como v3.0.
+
+**Stack adotada:**
+
+- React 19 e TypeScript, com Vite, no frontend
+- Python 3.12 com FastAPI no backend
+- PostgreSQL 16, com SQLAlchemy e Alembic
+- Firebase Authentication, com login pela conta Google
+- Docker Compose, num servidor próprio (VPS)
+
+**Funcionalidades entregues:**
+
+- Entrada com a conta Google, com criação da conta no primeiro acesso
+- Permissões granulares, concedidas e revogadas por administradores
+- IFQuiz com questões do banco próprio: quiz personalizado, Pergunta do Dia, sequência diária, patentes, ranking geral e semanal e loja de avatares
+- Simulados de treino, manuais ou aleatórios, com resolução na plataforma, caderno em PDF e registro das tentativas
+- Módulo de Redação: propostas com textos de apoio, envio de redações e correção pelas cinco competências do ENEM, com comentários em trechos do texto
+- Banco de questões com cadastro, edição e denúncia de erros
+- Painel administrativo com indicadores, gestão de permissões, moderação das denúncias e controle dos módulos por *feature flags*
+- Registro de auditoria de cadastros e edições de questões, denúncias, propostas de redação, permissões e módulos
+
+O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
+
+**Migrations do banco de dados:**
+
+| Data | Alteração |
 |---|---|
-| Migração do frontend para React | Isabella e Maria Luiza |
-| Correção automatizada de redações via IA | Arthur, Douglas e Guilherme |
-| Integração com API do ENEM e FUVEST | Vitor, Helena e Thales |
-| Sistema de recomendação personalizado | João Pedro |
-| Testes automatizados (unitários, funcionais e de mutação) | Vinicius Akio, Caio e Jorge |
-| Melhorias de acessibilidade (WCAG) | Rafaela |
-| Pipeline CI/CD | Jorge |
+| 2026-09-18 | Schema inicial, registrado sobre o banco de produção existente, com 21 tabelas |
+| 2026-09-18 | Tabela `feature_flags` |
+| 2026-09-18 | Etiquetas nas propostas de redação e título nos textos de apoio |
+| 2026-09-23 | Tabelas `question_reports` e `audit_logs` |
+| 2026-09-26 | Datas sem fuso horário nas duas tabelas anteriores |
+| 2026-09-27 | Divisão das permissões de conteúdo em quatro |
+| 2026-09-27 | Remoção das duas permissões antigas |
+
+**O que mudou em relação à versão anterior:**
+
+| Versão 2 | IFVest V3 |
+|---|---|
+| Cadastro com nome de usuário, e-mail e senha | Entrada apenas com a conta Google |
+| Perfis fixos de Aluno e Professor | Permissões granulares, sem perfis fixos |
+| Questões objetivas e dissertativas | Apenas questões de múltipla escolha |
+| Áreas de conhecimento e tópicos, com assuntos em árvore | Hierarquia Disciplina → Assunto → Tópico |
+| IFQuiz com questões da API externa `enem.dev` e placar dos cinco melhores | IFQuiz com questões do banco próprio, pontos, patentes, ranking e loja |
+| Flashcards e Revisão de Conteúdo em funcionamento | Previstos, ainda sem implementação |
+| Verificação de questões semelhantes por IA (Gemini) | Não existe |
+| Impressão de simulado por modelo próprio do servidor | Caderno de questões montado pelo navegador |
+| Foto de perfil e exclusão de conta | Não existem |
+| Página de Política de Privacidade | Não existe |
+| — | Módulo de Redação, denúncias com moderação, registro de auditoria e *feature flags* |
+
+---
+
+## Próximos passos
+
+Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já têm *feature flags*, desligadas por padrão, mas ainda não têm implementação. As frentes de trabalho em andamento estão em [Subprojetos Ativos](subprojetos/index.md).
+
+---
+
+## Fontes da versão 3.0
+
+| Conteúdo | Fonte | Data |
+|---|---|---|
+| Stack e versão declarada no código | `ifvest-backend/pyproject.toml`, `ifvest-frontend/package.json` e configuração de produção do `ifvest-monorepo` | out/2026 |
+| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo` | out/2026 |
+| Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | out/2026 |
+| Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |

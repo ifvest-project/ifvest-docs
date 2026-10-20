@@ -12,9 +12,9 @@ Documentação técnica oficial da plataforma **IFVest**, projeto de extensão d
 ## Sobre o Projeto
 
 - **Instituição:** IFSP — Campus Jacareí, curso de Tecnologia em Análise e Desenvolvimento de Sistemas (ADS)
-- **Origem:** TCCs de Fonseca e Sousa (2021), resgatado e reconstruído integralmente por Cristian Rodolfo Zago Da Silva (2024)
-- **Stack atual:** Node.js, Express, Sequelize e MySQL, com integração híbrida de componentes React
-- **Status:** versão v2 em produção, com subprojetos de extensão ativos organizados em quatro eixos
+- **Origem:** TCCs de Fonseca e Sousa (2021), resgatado e reconstruído integralmente por Cristian Rodolfo Zago Da Silva (2024) e reconstruído de novo, do zero, em 2026
+- **Stack atual:** React e TypeScript no frontend, Python com FastAPI no backend e PostgreSQL, com autenticação pelo Firebase
+- **Status:** IFVest V3 em produção, com subprojetos de extensão ativos organizados em quatro eixos
 
 Veja a [Descrição do Sistema](descricao-do-sistema.md) completa para contexto, motivação, público-alvo e histórico detalhado.
 

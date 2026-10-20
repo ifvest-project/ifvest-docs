@@ -234,7 +234,7 @@ Os módulos da plataforma são ligados e desligados por **feature flags**, sem n
 
 As flags obedecem a uma **hierarquia**: desligar um módulo desliga automaticamente todas as suas funcionalidades. O estado de cada flag pode vir do banco de dados, quando alterado pelo painel administrativo, ou do valor padrão, definido por variável de ambiente. Sem alteração, valem os padrões do código: todos os módulos ligados, exceto Flashcards e Revisão. Toda alteração feita pelo painel fica no registro de auditoria.
 
-O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503, as chamadas a módulos e funcionalidades desligados, e o frontend oculta as telas correspondentes, exibindo uma página de "em desenvolvimento" no lugar. Há duas exceções:
+O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503, as chamadas a módulos e funcionalidades desligados, e o frontend oculta as telas dos módulos desligados — e as da Pergunta do Dia, do Ranking e da Correção de redações —, exibindo uma página "Em Breve" no lugar. Nas demais funcionalidades, a tela continua visível e a ação é recusada pela API (ver [Descrição das Funcionalidades — Módulos desligados](funcionalidades.md#modulos-desligados)). Há duas exceções:
 
 - o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador;
 - **Flashcards** e **Revisão** ainda não têm rotas na API.

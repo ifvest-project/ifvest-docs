@@ -83,7 +83,7 @@ As permissões automáticas valem só na criação da conta: o que um administra
 
 ### O que isso muda para o usuário
 
-Quando alguém tenta executar uma ação para a qual não tem permissão, a plataforma informa **qual permissão está faltando** e orienta a procurar um administrador — em vez de simplesmente negar o acesso.
+Quando alguém tenta executar uma ação para a qual não tem permissão, a API recusa a chamada informando **qual permissão está faltando** e orientando a procurar um administrador — em vez de simplesmente negar o acesso. Na interface, as áreas restritas mostram um aviso de acesso restrito (ver [Descrição das Funcionalidades — Falta de permissão](funcionalidades.md#falta-de-permissao)).
 
 !!! note "Por que este modelo importa para a documentação"
     Como as capacidades não derivam de um cargo, a documentação de uso **não se organiza por perfil**. Cada tarefa indica a permissão que exige, permitindo que qualquer usuário identifique o que pode fazer a partir do que possui. Ver [Planejamento da Documentação](planejamento.md#fase-4-usuario).
@@ -113,9 +113,9 @@ Módulo de prática rápida, com elementos de jogo:
 
 ### Simulados
 
-Professores com permissão montam simulados escolhendo as questões do banco. O estudante pode montar o seu próprio simulado de treino ou gerar um simulado aleatório a partir de filtros da taxonomia.
+Qualquer estudante pode montar um simulado de treino, escolhendo as questões do banco, ou gerar um simulado aleatório, com questões de todas as disciplinas ou de uma delas. A API prevê também simulados montados por professores com permissão, ainda sem tela na interface.
 
-A resolução pode ser feita na própria plataforma, com a correção de cada questão, e o caderno de questões pode ser exportado em PDF. A cada envio, a plataforma registra a tentativa — número de questões, quantas foram respondidas, acertos e nota —, e o estudante acompanha o histórico e as estatísticas das suas tentativas.
+A resolução pode ser feita na própria plataforma, com a correção de cada questão, e o caderno de questões pode ser exportado em PDF. A cada envio, a plataforma registra a tentativa — número de questões, quantas foram respondidas, acertos e nota —, e o estudante acompanha as estatísticas das suas tentativas e a nota mais recente em cada simulado.
 
 ### Redação
 
@@ -194,7 +194,7 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 | Camada | Fonte | Data |
 |---|---|---|
 | Proposta de valor, escopo, público-alvo e taxonomia | Documentação do repositório do backend (README — Visão de Negócio) | set/2026 |
-| Módulos implementados e suas regras | Código-fonte do backend e do frontend do `ifvest-monorepo` | set/2026 |
+| Módulos implementados e suas regras | Código-fonte do backend e do frontend do `ifvest-monorepo` | set/2026, revisto em out/2026 |
 | Módulos previstos (Revisão e Flashcards) | Documentação do repositório do backend (README — Visão de Negócio) e documento de onboarding | set/2026 |
 | Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026 |
 | Banco de questões e carga das provas | Modelos do backend e `docs/atualizar-questoes-na-vps.md` | set/2026 |

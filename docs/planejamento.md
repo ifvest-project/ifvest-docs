@@ -64,7 +64,7 @@ flowchart TD
     end
 
     subgraph F3["📒 FASE 3 — Detalhamento"]
-        E["⬜ Descrição das Funcionalidades"]
+        E["✅ Descrição das Funcionalidades"]
         F["✅ Referência à API (OpenAPI)"]
         G["✅ Registro de Versões"]
     end
@@ -115,7 +115,7 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). | 🟡 Em andamento |
+| Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). Os requisitos estão sendo levantados com as equipes dos subprojetos, por meio de um documento enviado para preenchimento. | 🟡 Em andamento |
 | Subprojetos e Projetos Paralelos | Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA. | ⬜ Pendente |
 
 ---
@@ -127,7 +127,7 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes. | ⬜ Pendente |
+| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes. Produzida a partir do código, antes da nova especificação de requisitos; a correspondência com os requisitos será registrada quando ela for concluída. | ✅ Concluído |
 | Referência à API (OpenAPI) | Especificação OpenAPI gerada a partir do código-fonte, publicada de forma estática e interativa. | ✅ Concluído |
 | Registro de Versões | Histórico das mudanças relevantes na plataforma, incluindo a transição da versão anterior para o IFVest V3. | ✅ Concluído |
 
