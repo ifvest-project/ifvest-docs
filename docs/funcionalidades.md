@@ -5,7 +5,7 @@ Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada fun
 !!! info "Levantada do código em produção"
     O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de outubro de 2026 (commit `48ad5ea`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
-    ⬜ *A correspondência entre cada funcionalidade e os requisitos será registrada quando a nova especificação de requisitos estiver concluída.*
+    Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
 ---
 
@@ -377,10 +377,10 @@ As abas "Professor" e "Admin" do cabeçalho aparecem depois que a plataforma car
 
 | Situação | O que o usuário vê |
 |---|---|
-| Módulo desligado | O link do cabeçalho fica riscado e sem clique, o cartão da página Início fica cinza com o selo "Temporariamente desabilitado", e o endereço do módulo mostra a página "Em Breve" |
-| Pergunta do Dia, Ranking ou Correção desligados | A tela da funcionalidade é substituída pela página "Em Breve" |
-| Demais funcionalidades desligadas — quiz personalizado, loja, propostas, simulado aleatório e cadastro de questões | A tela continua disponível, mas o conteúdo não carrega ou a ação é recusada. Em parte das telas, a mensagem informa que o módulo está desativado e que um administrador pode reativá-lo no painel; em outras, aparece um erro genérico ou uma lista vazia |
-| Exportação em PDF desligada | Nenhum efeito, porque a interface monta o caderno sem usar a exportação da API |
+| Módulo inteiro desligado | O link do cabeçalho fica riscado e sem clique, o cartão da página Início fica cinza com o selo "Temporariamente desabilitado", e o endereço do módulo mostra a página "Em Breve" |
+| Pergunta do Dia, Ranking ou Correção | A tela da funcionalidade é substituída pela página "Em Breve" |
+| Outras funcionalidades | Vale para o quiz personalizado, a loja, as propostas, o simulado aleatório e o cadastro de questões: a tela continua disponível, mas o conteúdo não carrega ou a ação é recusada. Em parte das telas, a mensagem informa que o módulo está desativado e que um administrador pode reativá-lo no painel; em outras, aparece um erro genérico ou uma lista vazia |
+| Exportação em PDF | Nenhum efeito, porque a interface monta o caderno sem usar a exportação da API |
 | Falha ao consultar os módulos | A interface não presume que estão ligados e mostra "Não foi possível verificar quais módulos estão ativos", com a opção de tentar de novo |
 
 A regra de cada flag está em [Arquitetura — Feature flags](arquitetura.md#feature-flags).

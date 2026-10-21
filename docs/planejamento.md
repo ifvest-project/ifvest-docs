@@ -115,7 +115,7 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). Os requisitos estão sendo levantados com as equipes dos subprojetos, por meio de um documento enviado para preenchimento. | 🟡 Em andamento |
+| Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). Organizada em dois níveis: requisitos da plataforma, a partir da especificação anterior atualizada para o IFVest V3, e requisitos por módulo, a partir do levantamento preenchido pelas equipes dos subprojetos, atualizados conforme o preenchimento avança. | 🟡 Em andamento |
 | Subprojetos e Projetos Paralelos | Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA. | ⬜ Pendente |
 
 ---
@@ -127,7 +127,7 @@ flowchart TD
 
 | Item | Descrição | Status |
 |------|-----------|--------|
-| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes. Produzida a partir do código, antes da nova especificação de requisitos; a correspondência com os requisitos será registrada quando ela for concluída. | ✅ Concluído |
+| Descrição das Funcionalidades | O que cada módulo faz — Redação, Quiz e Simulados na primeira versão; Revisão e Flashcards nas versões seguintes. Produzida a partir do código, antes da nova especificação de requisitos; a situação de cada requisito na plataforma é registrada na própria especificação. | ✅ Concluído |
 | Referência à API (OpenAPI) | Especificação OpenAPI gerada a partir do código-fonte, publicada de forma estática e interativa. | ✅ Concluído |
 | Registro de Versões | Histórico das mudanças relevantes na plataforma, incluindo a transição da versão anterior para o IFVest V3. | ✅ Concluído |
 
@@ -165,7 +165,7 @@ A substituição da plataforma não descarta a documentação já produzida. O q
 | Item | Situação |
 |---|---|
 | Descrição do Sistema | Aproveitada em grande parte — mudam os módulos, a hierarquia de conteúdo e a organização de perfis |
-| Especificação de Requisitos | Aproveitada em grande parte — entram as permissões granulares e o módulo de Redação |
+| Especificação de Requisitos | Aproveitada como base dos requisitos da plataforma — entram as permissões granulares, os simulados e a Redação — e complementada pelos requisitos por módulo, levantados com as equipes |
 | Diagrama C4 de Contexto | Aproveitado com ajustes |
 | Diagramas C4 de Contêineres e Componentes | Refeitos — descrevem uma estrutura que deixa de existir |
 | Arquitetura do Sistema | Refeita — a stack é outra |
