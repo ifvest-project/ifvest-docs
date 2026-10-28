@@ -1,129 +1,97 @@
 # Perfil e Seus Dados
 
-Esta página reúne as tarefas de gerenciamento da sua conta: consultar e atualizar seus dados cadastrais, trocar a foto de perfil e a senha, e excluir a conta. Todas ficam na área de **perfil do usuário** (`/usuario/perfil`), disponível para quem está logado.
+Esta página reúne as tarefas da área de **perfil** (`/perfil`): consultar os seus indicadores, alterar o apelido e acompanhar a sua atividade no IFQuiz e nos Simulados. Ela vale para todos que têm conta.
 
-Ela vale para **todos os perfis** — aluno e professor. A exclusão da conta tem consequências diferentes para cada um: veja o aviso na [Tarefa 4](#tarefa-4-excluir-sua-conta).
-
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração pelo subprojeto de frontend e **podem mudar até a entrega**. Veja [como ler as tarefas](../index.md#como-ler-as-tarefas).
+Para abrir o perfil, clique em **Usuário**, no canto direito do cabeçalho.
 
 ---
 
-## Tarefa 1 — Consultar e atualizar seus dados cadastrais
+## Tarefa 1 — Consultar o seu perfil
 
-**Status:** ✅ Atual
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** conferir e corrigir as informações que a plataforma tem sobre você.
+**Objetivo:** ver os dados da sua conta e o resumo do seu uso da plataforma.
 
-**Pré-requisitos:** estar logado (ver [Acesso e Conta](acesso.md#tarefa-2-entrar-na-sua-conta)).
+**Pré-requisitos:** ter entrado na plataforma (ver [Acesso e Conta](acesso.md#tarefa-1-entrar-na-plataforma)).
 
 **Como fazer:**
 
-1. Acesse a área de **perfil** (`/usuario/perfil`). Seus dados cadastrais são exibidos.
-2. Edite os campos que quiser atualizar:
+1. Clique em **Usuário**, no cabeçalho.
+2. O perfil mostra o seu apelido, o e-mail da conta e três indicadores:
 
-    | Campo | Observação |
+    | Indicador | O que mostra |
     |---|---|
-    | **Nome completo** | — |
-    | **Nome de usuário** | é a credencial que você usa para entrar (ver aviso abaixo) |
-    | **E-mail** | — |
-
-3. Salve as alterações.
-
-!!! warning "Ao trocar o nome de usuário, sua forma de entrar muda"
-    O login atual é feito com **nome de usuário**, não com e-mail. Se você alterar esse campo, passe a usar o **novo** nome de usuário para entrar na plataforma. As mesmas regras do cadastro continuam valendo: de 3 a 30 caracteres, e o nome precisa ser único na plataforma.
-
-!!! abstract "Na versão refatorada"
-    A área de gerenciamento de perfil é reestruturada, mantendo as três capacidades atuais: **alteração da foto**, **atualização das informações cadastrais** e **opção de exclusão** da conta.
-
-    *Fonte: Relatório 1 — Maria Luiza (frontend), item 4 e fig. 3.3. Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente (aguardando estabilização da interface).
+    | **Pontos Totais** | O seu saldo de pontos do IFQuiz, que diminui quando você compra na [loja de avatares](../aluno/ifquiz.md#tarefa-7-comprar-e-equipar-avatares) |
+    | **Dias Consecutivos** | A sua [sequência diária](../aluno/ifquiz.md#tarefa-4-manter-a-sequencia-diaria) na Pergunta do Dia |
+    | **Permissões Ativas** | Quantas permissões a sua conta tem, como as de professor |
 
 ---
 
-## Tarefa 2 — Trocar sua foto de perfil
+## Tarefa 2 — Alterar o seu apelido
 
-**Status:** ✅ Atual
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** definir ou substituir a imagem que identifica sua conta.
+**Objetivo:** definir o nome que identifica você na plataforma.
 
-**Pré-requisitos:** estar logado; ter o arquivo de imagem no dispositivo.
+**Pré-requisitos:** os mesmos da [Tarefa 1](#tarefa-1-consultar-o-seu-perfil).
 
 **Como fazer:**
 
-1. Na área de perfil, escolha a opção de **foto de perfil**.
-2. Faça o **upload** da imagem desejada.
-3. Salve a alteração — a nova imagem passa a identificar sua conta.
+1. No perfil, clique em **Editar**, ao lado do apelido.
+2. Digite o novo apelido.
+3. Clique em **Salvar**.
 
 **Observações:**
 
-- Não há restrição de formato ou de tamanho definida para a imagem enviada. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
+- O apelido aparece na saudação da página **Início** e no [ranking do IFQuiz](../aluno/ifquiz.md#tarefa-6-ver-o-ranking). Sem apelido, a saudação usa o nome da sua conta Google, o perfil mostra "Sem apelido", e o ranking mostra a parte do seu e-mail antes do `@`.
 
 ---
 
-## Tarefa 3 — Trocar sua senha
+## Tarefa 3 — Acompanhar a sua atividade
 
-**Status:** ✅ Atual
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** substituir sua senha atual por uma nova, sabendo a senha vigente.
+**Objetivo:** rever o que você fez no IFQuiz e nos Simulados e retomar o estudo a partir daí.
 
-**Pré-requisitos:** estar logado e **saber sua senha atual**. Se você não a souber, veja [Recuperar sua senha](acesso.md#tarefa-3-recuperar-sua-senha).
+**Pré-requisitos:** os mesmos da [Tarefa 1](#tarefa-1-consultar-o-seu-perfil).
 
 **Como fazer:**
 
-1. Na área de perfil, localize a troca de senha.
-2. Informe a **senha atual** e, em seguida, a **nova senha**.
-3. Salve a alteração. A partir daí, use a nova senha para entrar.
+Abaixo dos indicadores, o perfil reúne três quadros:
+
+- **Atividade na Pergunta do Dia** — um mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
+- **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos. **Revisar** abre o gabarito do quiz, e **Refazer** abre a montagem com os mesmos filtros.
+- **Histórico de Simulados** — as suas tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota. **Refazer** abre o simulado de novo.
 
 **Observações:**
 
-- Informar a senha atual é uma proteção: impede que alguém com acesso momentâneo ao seu navegador troque sua senha e tome a conta.
-- A nova senha segue **as mesmas regras do cadastro**: mínimo de 8 caracteres, com ao menos uma letra e um número. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
-- Na versão refatorada, a área de perfil terá um **botão dedicado à troca de senha**, que leva você à tela da funcionalidade. *(Definição do subprojeto de frontend registrada em reunião, ago/2026.)*
+- O Histórico de Simulados não aparece quando o módulo de Simulados está desligado.
+- Não há revisão das questões de uma tentativa de simulado já enviada: o histórico mostra só o resultado.
 
 ---
 
-## Tarefa 4 — Excluir sua conta
+## Previstas, ainda não disponíveis
 
-**Status:** ✅ Atual
+**Status:** 🔵 Prevista
 
-**Objetivo:** encerrar definitivamente sua conta e remover seus dados da plataforma.
+O design do subprojeto de frontend e a especificação anterior previam, na área de perfil, três tarefas que o IFVest V3 ainda não oferece:
 
-**Pré-requisitos:** estar logado.
+- **Trocar a foto de perfil** — não há foto de perfil. A imagem que aparece no ranking é o avatar escolhido na loja do IFQuiz.
+- **Trocar a senha** — não se aplica: o IFVest não tem senha própria, e a senha é a da sua conta Google.
+- **Excluir a conta** — não há exclusão de conta pela plataforma.
 
-!!! danger "Esta ação é irreversível"
-    A exclusão remove seu registro de usuário e, **em cascata, os dados associados a ele** — as questões e as respostas vinculadas à sua conta. Não há como desfazer a exclusão nem recuperar esses dados depois. Se sua intenção é apenas parar de usar a plataforma por um período, **encerrar a sessão** ([sair](acesso.md#tarefa-4-sair-da-sua-conta)) é suficiente e preserva seus dados.
+*Fonte: Relatório 1 — Maria Luiza, subprojeto Refatoração para React e Redesign do IFVest, item 4; requisito [RFG03](../../requisitos/funcionais.md#rfg03).*
 
-!!! danger "Se você é professor: a exclusão apaga o conteúdo que você criou"
-    A remoção em cascata alcança as **questões** e os **simulados** cadastrados por você, junto com as alternativas e as respostas vinculadas a eles. Os flashcards **não** são afetados, por não guardarem autoria.
-
-    ⚠️ **Materiais de revisão impedem a exclusão.** A vinculação entre conteúdo e autor não prevê remoção em cascata, de modo que a exclusão de uma conta com materiais publicados tende a ser recusada pelo sistema. Nesse caso, procure a coordenação do projeto — remover os materiais por conta própria significaria descartar conteúdo de estudo em uso.
-
-    *Conforme o código-fonte da plataforma anterior ao redesign.*
-
-**Como fazer:**
-
-1. Na área de perfil, acione a opção de **exclusão da conta**.
-2. Confirme a solicitação.
-3. Sua conta e os dados associados são removidos, e você perde o acesso à plataforma.
-
-!!! abstract "Na versão refatorada"
-    A opção de exclusão é mantida na área de perfil reestruturada.
-
-    *Fonte: Relatório 1 — Maria Luiza (frontend), item 4 e fig. 3.3. Design em andamento, sujeito a alteração.*
-
-**Observações:**
-
-- Para voltar a usar o IFVest depois de excluir a conta, é necessário fazer um **novo cadastro** ([Criar uma conta](acesso.md#tarefa-1-criar-uma-conta)) — e o histórico anterior não é restaurado.
+⬜ *A confirmar com o projeto o canal para pedir a exclusão da conta ou uma cópia dos seus dados, conforme a LGPD, enquanto a plataforma não oferecer essas opções.*
 
 ---
 
 ## Seus dados na plataforma
 
-Os dados pessoais que o IFVest coleta de você no cadastro são: **nome de usuário, nome completo, e-mail, senha e foto de perfil**. Todos podem ser consultados e atualizados na área de perfil (Tarefas 1 a 3), e a exclusão da conta (Tarefa 4) é o mecanismo pelo qual você remove esses dados da plataforma.
-
-⬜ *A confirmar: não há, na versão atual, função na plataforma para solicitar uma **cópia** dos seus dados — resta esclarecer com o subprojeto de adequação à LGPD se existe um canal para esse tipo de pedido, para orientar o aluno aqui.*
+Da sua conta Google, o IFVest guarda **apenas o e-mail**, que identifica a sua conta. Além dele, a plataforma registra o apelido e o avatar, se você os definir, as suas permissões e os dados do seu uso: pontos, sequência diária, respostas aos quizzes, tentativas de simulado, redações enviadas e denúncias de erro em questões.
 
 ---
 
@@ -131,21 +99,17 @@ Os dados pessoais que o IFVest coleta de você no cadastro são: **nome de usuá
 
 | Situação | O que fazer |
 |---|---|
-| "Troquei o nome de usuário e não consigo mais entrar" | Use o **novo** nome de usuário — ele é a credencial de login (ver [Tarefa 1](#tarefa-1-consultar-e-atualizar-seus-dados-cadastrais)) |
-| Nome de usuário recusado ao editar | O nome precisa ser único na plataforma — escolha outro |
-| Não sei minha senha atual e quero trocá-la | A troca exige a senha vigente. Sem ela, veja [Recuperar sua senha](acesso.md#tarefa-3-recuperar-sua-senha) |
-| Excluí a conta por engano | A exclusão é irreversível; será necessário um novo cadastro, sem o histórico anterior |
-| ⬜ Mensagens de erro específicas | As mensagens exatas exibidas pela plataforma serão documentadas junto com as capturas de tela, quando a interface refatorada estabilizar |
+| Os indicadores aparecem zerados | A sua sessão pode ter terminado: entre de novo (ver [Acesso e Conta](acesso.md#erros-e-situacoes-comuns)) |
+| A minha sequência voltou a zero | A sequência conta os dias seguidos com resposta à Pergunta do Dia. Um dia sem resposta a zera (ver [IFQuiz](../aluno/ifquiz.md#tarefa-4-manter-a-sequencia-diaria)) |
+| Os meus pontos diminuíram | O saldo diminui quando você compra um avatar na loja. O ranking não é afetado pelas compras |
+| Um simulado do histórico não abre com **Refazer** | Os simulados de treino criados antes de 10/10/2026 passaram a ser visíveis só para quem os criou. Se você resolveu um simulado de outra pessoa antes dessa data, a tentativa continua no histórico, mas o simulado não abre mais |
 
 ---
 
 ## Fontes desta página
 
-| Camada | Fonte | Data |
+| Conteúdo | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–4): campos editáveis, troca de senha e exclusão em cascata | [Descrição das Funcionalidades](../../funcionalidades.md) — Perfil de Usuário, derivada do código-fonte (rota `/usuario/perfil`) | jun/2026 |
-| Interface futura (Tarefas 1 e 4) | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, item 4 e fig. 3.3 | abr/2026 |
-| Relação de dados pessoais coletados no cadastro | Relatório final de extensão *Adequação do Cadastro do Portal IFVest à LGPD* — diagnóstico do cadastro | 2025/2026 |
-
-!!! note "Sobre a adequação à LGPD"
-    O subprojeto de adequação à LGPD tem escopo **técnico**: reestruturação do armazenamento dos dados do cadastro, controle de acesso por usuário e formalização das bases legais de cada dado coletado. Nenhuma dessas mudanças altera as tarefas desta página — para o aluno, o uso do perfil permanece o mesmo. As tarefas de perfil já existentes (atualizar, corrigir e excluir seus dados) continuam sendo a via pela qual você gerencia suas informações.
+| Telas, indicadores e históricos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): página de perfil e quadros de histórico | out/2026 |
+| Dados guardados pela plataforma | [Modelo de Dados](../../modelo-de-dados.md) | out/2026 |
+| Tarefas previstas no design | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, item 4 | abr/2026 |

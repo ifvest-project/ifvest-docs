@@ -1,9 +1,16 @@
 # Flashcards
 
-O módulo de **Flashcards** (`/flashcards`) oferece cartões de estudo no formato pergunta-e-resposta: a frente do cartão traz a pergunta e o verso, a resposta. A plataforma controla **quando** cada cartão volta a aparecer para você ([repetição espaçada](../glossario.md#termos)), priorizando o que está há mais tempo sem revisão. Hoje, os cartões são criados pelos professores; a versão refatorada prevê também a criação de cartões próprios pelo aluno.
+O módulo de **Flashcards** (`/flashcards`) oferece cartões de estudo no formato pergunta-e-resposta: a frente do cartão traz a pergunta e o verso, a resposta. A plataforma controla **quando** cada cartão volta a aparecer para você ([repetição espaçada](../glossario.md#termos-dos-modulos-previstos-e-da-versao-anterior)), priorizando o que está há mais tempo sem revisão. Hoje, os cartões são criados pelos professores; a versão refatorada prevê também a criação de cartões próprios pelo aluno.
 
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração pelo subprojeto de frontend e **podem mudar até a entrega**. Veja [como ler as tarefas](index.md#como-ler-as-tarefas-deste-guia).
+!!! warning "Módulo ainda não disponível no IFVest V3"
+    O módulo de **Flashcards** ainda não foi implementado no IFVest V3, a versão em produção. O item **Flashcards** do cabeçalho e da página **Início** fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
+
+    Esta página fica como **registro do que foi planejado**, a título de curiosidade:
+
+    - as tarefas com status **✅ Atual** descrevem o módulo da **versão anterior** da plataforma, que não existe mais. Nesta página, "plataforma atual", "versão atual" e "hoje" se referem a ela;
+    - as tarefas com status **🟡 Refatorado (em design)** e **🔵 Em deliberação** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado.
+
+    Os termos de organização dos conteúdos usados aqui — área, tópico, assunto e subassunto — são os da versão anterior e do redesign. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
 
 ---
 
@@ -13,7 +20,7 @@ O módulo de **Flashcards** (`/flashcards`) oferece cartões de estudo no format
 
 **Objetivo:** revisar um conjunto de cartões de pergunta e resposta sobre o conteúdo que você está estudando.
 
-**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-2-entrar-na-sua-conta) (o histórico de revisão é registrado por usuário).
+**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-1-entrar-na-plataforma) (o histórico de revisão é registrado por usuário).
 
 **Como fazer:**
 
@@ -43,7 +50,7 @@ O módulo de **Flashcards** (`/flashcards`) oferece cartões de estudo no format
 
 **Objetivo:** ver os cartões organizados pelo tempo desde a sua última revisão, para decidir por onde recomeçar.
 
-**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-2-entrar-na-sua-conta).
+**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-1-entrar-na-plataforma).
 
 **Como fazer:**
 
@@ -115,7 +122,7 @@ O que define a visibilidade de um flashcard é **o perfil de quem o criou**: os 
 
 | Camada | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–2) | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Flashcards, derivada do código-fonte (rotas `/flashcards/*`, repositório IFVEST-main) | jun/2026 |
+| Fluxos da versão anterior (Tarefas 1–2) | Descrição das Funcionalidades, na versão de jun/2026, que descrevia a plataforma anterior — módulo Flashcards, derivada do código-fonte (rotas `/flashcards/*`, repositório IFVEST-main) | jun/2026 |
 | Interface futura (Tarefa 1) e novas capacidades (Tarefas 3–4) | Relatório 4 — Isabella Pereira, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
 | Observação sobre a revisão por grupos (Tarefa 2) | Relatório 4 — Isabella Pereira, observações sobre o estado atual | abr/2026 |
 

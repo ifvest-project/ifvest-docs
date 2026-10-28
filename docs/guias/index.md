@@ -2,33 +2,32 @@
 
 Esta é a documentação de usuário do IFVest: como usar a plataforma, tarefa por tarefa. Escolha por onde começar.
 
-| Se você é... | Vá para | O que encontra |
+| Se você... | Vá para | O que encontra |
 |---|---|---|
-| **Aluno** | [Guia do Aluno](aluno/index.md) | Estudar pelos módulos de Revisão, IFQuiz, Flashcards e Simulados |
-| **Professor** | [Guia do Professor](professor/index.md) | Criar e gerenciar questões, simulados, flashcards e materiais |
+| **Estuda** | [Guia do Aluno](aluno/index.md) | Praticar no IFQuiz e nos Simulados e acompanhar o seu desempenho |
+| **Produz conteúdo** | [Guia do Professor](professor/index.md) | Cadastrar questões, criar simulados institucionais e importar provas |
 
-**Todos os perfis** usam as mesmas páginas de conta:
+**Todos** usam as mesmas páginas de conta:
 
-- [Acesso e Conta](conta/acesso.md) — criar conta, entrar, recuperar senha, sair
-- [Perfil e Seus Dados](conta/perfil.md) — editar dados, foto e senha; excluir a conta
+- [Acesso e Conta](conta/acesso.md) — entrar com a conta Google e sair
+- [Perfil e Seus Dados](conta/perfil.md) — apelido, indicadores e históricos de quizzes e simulados
 
-Onde uma tarefa de conta funciona de forma diferente conforme o perfil, a diferença está sinalizada na própria página.
+O que cada pessoa pode fazer depende das **permissões** da conta, e não de um perfil escolhido no cadastro: um professor é, para a plataforma, alguém que tem as permissões de conteúdo. Ver [Descrição do Sistema — Perfis e permissões](../descricao-do-sistema.md#perfis-e-permissoes).
 
 Os termos usados na plataforma estão no [Glossário](glossario.md).
 
 ---
 
-## Qual versão da plataforma esta documentação descreve
+## Qual versão da plataforma estes guias descrevem
 
-!!! warning "Leia antes de usar os guias"
-    O IFVest está em processo de **refatoração do frontend** (migração para React, com redesign completo da interface). Por orientação do projeto, os guias são escritos tendo a **plataforma refatorada como referência**, para evitar documentar telas transitórias que serão substituídas.
+!!! info "IFVest V3, em produção"
+    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em outubro de 2026 (commit `d36de12`).
 
-    Cada tarefa distingue duas camadas:
+    Eles foram escritos antes da entrega do V3, a partir dos relatórios do subprojeto de frontend, e revisados depois dela. Por isso, cada página registra também o que o design previa e não foi implementado. Os módulos **Revisão de Conteúdo** e **Flashcards** ainda não existem na plataforma: as páginas deles continuam nos guias, com um aviso no início, como registro do que foi planejado.
 
-    - O **fluxo da tarefa** (objetivo, pré-requisitos, sequência de passos) — válido hoje e após a refatoração, verificado no sistema em produção.
-    - A **interface** (telas, botões, navegação) — descrita nos blocos *"Na versão refatorada"*, com base nos relatórios do subprojeto de frontend. Esse design **ainda está em elaboração e pode mudar** até a entrega.
+⬜ *Guias pendentes: Redação — escrever e enviar redações, propostas e correção — e Painel Administrativo — visão geral, usuários e permissões e módulos. O funcionamento dos dois está na [Descrição das Funcionalidades](../funcionalidades.md). A moderação e a importação de questões, que também ficam no painel, estão no [Banco de Questões](professor/banco-de-questoes.md).*
 
-    Capturas de tela e instruções visuais definitivas serão adicionadas quando a interface React estabilizar.
+⬜ *Capturas de tela pendentes, a acrescentar com texto alternativo.*
 
 ---
 
@@ -38,38 +37,30 @@ Cada tarefa dos guias segue a mesma estrutura, baseada na **ISO/IEC/IEEE 26514:2
 
 | Campo | O que informa |
 |---|---|
-| **Status** | Se a tarefa funciona hoje ou é prevista no redesign (ver legenda abaixo) |
+| **Status** | Se a tarefa está disponível na plataforma (ver legenda abaixo) |
+| **Acesso** | Quem pode fazer a tarefa: qualquer pessoa, quem tem conta ou quem tem uma permissão específica |
 | **Objetivo** | O que você realiza ao completar a tarefa |
 | **Pré-requisitos** | O que precisa estar pronto antes |
-| **Como fazer** | A sequência de passos, do início ao resultado |
-| **Na versão refatorada** | Como a tela/fluxo ficará no novo design, com a fonte citada |
+| **Como fazer** | A sequência de passos, do início ao resultado, com os nomes que aparecem na tela |
 | **Observações** | Limites, validações e situações comuns |
-
-O Guia do Professor acrescenta o campo **Perfil**, que indica a qual perfil cada tarefa pertence enquanto a redistribuição entre professor e administrador não é concluída.
 
 ### Legenda de status
 
-- ✅ **Atual** — a tarefa funciona hoje na plataforma em produção. A interface será redesenhada, mas o fluxo permanece.
-- 🟡 **Refatorado (em design)** — a tarefa **ainda não existe** na plataforma atual; está prevista no design da versão refatorada.
-- 🔵 **Em deliberação** — a tarefa **ainda não foi decidida**: o projeto avalia se ela existirá. Documentada aqui porque há design proposto, mas **pode não ser implementada**.
-- ⬜ **Pendência** — item aguardando confirmação ou material (captura de tela, verificação na plataforma, decisão do projeto).
+- ✅ **Disponível** — a tarefa funciona na plataforma em produção.
+- 🔵 **Prevista** — a tarefa foi planejada, mas ainda não existe na plataforma.
+- ⬜ **Pendência** — item aguardando confirmação ou material, como capturas de tela.
 
-Toda informação da camada *"Na versão refatorada"* cita sua fonte (relatório e figura do subprojeto de frontend), seguindo o critério desta documentação: **nada é documentado sem evidência confirmada**.
-
-Alguns comportamentos aparecem marcados como *"conforme o código-fonte da plataforma anterior ao redesign"*. São detalhes verificados diretamente no repositório do projeto — regras de validação, restrições de acesso e efeitos de exclusão — e não em uso da plataforma. A distinção é registrada porque o repositório pode não corresponder exatamente ao que está no ar.
+Os nomes de telas, botões e mensagens foram conferidos no código da plataforma. O design da interface pode mudar em versões futuras; quando isso acontecer, os guias serão atualizados.
 
 ---
 
 ## Acessibilidade da plataforma
 
-Os módulos de **Simulados**, **Flashcards** e **IFQuiz** passaram por avaliação e ajustes de acessibilidade conduzidos pelo subprojeto responsável. Na prática, isso significa que estes módulos podem ser usados:
-
-- **apenas com o teclado**, com indicação visível de onde está o foco e ordem de tabulação adequada;
-- **com leitor de tela**, que percorre e lê o conteúdo das páginas.
-
-As telas de confirmação e a página de geração de PDF, que apresentavam falhas de foco, tabulação e leitura, também foram corrigidas. Os ajustes foram verificados em teste conduzido com um usuário cego, navegando pela plataforma apenas com teclado e leitor de tela (NVDA).
+Os ajustes de acessibilidade feitos pelo subprojeto responsável em 2025 — uso só com o teclado e com leitor de tela nos módulos de Simulados, Flashcards e IFQuiz, verificados num teste com um usuário cego, usando o NVDA — foram aplicados na **versão anterior** da plataforma. A interface do IFVest V3 foi reconstruída do zero, e não há avaliação de acessibilidade registrada sobre ela (ver [Requisitos Não-Funcionais — Usabilidade e acessibilidade](../requisitos/nao-funcionais.md#usabilidade-e-acessibilidade)).
 
 *Fonte: relatório final do subprojeto de acessibilidade (2025).*
+
+⬜ *A confirmar com o subprojeto de testes se a avaliação de 2026, descrita abaixo, cobre a interface do V3.*
 
 ### Normas de referência
 
@@ -81,7 +72,7 @@ A acessibilidade da plataforma é avaliada com base em dois referenciais adotado
 !!! note "Estas são as normas de referência, não uma declaração de conformidade"
     A avaliação de acessibilidade do IFVest está **em andamento**. As auditorias automatizadas, inspeções técnicas e validações manuais realizadas até o momento identificaram pontos a corrigir — entre eles estrutura semântica, contraste entre cores, navegação por teclado, hierarquia de cabeçalhos e uso de atributos de acessibilidade.
 
-    Portanto, esta documentação registra **quais normas orientam o trabalho** e quais ajustes já foram aplicados, sem afirmar que a plataforma atende integralmente a um nível de conformidade.
+    Portanto, esta documentação registra **quais normas orientam o trabalho**, sem afirmar que a plataforma atende integralmente a um nível de conformidade.
 
 *Fonte: estudo de benchmark e aplicação de ferramentas de avaliação de acessibilidade no IFVest, subprojeto de testes de software (2026).*
 
@@ -89,8 +80,8 @@ A acessibilidade da plataforma é avaliada com base em dois referenciais adotado
 
 ### Convenções de acessibilidade destes guias
 
-- Toda captura de tela terá **texto alternativo** descritivo — as pendências ⬜ de captura já reservam esse campo.
-- Os marcadores de status **nunca dependem apenas de símbolo ou cor**: vêm sempre acompanhados da palavra correspondente (Atual, Refatorado, Pendente).
+- Toda captura de tela terá **texto alternativo** descritivo.
+- Os marcadores de status **nunca dependem apenas de símbolo ou cor**: vêm sempre acompanhados da palavra correspondente — Disponível, Prevista, Pendência.
 - A hierarquia de títulos é consistente (página → tarefa) para permitir navegação por leitores de tela.
 
 ---

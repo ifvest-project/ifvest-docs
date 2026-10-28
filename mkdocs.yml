@@ -147,10 +147,10 @@ nav:
       - Perfil e Seus Dados: guias/conta/perfil.md
     - Guia do Aluno:
       - Visão Geral: guias/aluno/index.md
+      - IFQuiz: guias/aluno/ifquiz.md
+      - Simulados: guias/aluno/simulados.md
       - Revisão de Conteúdo: guias/aluno/revisao.md
       - Flashcards: guias/aluno/flashcards.md
-      - Simulados: guias/aluno/simulados.md
-      - IFQuiz: guias/aluno/ifquiz.md
     - Guia do Professor:
       - Visão Geral: guias/professor/index.md
       - Banco de Questões: guias/professor/banco-de-questoes.md

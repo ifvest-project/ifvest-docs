@@ -6,8 +6,16 @@ Na versão atual da plataforma, **todos os flashcards disponíveis aos alunos s�
 
 Na versão refatorada, o **acervo da plataforma** passa a ser composto pelos cartões de professores e administradores, disponíveis a todos os alunos. Cartões que venham a ser criados por um aluno ficam restritos à conta dele e não integram esse acervo.
 
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração e **podem mudar até a entrega**. Veja [como ler as tarefas](index.md#como-ler-as-tarefas-deste-guia).
+!!! warning "Módulo ainda não disponível no IFVest V3"
+    O módulo de **Flashcards** ainda não foi implementado no IFVest V3, a versão em produção: não há telas nem rotas na API para criar cartões. O item **Flashcards** do cabeçalho fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
+
+    Esta página fica como **registro do que foi planejado**, a título de curiosidade:
+
+    - as tarefas com status **✅ Atual** descrevem o módulo da **versão anterior** da plataforma, que não existe mais. Nesta página, "plataforma atual" e "versão atual" se referem a ela;
+    - a seção sobre o redesign descreve a proposta do subprojeto de frontend, que pode não ser a adotada quando o módulo for implementado;
+    - o campo **Perfil** e a marca 🔄 vêm da época em que a divisão de tarefas entre professor e administrador estava em discussão. No V3, o que cada conta pode fazer depende das [permissões](index.md#para-quem-e-este-guia).
+
+    Os termos de organização dos conteúdos usados aqui — área e tópico — são os da versão anterior. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
 
 ---
 
@@ -107,7 +115,7 @@ O relatório se refere ao acervo como sendo de "professores/administradores", e 
 | Situação | O que fazer |
 |---|---|
 | O aluno relata não encontrar meu flashcard | Confira a área, o tópico e a dificuldade do cartão: são os filtros pelos quais o aluno chega até ele |
-| Não encontro o tópico adequado ao cadastrar | Crie o tópico na área correspondente antes de cadastrar o cartão (ver [Banco de Questões](banco-de-questoes.md#tarefa-6-criar-topicos-para-categorizar-questoes)) |
+| Não encontro o tópico adequado ao cadastrar | Crie o tópico na área correspondente antes de cadastrar o cartão — na versão anterior, pela tela **Meus tópicos** do banco de questões |
 | Preciso corrigir um cartão já publicado | Use a edição — todos os campos são alteráveis, sem necessidade de excluir e recriar |
 | ⬜ Mensagens de erro específicas | As mensagens exatas serão documentadas junto com as capturas de tela, quando a interface refatorada estabilizar |
 
@@ -117,8 +125,8 @@ O relatório se refere ao acervo como sendo de "professores/administradores", e 
 
 | Camada | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–3): campos, criação, edição e exclusão | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Flashcards, seção "Para o Professor", derivada do código-fonte (rotas `/flashcards/criar`, `:id/editar`, `:id/excluir`) | jun/2026 |
-| Filtros e limite de 10 cartões por rodada (contexto do uso pelo aluno) | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Flashcards, seção "Para o Aluno" | jun/2026 |
+| Versão anterior (Tarefas 1–3) | Campos, criação, edição e exclusão: Descrição das Funcionalidades, na versão de jun/2026, que descrevia a plataforma anterior — módulo Flashcards, seção "Para o Professor", derivada do código-fonte (rotas `/flashcards/criar`, `:id/editar`, `:id/excluir`) | jun/2026 |
+| Uso pelo aluno | Filtros e limite de 10 cartões por rodada: Descrição das Funcionalidades, na versão de jun/2026 — módulo Flashcards, seção "Para o Aluno" | jun/2026 |
 | Redesign do módulo (lado do aluno) | Relatório 4 — Isabella Pereira, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
 
 Nenhum dos relatórios de redesign consultados descreve as telas do professor neste módulo. A página de [Flashcards do Guia do Aluno](../aluno/flashcards.md) documenta o outro lado — como os cartões cadastrados aqui são estudados.

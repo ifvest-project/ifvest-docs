@@ -2,8 +2,15 @@
 
 O módulo de **Revisão** (`/revisao`) reúne os materiais de estudo teóricos da plataforma: textos escritos pelos professores, organizados por assunto, com suporte a fórmulas matemáticas. É o ponto de partida para estudar a teoria antes de praticar nos demais módulos.
 
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração pelo subprojeto de frontend e **podem mudar até a entrega**. Veja [como ler as tarefas](index.md#como-ler-as-tarefas-deste-guia).
+!!! warning "Módulo ainda não disponível no IFVest V3"
+    O módulo de **Revisão** ainda não foi implementado no IFVest V3, a versão em produção. O item **Revisão** do cabeçalho e da página **Início** fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
+
+    Esta página fica como **registro do que foi planejado**, a título de curiosidade:
+
+    - as tarefas com status **✅ Atual** descrevem o módulo da **versão anterior** da plataforma, que não existe mais. Nesta página, "plataforma atual", "versão atual" e "hoje" se referem a ela;
+    - a tarefa com status **🟡 Refatorado (em design)** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado.
+
+    Os termos de organização dos conteúdos usados aqui — área, tópico, assunto e subassunto — são os da versão anterior e do redesign. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
 
 ---
 
@@ -13,7 +20,7 @@ O módulo de **Revisão** (`/revisao`) reúne os materiais de estudo teóricos d
 
 **Objetivo:** encontrar materiais de estudo explorando a organização de conteúdos da plataforma, quando você ainda não sabe exatamente o que procura.
 
-**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-2-entrar-na-sua-conta) — o módulo de Revisão exige sessão ativa.
+**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-1-entrar-na-plataforma) — o módulo de Revisão exige sessão ativa.
 
 **Como fazer:**
 
@@ -125,7 +132,7 @@ Conforme o critério desta documentação, cada camada tem origem rastreável:
 
 | Camada | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–3) | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Revisão, derivada do código-fonte (rotas `/revisao/*`, repositório IFVEST-main) | jun/2026 |
+| Fluxos da versão anterior (Tarefas 1–3) | Descrição das Funcionalidades, na versão de jun/2026, que descrevia a plataforma anterior — módulo Revisão, derivada do código-fonte (rotas `/revisao/*`, repositório IFVEST-main) | jun/2026 |
 | Interface futura (blocos "Na versão refatorada") | Relatórios 1 e 3 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
 | Progresso de estudo (Tarefa 4) | Relatórios 1 e 3 — Maria Luiza (mesmo subprojeto) | abr/2026 |
 

@@ -1,126 +1,53 @@
 # Acesso e Conta
 
-Esta página reúne as tarefas de acesso à plataforma: criar sua conta, entrar, recuperar o acesso e sair. Ela vale para **todos os perfis** — aluno e professor —; onde há diferença entre eles, ela está sinalizada no texto.
+Esta página reúne as tarefas de acesso à plataforma: entrar — o que, no primeiro acesso, também cria a sua conta — e sair. Ela vale para todos; o que cada pessoa pode fazer depois de entrar depende das [permissões](../../descricao-do-sistema.md#perfis-e-permissoes) da conta.
 
-As áreas internas do IFVest são protegidas: **os módulos de estudo — Revisão, Simulados, Flashcards e IFQuiz — e a área de perfil exigem sessão ativa**. Sem ela, a plataforma leva você de volta à página inicial, de onde é possível entrar ou se cadastrar.
-
-*Comportamento conforme o código-fonte da plataforma anterior ao redesign.*
-
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração pelo subprojeto de frontend e **podem mudar até a entrega**. Veja [como ler as tarefas](../index.md#como-ler-as-tarefas).
+O IFVest **não tem senha própria**: a entrada é feita com a **conta Google**.
 
 ---
 
-## Tarefa 1 — Criar uma conta
+## Tarefa 1 — Entrar na plataforma
 
-**Status:** ✅ Atual
+**Status:** ✅ Disponível  
+**Acesso:** qualquer pessoa com uma conta Google
 
-**Objetivo:** registrar-se na plataforma para ter acesso aos módulos de estudo e ao seu histórico.
+**Objetivo:** iniciar uma sessão para usar os módulos da plataforma. No primeiro acesso, a sua conta do IFVest é criada automaticamente.
 
-**Pré-requisitos:** um endereço de e-mail válido.
+**Pré-requisitos:** ter uma conta Google. Um e-mail institucional também serve, desde que seja uma conta Google.
 
 **Como fazer:**
 
-1. Acesse a página de **cadastro** (`/cadastro`).
-2. Preencha os campos obrigatórios:
-
-    | Campo | Regra |
-    |---|---|
-    | **Nome completo** | mínimo de 2 caracteres |
-    | **Nome de usuário** | de 3 a 30 caracteres; aceita letras, números, `_`, `.` e `-`; **deve ser único** na plataforma |
-    | **E-mail** | endereço de e-mail válido |
-    | **Senha** | mínimo de 8 caracteres, contendo ao menos **uma letra e um número** |
-    | **Perfil** | **Usuário (aluno)** ou **Professor** — ver aviso abaixo |
-
-3. Envie o formulário. Se algum campo não atender às regras, a plataforma indica o erro e o cadastro não é concluído.
-
-    !!! warning "O campo Perfil define o que você poderá fazer"
-        A escolha feita no cadastro determina seu acesso: **Usuário (aluno)** dá acesso aos módulos de estudo; **Professor** dá acesso aos mesmos módulos **mais** as áreas de criação e gestão de conteúdo descritas no [Guia do Professor](../professor/index.md). Um professor cadastrado como aluno não encontrará essas áreas.
-
-        A escolha é livre no formulário: o sistema aceita qualquer uma das duas opções, sem etapa de aprovação. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
-4. Com o cadastro concluído, você é levado à tela de login para entrar pela primeira vez (ver [Tarefa 2](#tarefa-2-entrar-na-sua-conta)).
-
-!!! abstract "Na versão refatorada"
-    A tela de cadastro ganha o botão **"Cadastrar com Google"**, permitindo criar a conta a partir de uma conta Google, sem preencher o formulário.
-
-    *Fonte: Relatório 1 — Maria Luiza (frontend), item 2 e fig. 3.1. Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente (aguardando estabilização da interface).
+1. Na página inicial do IFVest (`ifvest.com.br`), clique em **Entrar**, no cabeçalho, ou em **Quero acessar a plataforma!**.
+2. Na tela de entrada (`/login`), clique em **Entrar ou Cadastrar com Google**. O mesmo botão serve para o primeiro acesso e para os seguintes.
+3. Na janela do Google, escolha a conta e confirme.
+4. Você é levado à página **Início** (`/inicio`), com uma saudação pelo seu apelido e um cartão para cada módulo.
 
 **Observações:**
 
-- Seu **nome de usuário** é o que você usará para entrar — anote-o. O e-mail não substitui o nome de usuário no login atual.
+- **No primeiro acesso**, a conta é criada a partir do e-mail da conta Google. Contas com e-mail `@ifsp.edu.br` recebem automaticamente as permissões de professor: cadastrar e editar questões, criar simulados institucionais e gerenciar os simulados de outras pessoas. As demais permissões são concedidas por um administrador.
+- Nos acessos seguintes, a conta é reconhecida pelo mesmo e-mail. Entrar com outra conta Google cria outra conta no IFVest, sem o seu histórico.
+- A janela do Google é aberta como janela separada do navegador (*pop-up*). Se ela não aparecer, permita as janelas do IFVest nas configurações do navegador.
 
 ---
 
-## Tarefa 2 — Entrar na sua conta
+## Tarefa 2 — Sair da plataforma
 
-**Status:** ✅ Atual
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** iniciar uma sessão para acessar os módulos de estudo e seu histórico.
+**Objetivo:** encerrar a sua sessão, especialmente em computadores compartilhados.
 
-**Pré-requisitos:** ter uma conta ([Tarefa 1](#tarefa-1-criar-uma-conta)).
+**Pré-requisitos:** ter entrado na plataforma.
 
 **Como fazer:**
 
-1. Acesse a página de **login** (`/login`).
-2. Informe seu **nome de usuário** e sua **senha**.
-3. Envie o formulário. Com as credenciais corretas, você é levado à página inicial da sua conta e passa a ter acesso às áreas de estudo.
-4. Se as credenciais estiverem incorretas, uma mensagem é exibida na própria tela de login e você pode tentar novamente — respeitando o limite de tentativas (ver *Observações*).
-
-!!! abstract "Na versão refatorada"
-    A tela de login ganha o botão **"Entrar com Google"**, permitindo acessar a plataforma com uma conta Google em vez de nome de usuário e senha.
-
-    *Fonte: Relatório 1 — Maria Luiza (frontend), item 2 e fig. 3.1. Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente.
+1. Clique em **Sair**, no canto direito do cabeçalho, ao lado de **Usuário**.
+2. A sessão é encerrada, e você volta à página inicial pública.
 
 **Observações:**
 
-- **Limite de tentativas:** são permitidas **até 5 tentativas de login a cada 15 minutos** por conexão. Ao exceder esse limite, o acesso fica bloqueado temporariamente e uma mensagem informa o bloqueio — basta aguardar e tentar de novo. É uma proteção contra tentativas automatizadas de adivinhar senhas, não uma punição ao seu usuário.
-
----
-
-## Tarefa 3 — Recuperar sua senha
-
-**Status:** 🟡 Refatorado (em design)
-
-**Objetivo:** voltar a acessar sua conta quando você não lembra a senha.
-
-!!! warning "Disponível apenas a partir da versão refatorada"
-    A plataforma atual **não possui** recuperação de senha pelo próprio aluno. Se você perdeu o acesso hoje, procure a coordenação do projeto — não há como redefinir a senha sozinho pela plataforma.
-
-**Como funcionará (conforme o design):**
-
-A funcionalidade **"Esqueci minha senha"** terá três etapas:
-
-1. Informar o **e-mail vinculado à conta**;
-2. Validar o **código** recebido;
-3. Definir a **nova senha**.
-
-*Fonte: Relatório 1 — Maria Luiza (frontend), item 3 e fig. 3.2. Design em andamento, sujeito a alteração.*
-
-⬜ *A confirmar: o design do subprojeto de frontend descreve a etapa como "e-mail institucional" — resta confirmar se a recuperação aceita igualmente contas cadastradas com e-mail pessoal, que é o entendimento atual.* ⬜ Captura de tela pendente.
-
----
-
-## Tarefa 4 — Sair da sua conta
-
-**Status:** ✅ Atual
-
-**Objetivo:** encerrar sua sessão, especialmente em computadores compartilhados.
-
-**Pré-requisitos:** estar logado.
-
-**Como fazer:**
-
-1. Acione a opção de **sair** disponível para usuários autenticados.
-2. A plataforma encerra sua sessão — no servidor e no navegador — e leva você de volta à tela de login.
-3. A partir daí, o acesso às áreas de estudo exige entrar novamente.
-
-**Observações:**
-
-- Encerrar a sessão é o procedimento recomendado ao usar um computador compartilhado (laboratório, biblioteca): fechar apenas a aba do navegador não encerra a sessão no servidor.
+- Fechar a aba **não** encerra a sessão: ao abrir o IFVest de novo no mesmo navegador, você continua conectado. Em computador compartilhado, como no laboratório, use **Sair** ao terminar.
+- Sair do IFVest não sai da sua conta Google no navegador. Em computador compartilhado, saia também da conta Google, para que a próxima pessoa não a encontre aberta.
 
 ---
 
@@ -128,21 +55,26 @@ A funcionalidade **"Esqueci minha senha"** terá três etapas:
 
 | Situação | O que fazer |
 |---|---|
-| "Fui levado de volta à página inicial sem querer" | As áreas de estudo exigem sessão ativa. Sua sessão pode ter sido encerrada — basta entrar novamente |
-| Bloqueio após várias tentativas | Você atingiu o limite de 5 tentativas em 15 minutos. Aguarde o período e tente de novo, conferindo o nome de usuário |
-| Nome de usuário recusado no cadastro | O nome de usuário deve ser único na plataforma — escolha outro |
-| Senha recusada no cadastro | A senha precisa ter no mínimo 8 caracteres, com letras e números |
-| Esqueci minha senha | Não há recuperação pela plataforma na versão atual (ver [Tarefa 3](#tarefa-3-recuperar-sua-senha)) |
-| ⬜ Mensagens de erro específicas | As mensagens exatas exibidas pela plataforma serão documentadas junto com as capturas de tela, quando a interface refatorada estabilizar |
+| As telas aparecem com zeros ou listas vazias | A sua sessão pode ter terminado. As telas internas abrem mesmo sem login, mas os dados só carregam para quem entrou: entre de novo ([Tarefa 1](#tarefa-1-entrar-na-plataforma)) |
+| A janela do Google não abriu | O navegador pode estar bloqueando janelas *pop-up*. Permita as janelas do IFVest e clique de novo no botão |
+| Esqueci a minha senha | O IFVest não tem senha própria. Recupere a senha da sua conta Google pelo próprio Google |
+| Entrei, mas não vejo as abas **Professor** ou **Admin** | Elas aparecem só para quem tem as permissões correspondentes, logo depois que a plataforma as carrega. Se você deveria tê-las, peça a um administrador |
+| Ação recusada por falta de permissão | A mensagem *"Você não tem a permissão '…' para concluir esta ação"* indica a permissão que falta à sua conta. Peça-a a um administrador |
+
+---
+
+## O que mudou em relação ao planejado
+
+O design do subprojeto de frontend previa, além da entrada pelo Google, o **cadastro por formulário**, com nome de usuário e senha, e a **recuperação de senha** em três etapas — informar o e-mail, validar um código e definir a nova senha. O IFVest V3 adotou **só a entrada pela conta Google**, e por isso essas tarefas não existem: não há senha do IFVest a cadastrar nem a recuperar.
+
+Os requisitos dessas funcionalidades continuam registrados como não atendidos em [Requisitos Funcionais — Conta e acesso](../../requisitos/funcionais.md#conta-e-acesso).
 
 ---
 
 ## Fontes desta página
 
-| Camada | Fonte | Data |
+| Conteúdo | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1, 2 e 4) e regras de validação | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Autenticação e Acesso, derivada do código-fonte (rotas `/cadastro`, `/login`, controle de sessão) | jun/2026 |
-| Interface futura (Tarefas 1–2) e recuperação de senha (Tarefa 3) | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
-
-!!! note "Sobre a mudança do sistema de autenticação"
-    A adequação da plataforma à LGPD prevê a migração da autenticação para um serviço externo de identidade. Para o aluno, essa mudança é **invisível no uso**: o que muda na tela é o acréscimo do acesso via Google e da recuperação de senha. Os detalhes técnicos da migração pertencem à [Descrição da Arquitetura](../../arquitetura.md), não a este guia.
+| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): página inicial, tela de entrada, cabeçalho e sessão | out/2026 |
+| Criação da conta e permissões iniciais | [Descrição das Funcionalidades — Conta e acesso](../../funcionalidades.md#conta-e-acesso), conferida no código do backend | out/2026 |
+| Design anterior: cadastro por formulário e recuperação de senha | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, itens 2 e 3 | abr/2026 |

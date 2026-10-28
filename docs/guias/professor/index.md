@@ -1,44 +1,53 @@
 # Guia do Professor
 
-Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest: montar o banco de questões, criar e gerenciar simulados, produzir flashcards e manter os materiais de revisão.
+Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest: o banco de questões, os simulados institucionais e a importação de provas.
 
 !!! info "Este guia complementa o Guia do Aluno"
-    Na plataforma, o perfil de professor tem **todas as capacidades do aluno**, mais as de gestão de conteúdo. Este guia cobre apenas o que se soma a elas:
+    Quem tem as permissões de professor usa a plataforma como qualquer estudante, com tarefas a mais. Este guia cobre apenas o que se soma:
 
-    - **Conta e perfil** — criar conta, entrar, editar seus dados e excluir a conta ficam na [seção Conta](../conta/acesso.md), comum a todos os perfis, com as diferenças do professor sinalizadas nas próprias páginas.
-    - **Tarefas de estudo** — ler materiais, estudar flashcards, fazer simulados e jogar o IFQuiz funcionam para você exatamente como para o aluno, e estão no [Guia do Aluno](../aluno/index.md).
+    - **Conta e perfil** — entrar, sair e consultar o perfil ficam na [seção Conta](../conta/acesso.md), comum a todos.
+    - **Tarefas de estudo** — jogar o IFQuiz e montar e resolver simulados funcionam para você como para o estudante, e estão no [Guia do Aluno](../aluno/index.md).
 
-!!! warning "Qual versão da plataforma este guia documenta"
-    O IFVest está em processo de **refatoração do frontend** (migração para React, com redesign completo da interface). Por orientação do projeto, este guia é escrito tendo a **plataforma refatorada como referência**, para evitar documentar telas transitórias que serão substituídas.
-
-    Cada tarefa distingue duas camadas: o **fluxo da tarefa** (objetivo, pré-requisitos, passos), verificável hoje e estável após a refatoração; e a **interface** (telas, botões, navegação), descrita nos blocos *"Na versão refatorada"* com base nos relatórios do subprojeto de frontend — design **ainda em elaboração, sujeito a alteração**.
-
-!!! danger "Atenção: os perfis de professor e administrador estão sendo redefinidos"
-    O redesign prevê a criação de um **perfil de administrador**, que assumirá parte das tarefas hoje atribuídas ao professor. As decisões registradas até o momento incluem a saída da criação de materiais de revisão da área do professor (mantendo apenas a edição) e a substituição da tela "Meus Materiais" por um "Histórico de Edições".
-
-    Enquanto essa redistribuição não é concluída, **cada tarefa deste guia indica a qual perfil pertence** (ver [legenda de perfil](#legenda-de-perfil)). As tarefas marcadas como *a definir* poderão migrar para um futuro **Guia do Administrador**.
-
-    *Fonte: atas de reunião do subprojeto de frontend (abr–mai/2026).*
+!!! info "Versão documentada"
+    O guia descreve o **IFVest V3**, em produção, conferido no código em outubro de 2026. As páginas de **Flashcards** e **Materiais de Revisão** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
 
 ---
 
 ## Para quem é este guia
 
-Professores do IFSP Campus Jacareí que produzem e mantêm o conteúdo do IFVest — questões, simulados, flashcards e materiais de estudo. Nenhum conhecimento técnico de programação é necessário.
+Professores e educadores que produzem e mantêm o conteúdo do IFVest. Nenhum conhecimento técnico de programação é necessário.
 
-**Pré-requisito geral:** ter uma conta com perfil **Professor**. O perfil é escolhido no [cadastro](../conta/acesso.md#tarefa-1-criar-uma-conta) e define o acesso às funções descritas aqui — uma conta criada como aluno não terá acesso a nenhuma das áreas deste guia.
+**Permissões:** no IFVest V3 não há perfis fixos de aluno e professor. O que você pode fazer depende das **permissões** da sua conta:
+
+| Permissão | O que permite | Como se obtém |
+|---|---|---|
+| `create_question` | Cadastrar questões no banco | Automática para e-mails `@ifsp.edu.br` |
+| `edit_question` | Editar questões existentes. A tela de edição fica no Painel Administrativo (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)) | Automática para e-mails `@ifsp.edu.br` |
+| `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos | Automática para e-mails `@ifsp.edu.br` |
+| `manage_mocktests` | Renomear e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
+| `create_essay_proposal_permission` | Publicar propostas de redação | Concedida por um administrador |
+| `grade_essay_permission` | Corrigir redações | Concedida por um administrador |
+| `admin_permission` | Administrar a plataforma, inclusive a moderação e a importação de questões | Concedida por um administrador |
+
+As permissões automáticas são atribuídas no **primeiro acesso**. Se você entrou com outro e-mail, ou precisa de uma permissão que não tem, peça-a a um administrador. As suas permissões ativas aparecem no seu [perfil](../conta/perfil.md#tarefa-1-consultar-o-seu-perfil).
 
 ---
 
 ## Mapa das áreas de gestão
 
-| Área | O que você faz nela |
-|---|---|
-| **Banco de questões** | Criar, editar e excluir questões objetivas e dissertativas; conferir similaridade com questões já existentes |
-| **Simulados** | Montar simulados a partir do banco de questões, gerenciá-los e imprimir |
-| **Flashcards** | Criar, editar e excluir os cartões de estudo disponibilizados aos alunos |
-| **Materiais de revisão** | Produzir e manter os conteúdos teóricos do módulo de Revisão |
-| **Organização de conteúdos** | Manter as áreas, tópicos e assuntos que categorizam todo o conteúdo |
+| Área | Onde fica | O que você faz nela | Situação |
+|---|---|---|---|
+| **Banco de questões** | Área do Professor (aba **Professor**) | Consultar e cadastrar questões | ✅ Disponível |
+| **Simulados institucionais** | Simulados → **Criar novo simulado** | Criar simulados para todos os estudantes e gerenciar os de outras pessoas | ✅ Disponível |
+| **Moderação de questões** | Painel Administrativo (aba **Admin**) | Editar questões e tratar as denúncias de erro | ✅ Disponível, só para administradores |
+| **Importação de questões** | Painel Administrativo (aba **Admin**) | Importar provas em lote, a partir de um arquivo `.zip` | ✅ Disponível, só para administradores |
+| **Propostas e correção de redações** | Área do Professor e Redação | Publicar propostas e corrigir redações | ✅ Disponível — ⬜ guia pendente |
+| **Flashcards** | — | Criar os cartões de estudo | 🔵 Previsto |
+| **Materiais de revisão** | — | Escrever os materiais de cada tópico | 🔵 Previsto |
+
+A **Área do Professor** (`/area_professor`) aparece como a aba **Professor** do cabeçalho para quem tem qualquer uma das permissões de conteúdo ou de redação. Ela reúne três abas: **Banco de Questões**, **Propostas de Redação** e **Fila de Correção**.
+
+Não há uma tela para organizar disciplinas, assuntos e tópicos: eles são criados ao [cadastrar uma questão](banco-de-questoes.md#tarefa-2-cadastrar-uma-questao).
 
 Os termos usados na plataforma estão explicados no [Glossário](../glossario.md).
 
@@ -46,32 +55,7 @@ Os termos usados na plataforma estão explicados no [Glossário](../glossario.md
 
 ## Como ler as tarefas deste guia
 
-Cada tarefa segue a mesma estrutura das do Guia do Aluno, baseada na **ISO/IEC/IEEE 26514:2022** — *Design and development of information for users* —, acrescida do campo **Perfil**:
-
-| Campo | O que informa |
-|---|---|
-| **Status** | Se a tarefa funciona hoje ou é prevista no redesign (ver legenda abaixo) |
-| **Perfil** | A qual perfil a tarefa pertence após a redistribuição (ver legenda abaixo) |
-| **Objetivo** | O que você realiza ao completar a tarefa |
-| **Pré-requisitos** | O que precisa estar pronto antes |
-| **Como fazer** | A sequência de passos, do início ao resultado |
-| **Na versão refatorada** | Como a tela/fluxo ficará no novo design, com a fonte citada |
-| **Observações** | Limites, validações e situações comuns |
-
-### Legenda de status
-
-- ✅ **Atual** — a tarefa funciona hoje na plataforma em produção. A interface será redesenhada, mas o fluxo permanece.
-- 🟡 **Refatorado (em design)** — a tarefa ainda não existe na plataforma atual; está prevista no design da versão refatorada.
-- 🔵 **Em deliberação** — a tarefa ainda não foi decidida: o projeto avalia se ela existirá.
-- ⬜ **Pendência** — item aguardando confirmação ou material (captura de tela, verificação na plataforma, decisão do projeto).
-
-### Legenda de perfil
-
-- 👤 **Professor** — atribuição atual da tarefa, **não afetada** pelas decisões de redistribuição de perfis registradas até o momento.
-- 🔄 **A definir** — atribuição **sob revisão**: a tarefa pode passar ao perfil de administrador. Se isso ocorrer, ela migra integralmente para o Guia do Administrador.
-
-!!! note "Por que marcar o perfil de cada tarefa"
-    A redistribuição de perfis ainda não foi concluída, e esperar por ela paralisaria a documentação. Marcando o perfil tarefa a tarefa, a definição final se resolve **movendo blocos inteiros** entre guias, sem reescrever conteúdo — o mesmo princípio aplicado às camadas estável e volátil da interface.
+Cada tarefa segue a estrutura explicada em [Como ler as tarefas](../index.md#como-ler-as-tarefas). O campo **Acesso** indica a permissão exigida — ele substitui o antigo campo **Perfil**, criado quando a divisão de tarefas entre professor e administrador ainda estava em discussão.
 
 ---
 
@@ -79,15 +63,14 @@ Cada tarefa segue a mesma estrutura das do Guia do Aluno, baseada na **ISO/IEC/I
 
 As páginas estão na ordem sugerida de leitura: primeiro o banco de questões, que alimenta os simulados; depois os demais tipos de conteúdo.
 
-| Página | Conteúdo | Status |
+| Página | Conteúdo | Situação |
 |---|---|---|
-| [Acesso e Conta](../conta/acesso.md) | Cadastro (com o campo Perfil), login, logoff | ✅ Comum a todos os perfis |
-| [Perfil e Seus Dados](../conta/perfil.md) | Editar dados; excluir conta e o efeito sobre o conteúdo criado | ✅ Comum a todos os perfis |
-| [Banco de Questões](banco-de-questoes.md) | Criar, editar e excluir questões; verificação de similaridade por IA | ✅ Disponível |
-| [Simulados](simulados.md) | Montar, gerenciar e imprimir simulados | ✅ Disponível |
-| [Flashcards](flashcards.md) | Criar, editar e excluir flashcards | ✅ Disponível |
-| [Materiais de Revisão](materiais-de-revisao.md) | Produzir e manter conteúdos teóricos | ✅ Disponível — tarefas marcadas por perfil |
-| Organização de Conteúdos | Áreas, tópicos e assuntos | ⬜ Pendente — provável migração para o perfil administrador |
+| [Acesso e Conta](../conta/acesso.md) | Entrar com a conta Google e sair | ✅ Comum a todos |
+| [Perfil e Seus Dados](../conta/perfil.md) | Apelido, indicadores e históricos | ✅ Comum a todos |
+| [Banco de Questões](banco-de-questoes.md) | Consultar, cadastrar, editar e importar questões; tratar as denúncias | ✅ Disponível |
+| [Simulados](simulados.md) | Criar simulados institucionais e gerenciar simulados | ✅ Disponível |
+| [Flashcards](flashcards.md) | Registro do módulo planejado | 🔵 Módulo previsto |
+| [Materiais de Revisão](materiais-de-revisao.md) | Registro do módulo planejado | 🔵 Módulo previsto |
 
 ---
 
@@ -98,12 +81,12 @@ Este guia integra, junto com o [Guia do Aluno](../aluno/index.md) e a [seção C
 | Elemento da 26514 | Onde está | Situação |
 |---|---|---|
 | Análise de público-alvo e tarefas | Seção "Para quem é" + inventário de tarefas por área | ✅ Aplicado |
-| Informação instrucional (tarefas passo a passo) | Corpo das páginas | 🟡 Em produção (4 de 5 páginas) |
-| Informação conceitual | "Mapa das áreas de gestão" + introdução de cada página | 🟡 Em produção |
-| Solução de problemas | Seção "Erros e situações comuns" de cada página | 🟡 Em produção |
-| Mensagens de erro (textos exatos) | Depende da interface React estabilizada | ⬜ Adiado, com justificativa |
+| Informação instrucional (tarefas passo a passo) | Corpo das páginas | 🟡 Banco de questões e simulados revisados para o V3; propostas e correção de redações pendentes |
+| Informação conceitual | "Mapa das áreas de gestão" + introdução de cada página | ✅ Aplicado |
+| Solução de problemas | Seção "Erros e situações comuns" de cada página | ✅ Aplicado |
+| Mensagens de erro (textos exatos) | Nas tabelas de erros, conferidas no código | 🟡 Aplicado onde há mensagem definida |
 | Informação de referência | Coberta fora do guia pela [Descrição das Funcionalidades](../../funcionalidades.md) | ✅ Coberto pela Fase 3 |
 | Glossário | [Glossário](../glossario.md), comum aos guias | ✅ Aplicado |
-| Acessibilidade | [Seção comum aos guias](../index.md#acessibilidade-da-plataforma) | 🟡 Normas de referência identificadas e convenções definidas; textos alternativos pendentes com as capturas |
-| Atribuição de perfis | Campo **Perfil** em cada tarefa + legenda | 🟡 Provisório até a definição da redistribuição |
-| Validação com usuários | Prevista conforme a **ISO/IEC/IEEE 26513**, após a entrega da interface React | ⬜ Adiado, com justificativa |
+| Acessibilidade | [Seção comum aos guias](../index.md#acessibilidade-da-plataforma) | 🟡 Normas de referência identificadas e convenções definidas; a interface do V3 ainda não foi avaliada |
+| Atribuição de permissões | Campo **Acesso** em cada tarefa + tabela de permissões | ✅ Aplicado |
+| Validação com usuários | Prevista conforme a **ISO/IEC/IEEE 26513** | ⬜ Pendente — possível agora que a interface foi entregue |

@@ -1,194 +1,163 @@
 # Banco de Questões
 
-O **banco de questões** reúne as questões que alimentam os simulados da plataforma. Cada questão pertence a uma área e a um ou mais tópicos, é classificada como **objetiva** (alternativas A–E) ou **dissertativa** (resposta escrita), e pode ser reaproveitada em quantos simulados você quiser — criar a questão e montar o simulado são etapas separadas.
+O **banco de questões** reúne as questões de múltipla escolha usadas nos quizzes do IFQuiz e nos simulados. Cada questão se vincula a um **tópico**, dentro de um assunto e de uma disciplina (ver [Como os conteúdos são organizados](../glossario.md#como-os-conteudos-sao-organizados)), e pode aparecer em quantos quizzes e simulados houver.
 
-O banco é acessível pelo módulo de Simulados (`/simulados/questoes`).
-
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração e **podem mudar até a entrega**. Veja [como ler as tarefas](index.md#como-ler-as-tarefas-deste-guia).
+O acervo combina as **provas de vestibulares**, que entram em lote pela [importação](#tarefa-5-importar-questoes-em-lote), e as **questões autorais**, cadastradas uma a uma pelos professores.
 
 ---
 
-## Tarefa 1 — Ver suas questões
+## Tarefa 1 — Consultar o banco de questões
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** qualquer permissão de conteúdo ou de redação
 
-**Objetivo:** consultar as questões que você já cadastrou, para reaproveitá-las, revisá-las ou removê-las.
+**Objetivo:** encontrar questões do banco e conferir o seu conteúdo.
 
-**Pré-requisitos:** estar logado com perfil de professor.
+**Pré-requisitos:** ter entrado na plataforma com uma conta que tenha permissão de professor (ver [Permissões](index.md#para-quem-e-este-guia)).
 
 **Como fazer:**
 
-1. Acesse **Minhas questões** (`/simulados/questoes`).
-2. A lista exibe as questões criadas por você, com acesso às ações de editar e excluir.
+1. No cabeçalho, clique em **Professor**. A Área do Professor abre na aba **Banco de Questões**.
+2. Busque no campo **Pesquisar por título ou enunciado...**. A lista vem em páginas de 20 questões.
+3. Cada questão mostra o título, a disciplina, o assunto, a dificuldade, a banca, o ano e o número, além do enunciado e do texto base, quando houver. Para ver as alternativas, clique em **Ver Alternativas** — o número entre parênteses indica quantas são.
 
 **Observações:**
 
-- A listagem é **por autor**: aqui você vê apenas as suas questões.
-- Ao montar um simulado, porém, a seleção de questões **não filtra por autor** — aparecem as questões de todos os professores, disponíveis para reaproveitamento. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
+- A lista mostra **todas as questões do banco**, e não só as cadastradas por você.
+- A consulta não indica a alternativa correta.
+- A busca com filtros de disciplina, assunto, banca e ano existe na [montagem de simulados](../aluno/simulados.md#tarefa-1-montar-um-simulado-de-treino), aberta a qualquer estudante.
 
 ---
 
-## Tarefa 2 — Criar uma questão
+## Tarefa 2 — Cadastrar uma questão
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** `create_question`
 
-**Objetivo:** cadastrar uma nova questão no banco, disponível para uso em simulados.
+**Objetivo:** acrescentar ao banco uma questão autoral ou de uma prova que não veio pela importação.
 
-**Pré-requisitos:** estar logado com perfil de professor; ter definidos a área e os tópicos aos quais a questão pertence (ver [Tarefa 6](#tarefa-6-criar-topicos-para-categorizar-questoes)).
+**Pré-requisitos:** ter a permissão `create_question`.
 
 **Como fazer:**
 
-1. A partir de **Minhas questões**, escolha criar uma nova questão.
-2. Escolha o **tipo** da questão — essa decisão vem primeiro e define os campos seguintes:
+1. Na aba **Banco de Questões** da Área do Professor, clique em **+ Nova Questão**. O formulário **Nova Questão de Múltipla Escolha** se abre no lugar da lista.
+2. Preencha os campos, na ordem em que aparecem:
 
-    | Tipo | Como é respondida |
+    | Campo | Como preencher |
     |---|---|
-    | **Objetiva** | O aluno seleciona uma alternativa (A a E) |
-    | **Dissertativa** | O aluno escreve a resposta em texto livre |
+    | **Título da Questão** | Obrigatório. Identifica a questão nas listas — por exemplo, "Questão 1 - Processo Seletivo 2024" |
+    | **Disciplina**, **Matéria / Assunto** e **Tópico** | Obrigatórios. Digitados por você (ver aviso abaixo) |
+    | **Banca / Instituição** | Obrigatório. Campo livre, que vem preenchido com IFSP |
+    | **Ano** e **Número** | Obrigatórios. Vêm preenchidos com o ano atual e o número 1 |
+    | **Dificuldade** | Fácil, Média ou Difícil; vem em Fácil |
+    | **Texto de Apoio (Opcional)** | Texto base, citação ou contexto, exibido antes do enunciado |
+    | **Enunciado da Questão** | Obrigatório |
 
-3. Preencha os campos comuns aos dois tipos:
+3. Em **Alternativas (marque a opção correta)**, escreva o texto das alternativas de A a E e marque a correta.
+4. Clique em **Cadastrar Questão**. A mensagem *"Questão "…" cadastrada com sucesso!"* confirma o cadastro, e a questão entra na lista.
 
-    | Campo | Função |
-    |---|---|
-    | **Título** | identifica a questão nas listagens |
-    | **Enunciado** | o texto da questão apresentado ao aluno |
-    | **Área** | área de conhecimento à qual a questão pertence |
-    | **Tópicos** | categorização mais específica dentro da área |
+Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 
-4. **Se a questão for objetiva**, preencha as **opções de resposta (A a E)** e indique qual é a **correta**.
-5. Salve a questão. Ao salvar, o sistema pode acionar a verificação de similaridade (ver [Tarefa 3](#tarefa-3-conferir-a-similaridade-com-questoes-existentes)).
-
-!!! tip "Fórmulas matemáticas no enunciado"
-    O campo de enunciado usa um **editor de equações com suporte a LaTeX**. Fórmulas escritas nessa notação são exibidas formatadas para o aluno — não é necessário inserir imagens de equações.
-
-!!! abstract "Na versão refatorada"
-    ⬜ **Nenhum dos relatórios de redesign consultados descreve a tela de criação de questões do banco.** Os relatórios cobrem em detalhe a *consulta* e a *importação* de questões (ver [Tarefa 4](#tarefa-4-editar-uma-questao) e a página de Simulados), mas não o formulário de cadastro — a documentar quando o material estiver disponível.
-
-    Uma definição já tomada sobre o formulário: no cadastro manual de questões, o número de alternativas passa a ser **opcional entre quatro (A a D) e cinco (A a E)**, para acomodar tanto o formato do ENEM quanto o de outras bancas. Na versão atual, o formulário trabalha apenas com cinco alternativas.
-
-    *Fonte: definição do subprojeto de frontend registrada em reunião (ago/2026).*
-
----
-
-## Tarefa 3 — Conferir a similaridade com questões existentes
-
-**Status:** ⬜ Indisponível — a confirmar  
-**Perfil:** 👤 Professor
-
-**Objetivo:** verificar se a questão que você está cadastrando já existe no banco em forma semelhante, evitando duplicidades.
-
-!!! danger "Funcionalidade não localizada no código-fonte"
-    A [Descrição das Funcionalidades](../../funcionalidades.md) registra esta verificação como existente, mas na versão do código-fonte analisada **não há rota nem processamento correspondente** — apenas a tela de exibição dos resultados, sem nada que a acione, e sem nenhuma biblioteca de inteligência artificial entre as dependências do projeto.
-
-    Duas explicações são possíveis: a funcionalidade foi descrita a partir de relatórios de subprojeto e não chegou a ser integrada, ou existiu e foi removida antes desta versão. ⬜ *A esclarecer com a coordenação do projeto; a correção alcança também a Fase 3.*
-
-    O funcionamento descrito abaixo reflete o que consta na Fase 3 e é mantido aqui **até que a situação seja esclarecida** — não confie nele para evitar duplicidades sem antes confirmar que a verificação está ativa.
-
-**Pré-requisitos:** estar cadastrando ou editando uma questão.
-
-**Como fazer:**
-
-1. Ao **cadastrar** ou **editar** uma questão, o sistema pode acionar automaticamente a verificação de similaridade.
-2. A verificação compara sua questão com as já existentes no banco usando um serviço externo de inteligência artificial, que identifica semelhança de **sentido**, não apenas de palavras iguais.
-3. A **tela de verificação de similaridade** exibe o resultado, indicando os trechos semelhantes encontrados.
-4. Avalie o resultado e decida se mantém a questão, ajusta o enunciado ou aproveita a questão já existente.
+!!! warning "A disciplina, o assunto e o tópico são digitados"
+    Não há uma lista para escolher: se o nome digitado ainda não existir, a plataforma cria um **novo ramo** na organização dos conteúdos. Um erro de digitação — "Matematica" em vez de "Matemática", por exemplo — cria uma disciplina duplicada. Antes de cadastrar, confira na [consulta](#tarefa-1-consultar-o-banco-de-questoes) como os nomes já aparecem nas questões existentes.
 
 **Observações:**
 
-- A verificação é uma funcionalidade **exclusiva do perfil de professor** — não existe equivalente para o aluno.
-- Como a comparação é semântica, ela detecta questões que dizem a mesma coisa com outras palavras — situação comum quando vários professores cadastram conteúdo do mesmo tópico.
-- ⬜ *A confirmar: se a verificação é automática ou acionada por você, e se um resultado de alta similaridade impede o salvamento ou apenas emite um aviso — pendente do esclarecimento acima.*
-
-!!! abstract "Na versão refatorada"
-    ⬜ Os relatórios de redesign consultados não mencionam a verificação de similaridade — a documentar quando definido se a funcionalidade será mantida, e como.
+- A alternativa **A** vem marcada como correta: confira a marcação antes de cadastrar.
+- O formulário não aceita imagens. Questões com figuras entram pela [importação](#tarefa-5-importar-questoes-em-lote).
+- O enunciado, o texto de apoio e as alternativas aceitam formatação **Markdown**, como listas, tabelas e negrito. Fórmulas em **LaTeX não são formatadas**: aparecem como texto.
+- Não é possível excluir uma questão depois de cadastrada. Os erros são corrigidos pela [edição](#tarefa-3-editar-uma-questao).
 
 ---
 
-## Tarefa 4 — Editar uma questão
+## Tarefa 3 — Editar uma questão
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** `admin_permission` (ver aviso abaixo)
 
-**Objetivo:** corrigir ou atualizar uma questão já cadastrada.
+**Objetivo:** corrigir uma questão do banco — o enunciado, as alternativas, o gabarito ou a classificação.
 
-**Pré-requisitos:** ter a questão cadastrada por você.
+**Pré-requisitos:** a questão ter ao menos uma denúncia de erro, pendente ou não.
+
+!!! warning "A edição fica na moderação, no Painel Administrativo"
+    A permissão `edit_question` autoriza a edição, mas a tela de edição só existe na **Moderação de Questões** do Painel Administrativo, a partir de uma denúncia, e o painel exige a permissão de administrador. Quem tem só `edit_question` não encontra onde editar.
+
+    Para corrigir uma questão que ainda não tem denúncia, sinalize o erro durante um quiz ou um simulado (ver [Denunciar um erro numa questão](../aluno/simulados.md#tarefa-7-denunciar-um-erro-numa-questao)). A denúncia aparece na moderação, e dali um administrador edita a questão.
 
 **Como fazer:**
 
-1. Em **Minhas questões**, localize a questão e acione a edição.
-2. Altere os campos desejados — os mesmos do cadastro (título, enunciado, área, tópicos e, nas objetivas, as alternativas e o gabarito).
-3. Salve. A verificação de similaridade também pode ser acionada na edição (ver [Tarefa 3](#tarefa-3-conferir-a-similaridade-com-questoes-existentes)).
+1. No cabeçalho, clique em **Admin** e abra a aba **Moderação de Questões**.
+2. Localize a denúncia da questão. A lista começa nas denúncias **Pendentes**; os botões **Resolvidas**, **Descartadas** e **Todas** mostram as demais.
+3. Clique em **Editar questão**. O formulário **Editar Questão #…** se abre logo abaixo da denúncia, com os mesmos campos do cadastro, já preenchidos.
+4. Altere o que for preciso: os dados da questão, o texto das alternativas, a alternativa correta e a classificação.
+5. Se a questão tiver denúncias pendentes, o formulário traz, já marcada, a caixa que as marca como resolvidas ao salvar. Desmarque-a se quiser tratá-las depois.
+6. Clique em **Salvar alterações**. A mensagem informa a questão atualizada e quantas denúncias foram resolvidas.
 
 **Observações:**
 
-- A edição altera a questão **em todos os simulados que a utilizam** — o vínculo é com a questão, não com uma cópia dela. Respostas já registradas por alunos permanecem associadas à questão editada. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
-
-!!! abstract "Na versão refatorada"
-    O redesign detalha a **consulta ao banco de questões** com um menu lateral de filtros — palavra-chave, disciplina, assunto, tipo de questão (objetivas ou dissertativas), banca (por exemplo, ENEM) e nível de dificuldade —, exibindo as questões encontradas em lista, com a opção **"Ver questão completa"** para expandir enunciado e alternativas.
-
-    *Fontes: Relatório 4 — Maria Luiza (frontend), importação via banco de questões; Relatório 3 — Isabella Pereira (frontend), filtros e seleção de questões. Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente.
+- A edição exige ao menos duas alternativas, com letras diferentes, e **exatamente uma correta**.
+- Pela tela, não é possível incluir ou remover alternativas nem trocar as imagens, que são mantidas como estão.
+- Como no cadastro, a disciplina, o assunto e o tópico são digitados: um nome que ainda não existe cria um ramo novo.
+- A edição vale para todos os quizzes e simulados que usam a questão: o vínculo é com a própria questão, e não com uma cópia.
+- Uma questão corrigida na moderação fica protegida: uma importação posterior não desfaz a correção, a menos que o administrador peça para substituí-la.
 
 ---
 
-## Tarefa 5 — Excluir uma questão
+## Tarefa 4 — Tratar as denúncias de erro
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** `admin_permission`
 
-**Objetivo:** remover definitivamente uma questão do banco.
+**Objetivo:** encerrar as denúncias feitas pelos estudantes, depois de conferir a questão.
 
-**Pré-requisitos:** ter a questão cadastrada por você.
+**Pré-requisitos:** ter a permissão de administrador.
 
 **Como fazer:**
 
-1. Em **Minhas questões**, localize a questão e acione a exclusão.
-2. A questão é removida do banco, junto com as **opções de resposta associadas** a ela.
+1. No Painel Administrativo, abra a aba **Moderação de Questões**. Cada denúncia mostra o número da questão, o motivo escolhido pelo estudante e, quando houver, a descrição que ele escreveu.
+2. Confira a questão. Se houver erro, corrija-a pela [Tarefa 3](#tarefa-3-editar-uma-questao), que pode resolver as denúncias ao salvar.
+3. Para encerrar uma denúncia sem editar a questão, clique em **Marcar como Resolvida** ou, se não houver erro, em **Descartar**.
 
-!!! warning "A exclusão alcança os simulados que usam a questão"
-    Excluir uma questão remove, junto com ela: as **alternativas**, os **vínculos com todos os simulados** que a utilizavam e as **respostas já registradas** por alunos para aquela questão. Os simulados continuam existindo, mas passam a ter uma questão a menos.
+**Observações:**
 
-    Se a questão estiver em simulados já aplicados, prefira **editá-la** ([Tarefa 4](#tarefa-4-editar-uma-questao)) a excluí-la.
-
-    *Conforme o código-fonte da plataforma anterior ao redesign.*
+- Na **Visão Geral** do painel, o indicador **Questões sinalizadas** mostra quantas denúncias estão pendentes, e o botão **Corrigir questões** leva à moderação.
+- O estudante não é avisado de que a denúncia foi tratada.
 
 ---
 
-## Tarefa 6 — Criar tópicos para categorizar questões
+## Tarefa 5 — Importar questões em lote
 
-**Status:** ✅ Atual  
-**Perfil:** 🔄 A definir — pode migrar para administrador
+**Status:** ✅ Disponível  
+**Acesso:** `admin_permission`
 
-**Objetivo:** criar as subdivisões temáticas usadas para classificar as questões dentro de uma área.
+**Objetivo:** acrescentar ao banco as questões de uma ou mais provas de uma vez, ou corrigir as que já estão nele, a partir dos arquivos das provas.
 
-**Pré-requisitos:** estar logado com perfil de professor.
+**Pré-requisitos:** ter a permissão de administrador e os arquivos das provas, no formato em que saem da extração: uma pasta por prova, com um arquivo `.json` por questão e as figuras na pasta `imgs/` ou `imagens/`.
 
 **Como fazer:**
 
-1. Acesse **Meus tópicos** (`/simulados/meus-topicos`) para visualizar os tópicos existentes.
-2. Crie um tópico vinculado a uma **área de conhecimento**.
-3. O tópico passa a estar disponível na categorização de questões ([Tarefa 2](#tarefa-2-criar-uma-questao)).
+1. Junte numa pasta as pastas das provas e compacte-a em `.zip`. No Windows: botão direito na pasta, **Enviar para**, **Pasta compactada**.
+2. No Painel Administrativo, abra a aba **Importar Questões**.
+3. Em **Arquivo .zip com as questões**, escolha o arquivo e confira as opções:
 
-!!! warning "Esta tarefa pode mudar de perfil"
-    O redesign prevê que a inclusão de novas matérias e conteúdos passe ao **perfil de administrador**. Se a organização de conteúdos migrar, esta tarefa sairá deste guia e passará ao Guia do Administrador.
+    | Opção | Padrão | O que faz |
+    |---|---|---|
+    | **Corrigir as questões que já estão no site** | Marcada | Atualiza com o conteúdo do zip as questões que já existem, identificadas pela banca, pelo ano, pelo número e pela prova. Desmarcada, só as questões novas entram |
+    | **Substituir também as questões corrigidas à mão pela moderação** | Desmarcada | Aplica o zip também às questões editadas na moderação. Só pode ser marcada junto com a anterior. Deixe desmarcada para não desfazer essas correções |
 
-    *Fonte: atas de reunião do subprojeto de frontend (mai/2026).*
+4. Clique em **Enviar e simular**. A plataforma lê o zip e mostra o que **aconteceria**, sem gravar nada: quantas questões seriam inseridas e corrigidas, o que mudaria em cada uma, as que ficam de fora e por quê, as imagens que faltam e os arquivos que não puderam ser lidos. Em arquivos grandes, a simulação leva alguns minutos, e a tela se atualiza sozinha.
+5. Se o relatório estiver como esperado, clique em **Aplicar importação**. A plataforma grava exatamente o que a simulação mostrou, e você pode sair da página enquanto ela roda.
+6. Acompanhe o andamento no **Histórico**, que lista as importações com data, arquivo, tipo — simulação ou aplicação —, situação e quem enviou. **Ver relatório** reabre o relatório de cada uma.
 
----
+**Observações:**
 
-## Sobre a reconstrução do banco de questões
-
-Além do redesign da interface, o **próprio banco de questões está sendo reconstruído** por subprojetos dedicados, com um repositório de questões alimentado pelas APIs de vestibulares (ENEM, FUVEST, UNICAMP) e um sistema de **tags** para classificação, com busca semântica prevista.
-
-Para você, isso significa que a forma de **classificar e localizar** questões tenderá a mudar — o conjunto atual de área e tópicos deve conviver com, ou dar lugar a, um sistema de tags e filtros por banca.
-
-⬜ *A documentar quando o novo banco e o sistema de tags estiverem definidos.*
-
-*Fonte: atas de reunião dos subprojetos de banco de questões e APIs de vestibulares (abr–jun/2026).*
+- **Limites:** 300 MB por arquivo, 1 GB descompactado e 50 mil arquivos. Acima disso, divida as provas em mais de um zip.
+- Só entram questões completas: ao menos duas alternativas, todas com texto ou imagem, e exatamente uma correta. As demais aparecem no relatório, com o motivo, até que o arquivo seja corrigido.
+- As questões discursivas do zip não entram: o banco tem só questões de múltipla escolha.
+- Os textos compartilhados por várias questões viram o texto de apoio de cada uma.
+- Para corrigir questões que já estão no banco, o zip pode ter só os arquivos corrigidos, na pasta da respectiva prova.
+- Só uma importação roda por vez. O zip fica guardado por 24 horas; depois disso, ou se o servidor reiniciar, é preciso enviá-lo de novo para aplicar.
+- A importação nunca remove questões.
 
 ---
 
@@ -196,19 +165,24 @@ Para você, isso significa que a forma de **classificar e localizar** questões 
 
 | Situação | O que fazer |
 |---|---|
-| A questão não aparece para vincular a um simulado | Confira se ela foi salva e se a área e os tópicos correspondem aos do simulado que você está montando |
-| Não encontro o tópico adequado para a questão | Crie o tópico na área correspondente ([Tarefa 6](#tarefa-6-criar-topicos-para-categorizar-questoes)) antes de cadastrar a questão |
-| A verificação apontou similaridade com uma questão que não é igual à minha | A comparação é por sentido, não por texto idêntico. Cabe a você avaliar se as questões de fato se sobrepõem |
-| A fórmula do enunciado não aparece formatada | Confira a notação LaTeX no editor de equações antes de salvar |
-| ⬜ Mensagens de erro específicas | As mensagens exatas serão documentadas junto com as capturas de tela, quando a interface refatorada estabilizar |
+| A Área do Professor mostra **Acesso Restrito** | A sua conta não tem nenhuma permissão de conteúdo ou de redação. Peça-a a um administrador |
+| *"Erro ao cadastrar a questão. Verifique os dados e tente novamente."* | Confira os campos e tente de novo. A mesma mensagem aparece quando a conta não tem a permissão `create_question` ou quando um administrador desligou o cadastro de questões em **Módulos (Feature Flags)** |
+| Cadastrei uma questão e a disciplina apareceu duplicada | O nome foi digitado de forma diferente da existente. Um administrador pode corrigir a classificação da questão na moderação |
+| A fórmula do enunciado aparece como texto | A plataforma não formata LaTeX. Escreva a fórmula em texto simples ou use uma imagem, pela importação |
+| *"Aguarde a importação em andamento terminar para enviar outro arquivo."* | Só uma importação roda por vez. O **Histórico** mostra a situação da atual |
+| Uma questão ficou de fora da importação | O relatório indica o arquivo e o motivo — sem alternativa correta, com mais de uma correta, com alternativa vazia, com menos de duas alternativas ou sem banca. Corrija o `.json` e envie de novo só os arquivos corrigidos |
+| A importação falhou ao ser aplicada | Parte das questões pode ter sido gravada. Envie o mesmo zip de novo e simule: o relatório mostra o que ainda falta, e nada é duplicado |
+| A importação gravou algo errado | Corrija as questões uma a uma, pela moderação. Para desfazer uma importação inteira, fale com quem mantém o servidor da plataforma |
 
 ---
 
 ## Fontes desta página
 
-| Camada | Fonte | Data |
+| Conteúdo | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–5): listagem, cadastro, edição, exclusão, tópicos, editor LaTeX e verificação de similaridade | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Simulados, seção "Para o Professor", derivada do código-fonte (rotas `/simulados/questoes`, `/simulados/registrar-questao`, `/simulados/meus-topicos`) | jun/2026 |
-| Consulta e filtros do banco na versão refatorada (Tarefa 4) | Relatório 4 — Maria Luiza e Relatório 3 — Isabella Pereira, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
-| Divergência no número de alternativas (Tarefa 2) | Relatório 4 — Maria Luiza, módulo de exercícios de fixação | abr/2026 |
-| Reconstrução do banco, tags e APIs de vestibulares | Atas de reunião dos subprojetos correspondentes | abr–jun/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): Área do Professor e Painel Administrativo | out/2026 |
+| Regras de cadastro, edição e denúncia | [Descrição das Funcionalidades — Banco de questões](../../funcionalidades.md#banco-de-questoes), conferida no código do backend | out/2026 |
+| Importação de questões | `docs/importar-questoes-pelo-painel.md`, no `ifvest-monorepo`, e [Descrição das Funcionalidades — Importar questões](../../funcionalidades.md#importar-questoes) | out/2026 |
+
+!!! note "O que mudou em relação à versão anterior"
+    A versão anterior desta página descrevia o banco de questões da plataforma anterior. No V3, não há questões dissertativas, a tela **Minhas questões** com as questões de cada professor, a **exclusão** de questões, a tela de **tópicos** nem a **verificação de similaridade** por inteligência artificial. O editor de equações em LaTeX também não existe: o conteúdo das questões usa Markdown.

@@ -4,8 +4,18 @@ O módulo de **Revisão** (`/revisao`) reúne os conteúdos teóricos da platafo
 
 Os materiais são escritos em **Markdown**, com suporte a fórmulas matemáticas, e ficam vinculados a um ponto da organização de conteúdos da plataforma.
 
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração e **podem mudar até a entrega**. Veja [como ler as tarefas](index.md#como-ler-as-tarefas-deste-guia).
+!!! warning "Módulo ainda não disponível no IFVest V3"
+    O módulo de **Revisão** ainda não foi implementado no IFVest V3, a versão em produção: não há telas nem rotas na API para escrever materiais. O item **Revisão** do cabeçalho fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
+
+    Esta página fica como **registro do que foi planejado**, a título de curiosidade:
+
+    - as tarefas com status **✅ Atual** descrevem o módulo da **versão anterior** da plataforma, que não existe mais. Nesta página, "plataforma atual" e "versão atual" se referem a ela;
+    - a tarefa com status **🟡 Refatorado (em design)** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado;
+    - o campo **Perfil** e a marca 🔄 vêm da época em que a divisão de tarefas entre professor e administrador estava em discussão. No V3, o que cada conta pode fazer depende das [permissões](index.md#para-quem-e-este-guia).
+
+    Em outubro de 2026, uma página de administração da Revisão — com a lista de materiais, o histórico de acessos e um carrossel de matérias — estava em desenvolvimento, ainda só na interface e fora da versão em produção (ramo `feat/tela-revisao-conteudo` do `ifvest-monorepo`, não incorporado ao `main`).
+
+    Os termos de organização dos conteúdos usados aqui — área e tópico — são os da versão anterior. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
 
 !!! danger "Esta é a página mais afetada pela redistribuição de perfis"
     O redesign redistribui as tarefas deste módulo entre professor e administrador. As decisões registradas até o momento são:
@@ -153,7 +163,7 @@ Haverá **dois modos** de montar o questionário, que podem ser combinados:
 *Fonte: Relatório 4 — Maria Luiza (frontend), figs. 2.1 e 2.2. Design em andamento, sujeito a alteração.*
 
 !!! note "Número de alternativas"
-    No cadastro manual de questões, o número de alternativas será **opcional entre quatro (A a D) e cinco (A a E)**, acomodando tanto o formato do ENEM quanto o de outras bancas — o mesmo critério vale no [Banco de Questões](banco-de-questoes.md#tarefa-2-criar-uma-questao).
+    No cadastro manual de questões, o número de alternativas será **opcional entre quatro (A a D) e cinco (A a E)**, acomodando tanto o formato do ENEM quanto o de outras bancas. O cadastro do banco de questões do V3 não adotou esse critério: o formulário tem sempre cinco alternativas, de A a E (ver [Banco de Questões](banco-de-questoes.md#tarefa-2-cadastrar-uma-questao)).
 
     *Fonte: definição do subprojeto de frontend registrada em reunião (ago/2026).*
 
@@ -230,11 +240,12 @@ Haverá **dois modos** de montar o questionário, que podem ser combinados:
 
 | Camada | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–3, 5 e 6): listagem, criação, campos e validações, edição, remoção e upload | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Revisão de Conteúdo, seção "Para o Professor", derivada do código-fonte (rotas `/revisao/meus_materiais`, `criar_material`, `editar_material`, `remover_material`, `upload`) | jun/2026 |
-| Editor Markdown: preview em tempo real, LaTeX via KaTeX, painel dividido (Tarefa 3) | [Descrição das Funcionalidades](../../funcionalidades.md) — Editor Markdown | jun/2026 |
-| Interface futura: criação, Meus Materiais, carrossel e componentes | Relatório 2 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
-| Interface futura: criação detalhada, exercícios de fixação, Meus Materiais e edição (Tarefas 1, 2, 4 e 5) | Relatório 4 — Maria Luiza, mesmo subprojeto | mai/2026 |
-| Redistribuição de perfis entre professor e administrador | Atas de reunião do subprojeto de frontend, 22/05/2026 | mai/2026 |
+| Versão anterior (Tarefas 1–3, 5 e 6) | Listagem, criação, campos e validações, edição, remoção e upload: Descrição das Funcionalidades, na versão de jun/2026, que descrevia a plataforma anterior — módulo Revisão de Conteúdo, seção "Para o Professor", derivada do código-fonte (rotas `/revisao/meus_materiais`, `criar_material`, `editar_material`, `remover_material`, `upload`) | jun/2026 |
+| Editor Markdown (Tarefa 3) | Preview em tempo real, LaTeX via KaTeX e painel dividido: Descrição das Funcionalidades, na versão de jun/2026 — Editor Markdown | jun/2026 |
+| Interface futura | Criação, Meus Materiais, carrossel e componentes: Relatório 2 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
+| Interface futura (Tarefas 1, 2, 4 e 5) | Criação detalhada, exercícios de fixação, Meus Materiais e edição: Relatório 4 — Maria Luiza, mesmo subprojeto | mai/2026 |
+| Redistribuição de perfis | Entre professor e administrador: atas de reunião do subprojeto de frontend, 22/05/2026 | mai/2026 |
+| Página em desenvolvimento | Página de administração da Revisão: ramo `feat/tela-revisao-conteudo` do `ifvest-monorepo` | out/2026 |
 
 !!! note "Sobre a ordem das fontes"
     O Relatório 4 (17/05) descreve as telas do professor em detalhe; a ata de 22/05, cinco dias depois, redistribui parte dessas telas entre professor e administrador. Esta página documenta o design do relatório **e** a decisão posterior, sinalizando em cada tarefa qual das duas prevalece — o design permanece útil, mas a atribuição de perfil mudou.

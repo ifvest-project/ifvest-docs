@@ -1,179 +1,92 @@
 # Simulados
 
-O módulo de **Simulados** (`/simulados`) é onde você monta as provas de prática que os alunos realizam. Um simulado é um **conjunto de questões vindas do banco** ([Banco de Questões](banco-de-questoes.md)): você cria as questões uma vez e as reaproveita em quantos simulados quiser.
+No módulo de **Simulados** (`/simulados`), o que se soma para o professor é o **simulado institucional**: um simulado que você publica e que aparece para todos os estudantes. Montar simulados de treino, resolvê-los e imprimi-los funciona para você como para qualquer estudante, e está descrito no [Guia do Aluno — Simulados](../aluno/simulados.md).
 
-Além de disponibilizá-lo na plataforma, é possível **imprimir** o simulado para aplicação em papel.
+Os simulados são montados com as questões do [Banco de Questões](banco-de-questoes.md). Os dois tipos se diferenciam assim:
 
-!!! info "Versão documentada"
-    Os fluxos abaixo funcionam na plataforma atual. Os blocos *"Na versão refatorada"* descrevem o novo design em elaboração e **podem mudar até a entrega**. Veja [como ler as tarefas](index.md#como-ler-as-tarefas-deste-guia).
-
----
-
-## Tarefa 1 — Criar um simulado
-
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
-
-**Objetivo:** montar uma prova de prática a partir das questões do banco.
-
-**Pré-requisitos:** estar logado com perfil de professor; ter **ao menos uma questão cadastrada** (ver [Banco de Questões](banco-de-questoes.md#tarefa-2-criar-uma-questao)) — não é possível criar um simulado vazio.
-
-**Como fazer:**
-
-1. Acesse **Criar simulado** (`/simulados/criar-simulado`).
-2. Preencha os campos:
-
-    | Campo | Regra |
-    |---|---|
-    | **Título** | identifica o simulado nas listagens |
-    | **Descrição** | **obrigatória**, com no mínimo 10 caracteres |
-    | **Tipo** | Objetivo, Dissertativo ou Aleatório |
-
-3. **Selecione as questões** que comporão o simulado. É necessário vincular pelo menos uma.
-4. Finalize a criação. Você é levado à área **Meus Simulados**, onde o novo simulado aparece (ver [Tarefa 2](#tarefa-2-ver-e-gerenciar-seus-simulados)).
-
-!!! warning "Limitações conhecidas da versão atual"
-    Três comportamentos foram observados no sistema em produção e devem ser considerados ao montar um simulado:
-
-    - **O campo Tipo não altera o comportamento do sistema.** Escolher Objetivo, Dissertativo ou Aleatório não muda a exibição nem filtra as questões oferecidas para seleção.
-    - **A seleção de questões não tem filtro por disciplina.** Todas as suas questões aparecem juntas, sem separação por área ou assunto — em bancos grandes, localizar as questões desejadas fica trabalhoso.
-    - **O tipo "Aleatório" não gera questões automaticamente.** A seleção manual continua obrigatória, o que remove a imprevisibilidade esperada desse tipo.
-
-    *Fonte: Relatório 2 — Isabella Pereira (frontend), observações sobre o estado atual, figs. 1.1 e 1.1.2.*
-
-!!! abstract "Na versão refatorada"
-    A criação é reorganizada em duas etapas. Primeiro você define o **título**, uma **descrição opcional** e a **quantidade de questões**. Em seguida, faz as escolhas comuns aos dois modos de criação:
-
-    | Escolha | Opções |
-    |---|---|
-    | **Tipo de simulado** | Por disciplina, Por assunto, Enem, Unicamp |
-    | **Disciplina** | disciplinas do ensino médio no contexto pré-vestibular |
-    | **Assunto** | assuntos da disciplina escolhida (opcional no modo aleatório) |
-    | **Tipo de questão** | objetiva, dissertativa, ou ambas |
-
-    A partir daí, há **dois caminhos**:
-
-    - **Gerar com questões aleatórias** — o sistema monta o simulado conforme suas escolhas, sem seleção manual, preservando a imprevisibilidade.
-    - **Gerar com questões selecionadas** — você escolhe questão por questão: os títulos aparecem em lista, clicar no ID seleciona a questão (as escolhidas ficam visíveis em um balão lateral) e a seta à direita expande enunciado e alternativas. O botão **"Escolher outros assuntos"** permite voltar mantendo as seleções já feitas.
-
-    Em ambos os caminhos, o simulado é salvo em **Meus Simulados**.
-
-    *Fontes: Relatório 2 — Isabella Pereira (fluxo geral de criação, fig. 2.2.0); Relatório 3 — Isabella Pereira (filtros e seleção manual, figs. 1.0 a 3.0); Fluxograma sugerido (anexo ao Relatório 2). Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente. ⬜ *A confirmar: os relatórios descrevem esse fluxo para "o usuário", sem distinguir professor de aluno — resta esclarecer se a criação de simulados passará a estar disponível também ao aluno (ver [Guia do Aluno](../aluno/simulados.md#tarefa-4-criar-seu-proprio-simulado)).*
+| | De treino | Institucional |
+|---|---|---|
+| **Quem cria** | Qualquer pessoa com conta | Quem tem `create_institutional_mocktest` |
+| **Quem vê e resolve** | Só quem o criou | Todos os usuários |
+| **Quem renomeia ou exclui** | Quem o criou e quem tem `manage_mocktests` | Quem o criou e quem tem `manage_mocktests` |
 
 ---
 
-## Tarefa 2 — Ver e gerenciar seus simulados
+## Tarefa 1 — Criar um simulado institucional
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** `create_institutional_mocktest`
 
-**Objetivo:** consultar os simulados que você criou e acessar as ações de manutenção.
+**Objetivo:** publicar um simulado que aparece na lista de todos os estudantes.
 
-**Pré-requisitos:** estar logado com perfil de professor.
-
-**Como fazer:**
-
-1. Acesse **Meus simulados** (`/simulados/meus-simulados`).
-2. A lista exibe os simulados criados por você, com as opções de **editar**, **excluir** e **gerenciar as questões** de cada um.
-
-!!! abstract "Na versão refatorada"
-    A área Meus Simulados é redesenhada e passa a concentrar todas as ações sobre um simulado: **realizar, editar, remover, visualizar e exportar em PDF**. O fluxograma do redesign prevê ainda um **atalho rápido** para o simulado recém-criado.
-
-    *Fontes: Relatório 2 — Isabella Pereira, fig. 2.1; Relatório 3 — Isabella Pereira, fig. 2.3; Fluxograma sugerido. Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente.
-
----
-
-## Tarefa 3 — Editar um simulado
-
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
-
-**Objetivo:** corrigir ou atualizar os dados de um simulado já criado.
-
-**Pré-requisitos:** ter o simulado criado por você.
+**Pré-requisitos:** ter a permissão `create_institutional_mocktest`; as questões desejadas estarem no banco.
 
 **Como fazer:**
 
-1. Em **Meus simulados**, localize o simulado e acione a edição (`/simulados/:id/editar`).
-2. Altere **título**, **descrição** ou **tipo**.
-3. Salve as alterações.
+1. No cabeçalho, clique em **Simulados** e, na página do módulo, em **Criar novo simulado**.
+2. Preencha o **Nome do simulado**, com até 120 caracteres. É o nome que os estudantes verão na lista.
+3. Marque **Simulado institucional**. A opção só aparece para quem tem a permissão.
+4. Escolha como montar o simulado — **Selecionar questões**, para escolher no banco, ou **Aleatório**, para sortear — e siga os mesmos passos do [simulado de treino](../aluno/simulados.md#tarefa-1-montar-um-simulado-de-treino).
+5. A confirmação **Simulado criado com sucesso!** traz a mensagem *"O simulado institucional foi gerado e já aparece para todos os usuários."* Se a mensagem falar em *"seus materiais de estudo"*, o simulado foi criado como de treino.
 
 **Observações:**
 
-- A edição altera apenas os dados do simulado. Para mudar **quais questões** ele contém, use a [Tarefa 4](#tarefa-4-adicionar-ou-remover-questoes-de-um-simulado).
-- A regra de mínimo de 10 caracteres da descrição continua valendo na edição.
+- Marque a opção **antes** de escolher o modo de montagem. Depois de criado, um simulado não passa de treino a institucional, nem o contrário.
+- Não é possível trocar as questões de um simulado já criado. Confira a seleção antes de salvar.
+- A lista **Ver meus simulados** não distingue os simulados institucionais dos de treino: um nome claro, que indique o vestibular ou o conteúdo, ajuda os estudantes a encontrá-lo.
+- O simulado aparece também para os outros professores.
+
+!!! warning "O gabarito fica disponível para todos"
+    Todo estudante que vê o simulado pode abrir o **Gabarito** na lista e conferir a resposta de cada questão ao resolvê-lo na plataforma. Leve isso em conta antes de usar um simulado institucional como avaliação.
 
 ---
 
-## Tarefa 4 — Adicionar ou remover questões de um simulado
+## Tarefa 2 — Renomear ou excluir um simulado de outra pessoa
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** `manage_mocktests`
 
-**Objetivo:** ajustar o conjunto de questões de um simulado já criado, sem precisar refazê-lo.
+**Objetivo:** corrigir o nome de um simulado institucional criado por outra pessoa ou retirá-lo da plataforma.
 
-**Pré-requisitos:** ter o simulado criado por você; para adicionar, ter as questões cadastradas no banco.
+**Pré-requisitos:** ter a permissão `manage_mocktests`.
 
 **Como fazer:**
 
-- Para **incluir** questões, acesse **Adicionar questões** (`/simulados/:simuladoId/adicionar-questoes`) e selecione as questões a vincular.
-- Para **retirar** questões, acesse **Remover questões** (`/simulados/:simuladoId/remover-questoes`) e desvincule as questões desejadas.
+1. Na página de Simulados, clique em **Ver meus simulados** e, no simulado, em **Editar**.
+2. Para renomear, digite o novo nome, com até 120 caracteres, e clique em **Salvar novo nome**.
+3. Para excluir, clique em **Excluir este simulado** e, em seguida, em **Confirmar exclusão**.
+
+!!! warning "A exclusão apaga todas as tentativas"
+    Excluir um simulado apaga também **as tentativas de todos os estudantes** que o resolveram, e elas somem do histórico e das estatísticas de cada um. A exclusão não pode ser desfeita.
 
 **Observações:**
 
-- Remover uma questão do simulado **não a exclui do banco** — ela continua disponível para outros simulados. Para apagá-la definitivamente, use [Excluir uma questão](banco-de-questoes.md#tarefa-5-excluir-uma-questao).
-- Retirar uma questão do simulado desfaz o vínculo entre os dois; as respostas já registradas pelos alunos para aquela questão continuam associadas a ela no banco. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
+- A lista mostra só os simulados que você criou e os institucionais. Os simulados de treino dos estudantes não aparecem, mesmo com a permissão.
+- Os simulados que você mesmo criou podem ser renomeados e excluídos sem a permissão, como descrito no [Guia do Aluno](../aluno/simulados.md#tarefa-6-renomear-ou-excluir-um-simulado).
 
 ---
 
-## Tarefa 5 — Imprimir um simulado
+## Tarefa 3 — Imprimir um simulado para aplicação em papel
 
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** gerar uma versão formatada do simulado para aplicação em papel.
+**Objetivo:** gerar o caderno de prova e a folha de gabarito de um simulado.
 
-**Pré-requisitos:** ter o simulado criado, com as questões já vinculadas.
-
-**Como fazer:**
-
-1. Em **Meus simulados**, acione a opção de impressão (`/simulados/:simuladoId/imprimir`).
-2. A plataforma gera uma versão do simulado com formatação própria para impressão.
-3. Use a função de imprimir do navegador para enviar à impressora ou salvar como PDF.
-
-**Observações:**
-
-- **A versão impressa das questões dissertativas inclui o gabarito.** Cada questão dissertativa traz um bloco identificado como "Gabarito / Resposta Esperada", seguido das linhas para a resposta do aluno. Nas objetivas, as alternativas saem sem marcação visível da correta. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
-
-!!! abstract "Na versão refatorada"
-    A exportação em **PDF** passa a ser uma das ações disponíveis diretamente na área Meus Simulados.
-
-    *Fonte: Relatório 2 — Isabella Pereira, descrição do novo fluxo. Design em andamento, sujeito a alteração.*
-
----
-
-## Tarefa 6 — Excluir um simulado
-
-**Status:** ✅ Atual  
-**Perfil:** 👤 Professor
-
-**Objetivo:** remover um simulado que não será mais utilizado.
-
-**Pré-requisitos:** ter o simulado criado por você.
+**Pré-requisitos:** ter o simulado na sua lista.
 
 **Como fazer:**
 
-1. Em **Meus simulados**, localize o simulado e acione a exclusão.
-2. O simulado deixa de estar disponível na plataforma.
+1. Em **Ver meus simulados**, clique em **PDF** para abrir o caderno, com campos para os dados do candidato, instruções, as questões em duas colunas e uma folha de respostas.
+2. Clique em **IMPRIMIR / SALVAR CADERNO EM PDF** para imprimir ou salvar o arquivo.
+3. Para a correção, clique em **Gabarito**, na mesma lista, e em **IMPRIMIR / SALVAR GABARITO EM PDF**.
+
+Os detalhes estão em [Imprimir o caderno e o gabarito](../aluno/simulados.md#tarefa-5-imprimir-o-caderno-e-o-gabarito), no Guia do Aluno.
 
 **Observações:**
 
-- Excluir o simulado **não exclui as questões** que o compunham — elas permanecem no banco.
-- A exclusão do simulado remove também os **vínculos com as questões** e as **respostas registradas pelos alunos** naquele simulado. As questões em si permanecem no banco. *(Conforme o código-fonte da plataforma anterior ao redesign.)*
+- A plataforma não registra as respostas dadas no papel: a nota da prova impressa é calculada fora dela, com o gabarito.
+- Os botões **PDF** e **Gabarito** podem estar ocultos, se um administrador tiver desligado a exportação em **Módulos (Feature Flags)**.
 
 ---
 
@@ -181,21 +94,25 @@ Além de disponibilizá-lo na plataforma, é possível **imprimir** o simulado p
 
 | Situação | O que fazer |
 |---|---|
-| Não consigo finalizar a criação do simulado | É obrigatório vincular ao menos uma questão. Confira também se a descrição tem no mínimo 10 caracteres |
-| Não encontro minhas questões na hora de selecionar | A seleção atual não separa as questões por disciplina — todas aparecem juntas. Use o título da questão para localizá-las |
-| Escolhi o tipo "Aleatório" e o sistema pediu para eu selecionar as questões | É a limitação conhecida da versão atual: o tipo não altera o comportamento do sistema ([Tarefa 1](#tarefa-1-criar-um-simulado)) |
-| Removi uma questão do simulado e ela sumiu da lista | Ela foi apenas desvinculada do simulado; continua no seu banco de questões |
-| ⬜ Mensagens de erro específicas | As mensagens exatas serão documentadas junto com as capturas de tela, quando a interface refatorada estabilizar |
+| A opção **Simulado institucional** não aparece | A sua conta não tem a permissão `create_institutional_mocktest`. Peça-a a um administrador |
+| Criei o simulado sem marcar a opção institucional | Ele ficou como simulado de treino, visível só para você. Crie outro com a opção marcada e, se quiser, exclua o anterior |
+| Preciso trocar uma questão de um simulado institucional | Não é possível trocar as questões. Se o problema estiver na própria questão, corrija-a no banco (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)): a correção vale para todos os simulados que a usam. Senão, crie outro simulado |
+| Renomear ou excluir foi recusado | A mensagem *"Acesso negado: permissao 'manage_mocktests' necessaria ou ser o criador do simulado."* indica que o simulado é de outra pessoa e que a sua conta não tem a permissão `manage_mocktests` |
+| Quero ver as notas dos estudantes num simulado institucional | A plataforma não mostra ao professor os resultados dos estudantes: cada um vê apenas a própria nota |
 
 ---
 
 ## Fontes desta página
 
-| Camada | Fonte | Data |
+| Conteúdo | Fonte | Data |
 |---|---|---|
-| Fluxos atuais (Tarefas 1–6): criação, gestão, edição, questões, impressão e exclusão | [Descrição das Funcionalidades](../../funcionalidades.md) — módulo Simulados, seção "Para o Professor", derivada do código-fonte (rotas `/simulados/criar-simulado`, `meus-simulados`, `:id/editar`, `adicionar-questoes`, `remover-questoes`, `:id/imprimir`) | jun/2026 |
-| Comportamento observado na criação e regra da descrição (Tarefa 1) | Relatório 2 — Isabella Pereira, descrição do fluxo atual e problemas identificados | mar/2026 |
-| Interface futura (Tarefas 1, 2 e 5) | Relatórios 2 e 3 — Isabella Pereira + Fluxograma sugerido (anexo ao Relatório 2), subprojeto *Refatoração para React e Redesign do IFVest* | mar–abr/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): páginas de Simulados | out/2026 |
+| Regras de acesso, criação, edição e exclusão | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | out/2026 |
+| Simulados institucionais e de treino | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo` | out/2026 |
 
-!!! note "Relação com o Guia do Aluno"
-    A página de [Simulados do Guia do Aluno](../aluno/simulados.md) documenta o outro lado do módulo — ver, realizar e conferir simulados —, incluindo a limitação atual da tela de resolução, em que as questões são exibidas sem mecanismo de resposta. Isso afeta você indiretamente: **os relatórios de desempenho dos alunos não refletem o resultado real** até que essa entrega seja concluída.
+!!! note "O que mudou em relação ao planejado"
+    A versão anterior desta página descrevia a criação de simulados da plataforma anterior, restrita aos professores, com **descrição** obrigatória, escolha do **tipo** — objetivo, dissertativo ou aleatório — e telas para **adicionar e remover questões** depois da criação. No V3, qualquer pessoa monta simulados de treino, o professor publica os institucionais, e as questões não mudam depois da criação.
+
+    O redesign previa ainda a escolha do **tipo de simulado** — por disciplina, por assunto, ENEM ou UNICAMP — e do **tipo de questão**, além de um **atalho** para o simulado recém-criado. Nada disso foi implementado, e não há questões dissertativas: o banco do V3 tem só questões de múltipla escolha.
+
+    *Fontes: Relatórios 2 e 3 — Isabella Pereira e Fluxograma sugerido, subprojeto Refatoração para React e Redesign do IFVest (mar–abr/2026).*

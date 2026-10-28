@@ -1,71 +1,127 @@
 # Glossário
 
-Termos usados neste guia e na plataforma, na ordem alfabética. Antes da lista, uma explicação de como o IFVest organiza os conteúdos — o conjunto de termos que mais aparece nas tarefas.
+Termos usados nos guias e na plataforma, em ordem alfabética. Antes da lista, uma explicação de como o IFVest organiza os conteúdos — o conjunto de termos que mais aparece nas tarefas.
 
 ---
 
 ## Como os conteúdos são organizados
 
-Materiais de estudo, flashcards e questões não ficam soltos: cada um está vinculado a um ponto da organização de conteúdos da plataforma. Na versão atual, essa organização tem três níveis:
+No IFVest V3, as questões se organizam em três níveis:
 
-**Área** → **Tópico** → **Assunto**
+**Disciplina** → **Assunto** → **Tópico**
 
-Um material de revisão, um flashcard ou uma questão de simulado sempre pertence a um assunto, que por sua vez está dentro de um tópico e de uma área. É por isso que os filtros dos módulos ([Flashcards](aluno/flashcards.md#tarefa-1-estudar-com-flashcards), [Simulados](aluno/simulados.md#tarefa-4-criar-seu-proprio-simulado)) e a busca da [Revisão](aluno/revisao.md#tarefa-2-buscar-um-material-especifico) usam esses mesmos nomes.
+Por exemplo: Matemática → Álgebra → Equações de 2º grau. Cada questão se vincula a ao menos um tópico e, por meio dele, a um assunto e a uma disciplina. São esses os nomes usados nos filtros do [IFQuiz](aluno/ifquiz.md#tarefa-1-montar-e-jogar-um-quiz) e dos [Simulados](aluno/simulados.md#tarefa-1-montar-um-simulado-de-treino) e nas estatísticas por disciplina.
 
-!!! note "O vocabulário muda na versão refatorada"
-    Os relatórios do redesign usam **disciplina**, **matéria** e **subassunto** para descrever essa mesma organização, em vez de área e tópico. As duas formas aparecem neste glossário. ⬜ *O vocabulário definitivo da versão refatorada ainda não está fixado — a consolidar quando a interface estabilizar.*
+Não há uma lista fixa: a organização cresce junto com o banco de questões. Os nomes vêm das provas importadas e do [cadastro de questões](professor/banco-de-questoes.md#tarefa-2-cadastrar-uma-questao), em que o professor digita a disciplina, o assunto e o tópico. Por isso, as disciplinas oferecidas nos filtros são as que têm questões no banco.
+
+!!! note "A organização mudou em relação à versão anterior"
+    Na versão anterior da plataforma, os níveis eram **Área → Tópico → Assunto**: o tópico ficava no meio, e o assunto era o nível mais específico. No V3, a ordem se inverteu — o **assunto** fica no meio, e o **tópico** é o nível mais específico.
+
+    As páginas de [Revisão de Conteúdo](aluno/revisao.md) e [Flashcards](aluno/flashcards.md), que registram módulos ainda não implementados, usam o vocabulário anterior e o dos relatórios do redesign (ver [Termos dos módulos previstos e da versão anterior](#termos-dos-modulos-previstos-e-da-versao-anterior)).
 
 ---
 
 ## Termos
 
-- **Área** — maior divisão de conteúdo na versão atual da plataforma. As áreas cadastradas são: Matemática, Português, História, Geografia, Ciências, Artes, Informática, Química, Física, Biologia, Filosofia, Sociologia, Educação Física e Língua Estrangeira. Nos relatórios do redesign, essas divisões são chamadas de **matérias** ou **disciplinas**.
+- **Apelido** — o nome que você escolhe no perfil. Aparece na saudação da página **Início** e no ranking. Ver [Perfil e Seus Dados](conta/perfil.md#tarefa-2-alterar-o-seu-apelido).
 
-- **Assunto** — tema específico ao qual um material, flashcard ou questão está vinculado (por exemplo, Trigonometria dentro de Matemática). Um assunto pode conter **subassuntos**.
+- **Área do Professor** — a página aberta pela aba **Professor** do cabeçalho, com o banco de questões, as propostas de redação e a fila de correção. Aparece para quem tem permissão de conteúdo ou de redação. Ver [Guia do Professor](professor/index.md).
 
-- **Dificuldade** — classificação das questões e dos flashcards em Fácil, Médio ou Difícil. Serve como filtro na escolha do que estudar.
+- **Assunto** — divisão de uma disciplina que reúne tópicos — por exemplo, Álgebra, em Matemática. No cadastro de questões, o campo se chama **Matéria / Assunto**.
 
-- **Disciplina / Matéria** — termos usados nos relatórios do redesign para as grandes divisões de conteúdo; equivalem à **área** da versão atual.
+- **Avatar** — a figura que aparece ao lado do seu nome no ranking do IFQuiz, comprada com pontos na loja. Ver [IFQuiz](aluno/ifquiz.md#tarefa-7-comprar-e-equipar-avatares).
 
-- **Eficiência** — no [IFQuiz](aluno/ifquiz.md#tarefa-2-ver-seu-resultado), o percentual de acertos em relação ao total de questões respondidas em um quiz.
+- **Banca** — a instituição responsável pela prova de onde a questão saiu, como ENEM, FUVEST, UNICAMP ou IFSP. Serve de filtro na montagem de simulados.
 
-- **Flashcard** — cartão de estudo com uma pergunta na frente e a resposta no verso. Ver [Flashcards](aluno/flashcards.md).
+- **Caderno** — a versão do simulado para impressão, com as questões e uma folha de respostas. Ver [Simulados](aluno/simulados.md#tarefa-5-imprimir-o-caderno-e-o-gabarito).
 
-- **Gabarito** — relação das respostas corretas de um simulado, disponível após a realização. Ver [Simulados](aluno/simulados.md#tarefa-3-conferir-o-resultado-e-o-gabarito).
+- **Denúncia** — o aviso de erro numa questão, enviado pelo botão **🚩 Sinalizar** e tratado pelos administradores na moderação. Ver [Simulados](aluno/simulados.md#tarefa-7-denunciar-um-erro-numa-questao).
 
-- **LaTeX** — notação usada para escrever fórmulas matemáticas. Você não precisa conhecê-la: a plataforma exibe as fórmulas já formatadas nos materiais de estudo.
+- **Dica** — no IFQuiz, o botão **💡 Dica (Eliminar)**, que elimina uma alternativa errada. Ver [IFQuiz](aluno/ifquiz.md#tarefa-1-montar-e-jogar-um-quiz).
 
-- **Markdown** — formato de escrita simples usado pelos professores para redigir os materiais de revisão. Também é invisível para você: o texto aparece formatado na tela.
+- **Dificuldade** — a classificação da questão em Fácil, Média ou Difícil, informada no cadastro. Nas questões importadas, ela ainda não reflete a dificuldade real, e por isso o IFQuiz não oferece esse filtro.
 
-- **Material de estudo** (ou **conteúdo**) — texto teórico escrito pelos professores, disponível no módulo de [Revisão](aluno/revisao.md).
+- **Disciplina** — a maior divisão dos conteúdos, como Matemática, Português ou Biologia.
 
-- **Perfil** — dois sentidos neste guia: (1) o **tipo de conta** na plataforma — Usuário (aluno) ou Professor, escolhido no [cadastro](conta/acesso.md#tarefa-1-criar-uma-conta); e (2) a **área de gerenciamento dos seus dados**, tratada em [Perfil e Seus Dados](conta/perfil.md).
+- **Em Breve** — a tela exibida no lugar de um módulo ainda não disponível, como Revisão e Flashcards, ou desativado por um administrador. O mesmo selo marca o Modo Competição do IFQuiz.
 
-- **Placar** — ranking dos cinco melhores resultados do IFQuiz, ordenado por número de acertos e percentual. Ver [IFQuiz](aluno/ifquiz.md#tarefa-3-ver-o-placar).
+- **Gabarito** — a relação das respostas corretas. Nos simulados, é uma folha à parte, para imprimir ([Simulados](aluno/simulados.md#tarefa-5-imprimir-o-caderno-e-o-gabarito)); no IFQuiz, aparece na revisão do quiz ([IFQuiz](aluno/ifquiz.md#tarefa-2-ver-o-resultado-e-revisar-as-questoes)).
 
-- **Questão dissertativa** — questão respondida por escrito, com texto livre, em vez de alternativas.
+- **IFQuiz** — o módulo de prática rápida, com quizzes, Pergunta do Dia, pontos, patentes e ranking. Ver [IFQuiz](aluno/ifquiz.md).
 
-- **Questão objetiva** — questão de múltipla escolha, respondida pela seleção de uma alternativa (A a E).
+- **LaTeX** — notação usada para escrever fórmulas matemáticas. A plataforma não a formata: uma fórmula escrita em LaTeX aparece como texto.
 
-- **Quiz** — uma rodada de questões no módulo IFQuiz, com matéria e quantidade escolhidas por você.
+- **Markdown** — formato de escrita simples, com marcações para negrito, listas e tabelas. As questões usam Markdown, e a plataforma mostra o texto já formatado.
 
-- **Repetição espaçada** — método de estudo em que o conteúdo revisado há mais tempo volta a aparecer primeiro. No IFVest, a plataforma registra quando você vê cada flashcard e prioriza os que estão há mais tempo sem revisão. Ver [Flashcards](aluno/flashcards.md#tarefa-1-estudar-com-flashcards).
+- **Módulo** — cada área de estudo da plataforma: IFQuiz, Simulados, Redação, Revisão e Flashcards. Um administrador pode desativar um módulo, que passa a mostrar a tela **Em Breve**.
 
-- **Sessão** — o período em que você permanece identificado na plataforma após entrar na conta. Quando a sessão é encerrada, as áreas de estudo voltam a pedir login. Ver [Acesso e Conta](conta/acesso.md).
+- **Nota** — nos simulados, o percentual de acertos de uma tentativa, de 0 a 100%. As questões sem resposta contam como erradas.
 
-- **Simulado** — conjunto de questões montado para simular uma prova, com relatório de desempenho ao final. Ver [Simulados](aluno/simulados.md).
+- **Painel Administrativo** — a página aberta pela aba **Admin** do cabeçalho, com usuários e permissões, moderação de questões, importação de questões e módulos. Exige a permissão de administrador.
 
-- **Subassunto** — subdivisão de um assunto, usada na navegação prevista no redesign dos módulos de Revisão e Flashcards.
+- **Patente** — o nível do IFQuiz, definido pelo saldo de pontos, de Bronze a Lenda do IF. Ver [IFQuiz](aluno/ifquiz.md#tarefa-5-ganhar-pontos-e-subir-de-patente).
 
-- **Tópico** — nível intermediário de organização, entre a área e o assunto, na versão atual da plataforma.
+- **Pergunta do Dia** — a questão diária do IFQuiz, a mesma para todos. O acerto vale 100 pontos. Ver [IFQuiz](aluno/ifquiz.md#tarefa-3-responder-a-pergunta-do-dia).
 
-- **Visitante** — identificação usada no placar do IFQuiz quando o quiz é jogado sem login. Ver [IFQuiz](aluno/ifquiz.md#tarefa-1-jogar-um-quiz).
+- **Permissão** — a autorização dada a uma conta para uma ação específica, como cadastrar questões ou corrigir redações. No V3, as permissões substituem os perfis fixos de aluno e professor. Ver [Guia do Professor](professor/index.md#para-quem-e-este-guia).
+
+- **Pontos** — o que você ganha ao acertar questões no IFQuiz e na Pergunta do Dia. O **saldo** define a patente e paga os avatares; os **pontos ganhos** definem a posição no ranking.
+
+- **Questão de múltipla escolha** (ou **objetiva**) — questão respondida pela escolha de uma alternativa, em geral de A a E. É o único tipo de questão do banco da plataforma.
+
+- **Questão dissertativa** (ou **discursiva**) — questão respondida por escrito. O banco da plataforma não tem questões desse tipo, e a importação de provas as deixa de fora.
+
+- **Quiz** — uma rodada de 5 a 20 questões no IFQuiz, montada por você a partir de uma disciplina e, se quiser, de assuntos. Ver [IFQuiz](aluno/ifquiz.md#tarefa-1-montar-e-jogar-um-quiz).
+
+- **Ranking** — a classificação dos estudantes pelos pontos ganhos no IFQuiz, na semana ou em todo o histórico. Ver [IFQuiz](aluno/ifquiz.md#tarefa-6-ver-o-ranking).
+
+- **Redação** — o módulo para escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM. ⬜ *Guia pendente; o funcionamento está na [Descrição das Funcionalidades](../funcionalidades.md#redacao).*
+
+- **Sequência diária** — quantos dias seguidos você respondeu à Pergunta do Dia. No perfil, aparece como **Dias Consecutivos**. Ver [IFQuiz](aluno/ifquiz.md#tarefa-4-manter-a-sequencia-diaria).
+
+- **Sessão** — o período em que você fica identificado na plataforma depois de entrar. Fechar a aba não a encerra: para isso, use **Sair**. Ver [Acesso e Conta](conta/acesso.md#tarefa-2-sair-da-plataforma).
+
+- **Simulado** — conjunto de questões do banco para resolver na plataforma ou no papel, como numa prova. Pode ser de treino ou institucional. Ver [Simulados](aluno/simulados.md).
+
+- **Simulado de treino** — o simulado montado por um estudante ou professor para praticar. Só quem o criou o vê.
+
+- **Simulado institucional** — o simulado publicado por um professor com permissão, visível a todos os usuários. Ver [Guia do Professor — Simulados](professor/simulados.md).
+
+- **Sinalizar** — o botão **🚩 Sinalizar**, que envia uma denúncia de erro numa questão.
+
+- **Tentativa** — cada resolução finalizada de um simulado. As tentativas são ilimitadas, e cada uma tem a sua nota.
+
+- **Texto de apoio** — texto base, citação ou contexto exibido antes do enunciado de uma questão. Nas provas, um mesmo texto pode servir a várias questões.
+
+- **Tópico** — o nível mais específico da organização dos conteúdos, dentro de um assunto — por exemplo, Equações de 2º grau, em Álgebra. As questões se vinculam aos tópicos.
+
+- **Vidas** — no IFQuiz, cada quiz começa com 3. Cada erro custa uma, e o quiz termina no terceiro erro.
+
+---
+
+## Termos dos módulos previstos e da versão anterior
+
+Estes termos aparecem nas páginas de [Revisão de Conteúdo](aluno/revisao.md), [Flashcards](aluno/flashcards.md) e [Materiais de Revisão](professor/materiais-de-revisao.md), que registram módulos ainda não implementados, e nos relatórios do redesign.
+
+- **Área** — a maior divisão dos conteúdos na versão anterior da plataforma, equivalente à disciplina do V3.
+
+- **Flashcard** — cartão de estudo com uma pergunta na frente e a resposta no verso. Módulo previsto; ver [Flashcards](aluno/flashcards.md).
+
+- **Matéria** — termo dos relatórios do redesign para as grandes divisões dos conteúdos, como a disciplina. No cadastro de questões do V3, aparece no campo **Matéria / Assunto**.
+
+- **Material de estudo** (ou **material de revisão**) — texto teórico escrito pelos professores sobre um conteúdo. Módulo previsto; ver [Revisão de Conteúdo](aluno/revisao.md).
+
+- **Repetição espaçada** — método de estudo em que o conteúdo revisado há mais tempo volta a aparecer primeiro. Previsto para o módulo de Flashcards.
+
+- **Subassunto** — subdivisão de um assunto, prevista no redesign dos módulos de Revisão e Flashcards.
 
 ---
 
 ## Fontes desta página
 
-| Camada | Fonte | Data |
+| Conteúdo | Fonte | Data |
 |---|---|---|
-| Termos e organização de conteúdos da versão atual | [Descrição das Funcionalidades](../funcionalidades.md) — módulos Revisão, Flashcards, Simulados, IFQuiz e domínio compartilhado | jun/2026 |
-| Vocabulário da versão refatorada (disciplina, matéria, subassunto) | Relatórios do subprojeto de frontend — Isabella Pereira e Maria Luiza | mar–abr/2026 |
+| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `d36de12`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | out/2026 |
+| Funcionamento dos módulos | [Descrição das Funcionalidades](../funcionalidades.md) | out/2026 |
+| Organização da versão anterior | Versão anterior deste glossário, derivada do código da plataforma anterior | jun/2026 |
+| Vocabulário do redesign (matéria, subassunto) | Relatórios do subprojeto de frontend — Isabella Pereira e Maria Luiza | mar–abr/2026 |
