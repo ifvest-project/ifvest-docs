@@ -2,7 +2,9 @@
 
 Este documento registra o histórico de evolução da plataforma IFVest, organizado por marcos de desenvolvimento. Cada versão corresponde a uma entrega relevante: nova funcionalidade, reestruturação técnica ou mudança significativa no banco de dados.
 
-As datas de cada versão são inferidas a partir das migrations do banco de dados, dos TCCs e dos relatórios de extensão disponíveis.
+O IFVest nasceu de projetos de extensão do IFSP Campus Jacareí voltados à preparação para o ENEM e os vestibulares, coordenados desde 2018. A plataforma web surgiu em 2021, com a primeira versão registrada abaixo.
+
+As versões anteriores ao IFVest V3 foram reconstituídas a partir dos TCCs e dos relatórios finais de iniciação científica, extensão e estágio guardados no acervo do projeto, e das migrations do banco de dados da versão 2. As fontes de cada versão estão no [fim desta página](#fontes-das-versoes-10-a-26).
 
 !!! info "Versão atual: IFVest V3"
     A plataforma em produção é o **IFVest V3**, reconstruído do zero em 2026 e descrito na [última entrada](#v30-ifvest-v3-nova-plataforma-2026) desta página. As versões anteriores permanecem registradas como histórico.
@@ -12,28 +14,32 @@ As datas de cada versão são inferidas a partir das migrations do banco de dado
 ## v1.0 — Plataforma PHP/MariaDB (2021)
 
 **Período:** 2021  
-**Responsáveis:** Rafael Rodrigues de Sousa (backend), Fonseca (frontend)  
+**Responsáveis:** Rafael Rodrigues de Sousa (back-end e banco de dados), N. G. Fonseca (interface)  
 **Tipo:** TCC
 
-Primeira versão da plataforma IFVest, desenvolvida como trabalho de conclusão de curso. Implementada com PHP no backend e MariaDB como banco de dados relacional.
+Primeira versão da plataforma IFVest, desenvolvida como trabalho de conclusão de curso, aprovado em dezembro de 2021. Implementada com PHP no back-end, MariaDB como banco de dados e o padrão MVC. O back-end e a interface foram desenvolvidos por pessoas diferentes e integrados ao longo do projeto.
 
 **Funcionalidades entregues:**
 
-- Autenticação de usuários (cadastro e login)
-- Banco de questões de vestibular
-- Módulo inicial de simulados
+- Cadastro com confirmação de e-mail, recuperação de senha e senhas criptografadas
+- Perfis de aluno, professor e administrador
+- Banco de questões de vestibular, com questões inseridas e classificadas pelos professores
+- Simulados de até 10 questões, montados pelo aluno a partir da disciplina e dos tópicos
+- Geração do simulado em PDF, para aplicação em sala de aula
 
-**Observação:** O projeto ficou inativo entre 2021 e 2023, sem manutenção ou desenvolvimento ativo.
+**Observação:** não há registro de desenvolvimento da plataforma em 2022. O trabalho foi retomado em 2023, com a reescrita em Node.js.
 
 ---
 
 ## v2.0 — Reescrita em Node.js (2023–2024)
 
-**Período:** 2023 (banco de dados) — 2024 (sistema completo)  
+**Período:** 2023–2024  
 **Responsável:** Cristian Rodolfo Zago Da Silva  
 **Tipo:** TCC + Iniciação Científica (PIBIFSP 2024)
 
-Reescrita completa da plataforma, abandonando PHP/MariaDB em favor de uma stack moderna. A nova arquitetura adota o padrão MVC e a separação por domínios.
+Reescrita completa da plataforma, abandonando PHP/MariaDB em favor de uma stack moderna. A nova arquitetura adota o padrão MVC. O trabalho foi apresentado no 14º Congresso de Inovação, Ciência e Tecnologia do IFSP (CONICT), em 2023, e entregue no início de 2024 a quem deu continuidade ao projeto.
+
+No mesmo ano, Marcelo Corrêa desenvolveu um editor de equações matemáticas de código aberto para o projeto, apresentado no mesmo congresso e incorporado à plataforma a partir de 2024.
 
 **Stack adotada:**
 
@@ -45,34 +51,59 @@ Reescrita completa da plataforma, abandonando PHP/MariaDB em favor de uma stack 
 **Funcionalidades entregues:**
 
 - Autenticação com bcrypt e sessões
-- Perfis de usuário: Aluno e Professor
-- Módulo de simulados completo (criação, edição, realização, gabarito)
+- Perfis de usuário: Aluno e Professor, com página de perfil
 - Criação e gerenciamento de questões objetivas e dissertativas
+- Módulo de simulados (criação, edição, realização e gabarito), com temporizador que envia o simulado quando o tempo acaba
+- Videoaulas cadastradas por professores e administradores
 - Geração de PDF de simulados
 
-**Migrations iniciais do banco de dados:**
+**Migrations do banco de dados:**
 
 | Data | Tabela criada |
 |---|---|
 | 2023-03-19 | `Usuario` |
+
+---
+
+## v2.1 — Reestruturação, PostgreSQL e curadoria com IA (2024)
+
+**Período:** 2024  
+**Responsáveis:** Ruan Patrick Santos Araujo (reestruturação, banco de dados e editores); Guilherme Oliveira de Souza (curadoria com IA); Rafaela dos Santos Machado (testes)  
+**Tipo:** Estágio supervisionado, Iniciação Científica e Extensão
+
+Continuação da versão 2. As rotas, as páginas e o banco de dados foram reestruturados para atender ao objetivo central da plataforma — resolver simulados na própria plataforma ou impressos —, e o banco migrou do MySQL para o PostgreSQL. No mesmo período, foi integrada a primeira ferramenta de inteligência artificial da plataforma, para apontar questões semelhantes no banco.
+
+**Funcionalidades entregues:**
+
+- Banco de dados reestruturado: alternativas numa tabela própria, com a indicação da correta, e tópicos que o usuário cria e vincula às questões
+- Migração do banco de dados do MySQL para o PostgreSQL
+- Editor de texto (Quill) e editor de equações, adaptado do editor de Marcelo Corrêa, na criação de questões
+- Verificação de questões semelhantes com a API Gemini (Google): ao cadastrar uma questão, o professor vê se já há outra parecida no banco, mesmo com outra redação
+- Hospedagem em serviços de nuvem (Render e Infinite Cloud Computing)
+- Testes de software e de acessibilidade ao longo do desenvolvimento
+
+**Migrations do banco de dados:**
+
+| Data | Tabela criada |
+|---|---|
 | 2024-03-19 | `Area`, `Topico` |
 | 2024-03-20 | `Questao`, `Simulado`, `Opcao`, `Resposta`, `PerguntasProvas` |
 | 2024-04-17 | `QuestaoTopico` (relação N:M entre questões e tópicos) |
 
 ---
 
-## v2.1 — Editor Markdown e Módulo de Revisão de Conteúdo (2024–2025)
+## v2.2 — Editor Markdown e Módulo de Revisão de Conteúdo (2025)
 
-**Período:** 2024–2025  
-**Responsáveis:** Ruan Patrick Santos Araujo (editor); João Pedro Veríssimo (módulo de revisão e arquitetura de domínios)  
-**Tipo:** Extensão + Estágio
+**Período:** 2025  
+**Responsáveis:** João Pedro Veríssimo Gonçalves (módulo de revisão e arquitetura de domínios); Ruan Patrick Santos Araujo (editor Markdown)  
+**Tipo:** Iniciação Científica + Extensão
 
-Introdução do módulo de revisão de conteúdo para professores criarem e alunos consumirem materiais de estudo em Markdown. Neste período também foi proposta e implementada a separação da aplicação em domínios isolados (`domains/`), que estrutura o projeto até hoje.
+Introdução do módulo de revisão de conteúdo para professores criarem e alunos consumirem materiais de estudo em Markdown. Neste período também foi proposta e implementada a separação da aplicação em domínios isolados (`domains/`), que organizou a versão 2 até a sua substituição pelo IFVest V3.
 
 **Funcionalidades entregues:**
 
 - Editor Markdown com preview em tempo real (React + Vite, isolado em `editor_markdown/`)
-- Suporte a notação matemática LaTeX via KaTeX
+- Suporte a notação matemática LaTeX via KaTeX, no lugar do MathJax usado antes
 - Módulo de revisão: criação, edição e exclusão de materiais por professores
 - Navegação hierárquica por assuntos (árvore de categorias)
 - Busca de conteúdo por área, tópico e assunto
@@ -89,7 +120,7 @@ Introdução do módulo de revisão de conteúdo para professores criarem e alun
 
 ---
 
-## v2.2 — Módulo de Flashcards (2025)
+## v2.3 — Módulo de Flashcards (2025)
 
 **Período:** 2025  
 **Responsável:** André Vinícius Neves da Silva  
@@ -117,15 +148,15 @@ Implementação do módulo de flashcards com lógica de repetição espaçada in
 
 ---
 
-## v2.3 — IFQuiz e Verificação de Similaridade (2025)
+## v2.4 — IFQuiz (2025)
 
 **Período:** 2025  
-**Responsáveis:** Nicolas Felipe Pinheiro Soares (IFQuiz); Guilherme Souza (verificação de similaridade por IA)  
+**Responsável:** Nicolas Felipe Pinheiro Soares  
 **Tipo:** Extensão
 
-Adição do módulo de gamificação IFQuiz e da funcionalidade de curadoria semiautomática de questões com IA.
+Adição do IFQuiz, módulo de quizzes com elementos de gamificação.
 
-**Funcionalidades entregues — IFQuiz:**
+**Funcionalidades entregues:**
 
 - Quizzes de múltipla escolha com questões do ENEM via API `enem.dev`
 - Seleção de matéria e quantidade de questões
@@ -133,12 +164,6 @@ Adição do módulo de gamificação IFQuiz e da funcionalidade de curadoria sem
 - Tela de resultados com acertos e percentual de eficiência
 - Ranking dos 5 melhores jogadores (placar público)
 - Registro de pontuação para usuários logados e visitantes
-
-**Funcionalidades entregues — Similaridade:**
-
-- Verificação de duplicidade de questões via API Gemini (Google)
-- Exibição de trechos similares encontrados no banco
-- Disponível exclusivamente para professores
 
 **Migrations:**
 
@@ -151,9 +176,9 @@ Adição do módulo de gamificação IFQuiz e da funcionalidade de curadoria sem
 
 ---
 
-## v2.4 — LGPD e Adequação Legal (2025–2026)
+## v2.5 — LGPD e Adequação Legal (2025)
 
-**Período:** 2025–2026  
+**Período:** 2025  
 **Responsável:** Kendy de Oliveira Outi  
 **Tipo:** Extensão
 
@@ -168,11 +193,28 @@ Análise de conformidade com a Lei Geral de Proteção de Dados (LGPD) e impleme
 
 ---
 
+## v2.6 — Acessibilidade (2025)
+
+**Período:** 2025  
+**Responsável:** Rafaela dos Santos Machado  
+**Tipo:** Estágio supervisionado
+
+Correções de acessibilidade na interface da versão 2, guiadas pelas diretrizes WCAG e priorizando, num primeiro momento, as pessoas com deficiência visual.
+
+**Funcionalidades entregues:**
+
+- Correções na estrutura semântica, nos rótulos, nos atributos ARIA e no controle de foco das páginas, começando pela de login
+- Navegação por teclado e leitura com leitor de tela no módulo de Simulados — da criação à resolução, com os modais e a geração de PDF — e nos Flashcards e no IFQuiz
+- Auditorias com as ferramentas WAVE, axe-core, Accessibility Insights for Web e Lighthouse, e verificação manual com o leitor de tela NVDA
+- Teste do módulo de Simulados com um usuário cego, usando o NVDA
+
+---
+
 ## v3.0 — IFVest V3: nova plataforma (2026)
 
 **Período:** 2026  
-**Responsáveis:** ⬜ *A confirmar com a coordenação do projeto*  
-**Tipo:** ⬜ *A confirmar com a coordenação do projeto*
+**Responsáveis:** equipes do projeto de 2026, organizadas nos eixos de [Subprojetos Ativos](subprojetos/index.md)  
+**Tipo:** Extensão + Programa Meninas nas Ciências
 
 Reconstrução completa da plataforma, desenvolvida do zero e referida internamente como **IFVest V3**. Substituiu a versão anterior no mesmo endereço, com nova stack, novo modelo de dados e autorização por permissões granulares no lugar dos perfis fixos de aluno e professor.
 
@@ -249,3 +291,19 @@ Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já t�
 | Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `d36de12`, de 15/10/2026 | out/2026 |
 | Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | out/2026 |
 | Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |
+| Responsáveis e tipo | Lista dos projetos vinculados ao IFVest em 2026 e atas das reuniões dos grupos de trabalho | 2026 |
+
+## Fontes das versões 1.0 a 2.6
+
+| Versão | Fonte | Data |
+|---|---|---|
+| Origem | Súmula curricular da coordenação do projeto | 2026 |
+| v1.0 | TCC de Rafael Rodrigues de Sousa, aprovado em 14/12/2021, e artigo de N. G. Fonseca sobre a interface, no 12º CONICT | 2021 |
+| v2.0 | Relatório de iniciação científica de Cristian Rodolfo Zago Da Silva (PIBIFSP 2024, validado como TCC) e artigo de Marcelo Corrêa sobre o editor de equações, no 14º CONICT | 2023–2024 |
+| v2.1 | Relatório de estágio supervisionado de Ruan Patrick Santos Araujo, relatório final de Guilherme Oliveira de Souza e relatório final de extensão de Rafaela dos Santos Machado | dez/2024 |
+| v2.2 | Relatórios finais de João Pedro Veríssimo Gonçalves e de Ruan Patrick Santos Araujo | 2025 |
+| v2.3 | Relatório final de extensão de André Vinícius Neves da Silva | nov/2025 |
+| v2.4 | Relatório final de Nicolas Felipe Pinheiro Soares | nov/2025 |
+| v2.5 | Relatório final de extensão de Kendy de Oliveira Outi | dez/2025 |
+| v2.6 | Relatório de estágio supervisionado de Rafaela dos Santos Machado | dez/2025 |
+| Migrations | Código da versão 2, conforme a versão anterior desta documentação (etiqueta `legado-v2`) | — |
