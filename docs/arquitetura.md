@@ -208,7 +208,6 @@ As permissões iniciais são atribuídas no primeiro acesso, conforme o e-mail d
 |---|---|
 | Administrador inicial, definido na configuração | Todas as sete |
 | Domínio `@ifsp.edu.br` | As quatro de conteúdo: cadastrar e editar questões, criar simulados institucionais e gerenciar os simulados de outras pessoas |
-| Dois endereços fixos, os mesmos das contas de teste | As quatro de conteúdo, mais as de correção e de propostas de redação (ver [Pontos de atenção](#pontos-de-atencao)) |
 | Demais | Nenhuma permissão especial |
 
 As permissões iniciais valem **só na criação da conta**: as concessões e revogações feitas depois por um administrador permanecem nos acessos seguintes. A permissão de administrador do administrador inicial não pode ser revogada, e toda concessão e revogação fica no registro de auditoria.
@@ -410,8 +409,6 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 | Ponto | Situação |
 |---|---|
 | ⬜ **Verificações não obrigatórias** | A integração contínua só impede a entrada de código na `main` se a proteção da branch estiver configurada no GitHub, o que depende do plano da organização. No levantamento da equipe de 27/09/2026, essa proteção ainda não havia sido confirmada; sem ela, os resultados funcionam como aviso, e o hook de pre-push pode ser pulado. |
-| ⬜ **Sem limite de requisições** | Nenhum endpoint tem limite de taxa, o que deixa a API exposta a uso abusivo — inclusive o envio de redações, que não tem limite por usuário. Pendência já registrada pela equipe. |
-| ⬜ **Permissões atribuídas a e-mails fixos** | A lógica de permissões iniciais concede a dois endereços fixos, os mesmos das contas de teste, as permissões de correção e de propostas de redação, além das quatro de conteúdo. Como a regra vale também em produção, uma conta com um desses e-mails as receberia no primeiro acesso. |
 | ⬜ **Painel administrativo pode se trancar** | Desligar o módulo Administração pelo próprio painel esconde o painel — inclusive a aba em que ele seria religado —, porque essa flag é verificada só no frontend. A volta só é possível pela API (`/api/v1/features/module_admin`) ou pelo banco. |
 | ⬜ **Origem das provas e extrator de questões por IA** | O banco é alimentado por arquivos JSON mantidos fora do repositório, carregados no servidor ou importados pelo painel no formato em que saem da extração das provas. O repositório não documenta o extrator em si nem prevê uma integração direta com ele: os arquivos chegam à plataforma enviados pela equipe. |
 | ⬜ **Importação limitada a um processo** | Só uma importação de questões roda por vez, garantido por uma trava na memória da API. A trava funciona porque a API roda num único processo; se passar a rodar com vários, ela precisa ir para o banco de dados, como a própria equipe registrou no guia da importação. |

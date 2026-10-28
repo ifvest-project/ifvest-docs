@@ -60,7 +60,7 @@ flowchart TD
 
     subgraph F2["📙 FASE 2 — Conteúdo"]
         C["🟡 Especificação de Requisitos"]
-        D["⬜ Subprojetos e Projetos Paralelos"]
+        D["✅ Subprojetos e Projetos Paralelos"]
     end
 
     subgraph F3["📒 FASE 3 — Detalhamento"]
@@ -116,7 +116,7 @@ flowchart TD
 | Item | Descrição | Status |
 |------|-----------|--------|
 | Especificação de Requisitos | Consolidação do que o sistema deve fazer (requisitos funcionais) e como deve se comportar (desempenho, acessibilidade, segurança). Organizada em dois níveis: requisitos da plataforma, a partir da especificação anterior atualizada para o IFVest V3, e requisitos por módulo, a partir do levantamento preenchido pelas equipes dos subprojetos, atualizados conforme o preenchimento avança. | 🟡 Em andamento |
-| Subprojetos e Projetos Paralelos | Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA. | ⬜ Pendente |
+| Subprojetos e Projetos Paralelos | Frentes de trabalho do projeto e produtos que se integram ao ecossistema, como o leitor de PDFs educacionais e o extrator de questões por IA. | ✅ Concluído |
 
 ---
 
@@ -228,7 +228,22 @@ Esta estrutura foi definida com base na **ISO/IEC/IEEE 15289:2019** — norma in
 - **ISO/IEC/IEEE 12207:2017** — *Software life cycle processes*. Estabelece a documentação como parte integrante do ciclo de vida do software, e não como produto separado. É a norma cujos processos a 15289 mapeia.
 - **ISO/IEC/IEEE 26514:2022** — *Design and development of information for users*. Orienta a estrutura e o conteúdo da documentação de usuário produzida na Fase 4.
 
-As três normas permitem **adaptação ao contexto do projeto**, desde que a seleção dos itens produzidos e omitidos seja registrada — o que este documento faz.
+As três normas permitem **adaptação ao contexto do projeto**, desde que a seleção dos itens produzidos e omitidos seja registrada. Os itens produzidos são os das quatro fases descritas acima; os não adotados estão a seguir.
+
+### Itens da norma não adotados
+
+A ISO/IEC/IEEE 15289 relaciona dezenas de itens de informação, ligados a todos os processos do ciclo de vida. Os grupos abaixo ficam fora desta documentação:
+
+| Grupo | Itens da norma | Motivo |
+|---|---|---|
+| Acordo e aquisição | *Contract*, *acquisition plan*, *proposal*, *request for proposal* | Não se aplicam: o IFVest é um projeto de extensão, sem contratos nem fornecedores |
+| Gestão do projeto | *Project management plan*, *development plan*, *progress report*, *risk management plan* | Ficam com a coordenação do projeto e com cada subprojeto |
+| Verificação e validação | *Verification plan*, *validation plan*, *test procedure*, *test report* | São do Eixo 2 — Qualidade, Testes e Acessibilidade. A Arquitetura resume os testes e a integração contínua |
+| Configuração e mudanças | *Configuration management plan*, *change request*, *problem report* | São feitas no repositório do código, no GitHub, e os relatos de problemas vão direto às equipes |
+| Implantação e operação | *Installation report*, *maintenance procedure*, *transition plan*, *service level agreement* | Ficam no repositório do código, para quem mantém o servidor. A Arquitetura resume a implantação e a operação, e a transição para o IFVest V3 está no Registro de Versões |
+| Qualidade e processos | *Quality management plan*, *life-cycle policy*, *process description*, *improvement plan* | São voltados a organizações com sistemas de gestão formais |
+| Segurança da informação | *Information security plan* | É do Eixo 4 — Infraestrutura, APIs e Segurança. Por ser pública, esta documentação não publica detalhes de segurança |
+| Treinamento | *Training plan*, *training documentation* | Não há treinamento formal: os Guias de Uso cumprem esse papel |
 
 ---
 
