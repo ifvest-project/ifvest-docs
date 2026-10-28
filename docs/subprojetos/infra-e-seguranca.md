@@ -18,20 +18,43 @@ Este eixo garante a robustez, a segurança e a conformidade legal da infraestrut
 
 ### Criação de Tags para Integração com API do ENEM e Estruturação do Banco de Dados das Questões
 
-*   **Líderes:** Vitor e Helena
-*   **Objetivo:** Desenvolver uma API para extração de questões da FUVEST e ENEM, e estruturar o banco de dados para suportar a categorização e integração eficiente de questões.
+*   **Líder:** Victor
+*   **Objetivo:** Criar tags para a integração com a API do ENEM e estruturar o banco de dados das questões, para suportar a categorização e a busca.
 *   **Destaques:**
     *   Criação de um sistema de tags robusto para classificar questões por disciplina, tópico e subtópico.
     *   Estudo e integração com APIs externas (como `enem.dev`) para importação automatizada de questões.
+    *   Definição do contrato de dados em JSON com as equipes de extração de provas e escolha do PostgreSQL para o banco de questões.
     *   Modelagem de dados para um banco de questões escalável e de fácil manutenção.
     *   Apoio à criação de simulados personalizados e materiais de revisão.
 
-### Reestruturação da Plataforma/BD com Python
+### API para Extração de Questões da Unicamp
+
+*   **Líder:** Henrique Mosson Zaianz
+*   **Objetivo:** Extrair as questões das provas da Unicamp, em PDF, e estruturá-las em JSON para alimentar o banco de questões.
+*   **Tecnologias Envolvidas:** Python, PyMuPDF e OCR (para a leitura das provas) e Pydantic (para o esquema dos dados).
+*   **Destaques:**
+    *   Definição do formato e da tipagem dos dados extraídos, documentados com Pydantic e num README.
+    *   Extração do texto e das figuras das provas, com validação do conjunto de dados extraído.
+    *   Testes da extração com provas da FUVEST.
+    *   Estrutura do JSON repassada à extração de outros vestibulares.
+
+### API para Extração de Questões de Outros Vestibulares
+
+*   **Líder:** Thales
+*   **Objetivo:** Estender a extração de questões a outros vestibulares, como a FUVEST, no mesmo formato de dados.
+*   **Tecnologias Envolvidas:** Python e OCR.
+*   **Destaques:**
+    *   Início da extração dos dados das provas, com as provas reunidas num diretório de dados brutos.
+    *   Levantamento de algoritmos de OCR e testes com bibliotecas de extração em Python.
+    *   Tratamento das alternativas em imagem, em andamento.
+
+### Reestruturação da Plataforma
 
 *   **Líder:** Jorge
-*   **Objetivo:** Migrar e otimizar partes da infraestrutura e do banco de dados da plataforma para Python, visando melhor desempenho, manutenibilidade e escalabilidade.
-*   **Tecnologias Envolvidas:** Python, ferramentas de gerenciamento de projetos (Trello).
+*   **Objetivo:** Coordenar a refatoração que deu origem ao IFVest V3, com o backend e o banco de dados reescritos em Python.
+*   **Tecnologias Envolvidas:** Python, FastAPI, Docker e ferramentas de gerenciamento de projetos (Trello).
 *   **Destaques:**
+    *   Definição, com as equipes, do Python com FastAPI como padrão do backend.
     *   Reescrita de componentes do backend e do banco de dados em Python.
+    *   Infraestrutura inicial de integração contínua, com Docker e verificações de qualidade.
     *   Organização das tarefas de desenvolvimento e migração utilizando ferramentas de gerenciamento de projetos como Trello.
-    *   Busca por melhorias na performance e na arquitetura geral do sistema.

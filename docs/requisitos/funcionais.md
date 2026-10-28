@@ -100,7 +100,7 @@ Os requisitos por módulo vêm do **Levantamento de Funcionalidades e Regras de 
 | [IFQuiz](#ifquiz) | Helena Vieira Nascimento | ✅ Preenchido — nove funcionalidades | [RFG16](#rfg16) |
 | [Redação](#redacao) | Guilherme Augusto Frazão Ribeiro | 🟡 Preenchido para o módulo como um todo, sem numeração dos requisitos | [RFG19](#rfg19) a [RFG21](#rfg21) |
 | [Redação — envio por imagem e OCR](#envio-de-redacao-por-imagem-e-ocr) | Arthur Araújo de Oliveira | ✅ Preenchido | [RFG20](#rfg20) e [RFG22](#rfg22) |
-| Autenticação, login e cadastro | Wilcker | ⬜ Aguardando preenchimento | [RFG01](#rfg01) a [RFG03](#rfg03) |
+| Autenticação, login e cadastro | Wilker | ⬜ Aguardando preenchimento | [RFG01](#rfg01) a [RFG03](#rfg03) |
 | Simulados | — | ⬜ Aguardando preenchimento | [RFG17](#rfg17) |
 | Flashcards | — | ⬜ Aguardando preenchimento | [RFG14](#rfg14) e [RFG15](#rfg15) |
 | Revisão de Conteúdo | — | ⬜ Aguardando preenchimento | [RFG11](#rfg11) a [RFG13](#rfg13) |

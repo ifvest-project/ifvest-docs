@@ -22,6 +22,10 @@ Este eixo foca na experiência do usuário, no design da interface e na moderniz
     *   **Objetivo:** Atualizar a identidade visual do IFVest, refatorar o frontend para React e aprimorar a experiência do usuário, com foco em componentização e responsividade.
     *   **Destaques:** Desenvolvimento de nova identidade visual no Figma, criação de componentes reutilizáveis, integração com Google Authentication e redesenho de módulos como autenticação, perfil do usuário e revisão de conteúdo.
 
+*   **Continuidade e Aprimoramento do Módulo Quiz:** Liderado por Helena.
+    *   **Objetivo:** Dar continuidade ao IFQuiz na nova plataforma, revendo os requisitos e as telas do módulo.
+    *   **Destaques:** Levantamento dos requisitos funcionais e não-funcionais do IFQuiz, telas do módulo no Figma, definição dos filtros de questões com as equipes do banco de questões e início da documentação da API no Swagger.
+
 ---
 
 ## Eixo 2: Qualidade, Testes e Acessibilidade
@@ -34,13 +38,17 @@ Este eixo é dedicado a garantir a qualidade do software, a robustez dos sistema
     *   **Objetivo:** Avaliar e garantir o desempenho, capacidade e confiabilidade da plataforma através de testes não-funcionais.
     *   **Destaques:** Utilização de ferramentas como Jest (testes de unidade), Selenium (testes funcionais) e JMeter (testes de desempenho) para medir métricas críticas do sistema.
 
-*   **Testes Funcionais e Mutantes:** Liderado por Vinicius Akio Hayashi e Jorge.
+*   **Testes Funcionais e Mutantes:** Liderado por Vinicius Akio Hayashi e Caio.
     *   **Objetivo:** Assegurar a correção das funcionalidades do sistema e a eficácia dos testes através de testes funcionais e de mutação.
     *   **Destaques:** Criação de fluxogramas de testes, implementação de testes unitários e exploração de testes mutantes com ferramentas como Stryker para aumentar a cobertura e a qualidade dos testes.
 
 *   **Implementação de Melhorias de Acessibilidade:** Liderado por Rafaela.
     *   **Objetivo:** Tornar a plataforma IFVest acessível a todos os usuários, independentemente de suas capacidades, seguindo normas e diretrizes de acessibilidade.
     *   **Destaques:** Estudo de normas de acessibilidade, benchmark de ferramentas e aplicação de ESLint e Axe Core para identificar e corrigir problemas de acessibilidade na interface.
+
+*   **Avaliação da Experiência do Usuário:** Liderado por Gabriel Ribeiro.
+    *   **Objetivo:** Sistematizar a coleta de informações para avaliar a experiência do usuário, quanto à usabilidade e à acessibilidade, e apoiar os testes de banco de dados.
+    *   **Destaques:** Estudo de técnicas e normas para questionários de experiência do usuário, benchmarking de padrões de questionários e elaboração de um roteiro de testes.
 
 ---
 
@@ -74,10 +82,18 @@ Este eixo garante a robustez, a segurança e a conformidade legal da infraestrut
     *   **Objetivo:** Garantir a conformidade do sistema de cadastro do IFVest com a Lei Geral de Proteção de Dados (LGPD).
     *   **Destaques:** Reestruturação do banco de dados com Firebase (Authentication, Cloud Firestore com Security Rules e Cloud Storage), formalização de bases legais para tratamento de dados.
 
-*   **Criação de Tags para Integração com API do ENEM e Estruturação do Banco de Dados das Questões:** Liderado por Vitor e Helena.
-    *   **Objetivo:** Desenvolver uma API para extração de questões da FUVEST e ENEM, e estruturar o banco de dados para suportar a categorização e integração de questões.
-    *   **Destaques:** Criação de tags para questões, estudo de APIs externas e modelagem de dados para um banco de questões escalável.
+*   **Criação de Tags para Integração com API do ENEM e Estruturação do Banco de Dados das Questões:** Liderado por Victor.
+    *   **Objetivo:** Criar tags para a integração com a API do ENEM e estruturar o banco de dados das questões, para suportar a categorização e a busca.
+    *   **Destaques:** Criação de tags para questões, estudo de APIs externas, definição do contrato de dados em JSON com as equipes de extração de provas e modelagem de um banco de questões escalável em PostgreSQL.
 
-*   **Reestruturação da Plataforma/BD com Python:** Liderado por Jorge.
-    *   **Objetivo:** Migrar e otimizar partes da infraestrutura e do banco de dados da plataforma para Python, visando melhor desempenho e manutenibilidade.
-    *   **Destaques:** Reescrita de componentes do backend e do banco de dados em Python, organização de tarefas com ferramentas de gerenciamento de projetos.
+*   **API para Extração de Questões da Unicamp:** Liderado por Henrique Mosson Zaianz.
+    *   **Objetivo:** Extrair as questões das provas da Unicamp, em PDF, e estruturá-las em JSON para alimentar o banco de questões.
+    *   **Destaques:** Extração de texto e figuras com bibliotecas de leitura de PDF e OCR, formato e tipagem dos dados documentados com Pydantic, validação dos dados extraídos e testes com provas da FUVEST. A estrutura do JSON foi repassada à extração de outros vestibulares.
+
+*   **API para Extração de Questões de Outros Vestibulares:** Liderado por Thales.
+    *   **Objetivo:** Estender a extração de questões a outros vestibulares, como a FUVEST, no mesmo formato de dados.
+    *   **Destaques:** Início da extração dos dados das provas, levantamento de algoritmos de OCR e testes com bibliotecas de extração em Python. O tratamento das alternativas em imagem está em andamento.
+
+*   **Reestruturação da Plataforma:** Liderado por Jorge.
+    *   **Objetivo:** Coordenar a refatoração que deu origem ao IFVest V3, com o backend e o banco de dados reescritos em Python.
+    *   **Destaques:** Definição, com as equipes, do Python com FastAPI como padrão do backend, infraestrutura inicial de integração contínua, com Docker e verificações de qualidade, e organização das tarefas com ferramentas de gerenciamento de projetos.

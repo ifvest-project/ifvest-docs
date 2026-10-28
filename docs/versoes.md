@@ -14,10 +14,10 @@ As versões anteriores ao IFVest V3 foram reconstituídas a partir dos TCCs e do
 ## v1.0 — Plataforma PHP/MariaDB (2021)
 
 **Período:** 2021  
-**Responsáveis:** Rafael Rodrigues de Sousa (back-end e banco de dados), N. G. Fonseca (interface)  
-**Tipo:** TCC
+**Responsáveis:** Rafael Rodrigues de Sousa (back-end e banco de dados), Natalie Gomes Fonseca (interface)  
+**Tipo:** TCC (back-end e banco de dados)
 
-Primeira versão da plataforma IFVest, desenvolvida como trabalho de conclusão de curso, aprovado em dezembro de 2021. Implementada com PHP no back-end, MariaDB como banco de dados e o padrão MVC. O back-end e a interface foram desenvolvidos por pessoas diferentes e integrados ao longo do projeto.
+Primeira versão da plataforma IFVest. O back-end e o banco de dados foram o trabalho de conclusão de curso de Rafael Rodrigues de Sousa, aprovado em dezembro de 2021, e a interface, de Natalie Gomes Fonseca, foi apresentada no 12º CONICT, no mesmo ano. A plataforma foi implementada com PHP no back-end, MariaDB como banco de dados e o padrão MVC.
 
 **Funcionalidades entregues:**
 
@@ -218,7 +218,7 @@ Correções de acessibilidade na interface da versão 2, guiadas pelas diretrize
 
 Reconstrução completa da plataforma, desenvolvida do zero e referida internamente como **IFVest V3**. Substituiu a versão anterior no mesmo endereço, com nova stack, novo modelo de dados e autorização por permissões granulares no lugar dos perfis fixos de aluno e professor.
 
-A data de entrada no ar não está registrada no repositório. O registro datado mais antigo é a migration inicial, de **18/09/2026**. Como as tabelas já existiam, o banco de produção foi apenas marcado como estando nessa versão, em data que também não está registrada.
+A plataforma entrou no ar em **18/09/2026**, mesma data da migration inicial do banco de dados. Como as tabelas já existiam, o banco de produção foi apenas marcado como estando nessa versão, sem ser recriado.
 
 No código, a aplicação se identifica como versão **0.1.0**, numeração própria da nova base. Esta página mantém a sequência histórica e a registra como v3.0.
 
@@ -292,13 +292,14 @@ Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já t�
 | Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | out/2026 |
 | Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |
 | Responsáveis e tipo | Lista dos projetos vinculados ao IFVest em 2026 e atas das reuniões dos grupos de trabalho | 2026 |
+| Data de entrada no ar | Informação do responsável pela documentação do projeto | out/2026 |
 
 ## Fontes das versões 1.0 a 2.6
 
 | Versão | Fonte | Data |
 |---|---|---|
 | Origem | Súmula curricular da coordenação do projeto | 2026 |
-| v1.0 | TCC de Rafael Rodrigues de Sousa, aprovado em 14/12/2021, e artigo de N. G. Fonseca sobre a interface, no 12º CONICT | 2021 |
+| v1.0 | TCC de Rafael Rodrigues de Sousa, aprovado em 14/12/2021, e artigo de Natalie Gomes Fonseca sobre a interface, no 12º CONICT | 2021 |
 | v2.0 | Relatório de iniciação científica de Cristian Rodolfo Zago Da Silva (PIBIFSP 2024, validado como TCC) e artigo de Marcelo Corrêa sobre o editor de equações, no 14º CONICT | 2023–2024 |
 | v2.1 | Relatório de estágio supervisionado de Ruan Patrick Santos Araujo, relatório final de Guilherme Oliveira de Souza e relatório final de extensão de Rafaela dos Santos Machado | dez/2024 |
 | v2.2 | Relatórios finais de João Pedro Veríssimo Gonçalves e de Ruan Patrick Santos Araujo | 2025 |

@@ -17,6 +17,17 @@ Este eixo foca na experiência do usuário, no design da interface e na moderniz
     *   Implementação de um novo fluxo para o módulo de Revisão de Conteúdo, dividindo os materiais por áreas (Matemática, Ciências Humanas, etc.) e exibindo métricas de desempenho para o estudante.
     *   Adição de funcionalidades como recuperação de senha em três etapas e reestruturação da página de perfil do usuário com opções de alteração de foto e exclusão de conta.
 
+### Continuidade e Aprimoramento do Módulo Quiz
+
+*   **Líder:** Helena
+*   **Objetivo:** Dar continuidade ao IFQuiz na nova plataforma, revendo os requisitos e as telas do módulo.
+*   **Tecnologias Envolvidas:** Figma (para as telas), React, FastAPI e Swagger (para a documentação da API).
+*   **Destaques:**
+    *   Levantamento dos requisitos funcionais e não-funcionais do IFQuiz.
+    *   Desenvolvimento das telas do módulo no Figma, alinhadas com a equipe do redesign da interface.
+    *   Definição dos filtros de questões do quiz com as equipes do banco de questões.
+    *   Participação na escolha do Python com FastAPI como padrão do backend e início da documentação da API no Swagger.
+
 ---
 
 ## Próximos Passos

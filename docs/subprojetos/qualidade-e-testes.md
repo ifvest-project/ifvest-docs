@@ -17,7 +17,7 @@ Este eixo é dedicado a garantir a qualidade do software, a robustez dos sistema
 
 ### Testes Funcionais e Mutantes
 
-*   **Líderes:** Vinicius Akio Hayashi e Jorge
+*   **Líderes:** Vinicius Akio Hayashi e Caio
 *   **Objetivo:** Assegurar a correção das funcionalidades do sistema e a eficácia dos testes através de testes funcionais e de mutação, aumentando a cobertura e a qualidade do código.
 *   **Tecnologias Envolvidas:** Mermaid (para fluxogramas), Draw.io (para fluxogramas), Stryker (para testes mutantes).
 *   **Destaques:**
@@ -36,3 +36,12 @@ Este eixo é dedicado a garantir a qualidade do software, a robustez dos sistema
     *   Benchmark de ferramentas open source para aplicação no projeto, resultando na escolha de ESLint e Axe Core.
     *   Aplicação de testes de acessibilidade nas funcionalidades existentes da plataforma para identificar e corrigir problemas.
     *   Análise das características de usabilidade, como apreensibilidade e operabilidade, e utilização de métricas para balizar a qualidade da interface.
+
+### Avaliação da Experiência do Usuário
+
+*   **Líder:** Gabriel Ribeiro
+*   **Objetivo:** Sistematizar a coleta de informações para avaliar a experiência do usuário, quanto à usabilidade e à acessibilidade, e apoiar os testes de banco de dados.
+*   **Destaques:**
+    *   Estudo de técnicas e de normas para a elaboração de questionários de experiência do usuário.
+    *   Benchmarking dos padrões de questionários de experiência do usuário.
+    *   Início do formulário de avaliação e elaboração de um roteiro de testes.

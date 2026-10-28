@@ -1,4 +1,6 @@
-mkdocs-material
+# Fixa as versões principais: uma versão maior nova (MkDocs 2, Material 10) pode quebrar o build
+mkdocs>=1.6,<2
+mkdocs-material>=9.7.5,<10
 pymdown-extensions
 plantuml-markdown
 mkdocs-swagger-ui-tag
