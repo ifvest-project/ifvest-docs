@@ -32,7 +32,7 @@ System_Ext(extrator, "Extrator de Questões por IA", "Sistema que lê provas ant
 Rel_R(estudante, ifvest, "Estuda, resolve questões\ne envia redações", "HTTPS")
 Rel_R(educador, ifvest, "Cadastra questões, simulados\ne propostas de redação", "HTTPS")
 Rel_R(corretor, ifvest, "Corrige redações e\nregistra devolutivas", "HTTPS")
-Rel_R(admin, ifvest, "Administra permissões,\nmoderação e módulos", "HTTPS")
+Rel_R(admin, ifvest, "Administra permissões,\nmoderação, módulos\ne importação de questões", "HTTPS")
 
 Rel_R(estudante, firebase, "Entra com a\nconta Google", "HTTPS")
 Rel_R(ifvest, firebase, "Verifica a autenticidade\ndos tokens recebidos", "SDK Admin / HTTPS")
@@ -52,7 +52,7 @@ SHOW_LEGEND()
 
 **A autenticação acontece fora da plataforma.** O usuário entra com a conta Google diretamente no Firebase, que devolve um token; o IFVest recebe esse token e apenas verifica sua autenticidade. A plataforma nunca manipula senhas. O diagrama liga ao Firebase só o estudante, para não sobrecarregar o desenho, mas todos os perfis entram da mesma forma.
 
-**As duas integrações previstas** — o leitor de PDFs e o extrator de questões — aparecem com relações em tempo futuro porque **ainda não existem no código**. Estão representadas por pertencerem ao ecossistema do projeto e por terem impacto direto sobre a plataforma quando forem implementadas. Hoje, as provas entram no banco por uma carga de arquivos executada pela equipe no servidor, sem vínculo registrado com o extrator (ver [Arquitetura — Carga do banco de questões](../arquitetura.md#carga-do-banco-de-questoes)).
+**As duas integrações previstas** — o leitor de PDFs e o extrator de questões — aparecem com relações em tempo futuro porque **ainda não existem no código**. Estão representadas por pertencerem ao ecossistema do projeto e por terem impacto direto sobre a plataforma quando forem implementadas. Hoje, as provas entram no banco por uma carga de arquivos executada pela equipe no servidor ou por um arquivo `.zip` enviado no painel administrativo. A importação recebe as provas no formato em que saem da extração, mas os arquivos são enviados pela equipe, sem integração direta com o extrator (ver [Arquitetura — Carga do banco de questões](../arquitetura.md#carga-do-banco-de-questoes)).
 
 ⬜ *A atualizar quando as integrações forem implementadas, substituindo o protocolo "A definir" pelo mecanismo efetivo.*
 
@@ -65,4 +65,4 @@ SHOW_LEGEND()
 | Perfis e permissões | `ifvest-backend/src/core/permission_catalog.py` e `permissions.py` | set/2026 |
 | Autenticação e verificação de tokens | `ifvest-backend/src/core/firebase.py` e `src/core/security.py`; `ifvest-frontend/src/core/auth/` | set/2026 |
 | Integrações previstas | Documento de onboarding do projeto | set/2026 |
-| Carga atual das provas | `docs/atualizar-questoes-na-vps.md` do `ifvest-monorepo` | set/2026 |
+| Carga atual das provas | `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` do `ifvest-monorepo` | out/2026 |

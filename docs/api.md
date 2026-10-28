@@ -3,7 +3,7 @@
 Esta página apresenta a especificação completa da API REST do IFVest: todas as rotas, seus parâmetros, os formatos de requisição e resposta, e os esquemas de dados.
 
 !!! info "Sobre esta especificação"
-    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **60 rotas e 80 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
+    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **65 rotas e 88 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
 
     Em produção, a documentação interativa gerada pelo FastAPI está fechada de propósito. Esta versão é estática: permite consultar a API **sem expor o ambiente de produção**. Por isso, o botão de testar as chamadas não funciona aqui.
 
@@ -11,17 +11,17 @@ Esta página apresenta a especificação completa da API REST do IFVest: todas a
 
 ## Visão geral
 
-Todas as rotas estão sob o prefixo **`/api/v1`** e trocam dados em JSON.
+Todas as rotas estão sob o prefixo **`/api/v1`** e trocam dados em JSON. A exceção é o envio do arquivo `.zip` da importação de questões, feito como formulário (`multipart/form-data`) e limitado a 300 MB: acima disso, a API responde **413** sem gravar o arquivo.
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja de avatares e histórico |
-| `mocktests` | 12 | Montagem, resolução e correção de simulados, exportação em PDF, histórico e estatísticas |
+| `mocktests` | 12 | Montagem, resolução e correção de simulados, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, envio de redações, fila de correção, correção e histórico do corretor |
+| `admin` | 7 | Painel de indicadores, moderação das denúncias de questões e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e concessão e revogação de permissões |
-| `question-bank` | 5 | Busca, cadastro e edição de questões, e denúncia de erros |
+| `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncia de erros |
 | `features` | 3 | Consulta e alteração das feature flags |
-| `admin` | 3 | Painel de indicadores e moderação das denúncias de questões |
 | `auth` | 2 | Sessão do usuário |
 
 O banco de questões tem grupo próprio porque é compartilhado pelos Simulados e pelo IFQuiz, mas manteve os caminhos `/mocktests/questions` para não quebrar os clientes que já os usavam.
@@ -46,7 +46,7 @@ Rotas de módulos desligados são recusadas pelo backend com o código **503**, 
 
 ### Paginação
 
-As listas que podem crescer muito — banco de questões, usuários e denúncias — são paginadas pelos parâmetros `limit` e `offset`. O total de itens, somando todas as páginas, vem no cabeçalho `X-Total-Count` da resposta.
+As listas que podem crescer muito — banco de questões, usuários, denúncias e histórico de simulados — são paginadas pelos parâmetros `limit` e `offset`. O total de itens, somando todas as páginas, vem no cabeçalho `X-Total-Count` da resposta.
 
 ---
 

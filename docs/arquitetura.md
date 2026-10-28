@@ -91,17 +91,18 @@ O domínio de produção é **`ifvest.com.br`**, com certificado Let's Encrypt e
 | Pydantic | 2.10 | Validação de dados e esquemas da API |
 | pydantic-settings | 2.7 | Configuração por variáveis de ambiente |
 | firebase-admin | 6.5 | Verificação dos tokens de autenticação |
+| python-multipart | 0.0.18 | Recebimento de arquivos enviados à API, como o `.zip` da importação de questões |
 
 ### Organização
 
 ```text
 ifvest-backend/src/
-├── api/v1/       # rotas: auth, users, features, question_bank, mocktests, essays, quiz, admin
-├── core/         # segurança, Firebase, catálogo de permissões, guarda dos módulos, paginação
+├── api/v1/       # rotas: auth, users, features, question_bank, mocktests, essays, quiz, admin, question_imports
+├── core/         # segurança, Firebase, catálogo de permissões, guarda dos módulos, paginação, limite de envio
 ├── models/       # modelos de dados (SQLAlchemy)
 ├── schemas/      # contratos de entrada e saída da API (Pydantic)
 ├── services/     # regras de negócio de cada módulo
-└── scripts/      # rotinas auxiliares, como a carga de provas
+└── scripts/      # rotinas auxiliares, como a carga de provas pelo terminal
 ```
 
 O código segue uma **separação em camadas**: as rotas recebem e validam a requisição, os serviços aplicam as regras de negócio e os modelos representam as tabelas. As rotas dos módulos delegam aos serviços o acesso ao banco; as de sessão e de usuários, mais simples, e alguns trechos das rotas do quiz consultam o banco diretamente.
@@ -121,6 +122,7 @@ Toda a comunicação com o banco é **assíncrona**, o que permite à API atende
 | Vite | 6 | Ferramenta de build e servidor de desenvolvimento |
 | React Router | 7 | Roteamento entre telas |
 | Firebase SDK | 12 | Autenticação no navegador |
+| react-markdown e remark-gfm | 10 e 4 | Exibição do conteúdo das questões em Markdown, com listas, tabelas e imagens |
 
 ### Organização
 
@@ -129,6 +131,7 @@ ifvest-frontend/src/
 ├── core/                  # infraestrutura compartilhada
 │   ├── api/               # cliente HTTP de acesso à API, com leitura da paginação
 │   ├── auth/              # sessão, integração com o Firebase e nomes das permissões
+│   ├── content/           # exibição das questões: enunciado, texto de apoio e alternativas
 │   ├── features/          # leitura e aplicação das feature flags
 │   ├── hooks/             # hooks reutilizáveis
 │   ├── layout/            # estrutura visual comum às telas
@@ -146,7 +149,7 @@ A organização é **por funcionalidade**: cada módulo da plataforma tem sua pr
 Duas áreas reúnem as tarefas de gestão:
 
 - **Área do Professor** — banco de questões, propostas de redação e fila de correção. Aparece para quem tem ao menos uma das permissões de conteúdo ou de redação.
-- **Painel Administrativo** — visão geral com indicadores, usuários e permissões, moderação das denúncias de questões e controle dos módulos. Restrito à permissão de administrador.
+- **Painel Administrativo** — visão geral com indicadores, usuários e permissões, moderação das denúncias de questões, importação de questões e controle dos módulos. Restrito à permissão de administrador.
 
 Em produção, o frontend é compilado em arquivos estáticos e servido pelo nginx. Não há renderização no servidor: toda a interface é montada no navegador.
 
@@ -192,7 +195,7 @@ A autorização é feita por **permissões granulares**, sem papéis fixos. O ca
 | `admin_permission` | Administração da plataforma: painel, permissões e módulos. Quem a tem passa em todas as verificações |
 | `create_question` | Cadastrar questões no banco |
 | `edit_question` | Editar questões existentes: enunciado, alternativas, gabarito e taxonomia |
-| `create_mocktest` | Criar simulados a partir do banco de questões |
+| `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos os usuários |
 | `manage_mocktests` | Editar e excluir simulados criados por outras pessoas |
 | `create_essay_proposal_permission` | Criar e editar propostas de redação |
 | `grade_essay_permission` | Corrigir redações |
@@ -204,7 +207,7 @@ As permissões iniciais são atribuídas no primeiro acesso, conforme o e-mail d
 | E-mail | Permissões atribuídas |
 |---|---|
 | Administrador inicial, definido na configuração | Todas as sete |
-| Domínio `@ifsp.edu.br` | As quatro de conteúdo: cadastrar e editar questões, criar simulados e gerenciar os simulados de outras pessoas |
+| Domínio `@ifsp.edu.br` | As quatro de conteúdo: cadastrar e editar questões, criar simulados institucionais e gerenciar os simulados de outras pessoas |
 | Dois endereços fixos, os mesmos das contas de teste | As quatro de conteúdo, mais as de correção e de propostas de redação (ver [Pontos de atenção](#pontos-de-atencao)) |
 | Demais | Nenhuma permissão especial |
 
@@ -226,7 +229,7 @@ Os módulos da plataforma são ligados e desligados por **feature flags**, sem n
 |---|---|
 | **IFQuiz** | Pergunta do dia, ranking, loja de avatares, criação de quiz personalizado |
 | **Redação** | Correção de redações, criação de propostas |
-| **Simulados** | Simulado aleatório, exportação em PDF |
+| **Simulados** | Simulado aleatório, caderno em PDF e gabarito |
 | **Cadastro de questões** | — *(flag própria: o banco de questões é compartilhado pelos Simulados e pelo IFQuiz)* |
 | **Flashcards** | — *(em construção)* |
 | **Revisão** | — *(em construção)* |
@@ -234,9 +237,10 @@ Os módulos da plataforma são ligados e desligados por **feature flags**, sem n
 
 As flags obedecem a uma **hierarquia**: desligar um módulo desliga automaticamente todas as suas funcionalidades. O estado de cada flag pode vir do banco de dados, quando alterado pelo painel administrativo, ou do valor padrão, definido por variável de ambiente. Sem alteração, valem os padrões do código: todos os módulos ligados, exceto Flashcards e Revisão. Toda alteração feita pelo painel fica no registro de auditoria.
 
-O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503, as chamadas a módulos e funcionalidades desligados, e o frontend oculta as telas dos módulos desligados — e as da Pergunta do Dia, do Ranking e da Correção de redações —, exibindo uma página "Em Breve" no lugar. Nas demais funcionalidades, a tela continua visível e a ação é recusada pela API (ver [Descrição das Funcionalidades — Módulos desligados](funcionalidades.md#modulos-desligados)). Há duas exceções:
+O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503, as chamadas a módulos e funcionalidades desligados, e o frontend oculta as telas dos módulos desligados — e as da Pergunta do Dia, do Ranking e da Correção de redações —, exibindo uma página "Em Breve" no lugar. Nas demais funcionalidades, a tela continua visível e a ação é recusada pela API (ver [Descrição das Funcionalidades — Módulos desligados](funcionalidades.md#modulos-desligados)). Há três exceções:
 
 - o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador;
+- o **caderno em PDF** e o **gabarito** dos simulados são montados no navegador, e a flag deles só esconde os botões que os geram;
 - **Flashcards** e **Revisão** ainda não têm rotas na API.
 
 Nas rotas de um módulo, a verificação do módulo vem **antes de tudo**: um módulo desligado responde 503 antes mesmo de identificar o usuário. Depois vêm a identificação, a permissão exigida e, por último, a flag da funcionalidade específica, quando houver.
@@ -250,14 +254,14 @@ Se a consulta às flags falhar, o frontend **não presume que os módulos estão
 
 ## Dados
 
-O banco de dados tem **24 tabelas e 30 chaves estrangeiras**, organizadas em oito domínios:
+O banco de dados tem **26 tabelas e 34 chaves estrangeiras**, organizadas em oito domínios:
 
 | Domínio | Tabelas |
 |---|---|
 | Usuários e permissões | `users`, `permissions`, `user_permissions` |
 | Taxonomia | `disciplines`, `subjects`, `topics` |
-| Banco de questões | `multiple_choice_questions`, `alternatives`, `question_topics` |
-| Simulados | `fixed_mocktests`, `questions_mocktests`, `user_mocktests` |
+| Banco de questões | `multiple_choice_questions`, `alternatives`, `question_topics`, `question_imports` |
+| Simulados | `fixed_mocktests`, `questions_mocktests`, `user_mocktests`, `user_mocktest_answers` |
 | Quiz e gamificação | `quiz_history`, `question_history`, `items`, `transactions` |
 | Redação | `proposals`, `support_texts`, `essays`, `gradings`, `essay_annotations` |
 | Moderação e auditoria | `question_reports`, `audit_logs` |
@@ -272,17 +276,26 @@ A plataforma usa **duas estratégias** para arquivos:
 - **Imagens das questões** são gravadas como arquivos em um volume persistente e servidas pela API em `/static` e `/imgs`.
 - **Fotos de perfil** e **imagens dos textos de apoio** das propostas de redação são gravadas **dentro do banco**, como dados binários.
 
+Os arquivos `.zip` enviados na importação de questões ficam numa pasta própria da API, fora do volume das imagens e sem acesso pelo navegador, e são apagados quando a importação é aplicada ou 24 horas depois do envio.
+
 O armazenamento no banco simplifica a implantação, mas aumenta o tamanho do banco e dos backups conforme o volume de imagens cresce.
 
 ### Carga do banco de questões
 
-As provas entram no banco por um **script de carga executado na VPS**. Ele lê os arquivos JSON das provas da UNICAMP, mantidos fora do repositório, importa só as questões objetivas e copia as imagens para o volume da API.
+As provas entram no banco de duas formas, que aplicam as mesmas regras: um **script de carga executado na VPS** ou a **importação pelo Painel Administrativo**, que recebe as provas num arquivo `.zip`. Nos dois casos, a fonte são os arquivos JSON das provas, um por questão, mantidos fora do repositório:
 
-A carga é **segura para repetir**: uma questão é identificada por banca, ano, número e tipo, e as que já existem são puladas. Pelo mesmo motivo, ela só insere — correções em questões já importadas são feitas pela edição de questões, a partir das denúncias recebidas na moderação.
+- a **banca** vem do próprio arquivo, e a carga aceita provas de qualquer banca;
+- só entram as **questões objetivas completas** — ao menos duas alternativas, todas com texto ou imagem, e exatamente uma correta; as demais ficam de fora e aparecem no relatório, com o motivo;
+- os **textos compartilhados** por várias questões viram o texto de apoio de cada uma delas;
+- as **imagens** são copiadas para o volume da API, e as que faltam na fonte são apontadas no relatório.
+
+A carga é **segura para repetir**: uma questão é identificada por banca, ano, número e tipo, e nunca é duplicada. Por padrão, as que já existem são puladas. Com a opção de **atualizar as existentes**, a carga aplica as correções da fonte, mas preserva as questões corrigidas pela moderação, a menos que se peça para sobrescrevê-las. A carga nunca remove questões.
+
+Antes de gravar, é possível **simular** a carga e conferir o relatório. No painel, a simulação é obrigatória: a importação só é aplicada a partir dela, em segundo plano, uma de cada vez. Cada questão atualizada a partir da fonte e cada importação aplicada ficam no registro de auditoria.
 
 ### Migrations
 
-A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há sete:
+A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há onze:
 
 | Migration | Alteração |
 |---|---|
@@ -293,8 +306,12 @@ A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelo
 | Datas sem fuso horário | Alinha as datas das duas tabelas anteriores ao padrão das demais |
 | Divisão das permissões de conteúdo | Cria as quatro permissões de conteúdo e dá a cada usuário as equivalentes das que já tinha |
 | Remoção das permissões antigas | Remove as duas permissões genéricas que foram divididas |
+| Simulados institucionais | Separa o simulado institucional, visível a todos, do simulado de treino, visível só a quem o criou |
+| Permissão de simulado institucional | Renomeia `create_mocktest` para `create_institutional_mocktest`, mantendo quem já a tinha |
+| Respostas das tentativas | Tabela com a resposta dada em cada questão das tentativas de simulado |
+| Importações de questões | Tabela das importações feitas pelo painel, com as opções, a situação e o relatório |
 
-As duas últimas seguem o padrão **expandir e contrair**: a primeira só acrescenta, para que a versão anterior da API continue funcionando durante a implantação; a segunda, aplicada numa implantação seguinte, remove o que deixou de ser usado.
+As duas migrations das permissões de conteúdo seguem o padrão **expandir e contrair**: a primeira só acrescenta, para que a versão anterior da API continue funcionando durante a implantação; a segunda, aplicada numa implantação seguinte, remove o que deixou de ser usado.
 
 Em produção, a criação automática de tabelas fica **desligada de propósito**: com ela ativa, uma migration esquecida passaria despercebida, porque a tabela seria criada de qualquer forma. A integração contínua confere, num PostgreSQL real, que as migrations sobem e descem sem erro e que o resultado corresponde aos modelos.
 
@@ -302,17 +319,17 @@ Em produção, a criação automática de tabelas fica **desligada de propósito
 
 ## API
 
-A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **60 rotas**, contando cada combinação de método e caminho:
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **65 rotas**, contando cada combinação de método e caminho:
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja e histórico |
-| `mocktests` | 12 | Montagem, resolução e correção de simulados, exportação em PDF, histórico e estatísticas |
+| `mocktests` | 12 | Montagem, resolução e correção de simulados, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, redações e correções |
+| `admin` | 7 | Painel de indicadores, moderação das denúncias e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e permissões |
-| `question-bank` | 5 | Busca, cadastro e edição de questões, e denúncias |
+| `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncias |
 | `features` | 3 | Consulta e alteração das feature flags |
-| `admin` | 3 | Painel de indicadores e moderação das denúncias |
 | `auth` | 2 | Sessão do usuário |
 
 A especificação completa, com todos os parâmetros e respostas, está em **[Referência da API](api.md)**.
@@ -346,7 +363,9 @@ Os workflows ficam em `.github/workflows/`, na raiz do monorepo, e rodam a cada 
 
 ### Validação antes do push
 
-O repositório inclui um **hook de pre-push** que identifica quais aplicações foram alteradas e executa apenas as validações correspondentes — lint e testes do backend, ou tipos, lint e testes do frontend. O push é bloqueado se alguma falhar. A cobertura mínima é conferida só na integração contínua, para manter o push rápido.
+O repositório inclui um **hook de pre-push** que identifica quais aplicações foram alteradas e executa, só para elas, as mesmas verificações da integração contínua: no backend, lint, formatação e testes com a cobertura mínima; no frontend, lint, testes com a cobertura mínima e o build, que inclui a verificação de tipos. O push é bloqueado se alguma falhar.
+
+O hook também avisa quando a branch está atrás da `main` — a integração contínua testa o código já juntado com ela — e quando os testes de migrations e de PostgreSQL foram pulados, porque dependem de um banco PostgreSQL que normalmente só existe na integração contínua.
 
 O hook é ativado automaticamente quando se roda `npm install` no frontend. Quem trabalha só no backend precisa ativá-lo uma vez, com `git config core.hooksPath .githooks`.
 
@@ -394,7 +413,8 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 | ⬜ **Sem limite de requisições** | Nenhum endpoint tem limite de taxa, o que deixa a API exposta a uso abusivo — inclusive o envio de redações, que não tem limite por usuário. Pendência já registrada pela equipe. |
 | ⬜ **Permissões atribuídas a e-mails fixos** | A lógica de permissões iniciais concede a dois endereços fixos, os mesmos das contas de teste, as permissões de correção e de propostas de redação, além das quatro de conteúdo. Como a regra vale também em produção, uma conta com um desses e-mails as receberia no primeiro acesso. |
 | ⬜ **Painel administrativo pode se trancar** | Desligar o módulo Administração pelo próprio painel esconde o painel — inclusive a aba em que ele seria religado —, porque essa flag é verificada só no frontend. A volta só é possível pela API (`/api/v1/features/module_admin`) ou pelo banco. |
-| ⬜ **Origem das provas e extrator de questões por IA** | O banco é alimentado pela carga de provas da UNICAMP a partir de arquivos JSON mantidos fora do repositório. O repositório não registra quem gera esses arquivos nem como o extrator de questões por IA vai se integrar à plataforma. |
+| ⬜ **Origem das provas e extrator de questões por IA** | O banco é alimentado por arquivos JSON mantidos fora do repositório, carregados no servidor ou importados pelo painel no formato em que saem da extração das provas. O repositório não documenta o extrator em si nem prevê uma integração direta com ele: os arquivos chegam à plataforma enviados pela equipe. |
+| ⬜ **Importação limitada a um processo** | Só uma importação de questões roda por vez, garantido por uma trava na memória da API. A trava funciona porque a API roda num único processo; se passar a rodar com vários, ela precisa ir para o banco de dados, como a própria equipe registrou no guia da importação. |
 
 ---
 
@@ -402,14 +422,14 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Stack, organização e dependências | Código-fonte do `ifvest-monorepo` (`requirements.txt`, `package.json`, estrutura de `src/`) | set/2026 |
+| Stack, organização e dependências | Código-fonte do `ifvest-monorepo` (`requirements.txt`, `package.json`, estrutura de `src/`) | set/2026, revisto em out/2026 |
 | Topologia, roteamento, segurança e backup | Configuração de produção (`deploy/docker-compose.prod.yml`, `deploy/Caddyfile`, `deploy/README.md`) | set/2026 |
-| Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026 |
-| Feature flags | `src/services/feature_flags_service.py`, `src/core/feature_guard.py`, `src/config.py` e `ifvest-frontend/src/core/features/` | set/2026 |
-| Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | set/2026 |
-| Carga do banco de questões | `docs/atualizar-questoes-na-vps.md` | set/2026 |
-| API | Especificação OpenAPI gerada a partir do código-fonte | set/2026 |
-| Qualidade e integração contínua | `.github/workflows/`, `.githooks/pre-push` e `docs/quality-gates-2026-09-27.md` | set/2026 |
+| Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026, revisto em out/2026 |
+| Feature flags | `src/services/feature_flags_service.py`, `src/core/feature_guard.py`, `src/config.py` e `ifvest-frontend/src/core/features/` | set/2026, revisto em out/2026 |
+| Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | out/2026 |
+| Carga do banco de questões | `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | out/2026 |
+| API | Especificação OpenAPI gerada a partir do código-fonte | out/2026 |
+| Qualidade e integração contínua | `.github/workflows/`, `.githooks/pre-push` e `docs/quality-gates-2026-09-27.md` | set/2026, revisto em out/2026 |
 | Implantação | Workflow `.github/workflows/cd.yml` | set/2026 |
 
 !!! note "Divergência na documentação de implantação"

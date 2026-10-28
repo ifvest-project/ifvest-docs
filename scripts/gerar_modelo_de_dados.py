@@ -28,9 +28,12 @@ FIM = "<!-- FIM do trecho gerado -->"
 DOMINIOS: dict[str, list[str]] = {
     "Usuários e permissões": ["permissions", "user_permissions", "users"],
     "Taxonomia": ["disciplines", "subjects", "topics"],
-    "Banco de questões": ["alternatives", "multiple_choice_questions", "question_topics", "topics"],
+    "Banco de questões": [
+        "alternatives", "multiple_choice_questions", "question_imports", "question_topics", "topics", "users",
+    ],
     "Simulados": [
-        "fixed_mocktests", "multiple_choice_questions", "questions_mocktests", "user_mocktests", "users",
+        "fixed_mocktests", "multiple_choice_questions", "questions_mocktests", "user_mocktest_answers",
+        "user_mocktests", "users",
     ],
     "Quiz e gamificação": [
         "items", "multiple_choice_questions", "question_history", "quiz_history", "transactions", "users",

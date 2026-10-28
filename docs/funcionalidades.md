@@ -3,7 +3,7 @@
 Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada funcionalidade, quem pode usá-la, onde ela fica na interface e as regras que o sistema aplica. A visão geral dos módulos está na [Descrição do Sistema](descricao-do-sistema.md), e o contrato técnico de cada operação, na [Referência da API](api.md).
 
 !!! info "Levantada do código em produção"
-    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de outubro de 2026 (commit `48ad5ea`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
+    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 15 de outubro de 2026 (commit `d36de12`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
     Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
@@ -23,7 +23,8 @@ Cada funcionalidade traz, logo abaixo do título, três informações:
 |---|---|---|
 | Conta | Entrar com a conta Google, sair, página inicial e perfil | Com conta |
 | IFQuiz | Quiz personalizado, Pergunta do Dia, sequência diária, pontos e patentes, ranking e loja de avatares | Com conta |
-| Simulados | Simulado de treino, manual ou aleatório; lista, resolução, caderno em PDF e estatísticas | Com conta |
+| Simulados | Simulado de treino, manual ou aleatório; lista, resolução, caderno e gabarito, estatísticas e histórico | Com conta |
+| Simulados | Simulado institucional, visível a todos | `create_institutional_mocktest` |
 | Redação | Temas de redação | Pública |
 | Redação | Escrita e envio, minhas redações | Com conta |
 | Redação | Propostas de redação | `create_essay_proposal_permission` |
@@ -42,13 +43,13 @@ Cada funcionalidade traz, logo abaixo do título, três informações:
 
 **Acesso:** pública · **Onde:** botão "Entrar" da página inicial (`/login`)
 
-A entrada é feita exclusivamente com a **conta Google**, numa janela do Google aberta pelo navegador. Não há cadastro com e-mail e senha: a tela de entrada tem um único botão do Google, com o rótulo "Cadastrar com Google" ou "Entrar com Google" conforme o modo escolhido no painel ao lado, e os dois fazem a mesma coisa.
+A entrada é feita exclusivamente com a **conta Google**, numa janela do Google aberta pelo navegador. Não há cadastro com e-mail e senha: a tela de entrada tem um único botão, "Entrar ou Cadastrar com Google", que serve tanto para o primeiro acesso quanto para os seguintes.
 
 No **primeiro acesso**, a plataforma cria a conta a partir do e-mail da conta Google e atribui as permissões iniciais conforme esse e-mail — as regras estão em [Descrição do Sistema — Como as permissões são atribuídas](descricao-do-sistema.md#como-as-permissoes-sao-atribuidas). Nos acessos seguintes, a conta é reconhecida pelo mesmo e-mail. Depois de entrar, o usuário é levado à página Início.
 
 ### Sair
 
-**Acesso:** com conta · **Onde:** botão "Sair", no rodapé das telas internas
+**Acesso:** com conta · **Onde:** botão "Sair", no canto direito do cabeçalho, ao lado de "Usuário"
 
 Encerra a sessão no navegador e volta para a página inicial pública.
 
@@ -58,6 +59,8 @@ Encerra a sessão no navegador e volta para a página inicial pública.
 
 Painel de entrada, com uma saudação pelo apelido e um cartão para cada módulo: Flashcards, IFQuiz, Redação, Revisão e Simulados. A Área do Professor e o Painel Administrativo não têm cartão: aparecem como abas do cabeçalho para quem tem permissão.
 
+Em telas de até 900 px de largura, como as de celular, as abas do cabeçalho ficam recolhidas no botão de menu.
+
 ### Perfil
 
 **Acesso:** com conta · **Onde:** "Usuário", no canto direito do cabeçalho (`/perfil`)
@@ -66,6 +69,7 @@ Painel de entrada, com uma saudação pelo apelido e um cartão para cada módul
 - O **apelido** pode ser editado. É o nome exibido no ranking; sem apelido, o ranking mostra a parte do e-mail antes do `@`.
 - **Atividade na Pergunta do Dia** — mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
 - **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos, e as ações *Revisar*, que abre o gabarito, e *Refazer*, que abre a montagem com os mesmos filtros.
+- **Histórico de simulados** — as tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota, e a ação *Refazer*, que abre o simulado de novo. Não aparece com o módulo Simulados desligado.
 
 Não há foto de perfil nem exclusão de conta.
 
@@ -92,7 +96,7 @@ Não há escolha de dificuldade: o seletor foi ocultado por decisão da equipe, 
 
 **Partida.**
 
-- As questões aparecem uma de cada vez, sorteadas entre as do filtro.
+- As questões aparecem uma de cada vez, sorteadas entre as do filtro, com o texto de apoio antes do enunciado quando a questão tem um.
 - O estudante tem **3 vidas**. Cada erro custa uma, e o quiz termina no terceiro erro ou quando todas as questões forem respondidas.
 - A **dica** elimina uma alternativa errada, uma vez por questão, e não pode ser usada quando resta só uma vida.
 - Depois de confirmar, a tela mostra se a resposta está certa e qual é a alternativa correta.
@@ -107,6 +111,7 @@ Durante a partida, o botão "Sinalizar" permite [denunciar um erro](#denuncia-de
 **Acesso:** com conta · **Onde:** IFQuiz → "Pergunta do dia" (`/quiz/pergunta-do-dia`) · **Flag:** `quiz_daily_question`
 
 - **Uma questão por dia, a mesma para todos**, escolhida a partir da data, no horário de Brasília.
+- A questão aparece com o texto de apoio antes do enunciado, quando tem um.
 - **Uma resposta por dia.** Depois de responder, as alternativas ficam bloqueadas até o dia seguinte.
 - O acerto vale **100 pontos**, creditados na hora.
 - O resultado mostra a alternativa correta, a sequência diária e o **desempenho da comunidade**: o percentual de acerto de todos que responderam e a distribuição das respostas por alternativa.
@@ -171,56 +176,70 @@ Cada avatar é comprado uma única vez, e a compra exige saldo suficiente. Depoi
 
 Treino com conjuntos de questões do banco, resolvidos na plataforma ou impressos. **Flag do módulo:** `module_mocktests`.
 
+Há dois tipos de simulado:
+
+- **De treino** — aparece só para quem o criou. Qualquer estudante pode criar.
+- **Institucional** — aparece para todos os usuários. Só quem tem a permissão `create_institutional_mocktest` pode criar.
+
+Quem tem a permissão `manage_mocktests`, e o administrador, abre qualquer simulado. Os simulados criados antes da separação entre os dois tipos, em 10/10/2026, ficaram como de treino, visíveis só a quem os criou.
+
 ### Página de simulados e estatísticas
 
 **Acesso:** com conta · **Onde:** aba "Simulados" do cabeçalho (`/simulados`)
 
-Dá acesso à lista de simulados e à criação de um novo, e mostra as **estatísticas** do estudante: o total de questões respondidas e de acertos em todos os simulados enviados.
+Dá acesso à lista de simulados e à criação de um novo, e mostra as **estatísticas** do estudante em todos os simulados enviados:
 
-### Montar simulado de treino
+- os acertos sobre o total de questões respondidas;
+- **Melhor pontuação na disciplina** — a disciplina com a maior taxa de acerto;
+- **Revisar** — a disciplina com a menor taxa de acerto, entre as que tiveram erros.
 
-**Acesso:** com conta · **Onde:** Simulados → "Criar novo simulado" (`/simulados/novo`)
+As duas disciplinas são calculadas a partir da resposta dada em cada questão, gravada desde 10/10/2026; as tentativas anteriores entram só nos totais.
 
-O estudante dá um nome ao simulado e escolhe uma de duas formas de montá-lo:
+### Montar simulado
 
-- **Selecionar questões** — busca no banco por título ou enunciado, em páginas de 25 questões. A seleção não tem limite e é mantida entre as páginas.
-- **Aleatório** (flag `mocktests_random`) — sorteia a quantidade pedida, de todas as disciplinas ou de uma destas: Língua Portuguesa, Matemática, História, Geografia, Biologia, Física ou Química. A quantidade padrão é de 10 questões. Se o filtro não tiver questões suficientes, a criação é recusada com a informação de quantas existem.
+**Acesso:** com conta; simulado institucional, `create_institutional_mocktest` · **Onde:** Simulados → "Criar novo simulado" (`/simulados/novo`)
 
-O simulado criado fica salvo na plataforma e aparece na [lista de simulados](#lista-de-simulados).
+O estudante dá um nome ao simulado, de até 120 caracteres, e escolhe uma de duas formas de montá-lo:
 
-!!! note "Simulados montados por professores"
-    A API prevê simulados montados por quem tem a permissão `create_mocktest`, mas a interface não oferece essa opção: hoje, todo simulado criado pela interface é um simulado de treino, que qualquer estudante pode montar. A API aceita, no simulado aleatório, filtros por assunto, dificuldade e banca, também não oferecidos na interface.
+- **Selecionar questões** — busca no banco por título ou enunciado, com filtros de disciplina, assunto, banca e ano, em páginas de 25 questões. Cada questão mostra banca, ano, número, disciplina e assunto, e a seleção é mantida ao trocar de página ou de filtro. É preciso selecionar ao menos uma questão; a quantidade informada no início não se aplica a este modo.
+- **Aleatório** (flag `mocktests_random`) — sorteia a quantidade pedida, de 10 questões por padrão, de todas as disciplinas ou de uma das que têm questões no banco. Se o filtro não tiver questões suficientes, a criação é recusada com a informação de quantas existem. A API aceita também filtros por assunto, dificuldade e banca, que a interface não oferece.
+
+Quem tem a permissão de simulado institucional vê ainda a opção **Simulado institucional**, desmarcada por padrão. O simulado criado aparece na [lista de simulados](#lista-de-simulados).
 
 ### Lista de simulados
 
 **Acesso:** com conta · **Onde:** Simulados → "Ver meus simulados" (`/simulados/meus-simulados`)
 
-A lista, chamada "Meus simulados", mostra **todos os simulados da plataforma**, inclusive os de treino criados por outros estudantes, com o número de questões e a nota da última tentativa do próprio usuário. A busca por nome é feita na própria tela.
+A lista, chamada "Meus simulados", mostra os simulados de treino do próprio estudante e os institucionais, com o número de questões e a nota da última tentativa do próprio usuário. A busca por nome é feita na própria tela.
 
-Cada simulado tem três ações:
+Cada simulado tem quatro ações; as duas últimas aparecem só com a flag `mocktests_pdf_export` ligada:
 
 - **Resolver** — abre a resolução.
-- **Editar** — permite renomear ou excluir o simulado. Só o criador, quem tem a permissão `manage_mocktests` ou um administrador podem fazer isso. Excluir um simulado apaga também **as tentativas de todos os estudantes** nele.
-- **PDF** — gera o [caderno de questões](#caderno-em-pdf).
+- **Editar** — permite renomear ou excluir o simulado, com confirmação antes de excluir. Só o criador, quem tem a permissão `manage_mocktests` ou um administrador podem fazer isso; para os demais, o botão aparece, mas a ação é recusada com aviso. Excluir um simulado apaga também **as tentativas de todos os estudantes** nele.
+- **PDF** — gera o [caderno de questões](#caderno-e-gabarito).
+- **Gabarito** — gera a [folha de gabarito](#caderno-e-gabarito).
 
 ### Resolver simulado
 
 **Acesso:** com conta · **Onde:** "Resolver", na lista de simulados (`/simulados/resolver/{id}`)
 
-- As questões aparecem uma de cada vez, com banca, ano e dificuldade (de 1 a 5), e é possível avançar e voltar.
-- Ao confirmar uma resposta, a tela mostra na hora se ela está certa.
-- **Finalizar simulado** envia o conjunto, sem pedir confirmação. A nota é a proporção de acertos sobre o total de questões, de 0 a 100: questões em branco contam como erradas.
-- Cada envio registra uma tentativa, com o total de questões, as respondidas, os acertos e a nota. As tentativas são ilimitadas e não rendem pontos.
-- Não há revisão das questões depois de finalizar.
-- O botão "Sinalizar" permite [denunciar um erro](#denuncia-de-erro) na questão.
+- As questões aparecem uma de cada vez, com banca, ano e, quando cadastrada, a dificuldade, de 1 a 5. O texto de apoio, as figuras e a formatação do enunciado e das alternativas são exibidos.
+- Uma barra presa ao topo da tela tem os botões **Anterior** e **Próxima** e um quadradinho numerado por questão, que leva direto a ela. O quadradinho fica pintado quando a questão tem alternativa marcada.
+- Clicar de novo na alternativa marcada, ou em **Limpar seleção**, desfaz a escolha. **Confirmar resposta** mostra na hora se ela está certa e não pode ser desfeita.
+- **Finalizar simulado** abre uma confirmação com o número de questões respondidas e o aviso de que as sem resposta contam como erradas; só **Sim, finalizar** registra a tentativa.
+- A nota é a proporção de acertos sobre o total de questões, de 0 a 100. Conta a alternativa marcada em cada questão, mesmo sem confirmar.
+- Cada envio registra uma tentativa, com o total de questões, as respondidas, os acertos, a nota e a resposta de cada questão. As tentativas são ilimitadas e não rendem pontos, e o histórico delas fica no [Perfil](#perfil).
+- O resultado mostra a nota e os acertos. Não há revisão das questões depois de finalizar.
+- O botão "Sinalizar", no canto do cartão da questão, permite [denunciar um erro](#denuncia-de-erro) na questão.
 
-### Caderno em PDF
+### Caderno e gabarito
 
-**Acesso:** com conta · **Onde:** "PDF", na lista de simulados · **Flag:** `mocktests_pdf_export`, sem efeito na interface
+**Acesso:** com conta · **Onde:** "PDF" e "Gabarito", na lista de simulados · **Flag:** `mocktests_pdf_export`
 
-Abre, numa nova janela, o caderno do simulado: campos para os dados do candidato, instruções, as questões em duas colunas e uma folha de respostas com as alternativas de A a E para marcar. O botão "IMPRIMIR / SALVAR CADERNO EM PDF" abre a impressão do navegador, que permite salvar o arquivo. O caderno não traz o gabarito.
+- **Caderno** — abre, numa nova janela, o caderno do simulado: campos para os dados do candidato, data de emissão, instruções, as questões em duas colunas, com o texto de apoio e as figuras, e uma folha de respostas com as alternativas de cada questão. O botão "IMPRIMIR / SALVAR CADERNO EM PDF" abre a impressão do navegador, que permite salvar o arquivo. O caderno não traz o gabarito.
+- **Gabarito** — abre, também numa nova janela, a letra correta de cada questão, na mesma numeração do caderno, com o botão "IMPRIMIR / SALVAR GABARITO EM PDF". Uma questão sem alternativa correta cadastrada aparece como "sem gabarito".
 
-O caderno é montado **pelo próprio navegador**, sem usar a exportação em PDF da API. Por isso, a flag `mocktests_pdf_export`, que controla essa exportação, não afeta o caderno.
+Os dois são montados **pelo próprio navegador**, a partir dos dados do simulado. A flag `mocktests_pdf_export` esconde os dois botões da lista.
 
 ---
 
@@ -284,13 +303,13 @@ Separa as redações **aguardando correção** das **corrigidas**, com a nota to
 
 ## Banco de questões
 
-Acervo de questões de múltipla escolha usado pelos quizzes e pelos simulados. A carga das provas de vestibular está descrita em [Arquitetura — Carga do banco de questões](arquitetura.md#carga-do-banco-de-questoes).
+Acervo de questões de múltipla escolha usado pelos quizzes e pelos simulados. As provas de vestibular entram pela carga feita no servidor ou pela [importação no Painel Administrativo](#importar-questoes); as duas estão descritas em [Arquitetura — Carga do banco de questões](arquitetura.md#carga-do-banco-de-questoes).
 
 ### Consulta
 
-**Acesso:** com conta · **Onde:** Área do Professor → "Banco de Questões"; também na montagem de [simulado de treino](#montar-simulado-de-treino)
+**Acesso:** com conta · **Onde:** Área do Professor → "Banco de Questões"; também na [montagem de simulado](#montar-simulado)
 
-Busca por título ou enunciado, em páginas de 20 questões. Cada questão mostra título, dificuldade, banca, ano, número e texto base; as alternativas aparecem ao expandir a questão, sem indicar a correta.
+Busca por título ou enunciado, em páginas de 20 questões. Cada questão mostra título, dificuldade, quando cadastrada, banca, ano, número e texto base, com a formatação e as figuras do enunciado; as alternativas aparecem ao expandir a questão, sem indicar a correta.
 
 ### Cadastro de questões
 
@@ -327,7 +346,7 @@ Busca por título ou enunciado, em páginas de 20 questões. Cada questão mostr
 Reúne três abas: **Banco de Questões**, com a consulta e o cadastro; **Propostas de Redação**, com a lista, a criação, a edição e a exclusão; e **Fila de Correção**, com o acesso à fila.
 
 - Os botões de cadastro aparecem para todos que têm acesso à área; a permissão específica é conferida no envio.
-- As permissões de simulados, `create_mocktest` e `manage_mocktests`, também dão acesso à área, que não tem ferramentas de simulados.
+- As permissões de simulados, `create_institutional_mocktest` e `manage_mocktests`, também dão acesso à área, que não tem ferramentas de simulados: o simulado institucional é criado em [Simulados](#montar-simulado).
 - Sem nenhuma das permissões, a área mostra o aviso "Acesso Restrito".
 
 ---
@@ -353,13 +372,24 @@ Reúne três abas: **Banco de Questões**, com a consulta e o cadastro; **Propos
 - Lista as denúncias filtradas por situação: pendentes, que é o padrão, resolvidas, descartadas ou todas.
 - Cada denúncia pendente pode ser marcada como **resolvida** ou **descartada**. A questão denunciada pode ser **editada** ali mesmo, qualquer que seja a situação da denúncia, com a opção de resolver de uma vez todas as denúncias pendentes dela.
 
+### Importar questões
+
+Recebe de uma vez as questões de uma ou mais provas, num arquivo `.zip` com a pasta de cada prova: um arquivo JSON por questão, no formato em que saem da extração das provas, e as figuras na pasta `imgs/` ou `imagens/`. O limite é de 300 MB por arquivo, 1 GB descompactado e 50 mil arquivos. É o mesmo processo da carga feita no servidor (ver [Arquitetura — Carga do banco de questões](arquitetura.md#carga-do-banco-de-questoes)).
+
+- **Opções.** "Corrigir as questões que já estão no site", marcada por padrão, atualiza com o conteúdo do zip as questões que já existem, identificadas pela banca, pelo ano, pelo número e pela prova; desmarcada, só as questões novas entram. "Substituir também as questões corrigidas à mão pela moderação", desmarcada por padrão, aplica o zip também às questões editadas no painel; sem ela, essas questões ficam como estão e são listadas no relatório.
+- **Simulação.** "Enviar e simular" lê o zip e mostra o que aconteceria, sem gravar nada: quantas questões seriam inseridas e corrigidas, o que mudaria em cada questão corrigida, as que ficam de fora e por quê, as imagens que faltam e os arquivos que não puderam ser lidos.
+- **Aplicação.** "Aplicar importação" grava exatamente o que a simulação mostrou, em segundo plano: é possível sair da página enquanto ela roda. O zip fica guardado por 24 horas; depois disso, ou se o servidor reiniciar, é preciso enviá-lo de novo.
+- **Histórico.** Lista as importações, com data, arquivo, tipo — simulação ou aplicação —, situação, quem enviou e o acesso ao relatório.
+
+Só entram questões objetivas completas: ao menos duas alternativas, todas com texto ou imagem, e exatamente uma correta. Os textos compartilhados por várias questões viram o texto de apoio delas. Só uma importação roda por vez: enquanto uma está na fila ou em andamento, o envio de outra fica bloqueado.
+
 ### Módulos
 
 Liga e desliga cada *feature flag*. Com um módulo desligado, os interruptores das suas funcionalidades ficam desabilitados. O botão "Reset", que devolve a flag ao valor padrão, aparece apenas nas flags alteradas pelo painel.
 
 ### Registro de auditoria
 
-São registrados o cadastro, a edição e a denúncia de questões, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões e as alterações das flags. Correções de redação, simulados e compras na loja não são registrados.
+São registrados o cadastro, a edição e a denúncia de questões, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações das flags, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel. Correções de redação, simulados e compras na loja não são registrados.
 
 O painel mostra o resumo dos últimos 30 dias e as cinco atualizações mais recentes; não há consulta ao registro completo.
 
@@ -380,7 +410,7 @@ As abas "Professor" e "Admin" do cabeçalho aparecem depois que a plataforma car
 | Módulo inteiro desligado | O link do cabeçalho fica riscado e sem clique, o cartão da página Início fica cinza com o selo "Temporariamente desabilitado", e o endereço do módulo mostra a página "Em Breve" |
 | Pergunta do Dia, Ranking ou Correção | A tela da funcionalidade é substituída pela página "Em Breve" |
 | Outras funcionalidades | Vale para o quiz personalizado, a loja, as propostas, o simulado aleatório e o cadastro de questões: a tela continua disponível, mas o conteúdo não carrega ou a ação é recusada. Em parte das telas, a mensagem informa que o módulo está desativado e que um administrador pode reativá-lo no painel; em outras, aparece um erro genérico ou uma lista vazia |
-| Exportação em PDF | Nenhum efeito, porque a interface monta o caderno sem usar a exportação da API |
+| Caderno e gabarito | Os botões "PDF" e "Gabarito" somem de "Meus simulados" |
 | Falha ao consultar os módulos | A interface não presume que estão ligados e mostra "Não foi possível verificar quais módulos estão ativos", com a opção de tentar de novo |
 
 A regra de cada flag está em [Arquitetura — Feature flags](arquitetura.md#feature-flags).
@@ -405,7 +435,6 @@ A Pergunta do Dia, a sequência diária e o ranking semanal seguem o **horário 
 | Revisão de Conteúdo | Módulo previsto. A tela mostra "Em Breve" mesmo com a flag ligada, e não há rotas na API |
 | Modo Competição do IFQuiz | Aparece na página do IFQuiz como "Em breve", desabilitado |
 | Envio de redação por arquivo | Aba "Enviar arquivo (Em breve)", desabilitada: a extração do texto por OCR não faz parte da primeira versão |
-| Simulados montados por professores | Rota na API, sem tela na interface |
 
 O que foi definido para os módulos previstos está na [Descrição do Sistema](descricao-do-sistema.md#modulos).
 
@@ -420,6 +449,8 @@ O que foi definido para os módulos previstos está na [Descrição do Sistema](
 | Pontos, patentes, ranking e loja | `src/services/quiz_scoring.py`, `quiz_ranking.py`, `store_catalog.py` e `src/core/clock.py` | out/2026 |
 | Critério do ranking e da patente | `docs/auditoria-testes-2026-09-25.md`, seção 12 | set/2026 |
 | Seletor de dificuldade oculto | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md` | set/2026 |
+| Simulados: tipos, acesso, resolução, caderno e gabarito | `docs/auditoria-simulados-2026-10-10.md`, conferido no código | out/2026 |
+| Importação de questões pelo painel | `docs/importar-questoes-pelo-painel.md`, conferido no código | out/2026 |
 
 !!! note "Divergências entre o README do backend e o código"
     A visão de negócio do README do backend descreve alguns comportamentos de forma diferente do que o código implementa — o login por e-mail e senha, a regra da sequência diária e o histórico de simulados, entre outros. Esta página adota o código. A lista completa está em [Descrição do Sistema — Fontes desta página](descricao-do-sistema.md#fontes-desta-pagina).

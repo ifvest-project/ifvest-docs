@@ -62,7 +62,7 @@ Relacionados ao subprojeto de [Testes Funcionais e Mutantes](../subprojetos/qual
 | ID | Requisito | Situação no V3 | Observação |
 |---|---|---|---|
 | RNFG10 | **Cobertura de testes.** Os testes devem cobrir ao menos 90% do código: no backend, em linhas e ramos; no frontend, em linhas, ramos, funções e instruções. | ✅ Atendido | 98% no backend; no frontend, de 90,9% a 97,3%, conforme a medida. A especificação anterior pedia mais de 80%, só no código crítico do backend. |
-| RNFG11 | **Testes de mutação.** O código deve passar por testes de mutação, que verificam se os testes existentes detectam falhas reais. | 🟡 Em parte | Rodam toda segunda-feira e sob demanda. No frontend, o Stryker detectou 89,7% dos mutantes na primeira medição, acima do mínimo de 60%; no backend, o mutmut ainda não tinha uma primeira medição. |
+| RNFG11 | **Testes de mutação.** O código deve passar por testes de mutação, que verificam se os testes existentes detectam falhas reais. | 🟡 Em parte | Rodam toda segunda-feira e sob demanda. No frontend, o Stryker detectou 89,7% dos mutantes na primeira medição, acima do mínimo de 60%. No backend, o mutmut foi ajustado em 15/10/2026 para rodar na integração contínua e ainda não tem medição registrada. |
 | RNFG12 | **Padronização do código.** O código deve seguir as regras de estilo e de análise estática da equipe, com complexidade de até 9 por função. | ✅ Atendido | No frontend, ESLint sem avisos e TypeScript sem erros de tipo, com complexidade cognitiva de até 9; no backend, Ruff sem erros de lint e de formatação, com complexidade ciclomática de até 9. A especificação anterior previa só o ESLint, no frontend. |
 | RNFG13 | **Migrations.** Toda mudança no modelo de dados deve vir com uma migration aplicável e reversível, correspondente aos modelos. | ✅ Atendido | Verificado sobre PostgreSQL. |
 | RNFG14 | **Testes de ponta a ponta.** As jornadas principais da plataforma devem ter testes de ponta a ponta, executados sobre PostgreSQL, todos passando. | ✅ Atendido | Com o Playwright, num navegador real. |
@@ -94,6 +94,6 @@ Os requisitos não-funcionais do **Levantamento de Funcionalidades e Regras de N
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Requisitos da plataforma, de RNFG01 a RNFG12 | Versão anterior desta página, preservada na etiqueta `legado-v2` | ago/2026 |
-| Limites de qualidade do código e medições | `docs/quality-gates-2026-09-27.md`, `docs/auditoria-testes-2026-09-25.md` e configuração da integração contínua do `ifvest-monorepo` | set/2026 |
+| Limites de qualidade do código e medições | `docs/quality-gates-2026-09-27.md`, `docs/auditoria-testes-2026-09-25.md` e configuração da integração contínua do `ifvest-monorepo` | set/2026, revisto em out/2026 |
 | Requisitos por módulo | Levantamento de Funcionalidades e Regras de Negócio, entradas do IFQuiz | 20/10/2026 |
 | Situação na plataforma | Código e configuração de produção do `ifvest-monorepo` | out/2026 |

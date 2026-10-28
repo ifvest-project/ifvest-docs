@@ -193,11 +193,11 @@ No código, a aplicação se identifica como versão **0.1.0**, numeração pró
 - Entrada com a conta Google, com criação da conta no primeiro acesso
 - Permissões granulares, concedidas e revogadas por administradores
 - IFQuiz com questões do banco próprio: quiz personalizado, Pergunta do Dia, sequência diária, patentes, ranking geral e semanal e loja de avatares
-- Simulados de treino, manuais ou aleatórios, com resolução na plataforma, caderno em PDF e registro das tentativas
+- Simulados de treino, visíveis só a quem os cria, e institucionais, visíveis a todos; manuais ou aleatórios, com resolução na plataforma, caderno e gabarito para impressão e registro das tentativas, com a resposta de cada questão
 - Módulo de Redação: propostas com textos de apoio, envio de redações e correção pelas cinco competências do ENEM, com comentários em trechos do texto
-- Banco de questões com cadastro, edição e denúncia de erros
+- Banco de questões com cadastro, edição e denúncia de erros, e importação de provas em lote pelo painel administrativo, com simulação antes de gravar
 - Painel administrativo com indicadores, gestão de permissões, moderação das denúncias e controle dos módulos por *feature flags*
-- Registro de auditoria de cadastros e edições de questões, denúncias, propostas de redação, permissões e módulos
+- Registro de auditoria de cadastros e edições de questões, denúncias, propostas de redação, permissões e módulos, além das cargas e importações de questões
 
 O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 
@@ -212,6 +212,10 @@ O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 | 2026-09-26 | Datas sem fuso horário nas duas tabelas anteriores |
 | 2026-09-27 | Divisão das permissões de conteúdo em quatro |
 | 2026-09-27 | Remoção das duas permissões antigas |
+| 2026-10-10 | Separação entre simulados institucionais e de treino |
+| 2026-10-10 | Permissão `create_mocktest` renomeada para `create_institutional_mocktest` |
+| 2026-10-10 | Tabela `user_mocktest_answers`, com a resposta de cada questão das tentativas de simulado |
+| 2026-10-15 | Tabela `question_imports`, das importações de questões pelo painel |
 
 **O que mudou em relação à versão anterior:**
 
@@ -242,6 +246,6 @@ Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já t�
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Stack e versão declarada no código | `ifvest-backend/pyproject.toml`, `ifvest-frontend/package.json` e configuração de produção do `ifvest-monorepo` | out/2026 |
-| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo` | out/2026 |
+| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `d36de12`, de 15/10/2026 | out/2026 |
 | Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | out/2026 |
 | Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |

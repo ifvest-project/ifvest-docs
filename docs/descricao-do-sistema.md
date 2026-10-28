@@ -40,7 +40,7 @@ O ecossistema atende a três perfis operacionais. Eles descrevem **papéis de us
 |---|---|
 | **Estudantes** | Praticam com questões de provas e autorais em quizzes e simulados, mantêm a sequência de respostas à Pergunta do Dia e treinam redação com devolutiva |
 | **Professores e educadores** | Cadastram e curam o banco de questões, montam simulados, publicam propostas de redação e corrigem redações |
-| **Administradores e moderadores** | Zelam pela qualidade pedagógica, moderam as denúncias de erros nas questões, controlam os módulos ativos e gerenciam as permissões dos demais usuários |
+| **Administradores e moderadores** | Zelam pela qualidade pedagógica, moderam as denúncias de erros nas questões, importam provas para o banco de questões, controlam os módulos ativos e gerenciam as permissões dos demais usuários |
 
 ---
 
@@ -74,7 +74,7 @@ Na prática, o que um usuário pode fazer é a soma das permissões que possui �
 
 | Situação | Permissões recebidas |
 |---|---|
-| Cadastro com **e-mail institucional** (`@ifsp.edu.br`) | Conjunto docente: cadastrar e editar questões, criar simulados e gerenciar os simulados de outras pessoas |
+| Cadastro com **e-mail institucional** (`@ifsp.edu.br`) | Conjunto docente: cadastrar e editar questões, criar simulados institucionais — que aparecem para todos — e gerenciar os simulados de outras pessoas |
 | Cadastro com e-mail comum | Nenhuma permissão especial — acesso aos recursos de estudo |
 | **Administrador inicial**, definido na configuração do sistema | Todas as permissões |
 | Concessão individual por um administrador | Permissões específicas, como corrigir redações ou publicar propostas de redação |
@@ -113,9 +113,9 @@ Módulo de prática rápida, com elementos de jogo:
 
 ### Simulados
 
-Qualquer estudante pode montar um simulado de treino, escolhendo as questões do banco, ou gerar um simulado aleatório, com questões de todas as disciplinas ou de uma delas. A API prevê também simulados montados por professores com permissão, ainda sem tela na interface.
+Qualquer estudante pode montar um **simulado de treino**, escolhendo as questões do banco com filtros de disciplina, assunto, banca e ano, ou gerar um simulado aleatório, com questões de todas as disciplinas ou de uma delas. O simulado de treino só aparece para quem o criou. Quem tem permissão pode criar também **simulados institucionais**, que aparecem para todos os usuários.
 
-A resolução pode ser feita na própria plataforma, com a correção de cada questão, e o caderno de questões pode ser exportado em PDF. A cada envio, a plataforma registra a tentativa — número de questões, quantas foram respondidas, acertos e nota —, e o estudante acompanha as estatísticas das suas tentativas e a nota mais recente em cada simulado.
+A resolução pode ser feita na própria plataforma, com a correção de cada questão, e o caderno de questões e o gabarito podem ser impressos ou salvos em PDF. A cada envio, a plataforma registra a tentativa — número de questões, quantas foram respondidas, acertos, nota e a resposta dada em cada questão. Com isso, o estudante acompanha as estatísticas das tentativas, incluindo a disciplina em que vai melhor e a que precisa revisar, a nota mais recente em cada simulado e o histórico das tentativas, no perfil.
 
 ### Redação
 
@@ -143,7 +143,7 @@ Baralhos públicos poderão ser importados **por referência**: correções e me
 
 ## Banco de questões
 
-O acervo combina **questões de provas de vestibulares** com **questões autorais**, cadastradas pelos professores com permissão. As provas entram no banco por uma carga a partir dos arquivos de cada prova — hoje, as da UNICAMP; o escopo prevê também ENEM, FUVEST e outros processos seletivos.
+O acervo combina **questões de provas de vestibulares** com **questões autorais**, cadastradas pelos professores com permissão. As provas entram no banco a partir dos arquivos de cada prova, por uma carga feita no servidor ou pela importação no painel administrativo, que mostra uma simulação do resultado antes de gravar. A carga começou pelas provas da UNICAMP e aceita as de qualquer banca; o escopo prevê também ENEM, FUVEST e outros processos seletivos. Só entram questões objetivas completas, e as que já estão no banco podem ser corrigidas a partir de uma nova versão dos arquivos.
 
 Cada questão de múltipla escolha registra suas alternativas com indicação de qual é a correta, e vincula-se a um ou mais tópicos da taxonomia. O mesmo banco abastece os simulados e os quizzes.
 
@@ -183,7 +183,7 @@ Além da plataforma, o projeto mantém iniciativas que se integram a ela:
 | Projeto | Relação com a plataforma |
 |---|---|
 | **Leitor de PDFs educacionais** | Aplicativo independente, que consumirá materiais exportados da plataforma em PDF. ⬜ *Integração ainda não implementada.* |
-| **Extrator de questões por IA** | Sistema que lê provas anteriores em PDF e extrai as questões estruturadas para alimentar o banco. ⬜ *O repositório da plataforma não registra a integração: hoje as provas entram por carga de arquivos, sem vínculo documentado com o extrator.* |
+| **Extrator de questões por IA** | Sistema que lê provas anteriores em PDF e extrai as questões estruturadas para alimentar o banco. ⬜ *Não há integração direta: a importação pelo painel recebe as provas no formato em que saem da extração, mas os arquivos são enviados pela equipe, e o repositório da plataforma não documenta o extrator.* |
 
 O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 
@@ -196,8 +196,8 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 | Proposta de valor, escopo, público-alvo e taxonomia | Documentação do repositório do backend (README — Visão de Negócio) | set/2026 |
 | Módulos implementados e suas regras | Código-fonte do backend e do frontend do `ifvest-monorepo` | set/2026, revisto em out/2026 |
 | Módulos previstos (Revisão e Flashcards) | Documentação do repositório do backend (README — Visão de Negócio) e documento de onboarding | set/2026 |
-| Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026 |
-| Banco de questões e carga das provas | Modelos do backend e `docs/atualizar-questoes-na-vps.md` | set/2026 |
+| Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026, revisto em out/2026 |
+| Banco de questões e carga das provas | Modelos do backend, `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | set/2026, revisto em out/2026 |
 | Stack e hospedagem | Configuração de produção do `ifvest-monorepo` | set/2026 |
 
 !!! note "Escopo da primeira versão — divergência resolvida"
@@ -211,5 +211,5 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
     | Login | E-mail e senha, além do Google | Apenas a conta Google |
     | Sequência diária | Resolução de ao menos uma questão no dia | Resposta à Pergunta do Dia |
     | Pergunta do Dia | Sorteada a cada dia | Definida pela data, a mesma para todos |
-    | Histórico de simulados | Tempo gasto, respostas fornecidas e pontuação | Número de questões, respondidas, acertos e nota |
+    | Histórico de simulados | Tempo gasto, respostas fornecidas e pontuação | Número de questões, respondidas, acertos, nota e resposta de cada questão, sem o tempo gasto |
     | Questões autorais | Identificadas como "Banca IFVest" | A banca é um campo livre do cadastro |

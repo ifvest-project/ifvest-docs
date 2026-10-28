@@ -22,13 +22,13 @@ LAYOUT_TOP_DOWN()
 Container(web, "Aplicação Web", "React + Vite", "Consome a API")
 
 Container_Boundary(api, "API — FastAPI") {
-    Component(rotas, "Camada de Rotas", "FastAPI Routers", "auth · users · features · question_bank\nmocktests · essays · quiz · admin")
+    Component(rotas, "Camada de Rotas", "FastAPI Routers", "auth · users · features · question_bank\nmocktests · essays · quiz · admin\nquestion_imports")
     Component(seguranca, "Segurança", "security.py · firebase.py", "Extrai e verifica o token,\nidentifica o usuário")
     Component(permissoes, "Permissões", "permission_catalog.py\npermissions.py", "Catálogo das permissões, atribuição\ninicial e autorização de cada ação")
     Component(flags, "Feature Flags", "feature_guard.py\nfeature_flags_service.py", "Liga e desliga módulos\ne funcionalidades")
-    Component(servicos, "Serviços de Domínio", "quiz · mocktests · essays · admin\nquestion_editing · seed", "Regras de negócio de cada módulo")
+    Component(servicos, "Serviços de Domínio", "quiz · mocktests · essays · admin\nquestion_editing · question_import · seed", "Regras de negócio de cada módulo")
     Component(esquemas, "Esquemas", "Pydantic", "Valida entradas e formata\nas respostas da API")
-    Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 24 tabelas\ndo banco de dados")
+    Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 26 tabelas\ndo banco de dados")
 }
 
 ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
@@ -69,19 +69,21 @@ LAYOUT_LEFT_RIGHT()
 Container_Boundary(api, "API — FastAPI") {
     Component(r_quiz, "Rotas de Quiz", "quiz.py · 18 rotas", "Partidas, pergunta do dia,\nfiltros, ranking, loja e histórico")
     Component(r_mock, "Rotas de Simulados", "mocktests.py · 12 rotas", "Montagem, resolução\ne correção de simulados")
-    Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 5 rotas", "Busca, cadastro, edição\ne denúncia de questões")
+    Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
     Component(r_admin, "Rotas de Administração", "admin.py · 3 rotas", "Painel de indicadores\ne moderação das denúncias")
+    Component(r_imp, "Rotas de Importação", "question_imports.py · 4 rotas", "Envio, simulação e aplicação\ndas importações de questões")
     Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
     Component(r_users, "Rotas de Usuário", "users.py · 6 rotas", "Perfil, lista de usuários\ne permissões")
     Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Login e dados\ndo usuário atual")
 
     Component(s_quiz, "Serviços do Quiz", "quiz_service.py e módulos quiz_*\nstore_catalog.py · daily_streak.py", "Partidas, pontuação, ranking,\nloja e sequência diária")
-    Component(s_mock, "Serviço de Simulados", "mocktests_service.py", "Montagem e correção dos\nsimulados; busca e cadastro de questões")
+    Component(s_mock, "Serviços de Simulados", "mocktests_service.py\nmocktest_attempts.py", "Montagem e correção dos simulados,\ntentativas e estatísticas;\nbusca e cadastro de questões")
     Component(s_edit, "Edição de Questões", "question_editing.py", "Leitura com gabarito\ne edição de questões")
     Component(s_essays, "Serviço de Redação", "essays_service.py", "Propostas e correção por\ncompetências do ENEM")
     Component(s_admin, "Serviço de Administração", "admin_service.py", "Indicadores, denúncias\ne registro de auditoria")
     Component(s_flags, "Serviço de Flags", "feature_flags_service.py", "Estado e hierarquia\ndas flags")
+    Component(s_imp, "Serviço de Importação", "question_import_service.py\ne módulos question_import_*", "Valida e guarda o .zip e\nexecuta a carga em segundo plano")
     Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Dados de teste e\ncarga das provas")
 }
 
@@ -89,12 +91,14 @@ ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
 
 Rel_R(r_quiz, s_quiz, "Delega")
 Rel_R(r_mock, s_mock, "Delega")
-Rel_R(r_bank, s_mock, "Busca e cadastro")
+Rel_R(r_bank, s_mock, "Busca, filtros\ne cadastro")
 Rel_R(r_bank, s_edit, "Edição")
 Rel_R(r_bank, s_admin, "Denúncias")
 Rel_R(r_essays, s_essays, "Delega")
 Rel_R(r_admin, s_admin, "Delega")
 Rel_R(r_feat, s_flags, "Delega")
+Rel_R(r_imp, s_imp, "Delega")
+Rel_D(s_imp, s_seed, "Executa a carga")
 
 Rel_D(s_quiz, db, "Lê e escreve", "SQL")
 Rel_D(s_mock, db, "Lê e escreve", "SQL")
@@ -102,6 +106,7 @@ Rel_D(s_edit, db, "Lê e escreve", "SQL")
 Rel_D(s_essays, db, "Lê e escreve", "SQL")
 Rel_D(s_admin, db, "Lê e escreve", "SQL")
 Rel_D(s_flags, db, "Lê e escreve", "SQL")
+Rel_D(s_imp, db, "Registra as importações", "SQL")
 Rel_D(s_seed, db, "Popula", "SQL")
 Rel_D(r_users, db, "Lê e escreve", "SQL")
 Rel_D(r_auth, db, "Busca e cria usuários", "SQL")
@@ -110,7 +115,9 @@ SHOW_LEGEND()
 @enduml
 ```
 
-O **Serviço de Administração** também guarda o registro de auditoria: as rotas que cadastram e editam questões, mexem em propostas de redação, concedem ou revogam permissões e alteram módulos registram ali o que foi feito. Os **Serviços de Carga** não são chamados por rotas: rodam por scripts, para popular o ambiente de desenvolvimento ou carregar provas no banco de produção.
+O **Serviço de Administração** também guarda o registro de auditoria: as rotas que cadastram e editam questões, mexem em propostas de redação, concedem ou revogam permissões e alteram módulos registram ali o que foi feito. As questões atualizadas pela carga e as importações aplicadas também entram no registro, gravadas pelos próprios serviços de carga e de importação.
+
+Os **Serviços de Carga** rodam por scripts, para popular o ambiente de desenvolvimento ou carregar provas no banco de produção, e também a partir do **Serviço de Importação**, quando um administrador importa provas pelo painel: a carga é a mesma nos dois caminhos.
 
 ---
 
@@ -179,13 +186,14 @@ Container_Boundary(web, "Aplicação Web — React + Vite") {
     Component(f_mock, "Simulados", "features/mocktests", "Criação e resolução\nde simulados")
     Component(f_essays, "Redação", "features/essays", "Envio de redações,\ncorreção e consulta")
     Component(f_prof, "Área do Professor", "features/professor", "Banco de questões, propostas\nde redação e fila de correção")
-    Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação e módulos")
+    Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação, importação\nde questões e módulos")
     Component(f_auth, "Autenticação e Perfil", "features/auth", "Entrada com a conta Google\ne perfil do usuário")
     Component(f_dev, "Em Desenvolvimento", "features/underDevelopment", "Tela exibida no lugar dos\nmódulos desligados")
 
     Component(c_api, "Cliente HTTP", "core/api", "Chamadas à API com o token,\npor caminhos relativos")
     Component(c_auth, "Sessão", "core/auth", "Integração com o Firebase,\nsessão e permissões")
     Component(c_feat, "Feature Flags", "core/features", "Consulta as flags e oculta\nos módulos desligados")
+    Component(c_content, "Conteúdo das Questões", "core/content", "Exibe enunciado, texto de apoio\ne alternativas em Markdown")
 }
 
 Container(api, "API", "FastAPI", "Regras de negócio")
@@ -210,6 +218,11 @@ Rel_D(f_essays, c_api, "Usa")
 Rel_D(f_prof, c_api, "Usa")
 Rel_D(f_admin, c_api, "Usa")
 Rel_D(f_auth, c_auth, "Usa")
+
+Rel_D(f_quiz, c_content, "Exibe questões")
+Rel_D(f_mock, c_content, "Exibe questões")
+Rel_D(f_prof, c_content, "Exibe questões")
+Rel_D(f_admin, c_content, "Exibe questões")
 
 Rel_R(c_auth, firebase, "Autentica", "SDK / HTTPS")
 Rel_D(c_api, api, "Requisições REST\ncom token", "HTTPS")
@@ -236,6 +249,6 @@ SHOW_LEGEND()
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Componentes da API e contagem de rotas | `ifvest-backend/src/` e especificação OpenAPI gerada do código | set/2026 |
+| Componentes da API e contagem de rotas | `ifvest-backend/src/` e especificação OpenAPI gerada do código | set/2026, revisto em out/2026 |
 | Componentes transversais e ordem das verificações | `src/core/feature_guard.py`, `security.py`, `firebase.py`, `permission_catalog.py`, `permissions.py` e `src/services/feature_flags_service.py`; ordem conferida executando a API | set/2026 |
-| Componentes do frontend | `ifvest-frontend/src/core/`, `src/features/` e `src/router/` | set/2026 |
+| Componentes do frontend | `ifvest-frontend/src/core/`, `src/features/` e `src/router/` | set/2026, revisto em out/2026 |
