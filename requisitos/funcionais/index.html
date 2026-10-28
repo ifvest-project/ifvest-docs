@@ -1,0 +1,3302 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação oficial da plataforma IFVest — IFSP Campus Jacareí">
+      
+      
+        <meta name="author" content="Ithalo Cavalcante Gomes">
+      
+      
+        <link rel="canonical" href="https://ifvest-project.github.io/ifvest-docs/requisitos/funcionais/">
+      
+      
+        <link rel="prev" href="../../c4/componentes/">
+      
+      
+        <link rel="next" href="../nao-funcionais/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Requisitos Funcionais - IFVest — Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/logo-ifvest.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requisitos-funcionais" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="IFVest — Documentação" class="md-header__button md-logo" aria-label="IFVest — Documentação" data-md-component="logo">
+      <span class="ifvest-logo" aria-hidden="true"><span class="ifvest-logo__if">IF</span><span class="ifvest-logo__vest">Vest</span></span>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IFVest — Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requisitos Funcionais
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ifvest-project/ifvest-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ifvest-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../planejamento/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Planejamento da Documentação
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../descricao-do-sistema/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  O Sistema
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../funcionalidades/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Funcionalidades
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../subprojetos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Subprojetos Ativos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guias/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guias de Uso
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="IFVest — Documentação" class="md-nav__button md-logo" aria-label="IFVest — Documentação" data-md-component="logo">
+      <span class="ifvest-logo" aria-hidden="true"><span class="ifvest-logo__if">IF</span><span class="ifvest-logo__vest">Vest</span></span>
+    </a>
+    IFVest — Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ifvest-project/ifvest-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ifvest-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planejamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planejamento da Documentação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../descricao-do-sistema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modelo-de-dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagramas C4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diagramas C4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c4/contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 1 — Contexto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c4/containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 2 — Contêineres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../c4/componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nível 3 — Componentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Funcionais
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-ler-esta-pagina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como ler esta página
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-da-plataforma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos da plataforma
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requisitos da plataforma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conta-e-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conta e acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permissoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conteudo-e-banco-de-questoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conteúdo e banco de questões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estudo-e-pratica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudo e prática
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administracao-e-regras-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administração e regras gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-por-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos por módulo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requisitos por módulo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ifquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFQuiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redacao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#envio-de-redacao-por-imagem-e-ocr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Envio de redação por imagem e OCR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correspondencia-com-a-especificacao-anterior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correspondência com a especificação anterior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontes-desta-pagina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes desta página
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nao-funcionais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Funcionalidades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funcionalidades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descrição das Funcionalidades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registro de Versões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../subprojetos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subprojetos Ativos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subprojetos Ativos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subprojetos/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 1: Interface e Modernização (Frontend)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subprojetos/qualidade-e-testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 2: Qualidade, Testes e Acessibilidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subprojetos/ia-e-recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 3: Inteligência Artificial e Recomendação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subprojetos/infra-e-seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eixo 4: Infraestrutura, APIs e Segurança
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produtos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produtos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subprojetos/ifvest-reader/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFVest Reader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guias/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guias de Uso
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guias de Uso
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conta
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conta
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/conta/acesso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acesso e Conta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/conta/perfil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Perfil e Seus Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guias/aluno/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Aluno
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Aluno
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/aluno/ifquiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IFQuiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/aluno/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/aluno/revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Conteúdo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/aluno/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guias/professor/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia do Professor
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guia do Professor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/professor/banco-de-questoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Questões
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/professor/simulados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/professor/flashcards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flashcards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/professor/materiais-de-revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materiais de Revisão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guias/glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-ler-esta-pagina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como ler esta página
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-da-plataforma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos da plataforma
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requisitos da plataforma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conta-e-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conta e acesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permissoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conteudo-e-banco-de-questoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conteúdo e banco de questões
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estudo-e-pratica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudo e prática
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administracao-e-regras-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administração e regras gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-por-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requisitos por módulo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requisitos por módulo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ifquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFQuiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redacao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#envio-de-redacao-por-imagem-e-ocr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Envio de redação por imagem e OCR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correspondencia-com-a-especificacao-anterior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correspondência com a especificação anterior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontes-desta-pagina" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes desta página
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Início
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Requisitos
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/ifvest-project/ifvest-docs/edit/main/docs/requisitos/funcionais.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Link para esta seção">&para;</a></h1>
+<p>Esta página registra o que o IFVest deve fazer, em dois níveis:</p>
+<ul>
+<li><strong><a href="#requisitos-da-plataforma">Requisitos da plataforma</a></strong> — o que a plataforma deve oferecer como um todo, da conta do usuário à administração. Partem da versão anterior desta especificação, atualizada para o IFVest V3 e complementada com as definições da equipe de desenvolvimento.</li>
+<li><strong><a href="#requisitos-por-modulo">Requisitos por módulo</a></strong> — o detalhamento de cada módulo, especificado pela equipe responsável por ele no levantamento de funcionalidades. Cada módulo indica os requisitos da plataforma que detalha.</li>
+</ul>
+<p>Ao lado de cada requisito, a página indica a situação na versão em produção, conferida no código.</p>
+<hr />
+<h2 id="como-ler-esta-pagina">Como ler esta página<a class="headerlink" href="#como-ler-esta-pagina" title="Link para esta seção">&para;</a></h2>
+<ul>
+<li><strong>ID</strong> — os requisitos da plataforma são identificados por <code>RFG</code>, de <em>requisito funcional geral</em>. Os requisitos por módulo mantêm o identificador dado pela equipe no levantamento; como cada módulo tem a própria numeração, eles são citados com o nome do módulo, como em "RF6 do IFQuiz".</li>
+<li><strong>Situação no V3</strong> — se a plataforma em produção já atende ao requisito:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Atendido</td>
+<td>A plataforma faz o que o requisito pede</td>
+</tr>
+<tr>
+<td>🟡 Em parte</td>
+<td>A plataforma atende parte do requisito ou o atende de forma diferente; a observação explica</td>
+</tr>
+<tr>
+<td>⬜ Não atendido</td>
+<td>Ainda não implementado</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Critérios de aceitação</strong> — nos requisitos por módulo, reproduzidos do levantamento em blocos que se abrem com um clique. Eles orientam os testes e ainda não foram verificados um a um.</li>
+</ul>
+<p>A especificação anterior e o levantamento descrevem os usuários como <strong>aluno</strong>, <strong>professor</strong> e <strong>administrador</strong>. No V3, o que cada usuário pode fazer depende das <a href="../../descricao-do-sistema/#perfis-e-permissoes">permissões</a> que possui, e não de um perfil fixo; quando um requisito atendido cita um perfil, a observação indica a permissão correspondente.</p>
+<hr />
+<h2 id="requisitos-da-plataforma">Requisitos da plataforma<a class="headerlink" href="#requisitos-da-plataforma" title="Link para esta seção">&para;</a></h2>
+<p>Quinze requisitos vêm da especificação anterior, que os organizava por perfil de usuário; a numeração antiga está em <a href="#correspondencia-com-a-especificacao-anterior">Correspondência com a especificação anterior</a>. Os demais vêm das definições da equipe de desenvolvimento do V3: a visão de negócio do README do backend e as regras do projeto, no guia de contribuição do monorepo.</p>
+<h3 id="conta-e-acesso">Conta e acesso<a class="headerlink" href="#conta-e-acesso" title="Link para esta seção">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="rfg01">RFG01</span></td>
+<td><strong>Cadastro e entrada.</strong> O usuário deve poder se cadastrar e entrar na plataforma com o e-mail institucional ou com a conta Google, por meio do Firebase Authentication.</td>
+<td>🟡 Em parte</td>
+<td>A entrada é feita só pela conta Google — o que inclui os e-mails institucionais que sejam contas Google —, e não há cadastro com e-mail e senha. A conta é criada no primeiro acesso.</td>
+</tr>
+<tr>
+<td><span id="rfg02">RFG02</span></td>
+<td><strong>Recuperação de senha.</strong> O sistema deve oferecer a recuperação de senha em três etapas: informar o e-mail, validar um código e definir a nova senha.</td>
+<td>⬜ Não atendido</td>
+<td>Como não há cadastro com e-mail e senha, não há senha a recuperar na plataforma: a senha da conta Google é gerenciada pelo próprio Google. O requisito depende da entrada por e-mail prevista no <a href="#rfg01">RFG01</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg03">RFG03</span></td>
+<td><strong>Gestão do perfil.</strong> O usuário deve poder alterar a foto de perfil, atualizar os dados cadastrais e solicitar a exclusão da conta, conforme a LGPD.</td>
+<td>🟡 Em parte</td>
+<td>É possível editar o apelido, que é o nome exibido no ranking. Não há foto de perfil nem exclusão de conta.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="permissoes">Permissões<a class="headerlink" href="#permissoes" title="Link para esta seção">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="rfg04">RFG04</span></td>
+<td><strong>Permissões individuais.</strong> O que cada usuário pode fazer deve depender de permissões individuais, e não de perfis fixos. Os administradores concedem e revogam as permissões, escolhidas num catálogo único.</td>
+<td>✅ Atendido</td>
+<td>O catálogo tem sete permissões, geridas no Painel Administrativo. Ver <a href="../../descricao-do-sistema/#perfis-e-permissoes">Descrição do Sistema — Perfis e permissões</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg05">RFG05</span></td>
+<td><strong>Permissões iniciais.</strong> As contas com e-mail institucional docente (<code>@ifsp.edu.br</code>) devem receber automaticamente as permissões docentes, e a conta do administrador inicial, definida na configuração do servidor, as de administrador. As permissões iniciais são atribuídas só na criação da conta, para que as mudanças feitas depois pelos administradores se mantenham.</td>
+<td>✅ Atendido</td>
+<td>As permissões docentes são as de cadastro e edição de questões, de criação de simulados institucionais e de gestão dos simulados de outras pessoas. Ver <a href="../../descricao-do-sistema/#como-as-permissoes-sao-atribuidas">Como as permissões são atribuídas</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg06">RFG06</span></td>
+<td><strong>Aviso de permissão.</strong> Quando o usuário tentar uma ação sem a permissão necessária, o sistema deve informar qual permissão falta e orientá-lo a pedi-la a um administrador.</td>
+<td>🟡 Em parte</td>
+<td>A API responde com essa mensagem. Na interface, parte das telas a exibe, e outras mostram um erro genérico ou uma lista vazia. Ver <a href="../../funcionalidades/#falta-de-permissao">Falta de permissão</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="conteudo-e-banco-de-questoes">Conteúdo e banco de questões<a class="headerlink" href="#conteudo-e-banco-de-questoes" title="Link para esta seção">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="rfg07">RFG07</span></td>
+<td><strong>Organização do conteúdo.</strong> O conteúdo deve seguir a hierarquia Disciplina → Assunto → Tópico. Cada questão se vincula a um ou mais tópicos, dos quais herda o assunto e a disciplina.</td>
+<td>✅ Atendido</td>
+<td>Ver <a href="../../descricao-do-sistema/#organizacao-do-conhecimento">Descrição do Sistema — Organização do conhecimento</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg08">RFG08</span></td>
+<td><strong>Gestão de questões.</strong> O professor deve poder criar questões manualmente ou importá-las de um banco de questões existente, por meio de APIs do ENEM e da FUVEST.</td>
+<td>🟡 Em parte</td>
+<td>O cadastro e a edição existem, com as permissões <code>create_question</code> e <code>edit_question</code>. A importação em lote existe, mas a partir de arquivos, e não de APIs: pela carga no servidor ou por um <code>.zip</code> enviado no Painel Administrativo, restrito aos administradores.</td>
+</tr>
+<tr>
+<td><span id="rfg09">RFG09</span></td>
+<td><strong>Atualização do banco de questões.</strong> O sistema deve consumir APIs externas para manter o banco de questões atualizado com as provas mais recentes do ENEM e da FUVEST.</td>
+<td>⬜ Não atendido</td>
+<td>As provas entram por carga ou importação de arquivos, descritas em <a href="../../arquitetura/#carga-do-banco-de-questoes">Arquitetura — Carga do banco de questões</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg10">RFG10</span></td>
+<td><strong>Qualidade do conteúdo.</strong> Administradores e moderadores devem zelar pela qualidade pedagógica do conteúdo, auditando o que é publicado na plataforma.</td>
+<td>🟡 Em parte</td>
+<td>Os usuários denunciam erros nas questões, e os administradores moderam as denúncias e corrigem as questões no Painel Administrativo. As alterações de conteúdo ficam no registro de auditoria, inclusive as feitas pela carga e pela importação de questões, mas o painel mostra só o resumo dos últimos 30 dias e as cinco alterações mais recentes.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estudo-e-pratica">Estudo e prática<a class="headerlink" href="#estudo-e-pratica" title="Link para esta seção">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="rfg11">RFG11</span></td>
+<td><strong>Revisão de Conteúdo.</strong> O estudante deve acessar materiais de estudo organizados pela hierarquia de conteúdo, com um material por tópico.</td>
+<td>⬜ Não atendido</td>
+<td>Módulo previsto, sem implementação. A especificação anterior dividia os materiais por áreas (Matemática, Humanas, Naturais, Linguagens e Informática); a definição do V3 os organiza por tópico. Ver <a href="../../descricao-do-sistema/#revisao-de-conteudo">Descrição do Sistema — Revisão de Conteúdo</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg12">RFG12</span></td>
+<td><strong>Formatos dos materiais.</strong> O sistema deve exibir videoaulas, textos teóricos em Markdown e exercícios de fixação para cada tópico.</td>
+<td>⬜ Não atendido</td>
+<td>Depende do módulo de Revisão de Conteúdo.</td>
+</tr>
+<tr>
+<td><span id="rfg13">RFG13</span></td>
+<td><strong>Autoria dos materiais.</strong> O professor deve poder criar e editar os materiais de revisão num editor Markdown com pré-visualização em tempo real. A autoria é colaborativa, com histórico das alterações, e cada edição entra no ar na hora, marcada como pendente de auditoria até ser revisada por um administrador.</td>
+<td>⬜ Não atendido</td>
+<td>Depende do módulo de Revisão de Conteúdo. A autoria colaborativa, o histórico e a auditoria pendente vêm da definição do V3.</td>
+</tr>
+<tr>
+<td><span id="rfg14">RFG14</span></td>
+<td><strong>Flashcards.</strong> O estudante deve poder estudar com flashcards, criando os próprios baralhos ou usando baralhos institucionais criados por professores.</td>
+<td>⬜ Não atendido</td>
+<td>Módulo previsto, sem implementação. A definição do V3 prevê baralhos públicos e privados, a importação de baralhos públicos por referência e o agendamento das revisões por repetição espaçada. Ver <a href="../../descricao-do-sistema/#flashcards">Descrição do Sistema — Flashcards</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg15">RFG15</span></td>
+<td><strong>Baralhos oficiais.</strong> O professor deve poder criar e disponibilizar baralhos oficiais de flashcards para os estudantes.</td>
+<td>⬜ Não atendido</td>
+<td>Depende do módulo de Flashcards.</td>
+</tr>
+<tr>
+<td><span id="rfg16">RFG16</span></td>
+<td><strong>IFQuiz.</strong> O estudante deve poder fazer quizzes filtrados por disciplina, assunto e etiquetas, acompanhando seu placar e desempenho.</td>
+<td>🟡 Em parte</td>
+<td>Os quizzes filtram por disciplina e assunto; as questões não têm etiquetas. O módulo tem também Pergunta do Dia, sequência diária, pontos, patentes, ranking e loja de avatares, detalhados nos <a href="#ifquiz">requisitos do IFQuiz</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg17">RFG17</span></td>
+<td><strong>Simulados.</strong> O estudante deve poder montar simulados com questões escolhidas uma a uma ou geradas por filtros da hierarquia de conteúdo, e o sistema deve registrar o histórico das tentativas, com o tempo gasto, as respostas dadas e a pontuação.</td>
+<td>🟡 Em parte</td>
+<td>Os simulados são montados por seleção, com filtros de disciplina, assunto, banca e ano, ou por sorteio, que na interface só filtra por disciplina. Cada tentativa registra os acertos, a nota e a resposta dada em cada questão, mas não o tempo gasto. O histórico das tentativas fica no Perfil.</td>
+</tr>
+<tr>
+<td><span id="rfg18">RFG18</span></td>
+<td><strong>Recomendação de estudo.</strong> O sistema deve sugerir materiais e exercícios com base no histórico de desempenho e nos erros do estudante.</td>
+<td>⬜ Não atendido</td>
+<td>Objeto do subprojeto <a href="../../subprojetos/ia-e-recomendacao/#sistemas-de-recomendacao-aplicados-a-ifvest">Sistemas de Recomendação aplicados à IFVest</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="redacao">Redação<a class="headerlink" href="#redacao" title="Link para esta seção">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="rfg19">RFG19</span></td>
+<td><strong>Propostas de redação.</strong> O professor deve poder publicar propostas temáticas de redação, com textos motivadores e imagens.</td>
+<td>✅ Atendido</td>
+<td>Com a permissão <code>create_essay_proposal_permission</code>. As regras das propostas estão nos <a href="#redacao">requisitos da Redação</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg20">RFG20</span></td>
+<td><strong>Envio de redação.</strong> O estudante deve poder enviar redações, manuscritas ou digitadas, para correção automatizada ou por professores.</td>
+<td>🟡 Em parte</td>
+<td>Só redações digitadas na própria plataforma, corrigidas por corretores. O envio por imagem e a correção automatizada dependem do <a href="#rfg22">RFG22</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg21">RFG21</span></td>
+<td><strong>Correção de redação.</strong> O corretor deve poder ver as redações enviadas e corrigi-las pela grade de competências do ENEM (C1 a C5), com devolutiva descritiva, complementando a correção automatizada.</td>
+<td>✅ Atendido</td>
+<td>Com a permissão <code>grade_essay_permission</code>, incluindo comentários em trechos do texto. A correção automatizada, que ela complementaria, ainda não existe.</td>
+</tr>
+<tr>
+<td><span id="rfg22">RFG22</span></td>
+<td><strong>Correção por OCR e IA.</strong> O sistema deve reconhecer o texto de redações manuscritas por OCR e sugerir correções com base em redes neurais.</td>
+<td>⬜ Não atendido</td>
+<td>Em desenvolvimento num subprojeto à parte, ainda não integrado à plataforma: ver <a href="#envio-de-redacao-por-imagem-e-ocr">Envio de redação por imagem e OCR</a>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="administracao-e-regras-gerais">Administração e regras gerais<a class="headerlink" href="#administracao-e-regras-gerais" title="Link para esta seção">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="rfg23">RFG23</span></td>
+<td><strong>Controle dos módulos.</strong> Os administradores devem poder ligar e desligar módulos e funcionalidades sem alterar o código. Com um módulo desligado, a API deve recusar as chamadas a ele, e a interface deve explicar ao usuário que o módulo está indisponível.</td>
+<td>🟡 Em parte</td>
+<td>O controle fica no Painel Administrativo, e a API recusa as chamadas aos módulos desligados — exceto ao próprio painel, cuja flag é verificada só na interface. Parte das telas explica que o módulo está desligado; outras mostram um erro genérico ou uma lista vazia. Ver <a href="../../funcionalidades/#modulos-desligados">Módulos desligados</a>.</td>
+</tr>
+<tr>
+<td><span id="rfg24">RFG24</span></td>
+<td><strong>Horário de referência.</strong> As funcionalidades que dependem do dia ou da semana — Pergunta do Dia, sequência diária e ranking semanal — devem seguir o horário de Brasília.</td>
+<td>✅ Atendido</td>
+<td>O servidor grava as datas em UTC e calcula o dia e a semana no horário de Brasília.</td>
+</tr>
+</tbody>
+</table>
+<p>⬜ <em>Sem requisito correspondente: os simulados institucionais, o caderno e o gabarito dos simulados e os indicadores do Painel Administrativo existem na plataforma, mas não constam das fontes desta especificação. Os requisitos deles devem vir do levantamento, quando os simulados e a administração forem preenchidos.</em></p>
+<hr />
+<h2 id="requisitos-por-modulo">Requisitos por módulo<a class="headerlink" href="#requisitos-por-modulo" title="Link para esta seção">&para;</a></h2>
+<p>Os requisitos por módulo vêm do <strong>Levantamento de Funcionalidades e Regras de Negócio</strong>, documento compartilhado em que cada equipe descreve as funcionalidades sob sua responsabilidade: objetivo, regras de negócio, fluxos, critérios de aceitação e riscos.</p>
+<div class="admonition info">
+<p class="admonition-title">Levantamento em andamento</p>
+<p>O levantamento está sendo preenchido ao longo do tempo, e esta seção acompanha o seu avanço. Versão usada nesta página: <strong>20/10/2026</strong>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Responsável no levantamento</th>
+<th>Situação do levantamento</th>
+<th>Detalha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#ifquiz">IFQuiz</a></td>
+<td>Helena Vieira Nascimento</td>
+<td>✅ Preenchido — nove funcionalidades</td>
+<td><a href="#rfg16">RFG16</a></td>
+</tr>
+<tr>
+<td><a href="#redacao">Redação</a></td>
+<td>Guilherme Augusto Frazão Ribeiro</td>
+<td>🟡 Preenchido para o módulo como um todo, sem numeração dos requisitos</td>
+<td><a href="#rfg19">RFG19</a> a <a href="#rfg21">RFG21</a></td>
+</tr>
+<tr>
+<td><a href="#envio-de-redacao-por-imagem-e-ocr">Redação — envio por imagem e OCR</a></td>
+<td>Arthur Araújo de Oliveira</td>
+<td>✅ Preenchido</td>
+<td><a href="#rfg20">RFG20</a> e <a href="#rfg22">RFG22</a></td>
+</tr>
+<tr>
+<td>Autenticação, login e cadastro</td>
+<td>Wilker</td>
+<td>⬜ Aguardando preenchimento</td>
+<td><a href="#rfg01">RFG01</a> a <a href="#rfg03">RFG03</a></td>
+</tr>
+<tr>
+<td>Simulados</td>
+<td>—</td>
+<td>⬜ Aguardando preenchimento</td>
+<td><a href="#rfg17">RFG17</a></td>
+</tr>
+<tr>
+<td>Flashcards</td>
+<td>—</td>
+<td>⬜ Aguardando preenchimento</td>
+<td><a href="#rfg14">RFG14</a> e <a href="#rfg15">RFG15</a></td>
+</tr>
+<tr>
+<td>Revisão de Conteúdo</td>
+<td>—</td>
+<td>⬜ Aguardando preenchimento</td>
+<td><a href="#rfg11">RFG11</a> a <a href="#rfg13">RFG13</a></td>
+</tr>
+<tr>
+<td><a href="../../subprojetos/ifvest-reader/">IFVest Reader</a></td>
+<td>João Paulo</td>
+<td>⬜ Aguardando preenchimento</td>
+<td>— <em>(aplicativo à parte)</em></td>
+</tr>
+</tbody>
+</table>
+<p>O banco de questões e a administração — permissões, moderação de denúncias e controle dos módulos — ainda não têm seção no levantamento. Por enquanto, estão cobertos apenas pelos requisitos da plataforma: de <a href="#rfg04">RFG04</a> a <a href="#rfg10">RFG10</a> e o <a href="#rfg23">RFG23</a>.</p>
+<h3 id="ifquiz">IFQuiz<a class="headerlink" href="#ifquiz" title="Link para esta seção">&para;</a></h3>
+<p>Requisitos especificados por <strong>Helena Vieira Nascimento</strong>, nas entradas #001 a #009 do levantamento, que detalham o <a href="#rfg16">RFG16</a>. O que o módulo faz hoje está em <a href="../../funcionalidades/#ifquiz">Descrição das Funcionalidades — IFQuiz</a>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF1</td>
+<td>O sistema deve permitir que o usuário inicie um novo jogo e escolha os tópicos que quer responder.</td>
+<td>✅ Atendido</td>
+<td>A escolha é feita por disciplina e assunto.</td>
+</tr>
+<tr>
+<td>RF2</td>
+<td>O sistema deve permitir filtrar as perguntas por disciplina, assunto, dificuldade (Fácil, Média ou Difícil) e quantidade de questões.</td>
+<td>🟡 Em parte</td>
+<td>Não há filtro de dificuldade: o seletor foi ocultado por decisão da equipe, porque a dificuldade registrada nas questões ainda não reflete a real.</td>
+</tr>
+<tr>
+<td>RF3</td>
+<td>O jogo deve exibir perguntas e respostas de acordo com o tema escolhido.</td>
+<td>✅ Atendido</td>
+<td></td>
+</tr>
+<tr>
+<td>RF4</td>
+<td>Após cada resposta, o sistema deve destacar a alternativa correta e a escolhida, quando errada, como retorno imediato.</td>
+<td>✅ Atendido</td>
+<td></td>
+</tr>
+<tr>
+<td>RF5</td>
+<td>O sistema deve disponibilizar diariamente uma questão única e igual para todos os usuários, com uma tentativa por dia; recompensar o acerto com pontos; e exibir estatísticas comparativas, como o percentual de acertos da comunidade e o total de respostas.</td>
+<td>✅ Atendido</td>
+<td>O acerto vale 100 pontos, e não os 20 do RF7.</td>
+</tr>
+<tr>
+<td>RF6</td>
+<td>O sistema deve permitir partidas competitivas em tempo real entre dois usuários, com limite de 3 minutos por questão, pontos para o jogador com melhor desempenho e registro do resultado no histórico.</td>
+<td>⬜ Não atendido</td>
+<td>Fora da primeira versão, como registra o próprio levantamento. A página do IFQuiz mostra o modo como "Em breve".</td>
+</tr>
+<tr>
+<td>RF7</td>
+<td>O sistema deve atribuir e exibir pontos a cada questão respondida corretamente; hoje, 20 pontos por acerto.</td>
+<td>🟡 Em parte</td>
+<td>Os 20 pontos por acerto aparecem durante a partida, mas são somados ao saldo só ao fim do quiz, e não a cada resposta.</td>
+</tr>
+<tr>
+<td>RF8</td>
+<td>O sistema deve manter uma sequência diária (<em>streak</em>): iniciada no primeiro login, incrementada a cada dia em que o usuário entra e responde perguntas, com pontos a cada incremento, e zerada se ele não entrar no dia.</td>
+<td>🟡 Em parte</td>
+<td>A plataforma conta os dias seguidos com resposta à Pergunta do Dia, como descreve a entrada #003 do levantamento; entrar na plataforma não conta, e a sequência não rende pontos. As entradas #003 e #005 descrevem a regra de formas diferentes.</td>
+</tr>
+<tr>
+<td>RF9a</td>
+<td>O sistema deve ter exatamente sete patentes, definidas pela pontuação — Bronze (0 a 499), Prata (500 a 999), Ouro (1.000 a 1.999), Platina (2.000 a 3.499), Diamante (3.500 a 4.999), Mestre (5.000 a 7.499) e Lenda do IF (7.500 ou mais) —, promovendo ou rebaixando o usuário conforme a pontuação varia.</td>
+<td>✅ Atendido</td>
+<td>A patente acompanha o saldo de pontos, que também diminui com as compras na loja.</td>
+</tr>
+<tr>
+<td>RF9b</td>
+<td>A cada patente atingida, o sistema deve conceder automaticamente itens exclusivos de personalização do avatar.</td>
+<td>⬜ Não atendido</td>
+<td>Os avatares disponíveis são todos comprados com pontos na loja.</td>
+</tr>
+<tr>
+<td>RF10</td>
+<td>O sistema deve manter e atualizar um ranking de usuários com base na patente atual (RF9a) e no tamanho da sequência (RF8), com desempate pela sequência e pela antiguidade do cadastro e com a opção de carregar mais posições.</td>
+<td>🟡 Em parte</td>
+<td>O ranking ordena pelos pontos ganhos, num período geral e num semanal, e exibe a patente e a sequência de cada usuário. Empates dividem a mesma posição, e a interface mostra os dez primeiros colocados.</td>
+</tr>
+<tr>
+<td>RF11</td>
+<td>O sistema deve permitir que o usuário crie e personalize um avatar, e oferecer uma loja em que ele usa os pontos acumulados para adquirir itens de personalização; a personalização inclui os itens comprados e os concedidos por patente.</td>
+<td>🟡 Em parte</td>
+<td>Há a loja e a troca de avatar, mas cada avatar é um item único, sem personalização por partes, e não há itens de patente (RF9b).</td>
+</tr>
+<tr>
+<td>RF12</td>
+<td>O sistema deve armazenar e exibir o histórico de resultados de cada jogador: as partidas da prática livre, com opção de refazer; a Pergunta do Dia, com gráfico de acertos, erros e dias sem resposta; e o modo competição, com vitórias, derrotas e desempenho.</td>
+<td>🟡 Em parte</td>
+<td>O Perfil mostra o histórico da prática livre, com a opção <em>Refazer</em>, e o mapa de calor da Pergunta do Dia. O histórico do modo competição depende do RF6.</td>
+</tr>
+</tbody>
+</table>
+<details class="note">
+<summary>Critérios de aceitação — #001 Prática Livre</summary>
+<ul>
+<li>Os filtros de disciplina e assunto devem carregar dinamicamente as opções válidas.</li>
+<li>A partida só deve iniciar se houver perguntas cadastradas suficientes para o filtro aplicado.</li>
+<li>O layout das perguntas deve exibir enunciado e alternativas de forma clara e responsiva.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #002 Validação de respostas e pontuação</summary>
+<ul>
+<li>Feedback visual de acerto ou erro perceptível em menos de 2 segundos.</li>
+<li>Atualização imediata do contador de pontuação exibido na interface.</li>
+<li>Impossibilidade de alterar a alternativa selecionada após a confirmação.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #003 Pergunta do Dia</summary>
+<ul>
+<li>Bloqueio estrito de mais de uma resposta diária por usuário.</li>
+<li>Exibição precisa do percentual de acertos coletivo da comunidade.</li>
+<li>Registro da tentativa no histórico do usuário, para exibição no calendário anual.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #004 Modo Competição</summary>
+<ul>
+<li>Cronômetro decrescente visível e travamento da resposta ao esgotar os 3 minutos.</li>
+<li>Sincronização entre os dois competidores com latência menor que 2 segundos (RNF1).</li>
+<li>Registro do resultado no histórico do perfil (RF12).</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #005 Sequência diária</summary>
+<ul>
+<li>Exibição do contador de dias de sequência na página inicial, no ranking e no perfil.</li>
+<li>Reinício automático da sequência ao virar o dia sem registro de atividade.</li>
+<li>Registro histórico da evolução da sequência.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #006 Patentes e itens exclusivos</summary>
+<ul>
+<li>O cartão de patente deve exibir o intervalo correto e quantos pontos faltam para o próximo nível.</li>
+<li>A identificação visual da patente, com nome e ícone, deve estar sincronizada em toda a plataforma.</li>
+<li>Liberação imediata dos itens de patente no inventário do usuário.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #007 Ranking</summary>
+<ul>
+<li>Ordenação fiel, respeitando patente, pontuação e sequência.</li>
+<li>Posição do próprio jogador sempre destacada, para rápida identificação.</li>
+<li>Tempo de resposta do ranking inferior a 2 segundos (RNF1).</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #008 Avatares e loja</summary>
+<ul>
+<li>Débito correto e imediato do saldo de pontos ao comprar um item.</li>
+<li>Itens de patente (RF9b) não podem ser vendidos por pontos, apenas desbloqueados por mérito.</li>
+<li>O avatar atualizado deve ser visível para os outros competidores e no ranking.</li>
+</ul>
+</details>
+<details class="note">
+<summary>Critérios de aceitação — #009 Histórico</summary>
+<ul>
+<li>Histórico exibindo acertos, pontos ganhos e datas com precisão.</li>
+<li>Clique nas células do calendário da Pergunta do Dia levando ao feedback da data correspondente.</li>
+<li>Gravação imediata de cada partida finalizada no banco de dados (RNF6).</li>
+</ul>
+</details>
+<h3 id="redacao_1">Redação<a class="headerlink" href="#redacao_1" title="Link para esta seção">&para;</a></h3>
+<p>Regras especificadas por <strong>Guilherme Augusto Frazão Ribeiro</strong> para o módulo como um todo, que detalham os requisitos <a href="#rfg19">RFG19</a> a <a href="#rfg21">RFG21</a>. O que o módulo faz hoje está em <a href="../../funcionalidades/#redacao">Descrição das Funcionalidades — Redação</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>Regra</th>
+<th>Situação no V3</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Escrita</td>
+<td>Todo usuário pode escrever redações sobre as propostas disponíveis.</td>
+<td>✅ Atendido</td>
+<td></td>
+</tr>
+<tr>
+<td>Exclusão de redações</td>
+<td>Todo usuário pode apagar as redações que escreveu.</td>
+<td>⬜ Não atendido</td>
+<td>Não há exclusão de redações.</td>
+</tr>
+<tr>
+<td>Papéis</td>
+<td>Professores podem criar propostas e corrigir redações.</td>
+<td>✅ Atendido</td>
+<td>No V3, pelas permissões <code>create_essay_proposal_permission</code> e <code>grade_essay_permission</code>.</td>
+</tr>
+<tr>
+<td>Edição de propostas</td>
+<td>Apenas o professor que criou uma proposta pode editá-la ou removê-la, junto com seus textos motivadores.</td>
+<td>🟡 Em parte</td>
+<td>O administrador também pode.</td>
+</tr>
+<tr>
+<td>Textos motivadores</td>
+<td>Toda proposta deve ter ao menos um texto motivador.</td>
+<td>⬜ Não atendido</td>
+<td>É possível criar propostas sem textos de apoio.</td>
+</tr>
+<tr>
+<td>Tamanho mínimo</td>
+<td>Toda redação deve ter ao menos 7 linhas, aproximadamente; com menos, o envio é bloqueado e o sistema informa o mínimo de linhas.</td>
+<td>🟡 Em parte</td>
+<td>O envio exige ao menos 10 caracteres. O editor mostra a estimativa de linhas, mas não a usa como limite.</td>
+</tr>
+<tr>
+<td>Comentários na correção</td>
+<td>Toda correção deve ter ao menos um comentário, contando o parecer geral.</td>
+<td>✅ Atendido</td>
+<td>A tela de correção exige o parecer geral.</td>
+</tr>
+<tr>
+<td>Corretor ou IA</td>
+<td>A correção pode ser feita por um corretor ou por IA.</td>
+<td>🟡 Em parte</td>
+<td>Só por corretor. A correção por IA depende do <a href="#envio-de-redacao-por-imagem-e-ocr">subprojeto de OCR e IA</a>.</td>
+</tr>
+<tr>
+<td>Rascunho</td>
+<td>O rascunho da redação fica salvo por até 10 minutos e é descartado depois.</td>
+<td>✅ Atendido</td>
+<td>O rascunho é salvo no navegador.</td>
+</tr>
+</tbody>
+</table>
+<p>⬜ <em>Numerar as regras com a equipe: o levantamento não as numera, mas o código da plataforma se refere à regra do rascunho como RF17 e à gestão das propostas como RF9, o que indica uma numeração já em uso.</em></p>
+<details class="note">
+<summary>Critérios de aceitação — Redação</summary>
+<ul>
+<li>Professores conseguem criar, editar e remover propostas de redação e seus textos motivadores, conforme as regras de negócio.</li>
+<li>As propostas de redação são exibidas corretamente e podem ser acessadas pelos usuários.</li>
+<li>Os usuários conseguem solicitar a correção das suas redações, desde que sigam as regras de negócio.</li>
+</ul>
+</details>
+<h3 id="envio-de-redacao-por-imagem-e-ocr">Envio de redação por imagem e OCR<a class="headerlink" href="#envio-de-redacao-por-imagem-e-ocr" title="Link para esta seção">&para;</a></h3>
+<p>Requisitos especificados por <strong>Arthur Araújo de Oliveira</strong>, para o subprojeto que permite enviar a foto de uma redação manuscrita e extrair o texto para a correção automática por IA, com base em critérios de vestibulares como o ENEM e a FUVEST. Detalham o envio por imagem previsto no <a href="#rfg20">RFG20</a> e a correção por OCR e IA do <a href="#rfg22">RFG22</a>.</p>
+<p>O subprojeto tem backend próprio, em Python com Flask, e <strong>ainda não está integrado à plataforma</strong>: no V3, a opção de enviar a redação por arquivo aparece como "Em breve", e nenhuma das regras abaixo é atendida ainda.</p>
+<ul>
+<li>O sistema deve aceitar imagens de redações manuscritas, nos formatos permitidos pela aplicação.</li>
+<li>O texto digitado deve ser recebido sem passar pelo reconhecimento por OCR.</li>
+<li>Para imagens, o sistema deve usar OCR ou um modelo multimodal para extrair o texto.</li>
+<li>O conteúdo extraído deve seguir para a etapa de análise e correção.</li>
+<li>O sistema deve informar o usuário quando não conseguir processar a imagem ou extrair o texto adequadamente.</li>
+<li>O texto reconhecido deve preservar, sempre que possível, as palavras e a estrutura originais da redação.</li>
+</ul>
+<details class="note">
+<summary>Critérios de aceitação — Envio por imagem e OCR</summary>
+<ul>
+<li>O sistema permite enviar uma redação manuscrita por imagem e inserir um texto digitado.</li>
+<li>O texto extraído representa o conteúdo original com a maior fidelidade possível.</li>
+<li>O conteúdo processado é disponibilizado para a etapa de correção automática.</li>
+<li>Entradas inválidas, imagens ilegíveis e falhas de processamento geram mensagens claras.</li>
+<li>O processamento é testado com diferentes tipos de escrita e condições de imagem.</li>
+</ul>
+</details>
+<hr />
+<h2 id="correspondencia-com-a-especificacao-anterior">Correspondência com a especificação anterior<a class="headerlink" href="#correspondencia-com-a-especificacao-anterior" title="Link para esta seção">&para;</a></h2>
+<p>A versão anterior desta página, escrita antes do IFVest V3, organizava os requisitos por perfil de usuário — estudante e professor ou administrador — e por módulos de inteligência e integração, de RF01 a RF15. Todos foram mantidos nos requisitos da plataforma, atualizados para o V3:</p>
+<table>
+<thead>
+<tr>
+<th>Anterior</th>
+<th>Requisito</th>
+<th>Nesta versão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF01</td>
+<td>Autenticação segura</td>
+<td><a href="#rfg01">RFG01</a></td>
+</tr>
+<tr>
+<td>RF02</td>
+<td>Recuperação de senha</td>
+<td><a href="#rfg02">RFG02</a></td>
+</tr>
+<tr>
+<td>RF03</td>
+<td>Gestão de perfil</td>
+<td><a href="#rfg03">RFG03</a></td>
+</tr>
+<tr>
+<td>RF04</td>
+<td>Revisão de conteúdo</td>
+<td><a href="#rfg11">RFG11</a></td>
+</tr>
+<tr>
+<td>RF05</td>
+<td>Consumo de materiais</td>
+<td><a href="#rfg12">RFG12</a></td>
+</tr>
+<tr>
+<td>RF06</td>
+<td>Prática com IFQuiz</td>
+<td><a href="#rfg16">RFG16</a></td>
+</tr>
+<tr>
+<td>RF07</td>
+<td>Uso de flashcards</td>
+<td><a href="#rfg14">RFG14</a></td>
+</tr>
+<tr>
+<td>RF08</td>
+<td>Submissão de redação</td>
+<td><a href="#rfg20">RFG20</a></td>
+</tr>
+<tr>
+<td>RF09</td>
+<td>Criação de conteúdo</td>
+<td><a href="#rfg13">RFG13</a></td>
+</tr>
+<tr>
+<td>RF10</td>
+<td>Gestão de exercícios</td>
+<td><a href="#rfg08">RFG08</a></td>
+</tr>
+<tr>
+<td>RF11</td>
+<td>Curadoria de flashcards</td>
+<td><a href="#rfg15">RFG15</a></td>
+</tr>
+<tr>
+<td>RF12</td>
+<td>Correção de redações</td>
+<td><a href="#rfg21">RFG21</a></td>
+</tr>
+<tr>
+<td>RF13</td>
+<td>Correção via OCR e IA</td>
+<td><a href="#rfg22">RFG22</a></td>
+</tr>
+<tr>
+<td>RF14</td>
+<td>Recomendação de estudo</td>
+<td><a href="#rfg18">RFG18</a></td>
+</tr>
+<tr>
+<td>RF15</td>
+<td>Integração de questões</td>
+<td><a href="#rfg09">RFG09</a></td>
+</tr>
+</tbody>
+</table>
+<p>Os requisitos de <a href="#rfg04">RFG04</a> a <a href="#rfg07">RFG07</a>, o <a href="#rfg10">RFG10</a>, o <a href="#rfg17">RFG17</a>, o <a href="#rfg19">RFG19</a>, o <a href="#rfg23">RFG23</a> e o <a href="#rfg24">RFG24</a> foram acrescentados a partir das definições da equipe do V3. A página anterior está preservada no histórico do repositório, na etiqueta <code>legado-v2</code>.</p>
+<hr />
+<h2 id="fontes-desta-pagina">Fontes desta página<a class="headerlink" href="#fontes-desta-pagina" title="Link para esta seção">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Conteúdo</th>
+<th>Fonte</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requisitos da plataforma vindos da especificação anterior</td>
+<td>Versão anterior desta página, preservada na etiqueta <code>legado-v2</code></td>
+<td>ago/2026</td>
+</tr>
+<tr>
+<td>Requisitos da plataforma acrescentados no V3</td>
+<td>Visão de negócio do <code>ifvest-backend/README.md</code> e regras do projeto em <code>docs/guia/06-regras-do-projeto.md</code>, no <code>ifvest-monorepo</code></td>
+<td>out/2026</td>
+</tr>
+<tr>
+<td>Requisitos por módulo, regras e critérios de aceitação</td>
+<td>Levantamento de Funcionalidades e Regras de Negócio, preenchido pelas equipes de cada módulo</td>
+<td>20/10/2026</td>
+</tr>
+<tr>
+<td>Situação no V3</td>
+<td>Código do backend e do frontend do <code>ifvest-monorepo</code> (commit <code>d36de12</code>, de 15/10/2026), conforme a <a href="../../funcionalidades/">Descrição das Funcionalidades</a></td>
+<td>out/2026</td>
+</tr>
+<tr>
+<td>Decisão sobre o filtro de dificuldade</td>
+<td><code>docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md</code>, no <code>ifvest-monorepo</code></td>
+<td>set/2026</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../../c4/componentes/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Nível 3 — Componentes">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Nível 3 — Componentes
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../nao-funcionais/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Requisitos Não-Funcionais">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Requisitos Não-Funcionais
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IFVest — Projeto de Extensão · IFSP Campus Jacareí · Tecnologia em Análise e Desenvolvimento de Sistemas
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ifvest-project/ifvest-docs" target="_blank" rel="noopener" title="Repositório da documentação" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://ifvest.com.br/" target="_blank" rel="noopener" title="Plataforma IFVest" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../javascripts/swagger-instant.js"></script>
+      
+    
+  </body>
+</html>
