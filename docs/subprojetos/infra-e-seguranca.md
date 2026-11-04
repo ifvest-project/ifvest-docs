@@ -40,7 +40,7 @@ Este eixo garante a robustez, a segurança e a conformidade legal da infraestrut
 
 ### API para Extração de Questões de Outros Vestibulares
 
-*   **Líder:** Thales
+*   **Líder:** Thales Vialta da Silva Cardoso
 *   **Objetivo:** Estender a extração de questões a outros vestibulares, como a FUVEST, no mesmo formato de dados.
 *   **Tecnologias Envolvidas:** Python e OCR.
 *   **Destaques:**

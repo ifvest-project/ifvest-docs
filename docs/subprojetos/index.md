@@ -90,7 +90,7 @@ Este eixo garante a robustez, a segurança e a conformidade legal da infraestrut
     *   **Objetivo:** Extrair as questões das provas da Unicamp, em PDF, e estruturá-las em JSON para alimentar o banco de questões.
     *   **Destaques:** Extração de texto e figuras com bibliotecas de leitura de PDF e OCR, formato e tipagem dos dados documentados com Pydantic, validação dos dados extraídos e testes com provas da FUVEST. A estrutura do JSON foi repassada à extração de outros vestibulares.
 
-*   **API para Extração de Questões de Outros Vestibulares:** Liderado por Thales.
+*   **API para Extração de Questões de Outros Vestibulares:** Liderado por Thales Vialta da Silva Cardoso.
     *   **Objetivo:** Estender a extração de questões a outros vestibulares, como a FUVEST, no mesmo formato de dados.
     *   **Destaques:** Início da extração dos dados das provas, levantamento de algoritmos de OCR e testes com bibliotecas de extração em Python. O tratamento das alternativas em imagem está em andamento.
 

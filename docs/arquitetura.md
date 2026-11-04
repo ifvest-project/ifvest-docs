@@ -318,12 +318,12 @@ Em produção, a criação automática de tabelas fica **desligada de propósito
 
 ## API
 
-A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **65 rotas**, contando cada combinação de método e caminho:
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **66 rotas**, contando cada combinação de método e caminho:
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja e histórico |
-| `mocktests` | 12 | Montagem, resolução e correção de simulados, gabarito, histórico e estatísticas |
+| `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, redações e correções |
 | `admin` | 7 | Painel de indicadores, moderação das denúncias e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e permissões |

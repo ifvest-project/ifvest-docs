@@ -4,8 +4,9 @@ Esta é a documentação de usuário do IFVest: como usar a plataforma, tarefa p
 
 | Se você... | Vá para | O que encontra |
 |---|---|---|
-| **Estuda** | [Guia do Aluno](aluno/index.md) | Praticar no IFQuiz e nos Simulados e acompanhar o seu desempenho |
-| **Produz conteúdo** | [Guia do Professor](professor/index.md) | Cadastrar questões, criar simulados institucionais e importar provas |
+| **Estuda** | [Guia do Aluno](aluno/index.md) | Praticar no IFQuiz e nos Simulados, treinar redação e acompanhar o seu desempenho |
+| **Produz conteúdo** | [Guia do Professor](professor/index.md) | Cadastrar e editar questões, criar simulados institucionais, publicar propostas e corrigir redações |
+| **Administra a plataforma** | [Guia do Administrador](administrador/index.md) | Acompanhar os indicadores, gerenciar permissões, moderar denúncias, importar provas e ligar e desligar módulos |
 
 **Todos** usam as mesmas páginas de conta:
 
@@ -21,11 +22,9 @@ Os termos usados na plataforma estão no [Glossário](glossario.md).
 ## Qual versão da plataforma estes guias descrevem
 
 !!! info "IFVest V3, em produção"
-    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em outubro de 2026 (commit `d36de12`).
+    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em outubro de 2026 (commit `73c9098`, de 31/10/2026).
 
     Eles foram escritos antes da entrega do V3, a partir dos relatórios do subprojeto de frontend, e revisados depois dela. Por isso, cada página registra também o que o design previa e não foi implementado. Os módulos **Revisão de Conteúdo** e **Flashcards** ainda não existem na plataforma: as páginas deles continuam nos guias, com um aviso no início, como registro do que foi planejado.
-
-⬜ *Guias pendentes: Redação — escrever e enviar redações, propostas e correção — e Painel Administrativo — visão geral, usuários e permissões e módulos. O funcionamento dos dois está na [Descrição das Funcionalidades](../funcionalidades.md). A moderação e a importação de questões, que também ficam no painel, estão no [Banco de Questões](professor/banco-de-questoes.md).*
 
 ⬜ *Capturas de tela pendentes, a acrescentar com texto alternativo.*
 
@@ -88,6 +87,6 @@ A acessibilidade da plataforma é avaliada com base em dois referenciais adotado
 
 ## Onde esta documentação se encaixa
 
-Estes guias constituem o item **"Documentação de Usuário"** previsto no mapeamento da **ISO/IEC/IEEE 15289:2019** adotado pelo projeto, com estrutura e conteúdo conforme a **ISO/IEC/IEEE 26514:2022**. O registro de conformidade de cada guia — quais elementos da norma foram aplicados e quais foram adiados, com justificativa — está na página inicial do [Guia do Aluno](aluno/index.md#conformidade-com-as-normas) e do [Guia do Professor](professor/index.md#conformidade-com-as-normas).
+Estes guias constituem o item **"Documentação de Usuário"** previsto no mapeamento da **ISO/IEC/IEEE 15289:2019** adotado pelo projeto, com estrutura e conteúdo conforme a **ISO/IEC/IEEE 26514:2022**. O registro de conformidade de cada guia — quais elementos da norma foram aplicados e quais foram adiados, com justificativa — está na página inicial do [Guia do Aluno](aluno/index.md#conformidade-com-as-normas), do [Guia do Professor](professor/index.md#conformidade-com-as-normas) e do [Guia do Administrador](administrador/index.md#conformidade-com-as-normas).
 
 Para o plano geral da documentação e as demais fases, ver [Planejamento da Documentação](../planejamento.md).

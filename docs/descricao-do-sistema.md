@@ -113,9 +113,9 @@ Módulo de prática rápida, com elementos de jogo:
 
 ### Simulados
 
-Qualquer estudante pode montar um **simulado de treino**, escolhendo as questões do banco com filtros de disciplina, assunto, banca e ano, ou gerar um simulado aleatório, com questões de todas as disciplinas ou de uma delas. O simulado de treino só aparece para quem o criou. Quem tem permissão pode criar também **simulados institucionais**, que aparecem para todos os usuários.
+Qualquer estudante pode montar um **simulado de treino**, escolhendo as questões do banco ou sorteando-as, nos dois casos com filtros de disciplina, assunto, banca e ano. O simulado de treino só aparece para quem o criou. Quem tem permissão pode criar também **simulados institucionais**, que aparecem para todos os usuários.
 
-A resolução pode ser feita na própria plataforma, com a correção de cada questão, e o caderno de questões e o gabarito podem ser impressos ou salvos em PDF. A cada envio, a plataforma registra a tentativa — número de questões, quantas foram respondidas, acertos, nota e a resposta dada em cada questão. Com isso, o estudante acompanha as estatísticas das tentativas, incluindo a disciplina em que vai melhor e a que precisa revisar, a nota mais recente em cada simulado e o histórico das tentativas, no perfil.
+A resolução pode ser feita na própria plataforma, com a correção de cada questão e, quando cadastrada, a explicação da resposta, e o caderno de questões e o gabarito podem ser impressos ou salvos em PDF. A cada envio, a plataforma registra a tentativa — número de questões, quantas foram respondidas, acertos, nota e a resposta dada em cada questão. Com isso, o estudante acompanha as estatísticas das tentativas, incluindo a disciplina em que vai melhor e a que precisa revisar, a nota mais recente em cada simulado e o histórico das tentativas, no perfil, com a revisão de cada uma, questão por questão.
 
 ### Redação
 
@@ -145,9 +145,9 @@ Baralhos públicos poderão ser importados **por referência**: correções e me
 
 O acervo combina **questões de provas de vestibulares** com **questões autorais**, cadastradas pelos professores com permissão. As provas entram no banco a partir dos arquivos de cada prova, por uma carga feita no servidor ou pela importação no painel administrativo, que mostra uma simulação do resultado antes de gravar. A carga começou pelas provas da UNICAMP e aceita as de qualquer banca; o escopo prevê também ENEM, FUVEST e outros processos seletivos. Só entram questões objetivas completas, e as que já estão no banco podem ser corrigidas a partir de uma nova versão dos arquivos.
 
-Cada questão de múltipla escolha registra suas alternativas com indicação de qual é a correta, e vincula-se a um ou mais tópicos da taxonomia. O mesmo banco abastece os simulados e os quizzes.
+Cada questão de múltipla escolha registra suas alternativas com indicação de qual é a correta e, opcionalmente, uma resolução escrita pelo professor, e vincula-se a um ou mais tópicos da taxonomia. O mesmo banco abastece os simulados e os quizzes.
 
-Qualquer usuário pode **denunciar um erro** numa questão. As denúncias entram na moderação do painel administrativo, onde a questão pode ser corrigida e a denúncia, resolvida ou descartada.
+Qualquer usuário pode **denunciar um erro** numa questão. As denúncias entram na moderação do painel administrativo, onde a questão pode ser corrigida e a denúncia, resolvida ou descartada. Quem tem permissão de edição também corrige as questões direto no banco de questões, que mostra o gabarito de cada uma.
 
 ---
 

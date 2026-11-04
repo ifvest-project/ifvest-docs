@@ -1,6 +1,6 @@
 # Guia do Aluno
 
-Este guia ensina, tarefa por tarefa, como usar o IFVest para estudar: praticar no IFQuiz e nos Simulados, acompanhar o seu desempenho e cuidar da sua conta.
+Este guia ensina, tarefa por tarefa, como usar o IFVest para estudar: praticar no IFQuiz e nos Simulados, treinar redação, acompanhar o seu desempenho e cuidar da sua conta.
 
 !!! info "Versão documentada"
     O guia descreve o **IFVest V3**, em produção, conferido no código em outubro de 2026. As páginas de **Revisão de Conteúdo** e **Flashcards** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
@@ -11,7 +11,7 @@ Este guia ensina, tarefa por tarefa, como usar o IFVest para estudar: praticar n
 
 Estudantes que usam o IFVest para se preparar para o ENEM e os vestibulares. Nenhum conhecimento técnico é necessário — basta um navegador de internet, uma conta Google e acesso à plataforma em `ifvest.com.br`.
 
-**O que este guia não cobre:** as funções de criação e gestão de conteúdo — questões, simulados institucionais e importação de provas —, que dependem de permissões específicas e estão no [Guia do Professor](../professor/index.md).
+**O que este guia não cobre:** as funções de criação e gestão de conteúdo — questões, simulados institucionais, propostas e correção de redações —, que dependem de permissões específicas e estão no [Guia do Professor](../professor/index.md), e a administração da plataforma, no [Guia do Administrador](../administrador/index.md).
 
 ---
 
@@ -22,8 +22,8 @@ Visão rápida do que o estudante encontra no IFVest:
 | Módulo | O que você faz nele | Situação |
 |---|---|---|
 | **IFQuiz** | Jogar quizzes, responder à Pergunta do Dia, ganhar pontos e patentes, disputar o ranking | ✅ Disponível |
-| **Simulados** | Montar e resolver simulados, imprimir o caderno e o gabarito, acompanhar as estatísticas | ✅ Disponível |
-| **Redação** | Escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM | ✅ Disponível — ⬜ guia pendente |
+| **Simulados** | Montar, resolver e revisar simulados, imprimir o caderno e o gabarito, acompanhar as estatísticas | ✅ Disponível |
+| **Redação** | Escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM | ✅ Disponível |
 | **Revisão** | Ler materiais de estudo organizados por tópico | 🔵 Previsto |
 | **Flashcards** | Estudar com cartões e repetição espaçada | 🔵 Previsto |
 
@@ -50,7 +50,8 @@ Antes de começar, as tarefas de conta são comuns a todos: [Acesso e Conta](../
 | Página | Conteúdo | Situação |
 |---|---|---|
 | [IFQuiz](ifquiz.md) | Montar e jogar quizzes, Pergunta do Dia, sequência, patentes, ranking e loja | ✅ Disponível |
-| [Simulados](simulados.md) | Montar, resolver e imprimir simulados; acompanhar o desempenho; denunciar erros | ✅ Disponível |
+| [Simulados](simulados.md) | Montar, resolver, revisar e imprimir simulados; acompanhar o desempenho; denunciar erros | ✅ Disponível |
+| [Redação](redacao.md) | Escolher um tema, escrever e enviar a redação, acompanhar a correção | ✅ Disponível |
 | [Revisão de Conteúdo](revisao.md) | Registro do módulo planejado | 🔵 Módulo previsto |
 | [Flashcards](flashcards.md) | Registro do módulo planejado | 🔵 Módulo previsto |
 | [Glossário](../glossario.md) | Termos da plataforma e organização dos conteúdos | ✅ Disponível |
@@ -66,7 +67,7 @@ Ambas as normas permitem **adaptação ao contexto do projeto** (*tailoring*), d
 | Elemento da 26514 | Onde está | Situação |
 |---|---|---|
 | Análise de público-alvo e tarefas | Seção "Para quem é" + inventário de tarefas por módulo | ✅ Aplicado |
-| Informação instrucional (tarefas passo a passo) | Corpo das páginas de módulo | 🟡 IFQuiz, Simulados e conta revisados para o V3; Redação pendente |
+| Informação instrucional (tarefas passo a passo) | Corpo das páginas de módulo | ✅ Aplicado: IFQuiz, Simulados, Redação e conta, conferidos no código do V3 |
 | Informação conceitual (o que cada módulo é) | "Mapa da plataforma" + introdução de cada página | ✅ Aplicado |
 | Solução de problemas | Seção "Erros e situações comuns" de cada página | ✅ Aplicado |
 | Mensagens de erro (textos exatos) | Nas tabelas de erros, conferidas no código | 🟡 Aplicado onde há mensagem definida |

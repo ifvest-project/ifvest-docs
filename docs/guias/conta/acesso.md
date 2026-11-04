@@ -75,6 +75,6 @@ Os requisitos dessas funcionalidades continuam registrados como não atendidos e
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): página inicial, tela de entrada, cabeçalho e sessão | out/2026 |
+| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): página inicial, tela de entrada, cabeçalho e sessão | out/2026 |
 | Criação da conta e permissões iniciais | [Descrição das Funcionalidades — Conta e acesso](../../funcionalidades.md#conta-e-acesso), conferida no código do backend | out/2026 |
 | Design anterior: cadastro por formulário e recuperação de senha | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, itens 2 e 3 | abr/2026 |

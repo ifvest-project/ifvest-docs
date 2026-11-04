@@ -149,12 +149,21 @@ nav:
       - Visão Geral: guias/aluno/index.md
       - IFQuiz: guias/aluno/ifquiz.md
       - Simulados: guias/aluno/simulados.md
+      - Redação: guias/aluno/redacao.md
       - Revisão de Conteúdo: guias/aluno/revisao.md
       - Flashcards: guias/aluno/flashcards.md
     - Guia do Professor:
       - Visão Geral: guias/professor/index.md
       - Banco de Questões: guias/professor/banco-de-questoes.md
       - Simulados: guias/professor/simulados.md
+      - Redação: guias/professor/redacao.md
       - Flashcards: guias/professor/flashcards.md
       - Materiais de Revisão: guias/professor/materiais-de-revisao.md
+    - Guia do Administrador:
+      - Visão Geral: guias/administrador/index.md
+      - Indicadores e Auditoria: guias/administrador/indicadores-e-auditoria.md
+      - Usuários e Permissões: guias/administrador/usuarios-e-permissoes.md
+      - Moderação de Questões: guias/administrador/moderacao-de-questoes.md
+      - Importação de Questões: guias/administrador/importacao-de-questoes.md
+      - Módulos: guias/administrador/modulos.md
     - Glossário: guias/glossario.md

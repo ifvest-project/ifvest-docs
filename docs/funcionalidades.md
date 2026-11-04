@@ -3,7 +3,7 @@
 Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada funcionalidade, quem pode usá-la, onde ela fica na interface e as regras que o sistema aplica. A visão geral dos módulos está na [Descrição do Sistema](descricao-do-sistema.md), e o contrato técnico de cada operação, na [Referência da API](api.md).
 
 !!! info "Levantada do código em produção"
-    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 15 de outubro de 2026 (commit `d36de12`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
+    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 31 de outubro de 2026 (commit `73c9098`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
     Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
@@ -23,7 +23,7 @@ Cada funcionalidade traz, logo abaixo do título, três informações:
 |---|---|---|
 | Conta | Entrar com a conta Google, sair, página inicial e perfil | Com conta |
 | IFQuiz | Quiz personalizado, Pergunta do Dia, sequência diária, pontos e patentes, ranking e loja de avatares | Com conta |
-| Simulados | Simulado de treino, manual ou aleatório; lista, resolução, caderno e gabarito, estatísticas e histórico | Com conta |
+| Simulados | Simulado de treino, manual ou aleatório; lista, resolução, revisão das tentativas, caderno e gabarito, estatísticas e histórico | Com conta |
 | Simulados | Simulado institucional, visível a todos | `create_institutional_mocktest` |
 | Redação | Temas de redação | Pública |
 | Redação | Escrita e envio, minhas redações | Com conta |
@@ -69,7 +69,7 @@ Em telas de até 900 px de largura, como as de celular, as abas do cabeçalho fi
 - O **apelido** pode ser editado. É o nome exibido no ranking; sem apelido, o ranking mostra a parte do e-mail antes do `@`.
 - **Atividade na Pergunta do Dia** — mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
 - **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos, e as ações *Revisar*, que abre o gabarito, e *Refazer*, que abre a montagem com os mesmos filtros.
-- **Histórico de simulados** — as tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota, e a ação *Refazer*, que abre o simulado de novo. Não aparece com o módulo Simulados desligado.
+- **Histórico de simulados** — as tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota, e as ações *Revisar*, que abre a [revisão da tentativa](#revisao-da-tentativa), e *Refazer*, que abre o simulado de novo. Não aparece com o módulo Simulados desligado.
 
 Não há foto de perfil nem exclusão de conta.
 
@@ -96,13 +96,13 @@ Não há escolha de dificuldade: o seletor foi ocultado por decisão da equipe, 
 
 **Partida.**
 
-- As questões aparecem uma de cada vez, sorteadas entre as do filtro, com o texto de apoio antes do enunciado quando a questão tem um.
+- As questões aparecem uma de cada vez, sorteadas entre as do filtro, com a banca e o ano da prova de origem, quando registrados, e o texto de apoio antes do enunciado, quando a questão tem um.
 - O estudante tem **3 vidas**. Cada erro custa uma, e o quiz termina no terceiro erro ou quando todas as questões forem respondidas.
 - A **dica** elimina uma alternativa errada, uma vez por questão, e não pode ser usada quando resta só uma vida.
 - Depois de confirmar, a tela mostra se a resposta está certa e qual é a alternativa correta.
 - Não há cronômetro. Cada acerto vale 20 pontos, independentemente da sequência de acertos (*combo*) mostrada na tela.
 
-**Resultado e revisão.** Ao final, os pontos — **20 por acerto** — são somados ao saldo. A tela de resultado mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#pontos-e-patentes). A revisão lista as questões respondidas, com a alternativa escolhida e o gabarito oficial.
+**Resultado e revisão.** Ao final, os pontos — **20 por acerto** — são somados ao saldo. A tela de resultado mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#pontos-e-patentes). A revisão lista as questões respondidas, com a banca e o ano, a alternativa escolhida e o gabarito oficial.
 
 Durante a partida, o botão "Sinalizar" permite [denunciar um erro](#denuncia-de-erro) na questão.
 
@@ -111,7 +111,7 @@ Durante a partida, o botão "Sinalizar" permite [denunciar um erro](#denuncia-de
 **Acesso:** com conta · **Onde:** IFQuiz → "Pergunta do dia" (`/quiz/pergunta-do-dia`) · **Flag:** `quiz_daily_question`
 
 - **Uma questão por dia, a mesma para todos**, escolhida a partir da data, no horário de Brasília.
-- A questão aparece com o texto de apoio antes do enunciado, quando tem um.
+- A questão aparece com a disciplina, a banca e o ano da prova, quando registrados, e com o texto de apoio antes do enunciado, quando tem um.
 - **Uma resposta por dia.** Depois de responder, as alternativas ficam bloqueadas até o dia seguinte.
 - O acerto vale **100 pontos**, creditados na hora.
 - O resultado mostra a alternativa correta, a sequência diária e o **desempenho da comunidade**: o percentual de acerto de todos que responderam e a distribuição das respostas por alternativa.
@@ -199,10 +199,12 @@ As duas disciplinas são calculadas a partir da resposta dada em cada questão, 
 
 **Acesso:** com conta; simulado institucional, `create_institutional_mocktest` · **Onde:** Simulados → "Criar novo simulado" (`/simulados/novo`)
 
-O estudante dá um nome ao simulado, de até 120 caracteres, e escolhe uma de duas formas de montá-lo:
+O estudante dá um nome ao simulado, de até 120 caracteres, define a quantidade de questões, de 10 por padrão, e escolhe uma de duas formas de montá-lo:
 
-- **Selecionar questões** — busca no banco por título ou enunciado, com filtros de disciplina, assunto, banca e ano, em páginas de 25 questões. Cada questão mostra banca, ano, número, disciplina e assunto, e a seleção é mantida ao trocar de página ou de filtro. É preciso selecionar ao menos uma questão; a quantidade informada no início não se aplica a este modo.
-- **Aleatório** (flag `mocktests_random`) — sorteia a quantidade pedida, de 10 questões por padrão, de todas as disciplinas ou de uma das que têm questões no banco. Se o filtro não tiver questões suficientes, a criação é recusada com a informação de quantas existem. A API aceita também filtros por assunto, dificuldade e banca, que a interface não oferece.
+- **Selecionar questões** — busca no banco por título ou enunciado, com filtros de disciplina, assunto, banca e ano e ordenação por ordem de cadastro ou por ano, em páginas de 25 questões. Cada questão mostra banca, ano, número, disciplina e assunto, e "Ver questão completa" mostra o texto de apoio e as alternativas. A quantidade é o limite da seleção: atingida, as demais questões ficam travadas. É preciso selecionar ao menos uma questão, e a seleção é mantida ao trocar de página ou de filtro.
+- **Aleatório** (flag `mocktests_random`) — sorteia a quantidade pedida entre as questões que atendem aos filtros de disciplina, assunto, banca e ano. A tela mostra quantas questões atendem aos filtros e trava a geração quando são menos do que a quantidade pedida. A API aceita também o filtro por dificuldade, que a interface não oferece.
+
+O envio fica travado enquanto o servidor responde, e a confirmação mostra o nome, o modo e o número de questões gravados. A API recusa uma lista com questões repetidas ou inexistentes.
 
 Quem tem a permissão de simulado institucional vê ainda a opção **Simulado institucional**, desmarcada por padrão. O simulado criado aparece na [lista de simulados](#lista-de-simulados).
 
@@ -210,12 +212,12 @@ Quem tem a permissão de simulado institucional vê ainda a opção **Simulado i
 
 **Acesso:** com conta · **Onde:** Simulados → "Ver meus simulados" (`/simulados/meus-simulados`)
 
-A lista, chamada "Meus simulados", mostra os simulados de treino do próprio estudante e os institucionais, com o número de questões e a nota da última tentativa do próprio usuário. A busca por nome é feita na própria tela.
+A lista, chamada "Meus simulados", mostra os simulados de treino do próprio estudante e os institucionais, com o modo de montagem, o número de questões, o selo "Institucional", quando é o caso, e a nota da última tentativa do próprio usuário. A busca por nome é feita na própria tela.
 
-Cada simulado tem quatro ações; as duas últimas aparecem só com a flag `mocktests_pdf_export` ligada:
+Cada simulado tem até quatro ações; "PDF" e "Gabarito" aparecem só com a flag `mocktests_pdf_export` ligada:
 
 - **Resolver** — abre a resolução.
-- **Editar** — permite renomear ou excluir o simulado, com confirmação antes de excluir. Só o criador, quem tem a permissão `manage_mocktests` ou um administrador podem fazer isso; para os demais, o botão aparece, mas a ação é recusada com aviso. Excluir um simulado apaga também **as tentativas de todos os estudantes** nele.
+- **Editar** — permite renomear o simulado, tirar questões dele e excluí-lo, com confirmação antes de excluir. O botão aparece só para o criador, para quem tem a permissão `manage_mocktests` e para o administrador. O simulado precisa manter ao menos uma questão, e tirar questões não altera as tentativas já registradas. A interface não acrescenta questões, embora a API aceite trocar a lista inteira. Excluir um simulado apaga também **as tentativas de todos os estudantes** nele.
 - **PDF** — gera o [caderno de questões](#caderno-e-gabarito).
 - **Gabarito** — gera a [folha de gabarito](#caderno-e-gabarito).
 
@@ -223,14 +225,24 @@ Cada simulado tem quatro ações; as duas últimas aparecem só com a flag `mock
 
 **Acesso:** com conta · **Onde:** "Resolver", na lista de simulados (`/simulados/resolver/{id}`)
 
-- As questões aparecem uma de cada vez, com banca, ano e, quando cadastrada, a dificuldade, de 1 a 5. O texto de apoio, as figuras e a formatação do enunciado e das alternativas são exibidos.
+- As questões aparecem uma de cada vez, com a posição no simulado e a origem — número na prova, disciplina, banca e ano — e, quando cadastrada, a dificuldade, como Fácil, Média ou Difícil. O texto de apoio, as figuras e a formatação do enunciado e das alternativas são exibidos.
 - Uma barra presa ao topo da tela tem os botões **Anterior** e **Próxima** e um quadradinho numerado por questão, que leva direto a ela. O quadradinho fica pintado quando a questão tem alternativa marcada.
 - Clicar de novo na alternativa marcada, ou em **Limpar seleção**, desfaz a escolha. **Confirmar resposta** mostra na hora se ela está certa e não pode ser desfeita.
+- Depois de confirmar, se a questão tem resolução cadastrada, a seção **Por que essa alternativa?** mostra a explicação. Ela abre sozinha quando a resposta está errada e fica a um clique quando está certa.
 - **Finalizar simulado** abre uma confirmação com o número de questões respondidas e o aviso de que as sem resposta contam como erradas; só **Sim, finalizar** registra a tentativa.
 - A nota é a proporção de acertos sobre o total de questões, de 0 a 100. Conta a alternativa marcada em cada questão, mesmo sem confirmar.
 - Cada envio registra uma tentativa, com o total de questões, as respondidas, os acertos, a nota e a resposta de cada questão. As tentativas são ilimitadas e não rendem pontos, e o histórico delas fica no [Perfil](#perfil).
-- O resultado mostra a nota e os acertos. Não há revisão das questões depois de finalizar.
+- O resultado mostra a nota e os acertos, com o acesso à [revisão da tentativa](#revisao-da-tentativa).
 - O botão "Sinalizar", no canto do cartão da questão, permite [denunciar um erro](#denuncia-de-erro) na questão.
+
+### Revisão da tentativa
+
+**Acesso:** com conta, só para as próprias tentativas · **Onde:** "Revisar respostas", no resultado, ou "Revisar", no histórico de simulados do [Perfil](#perfil) (`/simulados/tentativas/{id}`)
+
+- Mostra a nota, os acertos e as questões respondidas e, para cada questão, a origem, se o estudante acertou, errou ou não respondeu, as alternativas, com a marcada e a correta destacadas, e a resolução, quando cadastrada.
+- As questões aparecem na versão atual, mas o acerto e a nota são os registrados na tentativa. Uma questão respondida e depois tirada do simulado continua na revisão, no fim da lista.
+- Só o próprio estudante abre a revisão das suas tentativas: nem quem gerencia simulados nem o administrador têm acesso.
+- As tentativas anteriores a 10/10/2026 não têm as respostas por questão, e a tela avisa que só há a nota.
 
 ### Caderno e gabarito
 
@@ -309,33 +321,37 @@ Acervo de questões de múltipla escolha usado pelos quizzes e pelos simulados. 
 
 **Acesso:** com conta · **Onde:** Área do Professor → "Banco de Questões"; também na [montagem de simulado](#montar-simulado)
 
-Busca por título ou enunciado, em páginas de 20 questões. Cada questão mostra título, dificuldade, quando cadastrada, banca, ano, número e texto base, com a formatação e as figuras do enunciado; as alternativas aparecem ao expandir a questão, sem indicar a correta.
+Busca por título ou enunciado, com filtros de disciplina, assunto, banca e ano, em páginas de 20 questões, com o total de questões encontradas. Cada questão mostra título, disciplina, assunto, dificuldade, quando cadastrada, banca, ano, número e texto base, com a formatação e as figuras do enunciado; as alternativas aparecem ao expandir a questão.
+
+- Para quem tem a permissão `edit_question`, o gabarito vem destacado, com um aviso quando a questão está sem alternativa correta ou com mais de uma, e cada questão tem o botão "Editar". Para os demais, a alternativa correta não é indicada.
+- Cada questão tem também o botão "Sinalizar", para [denunciar um erro](#denuncia-de-erro).
 
 ### Cadastro de questões
 
 **Acesso:** `create_question` · **Onde:** Área do Professor → "Nova Questão" · **Flag:** `mocktests_create_questions`
 
 - Só há questões de **múltipla escolha**, com alternativas de A a E e a correta marcada.
-- Campos obrigatórios: título, disciplina, assunto, tópico, banca, ano, número e enunciado. Opcionais: dificuldade, que começa em "Fácil", e texto de apoio.
+- Campos obrigatórios: título, disciplina, assunto, tópico, banca, ano, número e enunciado. Opcionais: dificuldade, que começa em "Fácil", texto de apoio e **resolução**, que o estudante vê depois de responder à questão num simulado. As questões importadas chegam sem resolução.
 - A disciplina, o assunto e o tópico são **digitados**: um nome que ainda não existe cria um novo ramo da taxonomia.
 - O formulário não aceita imagens.
 
 ### Edição de questões
 
-**Acesso:** `edit_question` · **Onde:** Painel Administrativo → "Moderação de Questões" → "Editar questão"
+**Acesso:** `edit_question` · **Onde:** Área do Professor → "Banco de Questões" → "Editar"; também no Painel Administrativo → "Moderação de Questões" → "Editar questão"
 
-- Pela interface, permite alterar os dados da questão, o texto das alternativas existentes, o gabarito e o vínculo principal com a taxonomia. Pela tela, não é possível incluir ou remover alternativas nem trocar imagens.
+- Pela interface, permite alterar os dados da questão, a resolução, o texto das alternativas existentes, o gabarito e o vínculo principal com a taxonomia. Pela tela, não é possível incluir ou remover alternativas nem trocar imagens.
 - A edição exige ao menos duas alternativas, com letras distintas, e **exatamente uma correta**.
-- Na interface, a edição fica no Painel Administrativo, que exige a permissão de administrador.
+- Uma questão editada fica protegida: as importações seguintes não a alteram, a menos que se peça para substituir as edições manuais.
+- Pela moderação, a edição pode resolver de uma vez as denúncias pendentes da questão; pelo banco de questões, as denúncias ficam como estão.
 - Não há exclusão de questões.
 
 ### Denúncia de erro
 
-**Acesso:** com conta · **Onde:** botão "Sinalizar", durante o quiz e na resolução de simulado
+**Acesso:** com conta · **Onde:** botão "Sinalizar", durante o quiz, na resolução de simulado e no banco de questões
 
 - O estudante escolhe o motivo — erro no enunciado, gabarito incorreto, alternativas duplicadas, imagem ilegível ou ausente, ou outro problema — e pode acrescentar detalhes, com até 2.000 caracteres.
 - A denúncia entra na [moderação](#moderacao-de-questoes) como pendente. Não há limite de denúncias, e o estudante não acompanha o andamento das que fez.
-- A Pergunta do Dia, a revisão do quiz e o banco de questões não têm o botão.
+- A Pergunta do Dia, a revisão do quiz e a revisão do simulado não têm o botão.
 
 ---
 
@@ -343,7 +359,7 @@ Busca por título ou enunciado, em páginas de 20 questões. Cada questão mostr
 
 **Acesso:** qualquer uma das permissões de conteúdo ou de redação · **Onde:** aba "Professor" do cabeçalho (`/area_professor`)
 
-Reúne três abas: **Banco de Questões**, com a consulta e o cadastro; **Propostas de Redação**, com a lista, a criação, a edição e a exclusão; e **Fila de Correção**, com o acesso à fila.
+Reúne três abas: **Banco de Questões**, com a consulta, o cadastro e, para quem tem `edit_question`, a edição; **Propostas de Redação**, com a lista, a criação, a edição e a exclusão; e **Fila de Correção**, com o acesso à fila.
 
 - Os botões de cadastro aparecem para todos que têm acesso à área; a permissão específica é conferida no envio.
 - As permissões de simulados, `create_institutional_mocktest` e `manage_mocktests`, também dão acesso à área, que não tem ferramentas de simulados: o simulado institucional é criado em [Simulados](#montar-simulado).
@@ -376,7 +392,7 @@ Reúne três abas: **Banco de Questões**, com a consulta e o cadastro; **Propos
 
 Recebe de uma vez as questões de uma ou mais provas, num arquivo `.zip` com a pasta de cada prova: um arquivo JSON por questão, no formato em que saem da extração das provas, e as figuras na pasta `imgs/` ou `imagens/`. O limite é de 300 MB por arquivo, 1 GB descompactado e 50 mil arquivos. É o mesmo processo da carga feita no servidor (ver [Arquitetura — Carga do banco de questões](arquitetura.md#carga-do-banco-de-questoes)).
 
-- **Opções.** "Corrigir as questões que já estão no site", marcada por padrão, atualiza com o conteúdo do zip as questões que já existem, identificadas pela banca, pelo ano, pelo número e pela prova; desmarcada, só as questões novas entram. "Substituir também as questões corrigidas à mão pela moderação", desmarcada por padrão, aplica o zip também às questões editadas no painel; sem ela, essas questões ficam como estão e são listadas no relatório.
+- **Opções.** "Corrigir as questões que já estão no site", marcada por padrão, atualiza com o conteúdo do zip as questões que já existem, identificadas pela banca, pelo ano, pelo número e pela prova; desmarcada, só as questões novas entram. "Substituir também as questões corrigidas à mão pela moderação", desmarcada por padrão, aplica o zip também às questões editadas à mão, no banco de questões ou na moderação; sem ela, essas questões ficam como estão e são listadas no relatório.
 - **Simulação.** "Enviar e simular" lê o zip e mostra o que aconteceria, sem gravar nada: quantas questões seriam inseridas e corrigidas, o que mudaria em cada questão corrigida, as que ficam de fora e por quê, as imagens que faltam e os arquivos que não puderam ser lidos.
 - **Aplicação.** "Aplicar importação" grava exatamente o que a simulação mostrou, em segundo plano: é possível sair da página enquanto ela roda. O zip fica guardado por 24 horas; depois disso, ou se o servidor reiniciar, é preciso enviá-lo de novo.
 - **Histórico.** Lista as importações, com data, arquivo, tipo — simulação ou aplicação —, situação, quem enviou e o acesso ao relatório.
@@ -449,7 +465,7 @@ O que foi definido para os módulos previstos está na [Descrição do Sistema](
 | Pontos, patentes, ranking e loja | `src/services/quiz_scoring.py`, `quiz_ranking.py`, `store_catalog.py` e `src/core/clock.py` | out/2026 |
 | Critério do ranking e da patente | `docs/auditoria-testes-2026-09-25.md`, seção 12 | set/2026 |
 | Seletor de dificuldade oculto | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md` | set/2026 |
-| Simulados: tipos, acesso, resolução, caderno e gabarito | `docs/auditoria-simulados-2026-10-10.md`, conferido no código | out/2026 |
+| Simulados: tipos, acesso, montagem, resolução, revisão, caderno e gabarito | `docs/auditoria-simulados-2026-10-10.md`, conferido no código | out/2026 |
 | Importação de questões pelo painel | `docs/importar-questoes-pelo-painel.md`, conferido no código | out/2026 |
 
 !!! note "Divergências entre o README do backend e o código"

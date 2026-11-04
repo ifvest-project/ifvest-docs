@@ -28,7 +28,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
     | **Quantidade de questões** | 5, 10, 15 ou 20 |
 
 3. Confira a **prévia do quiz**, com o tempo estimado — 2 minutos por questão — e os pontos possíveis, e clique em **Iniciar Quiz →**.
-4. As questões aparecem uma de cada vez, com o texto de apoio antes do enunciado quando a questão tem um. Escolha uma alternativa e clique em **Confirmar resposta**.
+4. As questões aparecem uma de cada vez, com a posição no quiz — "Questão 3 de 10" — e, quando registradas, a banca e o ano da prova de origem, como "UNICAMP 2023". O texto de apoio vem antes do enunciado, quando a questão tem um. Escolha uma alternativa e clique em **Confirmar resposta**.
 5. A tela mostra na hora se você acertou e qual é a alternativa correta. Clique em **Próxima questão →** para seguir.
 6. O quiz termina quando você responde a todas as questões ou perde as três vidas. Clique em **Ver resultado 🏆** (ver [Tarefa 2](#tarefa-2-ver-o-resultado-e-revisar-as-questoes)).
 
@@ -39,7 +39,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 - Não há cronômetro, e cada acerto vale **20 pontos**. Os pontos aparecem durante a partida, mas são somados ao seu saldo só no fim do quiz.
 - As quantidades maiores que o número de questões disponíveis no filtro ficam desabilitadas.
 - Não há escolha de dificuldade: o filtro foi retirado porque a dificuldade registrada nas questões ainda não reflete a real.
-- Se encontrar um erro numa questão, use o botão **🚩 Sinalizar** (ver [Simulados — Denunciar um erro numa questão](simulados.md#tarefa-7-denunciar-um-erro-numa-questao)).
+- Se encontrar um erro numa questão, use o botão **🚩 Sinalizar** (ver [Simulados — Denunciar um erro numa questão](simulados.md#tarefa-8-denunciar-um-erro-numa-questao)).
 
 ---
 
@@ -55,7 +55,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 **Como fazer:**
 
 1. Ao fim do quiz, a tela **Resultado do Quiz** mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#tarefa-5-ganhar-pontos-e-subir-de-patente).
-2. Para rever as questões, clique em **🔍 Ver Gabarito e Resoluções Detalhadas →**. A revisão lista as questões respondidas, com a alternativa que você escolheu e o gabarito oficial.
+2. Para rever as questões, clique em **🔍 Ver Gabarito e Resoluções Detalhadas →**. A revisão lista as questões respondidas, com a disciplina, a banca e o ano, a alternativa que você escolheu e o gabarito oficial.
 3. Para continuar, clique em **Jogar novamente**, que abre a montagem de um novo quiz, ou em **Voltar ao IFQuiz**.
 
 **Observações:**
@@ -76,7 +76,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 **Como fazer:**
 
 1. Na página do IFQuiz, clique em **Pergunta do dia** ou em **Responder pergunta do dia** (`/quiz/pergunta-do-dia`).
-2. Leia a questão — com o texto de apoio, quando houver —, escolha uma alternativa e clique em **Confirmar resposta**.
+2. Leia a questão. Acima dela aparecem a disciplina, a banca e o ano da prova, quando registrados, e a dificuldade; o texto de apoio vem antes do enunciado, quando houver. Escolha uma alternativa e clique em **Confirmar resposta**.
 3. O resultado mostra a alternativa correta, a sua [sequência diária](#tarefa-4-manter-a-sequencia-diaria) e o **desempenho da comunidade**: o percentual de acerto de todos que responderam e a distribuição das respostas por alternativa.
 4. Para continuar praticando, clique em **Jogar Quiz Rápido**, que começa direto um quiz de 5 questões de todas as disciplinas.
 
@@ -228,7 +228,7 @@ O **Modo Competição** aparece na página do IFQuiz como **Em breve**, desabili
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): páginas do IFQuiz | out/2026 |
+| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): páginas do IFQuiz | out/2026 |
 | Regras de pontos, patentes, sequência, ranking e loja | [Descrição das Funcionalidades — IFQuiz](../../funcionalidades.md#ifquiz), conferida no código do backend | out/2026 |
 | Filtro de dificuldade retirado | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md`, no `ifvest-monorepo` | set/2026 |
 | Modo Competição | Levantamento de Funcionalidades e Regras de Negócio, entradas do IFQuiz | 20/10/2026 |

@@ -141,20 +141,20 @@ flowchart TD
     A referência à API **não é pré-requisito** desta fase: ela documenta o sistema para quem desenvolve, enquanto os guias documentam o uso da plataforma para quem estuda e ensina. As duas seguem em paralelo.
 
 !!! note "Os guias foram revisados com a interface entregue"
-    Os guias foram escritos antes da entrega do IFVest V3, com o material de design da frente de interface como base da **camada de interface** de cada tarefa (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)). Em outubro de 2026, foram revisados com base no código da interface entregue: telas, botões e mensagens passaram a ser os da plataforma em produção, e o que o design previa e não foi implementado ficou registrado em cada página.
+    Os guias foram escritos antes da entrega do IFVest V3, com o material de design da frente de interface como base da **camada de interface** de cada tarefa (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)). Em outubro de 2026, foram revisados com base no código da interface entregue: telas, botões e mensagens passaram a ser os da plataforma em produção, e o que o design previa e não foi implementado ficou registrado em cada página. Em novembro de 2026, ganharam as páginas de Redação e o Guia do Administrador, escritos já a partir do código.
 
     As páginas dos módulos ainda não implementados — Revisão de Conteúdo e Flashcards — continuam nos guias, com um aviso no início, como registro do que foi planejado.
 
 | Item | Descrição | Status |
 |------|-----------|--------|
 | Conta e Perfil | Tarefas comuns a todos: entrar com a conta Google, sair, consultar o perfil e alterar o apelido. Seção única, referenciada pelos demais guias. | ✅ Concluído |
-| Guias por módulo | Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver. IFQuiz, Simulados e Banco de Questões revisados para o IFVest V3; Redação e Painel Administrativo pendentes. | 🟡 Em andamento |
+| Guias por módulo | Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver. IFQuiz, Simulados, Redação, Banco de Questões e Painel Administrativo documentados para o IFVest V3; faltam as capturas de tela e a validação com usuários. | 🟡 Em andamento |
 | Glossário | Termos da plataforma e explicação de como os conteúdos e as permissões estão organizados. | ✅ Concluído |
 
 !!! note "A estrutura dos guias acompanha o modelo de permissões"
     A versão anterior separava os guias por cargo — um para o aluno, outro para o professor. Como o IFVest V3 adota **permissões granulares** sobre os cargos, a organização por perfil deixa de ser suficiente: uma mesma tarefa pode estar disponível a usuários diferentes conforme as permissões que possuem.
 
-    Os guias passam, portanto, a se organizar **por módulo e por tarefa**, indicando em cada uma, no campo **Acesso**, a permissão exigida. A divisão entre o Guia do Aluno e o Guia do Professor foi mantida como porta de entrada por público: o Guia do Professor reúne as tarefas que dependem de permissões de conteúdo.
+    Os guias passam, portanto, a se organizar **por módulo e por tarefa**, indicando em cada uma, no campo **Acesso**, a permissão exigida. A divisão entre o Guia do Aluno e o Guia do Professor foi mantida como porta de entrada por público: o Guia do Professor reúne as tarefas que dependem de permissões de conteúdo e de redação, e o Guia do Administrador, as do Painel Administrativo, que dependem da permissão de administrador.
 
 ---
 

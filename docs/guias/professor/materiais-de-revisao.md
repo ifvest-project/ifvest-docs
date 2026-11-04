@@ -13,7 +13,7 @@ Os materiais são escritos em **Markdown**, com suporte a fórmulas matemáticas
     - a tarefa com status **🟡 Refatorado (em design)** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado;
     - o campo **Perfil** e a marca 🔄 vêm da época em que a divisão de tarefas entre professor e administrador estava em discussão. No V3, o que cada conta pode fazer depende das [permissões](index.md#para-quem-e-este-guia).
 
-    Em outubro de 2026, uma página de administração da Revisão — com a lista de materiais, o histórico de acessos e um carrossel de matérias — estava em desenvolvimento, ainda só na interface e fora da versão em produção (ramo `feat/tela-revisao-conteudo` do `ifvest-monorepo`, não incorporado ao `main`).
+    Em outubro de 2026, uma página de administração da Revisão — com a lista de materiais, o histórico de acessos e um carrossel de matérias — estava em desenvolvimento, ainda só na interface e fora da versão em produção (ramo `feat/tela-revisao-conteudo` do `ifvest-monorepo`, não incorporado ao `main`). No fim do mês, um segundo ramo, `feat/admin-criar-material`, acrescentou a ela uma tela de criação de materiais — com o título, a matéria, o link de uma vídeo-aula, o texto e exercícios de fixação escolhidos no banco de questões —, também só na interface e fora do `main`.
 
     Os termos de organização dos conteúdos usados aqui — área e tópico — são os da versão anterior. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
 
@@ -24,7 +24,7 @@ Os materiais são escritos em **Markdown**, com suporte a fórmulas matemáticas
     - a tela **"Meus Materiais" é substituída por "Histórico de Edições"**;
     - o **administrador** passa a adicionar novas matérias e conteúdos, e ganha uma tela para acompanhar quais alterações foram feitas.
 
-    Cada tarefa abaixo indica seu perfil. As marcadas 🔄 poderão migrar para um futuro **Guia do Administrador** — o que **não** significa que deixarão de existir, apenas que mudarão de responsável.
+    Cada tarefa abaixo indica seu perfil. As marcadas 🔄 poderão migrar para o [Guia do Administrador](../administrador/index.md) quando o módulo for implementado — o que **não** significa que deixarão de existir, apenas que mudarão de responsável.
 
     *Fonte: atas de reunião do subprojeto de frontend, 22/05/2026.*
 
@@ -246,6 +246,7 @@ Haverá **dois modos** de montar o questionário, que podem ser combinados:
 | Interface futura (Tarefas 1, 2, 4 e 5) | Criação detalhada, exercícios de fixação, Meus Materiais e edição: Relatório 4 — Maria Luiza, mesmo subprojeto | mai/2026 |
 | Redistribuição de perfis | Entre professor e administrador: atas de reunião do subprojeto de frontend, 22/05/2026 | mai/2026 |
 | Página em desenvolvimento | Página de administração da Revisão: ramo `feat/tela-revisao-conteudo` do `ifvest-monorepo` | out/2026 |
+| Tela de criação em desenvolvimento | Criação de materiais: ramo `feat/admin-criar-material` do `ifvest-monorepo` | out/2026 |
 
 !!! note "Sobre a ordem das fontes"
     O Relatório 4 (17/05) descreve as telas do professor em detalhe; a ata de 22/05, cinco dias depois, redistribui parte dessas telas entre professor e administrador. Esta página documenta o design do relatório **e** a decisão posterior, sinalizando em cada tarefa qual das duas prevalece — o design permanece útil, mas a atribuição de perfil mudou.

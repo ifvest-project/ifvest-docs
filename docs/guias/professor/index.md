@@ -1,12 +1,13 @@
 # Guia do Professor
 
-Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest: o banco de questões, os simulados institucionais e a importação de provas.
+Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest: o banco de questões, os simulados institucionais e a redação — propostas e correção.
 
 !!! info "Este guia complementa o Guia do Aluno"
     Quem tem as permissões de professor usa a plataforma como qualquer estudante, com tarefas a mais. Este guia cobre apenas o que se soma:
 
     - **Conta e perfil** — entrar, sair e consultar o perfil ficam na [seção Conta](../conta/acesso.md), comum a todos.
-    - **Tarefas de estudo** — jogar o IFQuiz e montar e resolver simulados funcionam para você como para o estudante, e estão no [Guia do Aluno](../aluno/index.md).
+    - **Tarefas de estudo** — jogar o IFQuiz, montar e resolver simulados e escrever redações funcionam para você como para o estudante, e estão no [Guia do Aluno](../aluno/index.md).
+    - **Administração** — a moderação das denúncias, a importação de provas, as permissões e os módulos ficam no [Guia do Administrador](../administrador/index.md).
 
 !!! info "Versão documentada"
     O guia descreve o **IFVest V3**, em produção, conferido no código em outubro de 2026. As páginas de **Flashcards** e **Materiais de Revisão** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
@@ -22,12 +23,12 @@ Professores e educadores que produzem e mantêm o conteúdo do IFVest. Nenhum co
 | Permissão | O que permite | Como se obtém |
 |---|---|---|
 | `create_question` | Cadastrar questões no banco | Automática para e-mails `@ifsp.edu.br` |
-| `edit_question` | Editar questões existentes. A tela de edição fica no Painel Administrativo (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)) | Automática para e-mails `@ifsp.edu.br` |
+| `edit_question` | Editar questões existentes e ver o gabarito no banco de questões (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)) | Automática para e-mails `@ifsp.edu.br` |
 | `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos | Automática para e-mails `@ifsp.edu.br` |
-| `manage_mocktests` | Renomear e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
-| `create_essay_proposal_permission` | Publicar propostas de redação | Concedida por um administrador |
+| `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
+| `create_essay_proposal_permission` | Criar, editar e excluir propostas de redação | Concedida por um administrador |
 | `grade_essay_permission` | Corrigir redações | Concedida por um administrador |
-| `admin_permission` | Administrar a plataforma, inclusive a moderação e a importação de questões | Concedida por um administrador |
+| `admin_permission` | Administrar a plataforma, no Painel Administrativo (ver [Guia do Administrador](../administrador/index.md)). Passa em todas as verificações de permissão | Concedida por um administrador |
 
 As permissões automáticas são atribuídas no **primeiro acesso**. Se você entrou com outro e-mail, ou precisa de uma permissão que não tem, peça-a a um administrador. As suas permissões ativas aparecem no seu [perfil](../conta/perfil.md#tarefa-1-consultar-o-seu-perfil).
 
@@ -37,11 +38,10 @@ As permissões automáticas são atribuídas no **primeiro acesso**. Se você en
 
 | Área | Onde fica | O que você faz nela | Situação |
 |---|---|---|---|
-| **Banco de questões** | Área do Professor (aba **Professor**) | Consultar e cadastrar questões | ✅ Disponível |
+| **Banco de questões** | Área do Professor (aba **Professor**) | Consultar, cadastrar, editar e sinalizar questões | ✅ Disponível |
 | **Simulados institucionais** | Simulados → **Criar novo simulado** | Criar simulados para todos os estudantes e gerenciar os de outras pessoas | ✅ Disponível |
-| **Moderação de questões** | Painel Administrativo (aba **Admin**) | Editar questões e tratar as denúncias de erro | ✅ Disponível, só para administradores |
-| **Importação de questões** | Painel Administrativo (aba **Admin**) | Importar provas em lote, a partir de um arquivo `.zip` | ✅ Disponível, só para administradores |
-| **Propostas e correção de redações** | Área do Professor e Redação | Publicar propostas e corrigir redações | ✅ Disponível — ⬜ guia pendente |
+| **Redação** | Área do Professor e página de Redação | Publicar propostas e corrigir redações | ✅ Disponível |
+| **Moderação e importação** | Painel Administrativo (aba **Admin**) | Tratar as denúncias de erro e importar provas em lote — ver [Guia do Administrador](../administrador/index.md) | ✅ Disponível, só para administradores |
 | **Flashcards** | — | Criar os cartões de estudo | 🔵 Previsto |
 | **Materiais de revisão** | — | Escrever os materiais de cada tópico | 🔵 Previsto |
 
@@ -67,8 +67,9 @@ As páginas estão na ordem sugerida de leitura: primeiro o banco de questões, 
 |---|---|---|
 | [Acesso e Conta](../conta/acesso.md) | Entrar com a conta Google e sair | ✅ Comum a todos |
 | [Perfil e Seus Dados](../conta/perfil.md) | Apelido, indicadores e históricos | ✅ Comum a todos |
-| [Banco de Questões](banco-de-questoes.md) | Consultar, cadastrar, editar e importar questões; tratar as denúncias | ✅ Disponível |
-| [Simulados](simulados.md) | Criar simulados institucionais e gerenciar simulados | ✅ Disponível |
+| [Banco de Questões](banco-de-questoes.md) | Consultar, cadastrar, editar e sinalizar questões | ✅ Disponível |
+| [Simulados](simulados.md) | Criar simulados institucionais e gerenciar os de outras pessoas | ✅ Disponível |
+| [Redação](redacao.md) | Criar e gerenciar propostas, corrigir redações e consultar as correções feitas | ✅ Disponível |
 | [Flashcards](flashcards.md) | Registro do módulo planejado | 🔵 Módulo previsto |
 | [Materiais de Revisão](materiais-de-revisao.md) | Registro do módulo planejado | 🔵 Módulo previsto |
 
@@ -76,12 +77,12 @@ As páginas estão na ordem sugerida de leitura: primeiro o banco de questões, 
 
 ## Conformidade com as normas
 
-Este guia integra, junto com o [Guia do Aluno](../aluno/index.md) e a [seção Conta](../conta/acesso.md), o item **"Documentação de Usuário"** previsto no mapeamento da **ISO/IEC/IEEE 15289:2019** adotado pelo projeto (ver [Planejamento da Documentação](../../planejamento.md)), com estrutura e conteúdo conforme a **ISO/IEC/IEEE 26514:2022**. Ambas as normas permitem **adaptação ao contexto do projeto** (*tailoring*), desde que a seleção de elementos aplicados e adiados seja registrada. Este é o registro:
+Este guia integra, junto com o [Guia do Aluno](../aluno/index.md), o [Guia do Administrador](../administrador/index.md) e a [seção Conta](../conta/acesso.md), o item **"Documentação de Usuário"** previsto no mapeamento da **ISO/IEC/IEEE 15289:2019** adotado pelo projeto (ver [Planejamento da Documentação](../../planejamento.md)), com estrutura e conteúdo conforme a **ISO/IEC/IEEE 26514:2022**. Ambas as normas permitem **adaptação ao contexto do projeto** (*tailoring*), desde que a seleção de elementos aplicados e adiados seja registrada. Este é o registro:
 
 | Elemento da 26514 | Onde está | Situação |
 |---|---|---|
 | Análise de público-alvo e tarefas | Seção "Para quem é" + inventário de tarefas por área | ✅ Aplicado |
-| Informação instrucional (tarefas passo a passo) | Corpo das páginas | 🟡 Banco de questões e simulados revisados para o V3; propostas e correção de redações pendentes |
+| Informação instrucional (tarefas passo a passo) | Corpo das páginas | ✅ Aplicado: banco de questões, simulados e redação, conferidos no código do V3 |
 | Informação conceitual | "Mapa das áreas de gestão" + introdução de cada página | ✅ Aplicado |
 | Solução de problemas | Seção "Erros e situações comuns" de cada página | ✅ Aplicado |
 | Mensagens de erro (textos exatos) | Nas tabelas de erros, conferidas no código | 🟡 Aplicado onde há mensagem definida |

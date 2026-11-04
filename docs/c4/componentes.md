@@ -26,7 +26,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(seguranca, "Segurança", "security.py · firebase.py", "Extrai e verifica o token,\nidentifica o usuário")
     Component(permissoes, "Permissões", "permission_catalog.py\npermissions.py", "Catálogo das permissões, atribuição\ninicial e autorização de cada ação")
     Component(flags, "Feature Flags", "feature_guard.py\nfeature_flags_service.py", "Liga e desliga módulos\ne funcionalidades")
-    Component(servicos, "Serviços de Domínio", "quiz · mocktests · essays · admin\nquestion_editing · question_import · seed", "Regras de negócio de cada módulo")
+    Component(servicos, "Serviços de Domínio", "quiz · mocktests · question_bank · essays\nadmin · question_editing · question_import · seed", "Regras de negócio de cada módulo")
     Component(esquemas, "Esquemas", "Pydantic", "Valida entradas e formata\nas respostas da API")
     Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 26 tabelas\ndo banco de dados")
 }
@@ -68,7 +68,7 @@ LAYOUT_LEFT_RIGHT()
 
 Container_Boundary(api, "API — FastAPI") {
     Component(r_quiz, "Rotas de Quiz", "quiz.py · 18 rotas", "Partidas, pergunta do dia,\nfiltros, ranking, loja e histórico")
-    Component(r_mock, "Rotas de Simulados", "mocktests.py · 12 rotas", "Montagem, resolução\ne correção de simulados")
+    Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
     Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
     Component(r_admin, "Rotas de Administração", "admin.py · 3 rotas", "Painel de indicadores\ne moderação das denúncias")
@@ -78,7 +78,8 @@ Container_Boundary(api, "API — FastAPI") {
     Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Login e dados\ndo usuário atual")
 
     Component(s_quiz, "Serviços do Quiz", "quiz_service.py e módulos quiz_*\nstore_catalog.py · daily_streak.py", "Partidas, pontuação, ranking,\nloja e sequência diária")
-    Component(s_mock, "Serviços de Simulados", "mocktests_service.py\nmocktest_attempts.py", "Montagem e correção dos simulados,\ntentativas e estatísticas;\nbusca e cadastro de questões")
+    Component(s_mock, "Serviços de Simulados", "mocktests_service.py\nmocktest_attempts.py\nmocktest_attempt_review.py", "Montagem, edição e correção\ndos simulados, tentativas,\nrevisão e estatísticas")
+    Component(s_bank, "Serviço do Banco de Questões", "question_bank_service.py", "Busca, filtros\ne cadastro de questões")
     Component(s_edit, "Edição de Questões", "question_editing.py", "Leitura com gabarito\ne edição de questões")
     Component(s_essays, "Serviço de Redação", "essays_service.py", "Propostas e correção por\ncompetências do ENEM")
     Component(s_admin, "Serviço de Administração", "admin_service.py", "Indicadores, denúncias\ne registro de auditoria")
@@ -91,7 +92,7 @@ ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
 
 Rel_R(r_quiz, s_quiz, "Delega")
 Rel_R(r_mock, s_mock, "Delega")
-Rel_R(r_bank, s_mock, "Busca, filtros\ne cadastro")
+Rel_R(r_bank, s_bank, "Busca, filtros\ne cadastro")
 Rel_R(r_bank, s_edit, "Edição")
 Rel_R(r_bank, s_admin, "Denúncias")
 Rel_R(r_essays, s_essays, "Delega")
@@ -102,6 +103,7 @@ Rel_D(s_imp, s_seed, "Executa a carga")
 
 Rel_D(s_quiz, db, "Lê e escreve", "SQL")
 Rel_D(s_mock, db, "Lê e escreve", "SQL")
+Rel_D(s_bank, db, "Lê e escreve", "SQL")
 Rel_D(s_edit, db, "Lê e escreve", "SQL")
 Rel_D(s_essays, db, "Lê e escreve", "SQL")
 Rel_D(s_admin, db, "Lê e escreve", "SQL")
@@ -183,7 +185,7 @@ Container_Boundary(web, "Aplicação Web — React + Vite") {
 
     Component(f_home, "Início", "features/home", "Página inicial e navegação\nentre os módulos")
     Component(f_quiz, "Quiz", "features/quiz", "Partidas, pergunta do dia,\nranking e loja")
-    Component(f_mock, "Simulados", "features/mocktests", "Criação e resolução\nde simulados")
+    Component(f_mock, "Simulados", "features/mocktests", "Criação, resolução\ne revisão de simulados")
     Component(f_essays, "Redação", "features/essays", "Envio de redações,\ncorreção e consulta")
     Component(f_prof, "Área do Professor", "features/professor", "Banco de questões, propostas\nde redação e fila de correção")
     Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação, importação\nde questões e módulos")

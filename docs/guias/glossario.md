@@ -33,9 +33,11 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Banca** — a instituição responsável pela prova de onde a questão saiu, como ENEM, FUVEST, UNICAMP ou IFSP. Serve de filtro na montagem de simulados.
 
-- **Caderno** — a versão do simulado para impressão, com as questões e uma folha de respostas. Ver [Simulados](aluno/simulados.md#tarefa-5-imprimir-o-caderno-e-o-gabarito).
+- **Caderno** — a versão do simulado para impressão, com as questões e uma folha de respostas. Ver [Simulados](aluno/simulados.md#tarefa-6-imprimir-o-caderno-e-o-gabarito).
 
-- **Denúncia** — o aviso de erro numa questão, enviado pelo botão **🚩 Sinalizar** e tratado pelos administradores na moderação. Ver [Simulados](aluno/simulados.md#tarefa-7-denunciar-um-erro-numa-questao).
+- **Competência** — cada um dos cinco critérios da correção de redação do ENEM, de C1 a C5, com nota de 0 a 200. Na plataforma, os rótulos são Norma culta, Tema e repertório, Argumentação, Coesão textual e Intervenção social. Ver [Redação](aluno/redacao.md#tarefa-3-acompanhar-a-correcao).
+
+- **Denúncia** — o aviso de erro numa questão, enviado pelo botão **🚩 Sinalizar** e tratado pelos administradores na moderação. Ver [Simulados](aluno/simulados.md#tarefa-8-denunciar-um-erro-numa-questao) e [Moderação de Questões](administrador/moderacao-de-questoes.md).
 
 - **Dica** — no IFQuiz, o botão **💡 Dica (Eliminar)**, que elimina uma alternativa errada. Ver [IFQuiz](aluno/ifquiz.md#tarefa-1-montar-e-jogar-um-quiz).
 
@@ -45,27 +47,41 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Em Breve** — a tela exibida no lugar de um módulo ainda não disponível, como Revisão e Flashcards, ou desativado por um administrador. O mesmo selo marca o Modo Competição do IFQuiz.
 
-- **Gabarito** — a relação das respostas corretas. Nos simulados, é uma folha à parte, para imprimir ([Simulados](aluno/simulados.md#tarefa-5-imprimir-o-caderno-e-o-gabarito)); no IFQuiz, aparece na revisão do quiz ([IFQuiz](aluno/ifquiz.md#tarefa-2-ver-o-resultado-e-revisar-as-questoes)).
+- **Espelho de correção** — a tela com a correção de uma redação: a nota total, as notas por competência, o parecer e os comentários nos trechos do texto. Ver [Redação](aluno/redacao.md#tarefa-3-acompanhar-a-correcao).
+
+- **Feature flag** — interruptor que liga e desliga um módulo ou uma funcionalidade da plataforma sem mexer no código. Ver [Módulos](administrador/modulos.md).
+
+- **Fila de correção** — a lista das redações que aguardam correção, para quem tem a permissão de corrigir. Ver [Guia do Professor — Redação](professor/redacao.md#tarefa-3-corrigir-uma-redacao).
+
+- **Gabarito** — a relação das respostas corretas. Nos simulados, é uma folha à parte, para imprimir ([Simulados](aluno/simulados.md#tarefa-6-imprimir-o-caderno-e-o-gabarito)); no IFQuiz, aparece na revisão do quiz ([IFQuiz](aluno/ifquiz.md#tarefa-2-ver-o-resultado-e-revisar-as-questoes)); no banco de questões, aparece destacado para quem pode editar as questões.
 
 - **IFQuiz** — o módulo de prática rápida, com quizzes, Pergunta do Dia, pontos, patentes e ranking. Ver [IFQuiz](aluno/ifquiz.md).
+
+- **Importação** — a entrada de provas inteiras no banco de questões, a partir de um arquivo `.zip`, pelo Painel Administrativo. Começa por uma **simulação**, que mostra o que seria gravado sem gravar nada. Ver [Importação de Questões](administrador/importacao-de-questoes.md).
 
 - **LaTeX** — notação usada para escrever fórmulas matemáticas. A plataforma não a formata: uma fórmula escrita em LaTeX aparece como texto.
 
 - **Markdown** — formato de escrita simples, com marcações para negrito, listas e tabelas. As questões usam Markdown, e a plataforma mostra o texto já formatado.
 
-- **Módulo** — cada área de estudo da plataforma: IFQuiz, Simulados, Redação, Revisão e Flashcards. Um administrador pode desativar um módulo, que passa a mostrar a tela **Em Breve**.
+- **Moderação** — o tratamento das denúncias de erro nas questões, feito pelos administradores no Painel Administrativo. Ver [Moderação de Questões](administrador/moderacao-de-questoes.md).
+
+- **Módulo** — cada área de estudo da plataforma: IFQuiz, Simulados, Redação, Revisão e Flashcards. Um administrador pode desativar um módulo, que passa a mostrar a tela **Em Breve**. Ver [Módulos](administrador/modulos.md).
 
 - **Nota** — nos simulados, o percentual de acertos de uma tentativa, de 0 a 100%. As questões sem resposta contam como erradas.
 
-- **Painel Administrativo** — a página aberta pela aba **Admin** do cabeçalho, com usuários e permissões, moderação de questões, importação de questões e módulos. Exige a permissão de administrador.
+- **Painel Administrativo** — a página aberta pela aba **Admin** do cabeçalho, com indicadores, usuários e permissões, moderação de questões, importação de questões e módulos. Exige a permissão de administrador. Ver [Guia do Administrador](administrador/index.md).
+
+- **Parecer** — a devolutiva geral do corretor sobre uma redação, obrigatória em toda correção.
 
 - **Patente** — o nível do IFQuiz, definido pelo saldo de pontos, de Bronze a Lenda do IF. Ver [IFQuiz](aluno/ifquiz.md#tarefa-5-ganhar-pontos-e-subir-de-patente).
 
 - **Pergunta do Dia** — a questão diária do IFQuiz, a mesma para todos. O acerto vale 100 pontos. Ver [IFQuiz](aluno/ifquiz.md#tarefa-3-responder-a-pergunta-do-dia).
 
-- **Permissão** — a autorização dada a uma conta para uma ação específica, como cadastrar questões ou corrigir redações. No V3, as permissões substituem os perfis fixos de aluno e professor. Ver [Guia do Professor](professor/index.md#para-quem-e-este-guia).
+- **Permissão** — a autorização dada a uma conta para uma ação específica, como cadastrar questões ou corrigir redações. No V3, as permissões substituem os perfis fixos de aluno e professor. Ver [Guia do Professor](professor/index.md#para-quem-e-este-guia) e [Usuários e Permissões](administrador/usuarios-e-permissoes.md).
 
 - **Pontos** — o que você ganha ao acertar questões no IFQuiz e na Pergunta do Dia. O **saldo** define a patente e paga os avatares; os **pontos ganhos** definem a posição no ranking.
+
+- **Proposta de redação** — o tema publicado por um professor para os estudantes escreverem, com as instruções e os textos de apoio. Ver [Guia do Professor — Redação](professor/redacao.md).
 
 - **Questão de múltipla escolha** (ou **objetiva**) — questão respondida pela escolha de uma alternativa, em geral de A a E. É o único tipo de questão do banco da plataforma.
 
@@ -75,7 +91,13 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Ranking** — a classificação dos estudantes pelos pontos ganhos no IFQuiz, na semana ou em todo o histórico. Ver [IFQuiz](aluno/ifquiz.md#tarefa-6-ver-o-ranking).
 
-- **Redação** — o módulo para escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM. ⬜ *Guia pendente; o funcionamento está na [Descrição das Funcionalidades](../funcionalidades.md#redacao).*
+- **Rascunho** — na Redação, a cópia do texto que a plataforma salva sozinha no navegador enquanto você escreve, por até 10 minutos. Ver [Redação](aluno/redacao.md#tarefa-2-escrever-e-enviar-uma-redacao).
+
+- **Redação** — o módulo para escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM. Ver [Guia do Aluno — Redação](aluno/redacao.md) e [Guia do Professor — Redação](professor/redacao.md).
+
+- **Registro de auditoria** — o registro de quem fez cada alteração de conteúdo e de configuração da plataforma, resumido na Visão Geral do Painel Administrativo. Ver [Indicadores e Auditoria](administrador/indicadores-e-auditoria.md).
+
+- **Resolução** — a explicação de por que a alternativa correta de uma questão está certa, escrita pelo professor no cadastro ou na edição. Aparece em **Por que essa alternativa?**, depois de responder à questão num simulado. Não confundir com *resolver* um simulado.
 
 - **Sequência diária** — quantos dias seguidos você respondeu à Pergunta do Dia. No perfil, aparece como **Dias Consecutivos**. Ver [IFQuiz](aluno/ifquiz.md#tarefa-4-manter-a-sequencia-diaria).
 
@@ -89,9 +111,11 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Sinalizar** — o botão **🚩 Sinalizar**, que envia uma denúncia de erro numa questão.
 
-- **Tentativa** — cada resolução finalizada de um simulado. As tentativas são ilimitadas, e cada uma tem a sua nota.
+- **Tema da semana** — a proposta de redação em destaque no topo da página de Redação, escolhida pelos professores com a etiqueta "Tema da Semana".
 
-- **Texto de apoio** — texto base, citação ou contexto exibido antes do enunciado de uma questão. Nas provas, um mesmo texto pode servir a várias questões.
+- **Tentativa** — cada resolução finalizada de um simulado. As tentativas são ilimitadas, e cada uma tem a sua nota e a sua revisão, questão por questão. Ver [Simulados](aluno/simulados.md#tarefa-5-revisar-as-questoes-de-uma-tentativa).
+
+- **Texto de apoio** — texto base, citação ou contexto exibido antes do enunciado de uma questão. Nas provas, um mesmo texto pode servir a várias questões. Na Redação, os textos de apoio, ou motivadores, acompanham a proposta, escritos ou em imagem.
 
 - **Tópico** — o nível mais específico da organização dos conteúdos, dentro de um assunto — por exemplo, Equações de 2º grau, em Álgebra. As questões se vinculam aos tópicos.
 
@@ -121,7 +145,7 @@ Estes termos aparecem nas páginas de [Revisão de Conteúdo](aluno/revisao.md),
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `d36de12`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | out/2026 |
+| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `73c9098`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | out/2026 |
 | Funcionamento dos módulos | [Descrição das Funcionalidades](../funcionalidades.md) | out/2026 |
 | Organização da versão anterior | Versão anterior deste glossário, derivada do código da plataforma anterior | jun/2026 |
 | Vocabulário do redesign (matéria, subassunto) | Relatórios do subprojeto de frontend — Isabella Pereira e Maria Luiza | mar–abr/2026 |

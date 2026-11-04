@@ -3,7 +3,7 @@
 Esta página apresenta a especificação completa da API REST do IFVest: todas as rotas, seus parâmetros, os formatos de requisição e resposta, e os esquemas de dados.
 
 !!! info "Sobre esta especificação"
-    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **65 rotas e 88 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
+    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **66 rotas e 91 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
 
     Em produção, a documentação interativa gerada pelo FastAPI está fechada de propósito. Esta versão é estática: permite consultar a API **sem expor o ambiente de produção**. Por isso, o botão de testar as chamadas não funciona aqui.
 
@@ -16,7 +16,7 @@ Todas as rotas estão sob o prefixo **`/api/v1`** e trocam dados em JSON. A exce
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja de avatares e histórico |
-| `mocktests` | 12 | Montagem, resolução e correção de simulados, gabarito, histórico e estatísticas |
+| `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, envio de redações, fila de correção, correção e histórico do corretor |
 | `admin` | 7 | Painel de indicadores, moderação das denúncias de questões e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e concessão e revogação de permissões |
@@ -75,5 +75,5 @@ O arquivo também pode ser **baixado** e importado em ferramentas como Postman o
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`) pelo script de geração | set/2026 |
+| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `73c9098`) pelo script de geração | out/2026 |
 | Rotas sem autenticação e paginação | `ifvest-backend/src/api/v1/` e `src/core/pagination.py` | set/2026 |

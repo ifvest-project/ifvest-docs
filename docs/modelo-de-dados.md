@@ -149,6 +149,7 @@ erDiagram
         int number
         varchar type_or_color
         int difficulty
+        text explanation
         timestamp created_at
         timestamp updated_at
     }
@@ -226,6 +227,7 @@ erDiagram
         int number
         varchar type_or_color
         int difficulty
+        text explanation
         timestamp created_at
         timestamp updated_at
     }
@@ -299,6 +301,7 @@ erDiagram
         int number
         varchar type_or_color
         int difficulty
+        text explanation
         timestamp created_at
         timestamp updated_at
     }
@@ -461,6 +464,7 @@ erDiagram
         int number
         varchar type_or_color
         int difficulty
+        text explanation
         timestamp created_at
         timestamp updated_at
     }
@@ -518,11 +522,13 @@ erDiagram
 
 **Dificuldade das questões.** A coluna `difficulty` usa uma escala de 1 a 5, mas as provas da UNICAMP carregadas no banco não trazem essa informação na fonte, e a carga grava `2` quando ela falta. Por isso o valor ainda não representa a dificuldade real, e a montagem do quiz deixou de oferecer o filtro por dificuldade até que as questões sejam classificadas.
 
+**Resolução das questões.** A coluna `explanation`, de `multiple_choice_questions`, guarda a resolução da questão, mostrada ao estudante depois de responder no simulado. As fontes importadas não trazem resolução: a coluna é preenchida pelos professores, no cadastro ou na edição da questão.
+
 **Imagens gravadas no banco.** As colunas `profile_picture`, em `users`, e `image_data`, em `support_texts` — os textos de apoio das propostas de redação —, guardam **o próprio arquivo** em formato binário (`bytea`). Já as imagens das questões ficam em disco, fora do banco. Ver [Arquitetura — Armazenamento de arquivos](arquitetura.md#armazenamento-de-arquivos).
 
 **Dados de gamificação no usuário.** O saldo de pontos, a sequência da Pergunta do Dia e os totais de acertos ficam como colunas da própria tabela `users`, e não em uma tabela separada. O saldo (`points`) diminui quando o estudante compra na loja; por isso o ranking não o usa, e soma os pontos ganhos nos quizzes (`quiz_history`) e nos acertos da Pergunta do Dia (`question_history`).
 
-**Simulados e tentativas.** A coluna `is_institutional`, de `fixed_mocktests`, separa o simulado **institucional**, visível a todos, do simulado **de treino**, visível só a quem o criou; um simulado sem criador (`creator_id` vazio) é recusado pela API. Cada envio grava uma linha em `user_mocktests`, com o total de questões, quantas foram respondidas, os acertos e a nota, e uma linha em `user_mocktest_answers` para cada questão respondida, com a letra escolhida e se ela está certa — a base das estatísticas por disciplina. As tentativas anteriores à criação dessa tabela, em 10/10/2026, não têm as respostas. O início e o fim da tentativa são registrados no momento do envio, de modo que não medem o tempo de resolução.
+**Simulados e tentativas.** A coluna `is_institutional`, de `fixed_mocktests`, separa o simulado **institucional**, visível a todos, do simulado **de treino**, visível só a quem o criou; um simulado sem criador (`creator_id` vazio) é recusado pela API. Cada envio grava uma linha em `user_mocktests`, com o total de questões, quantas foram respondidas, os acertos e a nota, e uma linha em `user_mocktest_answers` para cada questão respondida, com a letra escolhida e se ela está certa — a base das estatísticas por disciplina. As tentativas anteriores à criação dessa tabela, em 10/10/2026, não têm as respostas. Trocar as questões de um simulado, em `questions_mocktests`, não altera as tentativas já gravadas. O início e o fim da tentativa são registrados no momento do envio, de modo que não medem o tempo de resolução.
 
 **Importações de questões.** Cada envio de um arquivo `.zip` pelo painel administrativo grava uma linha em `question_imports`, sempre como simulação (`dry_run`). Aplicar a simulação grava outra linha, com `simulation_id` apontando para ela. A coluna `report` guarda o relatório da carga, em JSON, e `status` acompanha a execução: na fila (`queued`), rodando (`running`), concluída (`succeeded`) ou com falha (`failed`).
 
@@ -553,5 +559,6 @@ O script lê os modelos sem conectar ao banco e substitui **apenas** o trecho en
 | Contagem registrada na adoção do Alembic | Documentação de implantação do repositório (`deploy/README.md`) | set/2026 |
 | Tabelas criadas depois | Migrations do Alembic (`ifvest-backend/alembic/versions/`) | out/2026 |
 | Dificuldade das questões | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md` e `docs/atualizar-questoes-na-vps.md` | set/2026 |
+| Resolução das questões | Migration `c2d3e4f5a6b7` (`ifvest-backend/alembic/versions/`) e `docs/auditoria-simulados-2026-10-10.md`, seção 8.10 | out/2026 |
 | Ranking, simulados e tentativas | `ifvest-backend/src/services/quiz_ranking.py` e `mocktest_attempts.py`; `src/api/v1/mocktests.py` | out/2026 |
 | Importações de questões | `docs/importar-questoes-pelo-painel.md` e `ifvest-backend/src/models/question_imports.py` | out/2026 |

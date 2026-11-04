@@ -713,7 +713,7 @@
           "question-bank"
         ],
         "summary": "Search Questions",
-        "description": "Lista questoes filtradas para visualizacao ou composicao de simulados.",
+        "description": "Lista questoes filtradas para visualizacao ou composicao de simulados.\n\n`sort`: id (ordem de cadastro, padrao), year_desc ou year_asc; outro valor responde 422.",
         "operationId": "search_questions_api_v1_mocktests_questions_get",
         "security": [
           {
@@ -838,6 +838,15 @@
               "minimum": 0,
               "default": 0,
               "title": "Offset"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/QuestionSortOrder",
+              "default": "id"
             }
           },
           {
@@ -1528,7 +1537,7 @@
           "mocktests"
         ],
         "summary": "Get Mocktest Detail",
-        "description": "Carrega dados completos do simulado e questoes para realizacao.",
+        "description": "Carrega dados completos do simulado e questoes para realizacao.\n\nCada questao leva disciplina, assunto e topico; antes o detalhe vinha sem taxonomia.",
         "operationId": "get_mocktest_detail_api_v1_mocktests__mocktest_id__get",
         "security": [
           {
@@ -1990,6 +1999,70 @@
                     "$ref": "#/components/schemas/MocktestHistoryItemResponse"
                   },
                   "title": "Response Get My Mocktests History Api V1 Mocktests History Me Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/mocktests/attempts/{attempt_id}": {
+      "get": {
+        "tags": [
+          "mocktests"
+        ],
+        "summary": "Get My Attempt Review",
+        "description": "Revisao de uma tentativa do proprio estudante: resposta marcada e gabarito por questao.",
+        "operationId": "get_my_attempt_review_api_v1_mocktests_attempts__attempt_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "attempt_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Attempt Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MocktestAttemptReviewResponse"
                 }
               }
             }
@@ -5163,6 +5236,28 @@
             ],
             "title": "Texto Apoio"
           },
+          "banca": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Banca"
+          },
+          "ano": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ano"
+          },
           "url_img": {
             "anyOf": [
               {
@@ -5808,6 +5903,86 @@
         "title": "MocktestAnswerResponse",
         "description": "Retorno da verificação interativa com gabarito."
       },
+      "MocktestAttemptReviewResponse": {
+        "properties": {
+          "user_mocktest_id": {
+            "type": "integer",
+            "title": "User Mocktest Id"
+          },
+          "fixed_mocktest_id": {
+            "type": "integer",
+            "title": "Fixed Mocktest Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "total_questions": {
+            "type": "integer",
+            "title": "Total Questions"
+          },
+          "answered_questions": {
+            "type": "integer",
+            "title": "Answered Questions",
+            "default": 0
+          },
+          "correct_answers": {
+            "type": "integer",
+            "title": "Correct Answers"
+          },
+          "score": {
+            "type": "integer",
+            "title": "Score"
+          },
+          "started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Started At"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          },
+          "answers_recorded": {
+            "type": "boolean",
+            "title": "Answers Recorded"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/MocktestReviewQuestion"
+            },
+            "type": "array",
+            "title": "Questions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_mocktest_id",
+          "fixed_mocktest_id",
+          "title",
+          "total_questions",
+          "correct_answers",
+          "score",
+          "answers_recorded"
+        ],
+        "title": "MocktestAttemptReviewResponse",
+        "description": "Revisao de uma tentativa (GET /mocktests/attempts/{id}), questao por questao."
+      },
       "MocktestDetailResponse": {
         "properties": {
           "fixed_mocktest_id": {
@@ -5958,6 +6133,16 @@
               }
             ],
             "title": "Completed At"
+          },
+          "can_manage": {
+            "type": "boolean",
+            "title": "Can Manage",
+            "default": false
+          },
+          "is_institutional": {
+            "type": "boolean",
+            "title": "Is Institutional",
+            "default": false
           }
         },
         "type": "object",
@@ -6066,6 +6251,17 @@
               }
             ],
             "title": "Exam Board"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
           },
           "is_institutional": {
             "type": "boolean",
@@ -6178,6 +6374,145 @@
         "title": "MocktestResultResponse",
         "description": "Resultado detalhado de desempenho na tentativa do simulado."
       },
+      "MocktestReviewQuestion": {
+        "properties": {
+          "question_id": {
+            "type": "integer",
+            "title": "Question Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "supplementary_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supplementary Text"
+          },
+          "question_text": {
+            "type": "string",
+            "title": "Question Text"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "exam_board": {
+            "type": "string",
+            "title": "Exam Board"
+          },
+          "number": {
+            "type": "integer",
+            "title": "Number"
+          },
+          "difficulty": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Difficulty"
+          },
+          "discipline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Discipline"
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject"
+          },
+          "topic": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Topic"
+          },
+          "alternatives": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionAlternativeItem"
+            },
+            "type": "array",
+            "title": "Alternatives"
+          },
+          "selected_letter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Letter"
+          },
+          "correct_letter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Correct Letter"
+          },
+          "is_correct": {
+            "type": "boolean",
+            "title": "Is Correct",
+            "default": false
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_id",
+          "title",
+          "question_text",
+          "year",
+          "exam_board",
+          "number"
+        ],
+        "title": "MocktestReviewQuestion",
+        "description": "Questao na revisao de uma tentativa: o que o estudante marcou e o gabarito."
+      },
       "MocktestStatisticsResponse": {
         "properties": {
           "total_answered": {
@@ -6266,6 +6601,21 @@
               }
             ],
             "title": "Question Type"
+          },
+          "question_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array",
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Ids"
           }
         },
         "type": "object",
@@ -6716,6 +7066,17 @@
             "title": "Difficulty",
             "default": 1
           },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          },
           "discipline_name": {
             "type": "string",
             "title": "Discipline Name"
@@ -6843,6 +7204,17 @@
               }
             ],
             "title": "Difficulty"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
           },
           "discipline_name": {
             "type": "string",
@@ -7465,6 +7837,16 @@
         "title": "QuestionReportStatusUpdate",
         "description": "Schema para atualização do status de uma denúncia."
       },
+      "QuestionSortOrder": {
+        "type": "string",
+        "enum": [
+          "id",
+          "year_desc",
+          "year_asc"
+        ],
+        "title": "QuestionSortOrder",
+        "description": "Ordem da listagem do banco de questoes (GET /mocktests/questions?sort=...)."
+      },
       "QuestionUpdate": {
         "properties": {
           "title": {
@@ -7514,6 +7896,17 @@
             ],
             "title": "Difficulty",
             "default": 1
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
           },
           "discipline_name": {
             "type": "string",
@@ -7979,6 +8372,28 @@
             ],
             "title": "Texto Apoio"
           },
+          "banca": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Banca"
+          },
+          "ano": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ano"
+          },
           "alternativas": {
             "additionalProperties": {
               "anyOf": [
@@ -8049,6 +8464,28 @@
               }
             ],
             "title": "Texto Apoio"
+          },
+          "banca": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Banca"
+          },
+          "ano": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ano"
           },
           "alternativa_correta": {
             "type": "string",

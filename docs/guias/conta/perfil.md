@@ -64,12 +64,11 @@ Abaixo dos indicadores, o perfil reúne três quadros:
 
 - **Atividade na Pergunta do Dia** — um mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
 - **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos. **Revisar** abre o gabarito do quiz, e **Refazer** abre a montagem com os mesmos filtros.
-- **Histórico de Simulados** — as suas tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota. **Refazer** abre o simulado de novo.
+- **Histórico de Simulados** — as suas tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota. **Revisar** abre a revisão das questões daquela tentativa (ver [Simulados — Revisar as questões de uma tentativa](../aluno/simulados.md#tarefa-5-revisar-as-questoes-de-uma-tentativa)), e **Refazer** abre o simulado de novo.
 
 **Observações:**
 
 - O Histórico de Simulados não aparece quando o módulo de Simulados está desligado.
-- Não há revisão das questões de uma tentativa de simulado já enviada: o histórico mostra só o resultado.
 
 ---
 
@@ -102,7 +101,7 @@ Da sua conta Google, o IFVest guarda **apenas o e-mail**, que identifica a sua c
 | Os indicadores aparecem zerados | A sua sessão pode ter terminado: entre de novo (ver [Acesso e Conta](acesso.md#erros-e-situacoes-comuns)) |
 | A minha sequência voltou a zero | A sequência conta os dias seguidos com resposta à Pergunta do Dia. Um dia sem resposta a zera (ver [IFQuiz](../aluno/ifquiz.md#tarefa-4-manter-a-sequencia-diaria)) |
 | Os meus pontos diminuíram | O saldo diminui quando você compra um avatar na loja. O ranking não é afetado pelas compras |
-| Um simulado do histórico não abre com **Refazer** | Os simulados de treino criados antes de 10/10/2026 passaram a ser visíveis só para quem os criou. Se você resolveu um simulado de outra pessoa antes dessa data, a tentativa continua no histórico, mas o simulado não abre mais |
+| Um simulado do histórico não abre com **Refazer** | Os simulados de treino criados antes de 10/10/2026 passaram a ser visíveis só para quem os criou. Se você resolveu um simulado de outra pessoa antes dessa data, a tentativa continua no histórico, e **Revisar** funciona, mas o simulado não abre mais |
 
 ---
 
@@ -110,6 +109,6 @@ Da sua conta Google, o IFVest guarda **apenas o e-mail**, que identifica a sua c
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, indicadores e históricos | Código do frontend do `ifvest-monorepo` (commit `d36de12`): página de perfil e quadros de histórico | out/2026 |
+| Telas, indicadores e históricos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): página de perfil e quadros de histórico | out/2026 |
 | Dados guardados pela plataforma | [Modelo de Dados](../../modelo-de-dados.md) | out/2026 |
 | Tarefas previstas no design | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, item 4 | abr/2026 |
