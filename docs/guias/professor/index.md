@@ -7,10 +7,10 @@ Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest
 
     - **Conta e perfil** — entrar, sair e consultar o perfil ficam na [seção Conta](../conta/acesso.md), comum a todos.
     - **Tarefas de estudo** — jogar o IFQuiz, montar e resolver simulados e escrever redações funcionam para você como para o estudante, e estão no [Guia do Aluno](../aluno/index.md).
-    - **Administração** — a moderação das denúncias, a importação de provas, as permissões e os módulos ficam no [Guia do Administrador](../administrador/index.md).
+    - **Administração** — a moderação das denúncias, a auditoria das questões, a importação de provas, as permissões e os módulos ficam no [Guia do Administrador](../administrador/index.md).
 
 !!! info "Versão documentada"
-    O guia descreve o **IFVest V3**, em produção, conferido no código em outubro de 2026. As páginas de **Flashcards** e **Materiais de Revisão** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
+    O guia descreve o **IFVest V3**, em produção, conferido no código em novembro de 2026. As páginas de **Flashcards** e **Materiais de Revisão** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
 
 ---
 
@@ -28,6 +28,7 @@ Professores e educadores que produzem e mantêm o conteúdo do IFVest. Nenhum co
 | `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
 | `create_essay_proposal_permission` | Criar, editar e excluir propostas de redação | Concedida por um administrador |
 | `grade_essay_permission` | Corrigir redações | Concedida por um administrador |
+| `audit_question` | Aprovar as questões novas antes de entrarem em uso, no Painel Administrativo (ver [Guia do Administrador — Auditoria de Questões](../administrador/auditoria-de-questoes.md)) | Concedida por um administrador |
 | `admin_permission` | Administrar a plataforma, no Painel Administrativo (ver [Guia do Administrador](../administrador/index.md)). Passa em todas as verificações de permissão | Concedida por um administrador |
 
 As permissões automáticas são atribuídas no **primeiro acesso**. Se você entrou com outro e-mail, ou precisa de uma permissão que não tem, peça-a a um administrador. As suas permissões ativas aparecem no seu [perfil](../conta/perfil.md#tarefa-1-consultar-o-seu-perfil).
@@ -42,10 +43,13 @@ As permissões automáticas são atribuídas no **primeiro acesso**. Se você en
 | **Simulados institucionais** | Simulados → **Criar novo simulado** | Criar simulados para todos os estudantes e gerenciar os de outras pessoas | ✅ Disponível |
 | **Redação** | Área do Professor e página de Redação | Publicar propostas e corrigir redações | ✅ Disponível |
 | **Moderação e importação** | Painel Administrativo (aba **Admin**) | Tratar as denúncias de erro e importar provas em lote — ver [Guia do Administrador](../administrador/index.md) | ✅ Disponível, só para administradores |
+| **Auditoria das questões** | Painel Administrativo (aba **Admin**) | Aprovar as questões novas, que só então aparecem no quiz e nos simulados — ver [Auditoria de Questões](../administrador/auditoria-de-questoes.md) | ✅ Disponível, com `audit_question` |
 | **Flashcards** | — | Criar os cartões de estudo | 🔵 Previsto |
 | **Materiais de revisão** | — | Escrever os materiais de cada tópico | 🔵 Previsto |
 
-A **Área do Professor** (`/area_professor`) aparece como a aba **Professor** do cabeçalho para quem tem qualquer uma das permissões de conteúdo ou de redação. Ela reúne três abas: **Banco de Questões**, **Propostas de Redação** e **Fila de Correção**.
+A **Área do Professor** (`/area_professor`) aparece como a aba **Professor** do cabeçalho para quem tem qualquer uma das permissões de conteúdo ou de redação. Ela reúne três abas: **Banco de Questões**, **Propostas de Redação** e **Fila de Correção**. As três aparecem para todos que entram na área. Sem a permissão de propostas ou a de correção, a aba correspondente mostra o aviso **Acesso Bloqueado**, com o nome da permissão que falta.
+
+As questões que você cadastra entram **pendentes de auditoria**: aparecem no banco com o selo **Pendente de Auditoria** e só passam a ser usadas no quiz e nos simulados depois de aprovadas (ver [Cadastrar uma questão](banco-de-questoes.md#tarefa-2-cadastrar-uma-questao)).
 
 Não há uma tela para organizar disciplinas, assuntos e tópicos: eles são criados ao [cadastrar uma questão](banco-de-questoes.md#tarefa-2-cadastrar-uma-questao).
 

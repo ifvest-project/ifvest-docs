@@ -21,7 +21,7 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
     | Indicador | O que mostra | Botão |
     |---|---|---|
     | **Usuários cadastrados** | O total de contas e, abaixo, as criadas nos últimos 7 dias, como "+3 essa semana" | — |
-    | **Questões no banco** | O total de questões do banco | **Ver banco de questões**, que abre o Banco de Questões da Área do Professor |
+    | **Questões no banco** | O total de questões do banco, incluindo as pendentes de auditoria | **Ver banco de questões**, que abre o Banco de Questões da Área do Professor |
     | **Simulados** | O total de simulados, de treino e institucionais | **Ver banco de simulados**, que abre a página de Simulados |
     | **Questões sinalizadas** | As denúncias de erro ainda pendentes | **Corrigir questões**, que abre a [Moderação de Questões](moderacao-de-questoes.md) |
     | **Permissões** | O total de permissões concedidas, somando todas as contas | **Configurar**, que abre [Usuários e Permissões](usuarios-e-permissoes.md) |
@@ -61,7 +61,7 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 
 **Observações:**
 
-- O registro de auditoria guarda o cadastro, a edição e a denúncia de questões, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações dos módulos, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel.
+- O registro de auditoria guarda o cadastro, a edição e a denúncia de questões, a aprovação delas na [Auditoria de Questões](auditoria-de-questoes.md), as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações dos módulos, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel.
 - Não são registrados as correções de redação, os simulados e as compras na loja do IFQuiz.
 - As denúncias dos estudantes aparecem em **Últimas atualizações**, mas não contam como modificação.
 - **Questões removidas** fica em zero, porque a plataforma não tem exclusão de questões.
@@ -74,7 +74,8 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 | Situação | O que fazer |
 |---|---|
 | A aba **Admin** não aparece no cabeçalho | A sua conta não tem a permissão de administrador. Se ela foi concedida há pouco, recarregue a página |
-| O painel mostra **Acesso Restrito** | A sua conta não tem a permissão de administrador |
+| O painel mostra **Acesso Restrito** | A sua conta não tem a permissão de administrador nem a de auditoria |
+| O painel mostra só a aba **Auditoria de Questões** | A sua conta tem a permissão `audit_question`, mas não a de administrador. A Visão Geral é exclusiva dos administradores |
 | *"Não foi possível carregar as métricas do painel. Tente novamente mais tarde."* | Recarregue a página. Se a mensagem continuar, avise quem mantém o servidor da plataforma |
 | O painel mostra a página **Em Breve** | O módulo **Admin** foi desligado em **Módulos (Feature Flags)**. Ver o aviso em [Ligar ou desligar um módulo](modulos.md#tarefa-1-ligar-ou-desligar-um-modulo-ou-funcionalidade) |
 
@@ -84,6 +85,6 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, indicadores e quadros | Código do frontend do `ifvest-monorepo` (commit `73c9098`): Painel Administrativo, aba Visão Geral | out/2026 |
-| Cálculo dos indicadores, da janela de 30 dias e dos avisos | `ifvest-backend/src/services/admin_service.py`, no `ifvest-monorepo` | out/2026 |
-| O que o registro de auditoria guarda | [Descrição das Funcionalidades — Registro de auditoria](../../funcionalidades.md#registro-de-auditoria) | out/2026 |
+| Tela, indicadores e quadros | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Visão Geral | nov/2026 |
+| Cálculo dos indicadores, da janela de 30 dias e dos avisos | `ifvest-backend/src/services/admin_service.py`, no `ifvest-monorepo` | nov/2026 |
+| O que o registro de auditoria guarda | [Descrição das Funcionalidades — Registro de auditoria](../../funcionalidades.md#registro-de-auditoria) | nov/2026 |

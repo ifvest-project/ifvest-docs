@@ -40,7 +40,7 @@ O ecossistema atende a três perfis operacionais. Eles descrevem **papéis de us
 |---|---|
 | **Estudantes** | Praticam com questões de provas e autorais em quizzes e simulados, mantêm a sequência de respostas à Pergunta do Dia e treinam redação com devolutiva |
 | **Professores e educadores** | Cadastram e curam o banco de questões, montam simulados, publicam propostas de redação e corrigem redações |
-| **Administradores e moderadores** | Zelam pela qualidade pedagógica, moderam as denúncias de erros nas questões, importam provas para o banco de questões, controlam os módulos ativos e gerenciam as permissões dos demais usuários |
+| **Administradores e moderadores** | Zelam pela qualidade pedagógica, auditam as questões novas antes de entrarem em uso, moderam as denúncias de erros nas questões, importam provas para o banco de questões, controlam os módulos ativos e gerenciam as permissões dos demais usuários |
 
 ---
 
@@ -83,7 +83,7 @@ As permissões automáticas valem só na criação da conta: o que um administra
 
 ### O que isso muda para o usuário
 
-Quando alguém tenta executar uma ação para a qual não tem permissão, a API recusa a chamada informando **qual permissão está faltando** e orientando a procurar um administrador — em vez de simplesmente negar o acesso. Na interface, as áreas restritas mostram um aviso de acesso restrito (ver [Descrição das Funcionalidades — Falta de permissão](funcionalidades.md#falta-de-permissao)).
+Quando alguém tenta executar uma ação para a qual não tem permissão, a API recusa a chamada informando **qual permissão está faltando** e orientando a procurar um administrador — em vez de simplesmente negar o acesso. Na interface, as áreas restritas mostram um aviso de acesso restrito; na correção de redações e nas abas de redação da Área do Professor, o aviso também diz qual permissão falta (ver [Descrição das Funcionalidades — Falta de permissão](funcionalidades.md#falta-de-permissao)).
 
 !!! note "Por que este modelo importa para a documentação"
     Como as capacidades não derivam de um cargo, a documentação de uso **não se organiza por perfil**. Cada tarefa indica a permissão que exige, permitindo que qualquer usuário identifique o que pode fazer a partir do que possui. Ver [Planejamento da Documentação](planejamento.md#fase-4-usuario).
@@ -147,6 +147,8 @@ O acervo combina **questões de provas de vestibulares** com **questões autorai
 
 Cada questão de múltipla escolha registra suas alternativas com indicação de qual é a correta e, opcionalmente, uma resolução escrita pelo professor, e vincula-se a um ou mais tópicos da taxonomia. O mesmo banco abastece os simulados e os quizzes.
 
+Antes de ser usada, toda questão nova passa pela **auditoria**: quem tem a permissão de auditoria confere a questão, corrige o que for preciso e a aprova. Só as questões aprovadas aparecem nos simulados e nos quizzes.
+
 Qualquer usuário pode **denunciar um erro** numa questão. As denúncias entram na moderação do painel administrativo, onde a questão pode ser corrigida e a denúncia, resolvida ou descartada. Quem tem permissão de edição também corrige as questões direto no banco de questões, que mostra o gabarito de cada uma.
 
 ---
@@ -196,7 +198,7 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 | Proposta de valor, escopo, público-alvo e taxonomia | Documentação do repositório do backend (README — Visão de Negócio) | set/2026 |
 | Módulos implementados e suas regras | Código-fonte do backend e do frontend do `ifvest-monorepo` | set/2026, revisto em out/2026 |
 | Módulos previstos (Revisão e Flashcards) | Documentação do repositório do backend (README — Visão de Negócio) e documento de onboarding | set/2026 |
-| Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026, revisto em out/2026 |
+| Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026, revisto em nov/2026 |
 | Banco de questões e carga das provas | Modelos do backend, `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | set/2026, revisto em out/2026 |
 | Stack e hospedagem | Configuração de produção do `ifvest-monorepo` | set/2026 |
 

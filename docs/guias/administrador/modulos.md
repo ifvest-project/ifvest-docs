@@ -105,6 +105,6 @@ A origem do valor de cada interruptor aparece ao lado do nome:
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, interruptores e mensagens | Código do frontend do `ifvest-monorepo` (commit `73c9098`): Painel Administrativo, aba Módulos | out/2026 |
+| Tela, interruptores e mensagens | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Módulos | nov/2026 |
 | Catálogo de interruptores e hierarquia | `ifvest-backend/src/services/feature_flags_service.py` e `src/api/v1/features.py`, no `ifvest-monorepo` | out/2026 |
 | O que os usuários veem com cada interruptor desligado | [Descrição das Funcionalidades — Módulos desligados](../../funcionalidades.md#modulos-desligados) e [Arquitetura — Feature flags](../../arquitetura.md#feature-flags) | out/2026 |

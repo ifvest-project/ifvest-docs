@@ -6,7 +6,7 @@ Esta é a documentação de usuário do IFVest: como usar a plataforma, tarefa p
 |---|---|---|
 | **Estuda** | [Guia do Aluno](aluno/index.md) | Praticar no IFQuiz e nos Simulados, treinar redação e acompanhar o seu desempenho |
 | **Produz conteúdo** | [Guia do Professor](professor/index.md) | Cadastrar e editar questões, criar simulados institucionais, publicar propostas e corrigir redações |
-| **Administra a plataforma** | [Guia do Administrador](administrador/index.md) | Acompanhar os indicadores, gerenciar permissões, moderar denúncias, importar provas e ligar e desligar módulos |
+| **Administra a plataforma** | [Guia do Administrador](administrador/index.md) | Acompanhar os indicadores, gerenciar permissões, moderar denúncias, aprovar questões na auditoria, importar provas e ligar e desligar módulos |
 
 **Todos** usam as mesmas páginas de conta:
 
@@ -22,7 +22,7 @@ Os termos usados na plataforma estão no [Glossário](glossario.md).
 ## Qual versão da plataforma estes guias descrevem
 
 !!! info "IFVest V3, em produção"
-    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em outubro de 2026 (commit `73c9098`, de 31/10/2026).
+    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em novembro de 2026 (commit `f98a6a0`, de 11/11/2026).
 
     Eles foram escritos antes da entrega do V3, a partir dos relatórios do subprojeto de frontend, e revisados depois dela. Por isso, cada página registra também o que o design previa e não foi implementado. Os módulos **Revisão de Conteúdo** e **Flashcards** ainda não existem na plataforma: as páginas deles continuam nos guias, com um aviso no início, como registro do que foi planejado.
 

@@ -35,6 +35,7 @@ Os simulados são montados com as questões do [Banco de Questões](banco-de-que
 - Depois de criado, o simulado aceita só a retirada de questões, e não o acréscimo (ver [Tarefa 2](#tarefa-2-editar-ou-excluir-um-simulado-de-outra-pessoa)). Confira a seleção antes de salvar.
 - Na lista **Ver meus simulados**, o simulado aparece com o selo **Institucional**. Um nome claro, que indique o vestibular ou o conteúdo, ajuda os estudantes a encontrá-lo.
 - O simulado aparece também para os outros professores.
+- Só as questões já aprovadas na auditoria podem entrar num simulado. As que você acabou de cadastrar ficam disponíveis depois da aprovação (ver [Cadastrar uma questão](banco-de-questoes.md#tarefa-2-cadastrar-uma-questao)).
 
 !!! warning "O gabarito fica disponível para todos"
     Todo estudante que vê o simulado pode abrir o **Gabarito** na lista e conferir a resposta de cada questão ao resolvê-lo na plataforma. Leve isso em conta antes de usar um simulado institucional como avaliação.
@@ -99,6 +100,7 @@ Os detalhes estão em [Imprimir o caderno e o gabarito](../aluno/simulados.md#ta
 | A opção **Simulado institucional** não aparece | A sua conta não tem a permissão `create_institutional_mocktest`. Peça-a a um administrador |
 | Criei o simulado sem marcar a opção institucional | Ele ficou como simulado de treino, visível só para você. Crie outro com a opção marcada e, se quiser, exclua o anterior |
 | Preciso trocar uma questão de um simulado institucional | Não é possível acrescentar questões, só tirá-las. Se o problema estiver na própria questão, corrija-a no banco (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)): a correção vale para todos os simulados que a usam. Senão, crie outro simulado |
+| Uma questão do banco não aparece na montagem do simulado | Ela ainda está **Pendente de Auditoria**. Só as questões aprovadas podem entrar em simulados |
 | O botão **Editar** não aparece num simulado institucional | O simulado é de outra pessoa, e a sua conta não tem a permissão `manage_mocktests`. Peça-a a um administrador |
 | Quero ver as notas dos estudantes num simulado institucional | A plataforma não mostra ao professor os resultados dos estudantes: cada um vê apenas a própria nota e a própria revisão |
 
@@ -108,8 +110,8 @@ Os detalhes estão em [Imprimir o caderno e o gabarito](../aluno/simulados.md#ta
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): páginas de Simulados | out/2026 |
-| Regras de acesso, criação, edição e exclusão | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | out/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas de Simulados | nov/2026 |
+| Regras de acesso, criação, edição e exclusão | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | nov/2026 |
 | Simulados institucionais e de treino | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo` | out/2026 |
 
 !!! note "O que mudou em relação ao planejado"

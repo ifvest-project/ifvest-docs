@@ -29,6 +29,8 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Assunto** — divisão de uma disciplina que reúne tópicos — por exemplo, Álgebra, em Matemática. No cadastro de questões, o campo se chama **Matéria / Assunto**.
 
+- **Auditoria de questões** — a conferência e a aprovação de cada questão nova antes que ela seja usada no quiz e nos simulados. Até ser aprovada, a questão aparece no banco com o selo **Pendente de Auditoria**. Não confundir com o **registro de auditoria**. Ver [Auditoria de Questões](administrador/auditoria-de-questoes.md).
+
 - **Avatar** — a figura que aparece ao lado do seu nome no ranking do IFQuiz, comprada com pontos na loja. Ver [IFQuiz](aluno/ifquiz.md#tarefa-7-comprar-e-equipar-avatares).
 
 - **Banca** — a instituição responsável pela prova de onde a questão saiu, como ENEM, FUVEST, UNICAMP ou IFSP. Serve de filtro na montagem de simulados.
@@ -69,7 +71,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Nota** — nos simulados, o percentual de acertos de uma tentativa, de 0 a 100%. As questões sem resposta contam como erradas.
 
-- **Painel Administrativo** — a página aberta pela aba **Admin** do cabeçalho, com indicadores, usuários e permissões, moderação de questões, importação de questões e módulos. Exige a permissão de administrador. Ver [Guia do Administrador](administrador/index.md).
+- **Painel Administrativo** — a página aberta pela aba **Admin** do cabeçalho, com indicadores, usuários e permissões, moderação de questões, auditoria de questões, importação de questões e módulos. Exige a permissão de administrador; com a permissão de auditoria, mostra só a aba de auditoria. Ver [Guia do Administrador](administrador/index.md).
 
 - **Parecer** — a devolutiva geral do corretor sobre uma redação, obrigatória em toda correção.
 
@@ -95,7 +97,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Redação** — o módulo para escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM. Ver [Guia do Aluno — Redação](aluno/redacao.md) e [Guia do Professor — Redação](professor/redacao.md).
 
-- **Registro de auditoria** — o registro de quem fez cada alteração de conteúdo e de configuração da plataforma, resumido na Visão Geral do Painel Administrativo. Ver [Indicadores e Auditoria](administrador/indicadores-e-auditoria.md).
+- **Registro de auditoria** — o registro de quem fez cada alteração de conteúdo e de configuração da plataforma, resumido na Visão Geral do Painel Administrativo. Não confundir com a **auditoria de questões**. Ver [Indicadores e Auditoria](administrador/indicadores-e-auditoria.md).
 
 - **Resolução** — a explicação de por que a alternativa correta de uma questão está certa, escrita pelo professor no cadastro ou na edição. Aparece em **Por que essa alternativa?**, depois de responder à questão num simulado. Não confundir com *resolver* um simulado.
 
@@ -145,7 +147,7 @@ Estes termos aparecem nas páginas de [Revisão de Conteúdo](aluno/revisao.md),
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `73c9098`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | out/2026 |
+| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `f98a6a0`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | nov/2026 |
 | Funcionamento dos módulos | [Descrição das Funcionalidades](../funcionalidades.md) | out/2026 |
 | Organização da versão anterior | Versão anterior deste glossário, derivada do código da plataforma anterior | jun/2026 |
 | Vocabulário do redesign (matéria, subassunto) | Relatórios do subprojeto de frontend — Isabella Pereira e Maria Luiza | mar–abr/2026 |

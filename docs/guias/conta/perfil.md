@@ -109,6 +109,6 @@ Da sua conta Google, o IFVest guarda **apenas o e-mail**, que identifica a sua c
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, indicadores e históricos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): página de perfil e quadros de histórico | out/2026 |
+| Telas, indicadores e históricos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): página de perfil e quadros de histórico | nov/2026 |
 | Dados guardados pela plataforma | [Modelo de Dados](../../modelo-de-dados.md) | out/2026 |
 | Tarefas previstas no design | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, item 4 | abr/2026 |

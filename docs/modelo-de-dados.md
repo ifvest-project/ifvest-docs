@@ -5,7 +5,7 @@ Esta página apresenta a estrutura do banco de dados do IFVest: as tabelas, suas
 !!! info "Gerado a partir do código em produção"
     Os diagramas abaixo foram gerados **diretamente dos modelos do backend**, e não desenhados à mão. São as mesmas definições que o Alembic compara com o banco, o que garante que correspondem ao esquema em uso. Para regenerá-los após alterações nos modelos, ver [Como atualizar esta página](#como-atualizar-esta-pagina).
 
-    Ao adotar o Alembic, a equipe conferiu o banco de produção e registrou **21 tabelas e 27 chaves estrangeiras**. As tabelas e chaves a mais que aparecem abaixo vieram das migrations seguintes: controle dos módulos (`feature_flags`), denúncias de questões (`question_reports`), registro de auditoria (`audit_logs`), respostas das tentativas de simulado (`user_mocktest_answers`) e importações de questões (`question_imports`).
+    Ao adotar o Alembic, a equipe conferiu o banco de produção e registrou **21 tabelas e 27 chaves estrangeiras**. As tabelas e chaves a mais que aparecem abaixo vieram das migrations seguintes: controle dos módulos (`feature_flags`), denúncias de questões (`question_reports`), registro de auditoria (`audit_logs`), respostas das tentativas de simulado (`user_mocktest_answers`), importações de questões (`question_imports`) e auditoria das questões (a chave `audited_by_id`, em `multiple_choice_questions`).
 
 ---
 
@@ -13,7 +13,7 @@ Esta página apresenta a estrutura do banco de dados do IFVest: as tabelas, suas
 
 ## Visão geral dos relacionamentos
 
-O esquema tem **26 tabelas** e **34 chaves estrangeiras**. O diagrama abaixo mostra apenas as tabelas e como se relacionam, sem as colunas. A tabela `feature_flags` não aparece por não ter relacionamento com as demais.
+O esquema tem **26 tabelas** e **35 chaves estrangeiras**. O diagrama abaixo mostra apenas as tabelas e como se relacionam, sem as colunas. A tabela `feature_flags` não aparece por não ter relacionamento com as demais.
 
 ```mermaid
 erDiagram
@@ -27,6 +27,7 @@ erDiagram
     essays ||--o| gradings : ""
     users ||--o{ gradings : ""
     users |o--o{ items : ""
+    users |o--o{ multiple_choice_questions : ""
     users ||--o{ proposals : ""
     multiple_choice_questions ||--o{ question_history : ""
     users ||--o{ question_history : ""
@@ -150,6 +151,9 @@ erDiagram
         varchar type_or_color
         int difficulty
         text explanation
+        bool is_audited
+        timestamp audited_at
+        int audited_by_id FK
         timestamp created_at
         timestamp updated_at
     }
@@ -198,6 +202,7 @@ erDiagram
         timestamp updated_at
     }
     multiple_choice_questions ||--o{ alternatives : ""
+    users |o--o{ multiple_choice_questions : ""
     users |o--o{ question_imports : ""
     question_imports |o--o{ question_imports : ""
     topics ||--o{ question_topics : ""
@@ -228,6 +233,9 @@ erDiagram
         varchar type_or_color
         int difficulty
         text explanation
+        bool is_audited
+        timestamp audited_at
+        int audited_by_id FK
         timestamp created_at
         timestamp updated_at
     }
@@ -271,6 +279,7 @@ erDiagram
         timestamp updated_at
     }
     users |o--o{ fixed_mocktests : ""
+    users |o--o{ multiple_choice_questions : ""
     fixed_mocktests ||--o{ questions_mocktests : ""
     multiple_choice_questions ||--o{ questions_mocktests : ""
     user_mocktests ||--o{ user_mocktest_answers : ""
@@ -302,6 +311,9 @@ erDiagram
         varchar type_or_color
         int difficulty
         text explanation
+        bool is_audited
+        timestamp audited_at
+        int audited_by_id FK
         timestamp created_at
         timestamp updated_at
     }
@@ -352,6 +364,7 @@ erDiagram
         timestamp updated_at
     }
     users |o--o{ items : ""
+    users |o--o{ multiple_choice_questions : ""
     multiple_choice_questions ||--o{ question_history : ""
     users ||--o{ question_history : ""
     quiz_history |o--o{ question_history : ""
@@ -465,6 +478,9 @@ erDiagram
         varchar type_or_color
         int difficulty
         text explanation
+        bool is_audited
+        timestamp audited_at
+        int audited_by_id FK
         timestamp created_at
         timestamp updated_at
     }
@@ -495,6 +511,7 @@ erDiagram
         timestamp updated_at
     }
     users |o--o{ audit_logs : ""
+    users |o--o{ multiple_choice_questions : ""
     multiple_choice_questions ||--o{ question_reports : ""
     users ||--o{ question_reports : ""
 ```
@@ -524,6 +541,8 @@ erDiagram
 
 **Resolução das questões.** A coluna `explanation`, de `multiple_choice_questions`, guarda a resolução da questão, mostrada ao estudante depois de responder no simulado. As fontes importadas não trazem resolução: a coluna é preenchida pelos professores, no cadastro ou na edição da questão.
 
+**Auditoria das questões.** A coluna `is_audited`, de `multiple_choice_questions`, separa as questões aprovadas na auditoria das pendentes, e `audited_at` e `audited_by_id` registram quando e por quem cada uma foi aprovada. Só as questões auditadas entram no quiz, na Pergunta do Dia e nos simulados. A coluna começa como `false`: as questões cadastradas à mão e as trazidas pela carga ou pela importação entram pendentes.
+
 **Imagens gravadas no banco.** As colunas `profile_picture`, em `users`, e `image_data`, em `support_texts` — os textos de apoio das propostas de redação —, guardam **o próprio arquivo** em formato binário (`bytea`). Já as imagens das questões ficam em disco, fora do banco. Ver [Arquitetura — Armazenamento de arquivos](arquitetura.md#armazenamento-de-arquivos).
 
 **Dados de gamificação no usuário.** O saldo de pontos, a sequência da Pergunta do Dia e os totais de acertos ficam como colunas da própria tabela `users`, e não em uma tabela separada. O saldo (`points`) diminui quando o estudante compra na loja; por isso o ranking não o usa, e soma os pontos ganhos nos quizzes (`quiz_history`) e nos acertos da Pergunta do Dia (`question_history`).
@@ -534,7 +553,7 @@ erDiagram
 
 **Uma correção por redação.** A coluna `essay_id` de `gradings` não se repete: cada redação recebe no máximo uma correção, e a API recusa uma segunda.
 
-**Moderação e auditoria.** Uma denúncia (`question_reports`) fica `pending` até ser marcada como `resolved` ou `dismissed` por um administrador. O registro de auditoria (`audit_logs`) guarda quem cadastrou, editou e denunciou questões, quem mudou a situação das denúncias, quem criou, editou e excluiu propostas de redação, quem concedeu e revogou permissões e quem alterou os módulos ativos, além das questões atualizadas pela carga a partir da fonte e das importações aplicadas pelo painel. Se o autor de um registro for excluído, o registro permanece, sem a referência ao usuário.
+**Moderação e auditoria.** Uma denúncia (`question_reports`) fica `pending` até ser marcada como `resolved` ou `dismissed` por um administrador. O registro de auditoria (`audit_logs`) guarda quem cadastrou, editou, denunciou e aprovou questões, quem mudou a situação das denúncias, quem criou, editou e excluiu propostas de redação, quem concedeu e revogou permissões e quem alterou os módulos ativos, além das questões atualizadas pela carga a partir da fonte e das importações aplicadas pelo painel. Se o autor de um registro for excluído, o registro permanece, sem a referência ao usuário.
 
 ---
 
@@ -549,16 +568,19 @@ py scripts/gerar_modelo_de_dados.py ../ifvest-monorepo/ifvest-backend
 
 O script lê os modelos sem conectar ao banco e substitui **apenas** o trecho entre os marcadores de início e fim; as seções escritas à mão, como esta, são preservadas. Se o backend ganhar uma tabela nova, ela aparece em "Sem domínio definido" até ser incluída no domínio certo, na lista `DOMINIOS` do próprio script.
 
+O script não mexe na Arquitetura, que é escrita à mão. A cada migration nova, confira lá a [contagem de tabelas e chaves estrangeiras](arquitetura.md#dados) e a [lista de migrations](arquitetura.md#migrations).
+
 ---
 
 ## Fontes desta página
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tabelas, colunas, chaves e relacionamentos | Metadados dos modelos SQLAlchemy do `ifvest-monorepo` (`ifvest-backend/src/models/`), lidos pelo script de geração | out/2026 |
+| Tabelas, colunas, chaves e relacionamentos | Metadados dos modelos SQLAlchemy do `ifvest-monorepo` (`ifvest-backend/src/models/`), lidos pelo script de geração | nov/2026 |
 | Contagem registrada na adoção do Alembic | Documentação de implantação do repositório (`deploy/README.md`) | set/2026 |
 | Tabelas criadas depois | Migrations do Alembic (`ifvest-backend/alembic/versions/`) | out/2026 |
 | Dificuldade das questões | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md` e `docs/atualizar-questoes-na-vps.md` | set/2026 |
 | Resolução das questões | Migration `c2d3e4f5a6b7` (`ifvest-backend/alembic/versions/`) e `docs/auditoria-simulados-2026-10-10.md`, seção 8.10 | out/2026 |
+| Auditoria das questões | Migration `d3e4f5a6b7c8` (`ifvest-backend/alembic/versions/`) e `ifvest-backend/src/services/question_audit_service.py` | nov/2026 |
 | Ranking, simulados e tentativas | `ifvest-backend/src/services/quiz_ranking.py` e `mocktest_attempts.py`; `src/api/v1/mocktests.py` | out/2026 |
 | Importações de questões | `docs/importar-questoes-pelo-painel.md` e `ifvest-backend/src/models/question_imports.py` | out/2026 |

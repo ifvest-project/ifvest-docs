@@ -59,7 +59,7 @@ O IFVest **não tem senha própria**: a entrada é feita com a **conta Google**.
 | A janela do Google não abriu | O navegador pode estar bloqueando janelas *pop-up*. Permita as janelas do IFVest e clique de novo no botão |
 | Esqueci a minha senha | O IFVest não tem senha própria. Recupere a senha da sua conta Google pelo próprio Google |
 | Entrei, mas não vejo as abas **Professor** ou **Admin** | Elas aparecem só para quem tem as permissões correspondentes, logo depois que a plataforma as carrega. Se você deveria tê-las, peça a um administrador |
-| Ação recusada por falta de permissão | A mensagem *"Você não tem a permissão '…' para concluir esta ação"* indica a permissão que falta à sua conta. Peça-a a um administrador |
+| Ação recusada por falta de permissão | A mensagem *"Você não tem a permissão '…' para concluir esta ação"* indica a permissão que falta à sua conta. Nas ações que aceitam mais de uma permissão, ela começa por *"Você precisa de uma das seguintes permissões"* e lista as possíveis. Peça uma delas a um administrador |
 
 ---
 
@@ -75,6 +75,6 @@ Os requisitos dessas funcionalidades continuam registrados como não atendidos e
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): página inicial, tela de entrada, cabeçalho e sessão | out/2026 |
+| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): página inicial, tela de entrada, cabeçalho e sessão | nov/2026 |
 | Criação da conta e permissões iniciais | [Descrição das Funcionalidades — Conta e acesso](../../funcionalidades.md#conta-e-acesso), conferida no código do backend | out/2026 |
 | Design anterior: cadastro por formulário e recuperação de senha | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, itens 2 e 3 | abr/2026 |

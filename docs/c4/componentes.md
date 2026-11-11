@@ -26,7 +26,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(seguranca, "Segurança", "security.py · firebase.py", "Extrai e verifica o token,\nidentifica o usuário")
     Component(permissoes, "Permissões", "permission_catalog.py\npermissions.py", "Catálogo das permissões, atribuição\ninicial e autorização de cada ação")
     Component(flags, "Feature Flags", "feature_guard.py\nfeature_flags_service.py", "Liga e desliga módulos\ne funcionalidades")
-    Component(servicos, "Serviços de Domínio", "quiz · mocktests · question_bank · essays\nadmin · question_editing · question_import · seed", "Regras de negócio de cada módulo")
+    Component(servicos, "Serviços de Domínio", "quiz · mocktests · question_bank · essays\nadmin · question_audit · question_editing\nquestion_import · seed", "Regras de negócio de cada módulo")
     Component(esquemas, "Esquemas", "Pydantic", "Valida entradas e formata\nas respostas da API")
     Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 26 tabelas\ndo banco de dados")
 }
@@ -71,7 +71,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
     Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
-    Component(r_admin, "Rotas de Administração", "admin.py · 3 rotas", "Painel de indicadores\ne moderação das denúncias")
+    Component(r_admin, "Rotas de Administração", "admin.py · 6 rotas", "Painel de indicadores,\nmoderação das denúncias\ne auditoria de questões")
     Component(r_imp, "Rotas de Importação", "question_imports.py · 4 rotas", "Envio, simulação e aplicação\ndas importações de questões")
     Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
     Component(r_users, "Rotas de Usuário", "users.py · 6 rotas", "Perfil, lista de usuários\ne permissões")
@@ -82,7 +82,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(s_bank, "Serviço do Banco de Questões", "question_bank_service.py", "Busca, filtros\ne cadastro de questões")
     Component(s_edit, "Edição de Questões", "question_editing.py", "Leitura com gabarito\ne edição de questões")
     Component(s_essays, "Serviço de Redação", "essays_service.py", "Propostas e correção por\ncompetências do ENEM")
-    Component(s_admin, "Serviço de Administração", "admin_service.py", "Indicadores, denúncias\ne registro de auditoria")
+    Component(s_admin, "Serviço de Administração", "admin_service.py e\nquestion_audit_service.py", "Indicadores, denúncias,\nauditoria de questões\ne registro de auditoria")
     Component(s_flags, "Serviço de Flags", "feature_flags_service.py", "Estado e hierarquia\ndas flags")
     Component(s_imp, "Serviço de Importação", "question_import_service.py\ne módulos question_import_*", "Valida e guarda o .zip e\nexecuta a carga em segundo plano")
     Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Dados de teste e\ncarga das provas")
@@ -117,7 +117,7 @@ SHOW_LEGEND()
 @enduml
 ```
 
-O **Serviço de Administração** também guarda o registro de auditoria: as rotas que cadastram e editam questões, mexem em propostas de redação, concedem ou revogam permissões e alteram módulos registram ali o que foi feito. As questões atualizadas pela carga e as importações aplicadas também entram no registro, gravadas pelos próprios serviços de carga e de importação.
+O **Serviço de Administração** também aprova as questões na auditoria e guarda o registro de auditoria: as rotas que cadastram, editam e aprovam questões, mexem em propostas de redação, concedem ou revogam permissões e alteram módulos registram ali o que foi feito. As questões atualizadas pela carga e as importações aplicadas também entram no registro, gravadas pelos próprios serviços de carga e de importação.
 
 Os **Serviços de Carga** rodam por scripts, para popular o ambiente de desenvolvimento ou carregar provas no banco de produção, e também a partir do **Serviço de Importação**, quando um administrador importa provas pelo painel: a carga é a mesma nos dois caminhos.
 
@@ -188,7 +188,7 @@ Container_Boundary(web, "Aplicação Web — React + Vite") {
     Component(f_mock, "Simulados", "features/mocktests", "Criação, resolução\ne revisão de simulados")
     Component(f_essays, "Redação", "features/essays", "Envio de redações,\ncorreção e consulta")
     Component(f_prof, "Área do Professor", "features/professor", "Banco de questões, propostas\nde redação e fila de correção")
-    Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação, importação\nde questões e módulos")
+    Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação, auditoria,\nimportação de questões\ne módulos")
     Component(f_auth, "Autenticação e Perfil", "features/auth", "Entrada com a conta Google\ne perfil do usuário")
     Component(f_dev, "Em Desenvolvimento", "features/underDevelopment", "Tela exibida no lugar dos\nmódulos desligados")
 
@@ -251,6 +251,6 @@ SHOW_LEGEND()
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Componentes da API e contagem de rotas | `ifvest-backend/src/` e especificação OpenAPI gerada do código | set/2026, revisto em out/2026 |
+| Componentes da API e contagem de rotas | `ifvest-backend/src/` e especificação OpenAPI gerada do código | set/2026, revisto em nov/2026 |
 | Componentes transversais e ordem das verificações | `src/core/feature_guard.py`, `security.py`, `firebase.py`, `permission_catalog.py`, `permissions.py` e `src/services/feature_flags_service.py`; ordem conferida executando a API | set/2026 |
-| Componentes do frontend | `ifvest-frontend/src/core/`, `src/features/` e `src/router/` | set/2026, revisto em out/2026 |
+| Componentes do frontend | `ifvest-frontend/src/core/`, `src/features/` e `src/router/` | set/2026, revisto em nov/2026 |

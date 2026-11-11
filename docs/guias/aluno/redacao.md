@@ -120,6 +120,6 @@ A aba **Enviar arquivo (Em breve)**, na tela de escrita, aparece desabilitada. O
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): páginas de Redação | out/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas de Redação | nov/2026 |
 | Regras de envio, rascunho e correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | out/2026 |
 | Envio de redação manuscrita | [Requisitos Funcionais — Envio de redação por imagem e OCR](../../requisitos/funcionais.md#envio-de-redacao-por-imagem-e-ocr) | out/2026 |

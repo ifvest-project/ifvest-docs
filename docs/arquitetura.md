@@ -148,8 +148,8 @@ A organização é **por funcionalidade**: cada módulo da plataforma tem sua pr
 
 Duas áreas reúnem as tarefas de gestão:
 
-- **Área do Professor** — banco de questões, propostas de redação e fila de correção. Aparece para quem tem ao menos uma das permissões de conteúdo ou de redação.
-- **Painel Administrativo** — visão geral com indicadores, usuários e permissões, moderação das denúncias de questões, importação de questões e controle dos módulos. Restrito à permissão de administrador.
+- **Área do Professor** — banco de questões, propostas de redação e fila de correção. Aparece para quem tem ao menos uma das permissões de conteúdo ou de redação. As abas de redação aparecem para todos que entram na área, mas mostram o aviso "Acesso Bloqueado", com o nome da permissão que falta, a quem não pode usá-las.
+- **Painel Administrativo** — visão geral com indicadores, usuários e permissões, moderação das denúncias de questões, auditoria de questões, importação de questões e controle dos módulos. Restrito à permissão de administrador; quem tem apenas a permissão de auditoria entra no painel e vê só a aba de auditoria.
 
 Em produção, o frontend é compilado em arquivos estáticos e servido pelo nginx. Não há renderização no servidor: toda a interface é montada no navegador.
 
@@ -188,7 +188,7 @@ O frontend não bloqueia telas por falta de sessão: quem abre uma tela sem ter 
 
 ### Permissões
 
-A autorização é feita por **permissões granulares**, sem papéis fixos. O catálogo atual tem sete permissões:
+A autorização é feita por **permissões granulares**, sem papéis fixos. O catálogo atual tem oito permissões:
 
 | Permissão | Autoriza |
 |---|---|
@@ -199,6 +199,7 @@ A autorização é feita por **permissões granulares**, sem papéis fixos. O ca
 | `manage_mocktests` | Editar e excluir simulados criados por outras pessoas |
 | `create_essay_proposal_permission` | Criar e editar propostas de redação |
 | `grade_essay_permission` | Corrigir redações |
+| `audit_question` | Aprovar as questões pendentes de auditoria e editá-las antes da aprovação |
 
 O catálogo fica num único arquivo do backend, lido pelas rotas, pelas permissões iniciais e pela lista oferecida no painel administrativo. A concessão recusa nomes que não estão nele.
 
@@ -206,7 +207,7 @@ As permissões iniciais são atribuídas no primeiro acesso, conforme o e-mail d
 
 | E-mail | Permissões atribuídas |
 |---|---|
-| Administrador inicial, definido na configuração | Todas as sete |
+| Administrador inicial, definido na configuração | Todas as oito |
 | Domínio `@ifsp.edu.br` | As quatro de conteúdo: cadastrar e editar questões, criar simulados institucionais e gerenciar os simulados de outras pessoas |
 | Demais | Nenhuma permissão especial |
 
@@ -253,7 +254,7 @@ Se a consulta às flags falhar, o frontend **não presume que os módulos estão
 
 ## Dados
 
-O banco de dados tem **26 tabelas e 34 chaves estrangeiras**, organizadas em oito domínios:
+O banco de dados tem **26 tabelas e 35 chaves estrangeiras**, organizadas em oito domínios:
 
 | Domínio | Tabelas |
 |---|---|
@@ -292,9 +293,17 @@ A carga é **segura para repetir**: uma questão é identificada por banca, ano,
 
 Antes de gravar, é possível **simular** a carga e conferir o relatório. No painel, a simulação é obrigatória: a importação só é aplicada a partir dela, em segundo plano, uma de cada vez. Cada questão atualizada a partir da fonte e cada importação aplicada ficam no registro de auditoria.
 
+As questões inseridas pela carga ou pela importação entram **pendentes de auditoria**, como descrito a seguir.
+
+### Auditoria das questões
+
+Toda questão nova, cadastrada à mão ou trazida pela carga, entra no banco como **pendente de auditoria**. Ela só passa a ser usada no quiz, na Pergunta do Dia e nos simulados depois de aprovada por alguém com a permissão `audit_question`. A regra é aplicada no backend, nas consultas desses módulos: a busca do banco de questões entrega as pendentes apenas a quem cadastra, edita ou audita questões; para os demais, só as auditadas.
+
+A aprovação exige que a questão tenha gabarito e grava quem aprovou e quando. Cada aprovação também fica no registro de auditoria. Editar uma questão já aprovada, pela moderação, pelo banco ou pela carga, não a devolve à auditoria.
+
 ### Migrations
 
-A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há onze:
+A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há treze:
 
 | Migration | Alteração |
 |---|---|
@@ -309,6 +318,8 @@ A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelo
 | Permissão de simulado institucional | Renomeia `create_mocktest` para `create_institutional_mocktest`, mantendo quem já a tinha |
 | Respostas das tentativas | Tabela com a resposta dada em cada questão das tentativas de simulado |
 | Importações de questões | Tabela das importações feitas pelo painel, com as opções, a situação e o relatório |
+| Resolução das questões | Coluna opcional com a resolução de cada questão, mostrada nos simulados em "Por que essa alternativa?" |
+| Auditoria das questões | Colunas que indicam se a questão foi aprovada na auditoria, quando e por quem, e a permissão `audit_question` |
 
 As duas migrations das permissões de conteúdo seguem o padrão **expandir e contrair**: a primeira só acrescenta, para que a versão anterior da API continue funcionando durante a implantação; a segunda, aplicada numa implantação seguinte, remove o que deixou de ser usado.
 
@@ -318,14 +329,14 @@ Em produção, a criação automática de tabelas fica **desligada de propósito
 
 ## API
 
-A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **66 rotas**, contando cada combinação de método e caminho:
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **69 rotas**, contando cada combinação de método e caminho:
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja e histórico |
 | `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, redações e correções |
-| `admin` | 7 | Painel de indicadores, moderação das denúncias e importação de questões |
+| `admin` | 10 | Painel de indicadores, moderação das denúncias, auditoria e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e permissões |
 | `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncias |
 | `features` | 3 | Consulta e alteração das feature flags |
@@ -421,11 +432,12 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 |---|---|---|
 | Stack, organização e dependências | Código-fonte do `ifvest-monorepo` (`requirements.txt`, `package.json`, estrutura de `src/`) | set/2026, revisto em out/2026 |
 | Topologia, roteamento, segurança e backup | Configuração de produção (`deploy/docker-compose.prod.yml`, `deploy/Caddyfile`, `deploy/README.md`) | set/2026 |
-| Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026, revisto em out/2026 |
+| Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026, revisto em nov/2026 |
 | Feature flags | `src/services/feature_flags_service.py`, `src/core/feature_guard.py`, `src/config.py` e `ifvest-frontend/src/core/features/` | set/2026, revisto em out/2026 |
-| Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | out/2026 |
+| Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | nov/2026 |
 | Carga do banco de questões | `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | out/2026 |
-| API | Especificação OpenAPI gerada a partir do código-fonte | out/2026 |
+| Auditoria das questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py`, `question_bank_service.py`, `quiz_filters.py` e `src/api/v1/question_bank.py` | nov/2026 |
+| API | Especificação OpenAPI gerada a partir do código-fonte | nov/2026 |
 | Qualidade e integração contínua | `.github/workflows/`, `.githooks/pre-push` e `docs/quality-gates-2026-09-27.md` | set/2026, revisto em out/2026 |
 | Implantação | Workflow `.github/workflows/cd.yml` | set/2026 |
 

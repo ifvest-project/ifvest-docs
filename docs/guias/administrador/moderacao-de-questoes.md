@@ -49,7 +49,7 @@ As denúncias podem vir dos estudantes, durante um quiz ou um simulado, e dos pr
 **Como fazer:**
 
 1. Na aba **Moderação de Questões**, localize a denúncia e clique em **Editar questão**. O formulário **Editar Questão #…** se abre logo abaixo da denúncia, com os mesmos campos do cadastro, já preenchidos.
-2. Altere o que for preciso: os dados da questão, o texto das alternativas, a alternativa correta, a resolução e a classificação.
+2. Altere o que for preciso: os dados da questão, o texto das alternativas, a alternativa correta, a resolução e a classificação. À direita dos campos, a **Pré-visualização (como aparece na aplicação)** mostra a questão como os estudantes vão vê-la e se atualiza enquanto você digita.
 3. Se a questão tiver denúncias pendentes, o formulário traz, já marcada, a caixa que as marca como resolvidas ao salvar — por exemplo, *"Marcar as 2 denúncias pendentes desta questão como resolvidas"*. Desmarque-a se quiser tratá-las depois.
 4. Clique em **Salvar alterações**. A mensagem informa a questão atualizada e quantas denúncias foram resolvidas — por exemplo, *"Questão #12 atualizada e 2 denúncia(s) resolvida(s)."*
 
@@ -60,6 +60,7 @@ Para desistir, clique em **Cancelar**.
 - A edição segue as mesmas regras da edição pelo banco de questões, descritas em [Guia do Professor — Editar uma questão](../professor/banco-de-questoes.md#tarefa-3-editar-uma-questao): exatamente uma alternativa correta, sem incluir ou remover alternativas nem trocar imagens.
 - Quem tem a permissão `edit_question` também corrige as questões pelo banco de questões, sem passar pela moderação. Por esse caminho, as denúncias da questão continuam pendentes até que um administrador as trate aqui.
 - Uma questão corrigida fica protegida: uma importação posterior não desfaz a correção, a menos que o administrador peça para substituí-la (ver [Importação de Questões](importacao-de-questoes.md#tarefa-1-importar-questoes-em-lote)).
+- A correção não muda a situação da questão na [auditoria](auditoria-de-questoes.md): uma questão pendente continua pendente até ser aprovada.
 
 ---
 
@@ -79,5 +80,5 @@ Para desistir, clique em **Cancelar**.
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `73c9098`): Painel Administrativo, aba Moderação de Questões | out/2026 |
+| Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Moderação de Questões | nov/2026 |
 | Regras das denúncias e da edição | [Descrição das Funcionalidades — Moderação de questões](../../funcionalidades.md#moderacao-de-questoes) e [Edição de questões](../../funcionalidades.md#edicao-de-questoes), conferidas no código do backend | out/2026 |

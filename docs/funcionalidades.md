@@ -3,7 +3,7 @@
 Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada funcionalidade, quem pode usá-la, onde ela fica na interface e as regras que o sistema aplica. A visão geral dos módulos está na [Descrição do Sistema](descricao-do-sistema.md), e o contrato técnico de cada operação, na [Referência da API](api.md).
 
 !!! info "Levantada do código em produção"
-    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 31 de outubro de 2026 (commit `73c9098`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
+    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 11 de novembro de 2026 (commit `f98a6a0`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
     Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
@@ -31,9 +31,10 @@ Cada funcionalidade traz, logo abaixo do título, três informações:
 | Redação | Correção de redações | `grade_essay_permission` |
 | Banco de questões | Consulta e denúncia de erro | Com conta |
 | Banco de questões | Cadastro de questões | `create_question` |
-| Banco de questões | Edição de questões | `edit_question` |
+| Banco de questões | Edição de questões | `edit_question` ou `audit_question` |
+| Banco de questões | Auditoria de questões | `audit_question` |
 | Gestão | Área do Professor | Qualquer permissão de conteúdo ou de redação |
-| Gestão | Painel Administrativo | `admin_permission` |
+| Gestão | Painel Administrativo | `admin_permission`; com `audit_question`, só a aba de auditoria |
 
 ---
 
@@ -81,6 +82,8 @@ Módulo de prática rápida com elementos de jogo. **Flag do módulo:** `module_
 
 A página do módulo (`/quiz`) reúne os indicadores do estudante — saldo de pontos, dias de sequência, taxa de acertos e posição no ranking geral —, o acesso aos modos de jogo, uma prévia da Pergunta do Dia, os três primeiros do ranking da semana e a tabela de patentes.
 
+O quiz e a Pergunta do Dia usam apenas as questões aprovadas na [auditoria](#auditoria-de-questoes).
+
 ### Quiz personalizado
 
 **Acesso:** com conta · **Onde:** IFQuiz → "Jogar agora" ou "Prática Livre" (`/quiz/criar`) · **Flag:** `quiz_create_custom`
@@ -88,7 +91,7 @@ A página do módulo (`/quiz`) reúne os indicadores do estudante — saldo de p
 **Montagem.** O estudante define:
 
 - **Nome** — opcional; sem nome, o quiz se chama "Quiz Geral" ou "Quiz de {disciplina}".
-- **Disciplina** — "Geral", que reúne todas, ou uma das disciplinas que têm questões no banco, com a contagem de cada uma.
+- **Disciplina** — "Geral", que reúne todas, ou uma das disciplinas que têm questões auditadas no banco, com a contagem de cada uma.
 - **Assuntos** — opcionais, vários ao mesmo tempo, dentro da disciplina escolhida.
 - **Quantidade** — 5, 10, 15 ou 20 questões. As opções maiores que o número de questões disponíveis no filtro ficam desabilitadas.
 
@@ -204,7 +207,9 @@ O estudante dá um nome ao simulado, de até 120 caracteres, define a quantidade
 - **Selecionar questões** — busca no banco por título ou enunciado, com filtros de disciplina, assunto, banca e ano e ordenação por ordem de cadastro ou por ano, em páginas de 25 questões. Cada questão mostra banca, ano, número, disciplina e assunto, e "Ver questão completa" mostra o texto de apoio e as alternativas. A quantidade é o limite da seleção: atingida, as demais questões ficam travadas. É preciso selecionar ao menos uma questão, e a seleção é mantida ao trocar de página ou de filtro.
 - **Aleatório** (flag `mocktests_random`) — sorteia a quantidade pedida entre as questões que atendem aos filtros de disciplina, assunto, banca e ano. A tela mostra quantas questões atendem aos filtros e trava a geração quando são menos do que a quantidade pedida. A API aceita também o filtro por dificuldade, que a interface não oferece.
 
-O envio fica travado enquanto o servidor responde, e a confirmação mostra o nome, o modo e o número de questões gravados. A API recusa uma lista com questões repetidas ou inexistentes.
+Nas duas formas, só entram questões aprovadas na [auditoria](#auditoria-de-questoes).
+
+O envio fica travado enquanto o servidor responde, e a confirmação mostra o nome, o modo e o número de questões gravados. A API recusa uma lista com questões repetidas, inexistentes ou ainda não auditadas.
 
 Quem tem a permissão de simulado institucional vê ainda a opção **Simulado institucional**, desmarcada por padrão. O simulado criado aparece na [lista de simulados](#lista-de-simulados).
 
@@ -297,6 +302,8 @@ Separa as redações **aguardando correção** das **corrigidas**, com a nota to
 
 **Acesso:** `grade_essay_permission` · **Onde:** Redação → "Fila de correção" (`/redacao/fila-correcao`), também acessível pela Área do Professor · **Flag:** `essays_grading`
 
+Sem a permissão, a fila e a tela de correção mostram o aviso "Acesso Restrito", com a permissão necessária e o botão "Voltar ao Início".
+
 **Fila.** Lista as redações aguardando correção, das mais antigas para as mais recentes; a interface exibe as 20 primeiras. Uma segunda aba mostra as correções já feitas pelo próprio corretor. A fila não reserva redações: duas pessoas podem abrir a mesma, e só a primeira correção enviada é aceita.
 
 **Tela de correção.**
@@ -317,6 +324,8 @@ Separa as redações **aguardando correção** das **corrigidas**, com a nota to
 
 Acervo de questões de múltipla escolha usado pelos quizzes e pelos simulados. As provas de vestibular entram pela carga feita no servidor ou pela [importação no Painel Administrativo](#importar-questoes); as duas estão descritas em [Arquitetura — Carga do banco de questões](arquitetura.md#carga-do-banco-de-questoes).
 
+Toda questão nova entra **pendente de auditoria**, e só as aprovadas na [auditoria](#auditoria-de-questoes) são usadas nos quizzes e nos simulados.
+
 ### Consulta
 
 **Acesso:** com conta · **Onde:** Área do Professor → "Banco de Questões"; também na [montagem de simulado](#montar-simulado)
@@ -325,6 +334,7 @@ Busca por título ou enunciado, com filtros de disciplina, assunto, banca e ano,
 
 - Para quem tem a permissão `edit_question`, o gabarito vem destacado, com um aviso quando a questão está sem alternativa correta ou com mais de uma, e cada questão tem o botão "Editar". Para os demais, a alternativa correta não é indicada.
 - Cada questão tem também o botão "Sinalizar", para [denunciar um erro](#denuncia-de-erro).
+- Quem tem permissão de cadastrar, editar ou auditar questões vê também as pendentes de auditoria, com o selo "Pendente de Auditoria". Os demais veem só as auditadas.
 
 ### Cadastro de questões
 
@@ -334,15 +344,18 @@ Busca por título ou enunciado, com filtros de disciplina, assunto, banca e ano,
 - Campos obrigatórios: título, disciplina, assunto, tópico, banca, ano, número e enunciado. Opcionais: dificuldade, que começa em "Fácil", texto de apoio e **resolução**, que o estudante vê depois de responder à questão num simulado. As questões importadas chegam sem resolução.
 - A disciplina, o assunto e o tópico são **digitados**: um nome que ainda não existe cria um novo ramo da taxonomia.
 - O formulário não aceita imagens.
+- A questão cadastrada entra **pendente de auditoria** e só passa a ser usada nos quizzes e nos simulados depois de aprovada.
 
 ### Edição de questões
 
-**Acesso:** `edit_question` · **Onde:** Área do Professor → "Banco de Questões" → "Editar"; também no Painel Administrativo → "Moderação de Questões" → "Editar questão"
+**Acesso:** `edit_question`; pela auditoria, também `audit_question` · **Onde:** Área do Professor → "Banco de Questões" → "Editar"; também no Painel Administrativo → "Moderação de Questões" → "Editar questão" e "Auditoria de Questões" → "Editar Questão"
 
+- O formulário mostra os campos, que aceitam Markdown, ao lado de uma **pré-visualização** de como a questão aparece na plataforma, atualizada enquanto se digita.
 - Pela interface, permite alterar os dados da questão, a resolução, o texto das alternativas existentes, o gabarito e o vínculo principal com a taxonomia. Pela tela, não é possível incluir ou remover alternativas nem trocar imagens.
 - A edição exige ao menos duas alternativas, com letras distintas, e **exatamente uma correta**.
 - Uma questão editada fica protegida: as importações seguintes não a alteram, a menos que se peça para substituir as edições manuais.
 - Pela moderação, a edição pode resolver de uma vez as denúncias pendentes da questão; pelo banco de questões, as denúncias ficam como estão.
+- A edição não muda a situação da questão na auditoria: uma questão aprovada continua aprovada, e uma pendente continua pendente.
 - Não há exclusão de questões.
 
 ### Denúncia de erro
@@ -361,7 +374,9 @@ Busca por título ou enunciado, com filtros de disciplina, assunto, banca e ano,
 
 Reúne três abas: **Banco de Questões**, com a consulta, o cadastro e, para quem tem `edit_question`, a edição; **Propostas de Redação**, com a lista, a criação, a edição e a exclusão; e **Fila de Correção**, com o acesso à fila.
 
-- Os botões de cadastro aparecem para todos que têm acesso à área; a permissão específica é conferida no envio.
+- As três abas aparecem para todos que têm acesso à área. Sem a permissão de propostas ou de correção, as abas Propostas de Redação e Fila de Correção mostram o aviso "Acesso Bloqueado", com o nome da permissão que falta.
+- A área abre no Banco de Questões. Para quem não tem permissão de cadastrar nem de editar questões, abre na primeira aba de redação que a pessoa pode usar.
+- O botão "+ Nova Questão" aparece só para quem tem `create_question`, e "+ Criar nova proposta", só para quem tem `create_essay_proposal_permission`.
 - As permissões de simulados, `create_institutional_mocktest` e `manage_mocktests`, também dão acesso à área, que não tem ferramentas de simulados: o simulado institucional é criado em [Simulados](#montar-simulado).
 - Sem nenhuma das permissões, a área mostra o aviso "Acesso Restrito".
 
@@ -369,7 +384,7 @@ Reúne três abas: **Banco de Questões**, com a consulta, o cadastro e, para qu
 
 ## Painel Administrativo
 
-**Acesso:** `admin_permission` · **Onde:** aba "Admin" do cabeçalho (`/admin`) · **Flag:** `module_admin`, verificada só na interface
+**Acesso:** `admin_permission`; com `audit_question`, só a aba [Auditoria de questões](#auditoria-de-questoes) · **Onde:** aba "Admin" do cabeçalho (`/admin`) · **Flag:** `module_admin`, verificada só na interface
 
 ### Visão geral
 
@@ -388,6 +403,19 @@ Reúne três abas: **Banco de Questões**, com a consulta, o cadastro e, para qu
 - Lista as denúncias filtradas por situação: pendentes, que é o padrão, resolvidas, descartadas ou todas.
 - Cada denúncia pendente pode ser marcada como **resolvida** ou **descartada**. A questão denunciada pode ser **editada** ali mesmo, qualquer que seja a situação da denúncia, com a opção de resolver de uma vez todas as denúncias pendentes dela.
 
+### Auditoria de questões
+
+**Acesso:** `audit_question` · **Onde:** Painel Administrativo → "Auditoria de Questões" (`/admin?tab=audit`)
+
+Toda questão nova, seja cadastrada à mão, trazida pela carga no servidor ou importada pelo painel, entra **pendente de auditoria**. Só as questões aprovadas aqui são usadas no IFQuiz, na Pergunta do Dia e nos simulados.
+
+- **Questões Pendentes** — lista as questões não auditadas, da mais antiga para a mais nova, em páginas de 20, com o total no botão da aba. Cada questão mostra título, disciplina, assunto, dificuldade, banca, ano e número, o enunciado, o texto base e as alternativas, com o gabarito destacado.
+- **Aprovar** — "Aprovar Questão" exige alternativa correta. Sem ela, o botão fica desabilitado e a tela pede que a questão seja editada antes. A aprovação grava quem aprovou e quando, entra no registro de auditoria e não pode ser desfeita pela interface.
+- **Editar** — "Editar Questão" abre o formulário da [edição de questões](#edicao-de-questoes), com a pré-visualização.
+- **Histórico de Auditoria** — lista as aprovações, da mais recente para a mais antiga, com a questão, quem aprovou e quando.
+
+Quem tem `audit_question` sem ser administrador vê o link "Admin" no cabeçalho e, no painel, só esta aba.
+
 ### Importar questões
 
 Recebe de uma vez as questões de uma ou mais provas, num arquivo `.zip` com a pasta de cada prova: um arquivo JSON por questão, no formato em que saem da extração das provas, e as figuras na pasta `imgs/` ou `imagens/`. O limite é de 300 MB por arquivo, 1 GB descompactado e 50 mil arquivos. É o mesmo processo da carga feita no servidor (ver [Arquitetura — Carga do banco de questões](arquitetura.md#carga-do-banco-de-questoes)).
@@ -397,7 +425,7 @@ Recebe de uma vez as questões de uma ou mais provas, num arquivo `.zip` com a p
 - **Aplicação.** "Aplicar importação" grava exatamente o que a simulação mostrou, em segundo plano: é possível sair da página enquanto ela roda. O zip fica guardado por 24 horas; depois disso, ou se o servidor reiniciar, é preciso enviá-lo de novo.
 - **Histórico.** Lista as importações, com data, arquivo, tipo — simulação ou aplicação —, situação, quem enviou e o acesso ao relatório.
 
-Só entram questões objetivas completas: ao menos duas alternativas, todas com texto ou imagem, e exatamente uma correta. Os textos compartilhados por várias questões viram o texto de apoio delas. Só uma importação roda por vez: enquanto uma está na fila ou em andamento, o envio de outra fica bloqueado.
+Só entram questões objetivas completas: ao menos duas alternativas, todas com texto ou imagem, e exatamente uma correta. Os textos compartilhados por várias questões viram o texto de apoio delas. As questões inseridas entram pendentes de [auditoria](#auditoria-de-questoes), e as corrigidas mantêm a situação que tinham. Só uma importação roda por vez: enquanto uma está na fila ou em andamento, o envio de outra fica bloqueado.
 
 ### Módulos
 
@@ -405,7 +433,7 @@ Liga e desliga cada *feature flag*. Com um módulo desligado, os interruptores d
 
 ### Registro de auditoria
 
-São registrados o cadastro, a edição e a denúncia de questões, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações das flags, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel. Correções de redação, simulados e compras na loja não são registrados.
+São registrados o cadastro, a edição, a denúncia e a aprovação de questões na auditoria, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações das flags, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel. Correções de redação, simulados e compras na loja não são registrados.
 
 O painel mostra o resumo dos últimos 30 dias e as cinco atualizações mais recentes; não há consulta ao registro completo.
 
@@ -433,9 +461,9 @@ A regra de cada flag está em [Arquitetura — Feature flags](arquitetura.md#fea
 
 ### Falta de permissão
 
-Quando falta uma permissão, a **API** recusa a ação e informa qual permissão está faltando: *"Você não tem a permissão '…' para concluir esta ação. Se você acha que isso é um erro, contate um administrador para solicitar a permissão."*
+Quando falta uma permissão, a **API** recusa a ação e informa qual permissão está faltando: *"Você não tem a permissão '…' para concluir esta ação. Se você acha que isso é um erro, contate um administrador para solicitar a permissão."* Nas ações que aceitam mais de uma permissão, como a edição de questões, a mensagem lista as permissões possíveis.
 
-Na **interface**, a Área do Professor e o Painel Administrativo mostram a quem não tem acesso o aviso "Acesso Restrito", com o texto "Esta área é exclusiva para professores e administradores do IFVest.". Nas demais telas, o retorno varia: algumas exibem a mensagem da API, outras um erro genérico ou uma lista vazia.
+Na **interface**, a Área do Professor e o Painel Administrativo mostram a quem não tem acesso o aviso "Acesso Restrito", com o texto "Esta área é exclusiva para professores e administradores do IFVest.". A fila e a tela de correção de redações mostram o mesmo aviso, com a permissão necessária. As abas de redação da Área do Professor mostram "Acesso Bloqueado", também com a permissão que falta. Nas demais telas, o retorno varia: algumas exibem a mensagem da API, outras um erro genérico ou uma lista vazia.
 
 ### Datas e horários
 
@@ -448,7 +476,7 @@ A Pergunta do Dia, a sequência diária e o ranking semanal seguem o **horário 
 | Item | Situação |
 |---|---|
 | Flashcards | Módulo previsto. A tela mostra "Em Breve" mesmo com a flag ligada, e não há rotas na API |
-| Revisão de Conteúdo | Módulo previsto. A tela mostra "Em Breve" mesmo com a flag ligada, e não há rotas na API |
+| Revisão de Conteúdo | Módulo previsto. A tela mostra "Em Breve" mesmo com a flag ligada, e não há rotas na API. As telas em que o administrador cuida dos materiais (`/admin/revisao`) já estão no frontend, mas não aparecem no menu e dependem de rotas que a API ainda não tem |
 | Modo Competição do IFQuiz | Aparece na página do IFQuiz como "Em breve", desabilitado |
 | Envio de redação por arquivo | Aba "Enviar arquivo (Em breve)", desabilitada: a extração do texto por OCR não faz parte da primeira versão |
 
@@ -460,8 +488,9 @@ O que foi definido para os módulos previstos está na [Descrição do Sistema](
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Regras de negócio, acesso e flags de cada funcionalidade | Código do backend do `ifvest-monorepo` (`src/api/v1/`, `src/services/` e `src/core/`) | out/2026 |
-| Telas, ações, mensagens e condições de exibição | Código do frontend do `ifvest-monorepo` (`src/router/`, `src/features/` e `src/core/`) | out/2026 |
+| Regras de negócio, acesso e flags de cada funcionalidade | Código do backend do `ifvest-monorepo` (`src/api/v1/`, `src/services/` e `src/core/`) | nov/2026 |
+| Telas, ações, mensagens e condições de exibição | Código do frontend do `ifvest-monorepo` (`src/router/`, `src/features/` e `src/core/`) | nov/2026 |
+| Auditoria de questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py` e `src/api/v1/admin.py`; `ifvest-frontend/src/features/admin/components/QuestionAuditAdmin.tsx` | nov/2026 |
 | Pontos, patentes, ranking e loja | `src/services/quiz_scoring.py`, `quiz_ranking.py`, `store_catalog.py` e `src/core/clock.py` | out/2026 |
 | Critério do ranking e da patente | `docs/auditoria-testes-2026-09-25.md`, seção 12 | set/2026 |
 | Seletor de dificuldade oculto | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md` | set/2026 |

@@ -51,6 +51,7 @@ Para abrir o módulo, clique em **Simulados** no cabeçalho. A página do módul
 - No modo aleatório, se os filtros tiverem menos questões do que a quantidade pedida, a tela avisa e **Gerar simulado** fica travado.
 - Para mudar o nome ou a quantidade depois de escolher o modo, use a seta **Voltar**, no topo da tela. Se você diminuir a quantidade, continuam marcadas só as primeiras questões escolhidas, até o novo limite.
 - Enquanto o simulado é gravado, a tela mostra **Criando simulado...** e não aceita outro clique.
+- Nos dois modos, só aparecem questões já revisadas e aprovadas pela equipe da plataforma. As questões novas entram nos simulados depois dessa revisão.
 - Os simulados de treino aparecem só para você. Os professores com permissão veem ainda a opção **Simulado institucional**, explicada no [Guia do Professor](../professor/simulados.md#tarefa-1-criar-um-simulado-institucional).
 
 ---
@@ -266,8 +267,8 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): páginas e componentes de Simulados | out/2026 |
-| Regras de acesso, nota, tentativas, revisão e estatísticas | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | out/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas e componentes de Simulados | nov/2026 |
+| Regras de acesso, nota, tentativas, revisão e estatísticas | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | nov/2026 |
 | Mudanças de outubro no módulo | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo`, seções 8.6 a 8.10 | out/2026 |
 
 !!! note "O que mudou em relação ao planejado"

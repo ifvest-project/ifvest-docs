@@ -29,6 +29,7 @@ A importação pelo painel faz o mesmo que a carga feita por linha de comando no
 4. Clique em **Enviar e simular**. A plataforma lê o zip e mostra o que **aconteceria**, sem gravar nada: quantas questões **Serão inseridas** e quantas **Serão corrigidas**, o que mudaria em cada questão corrigida, as **Questões com problema, que ficam de fora**, as **Imagens que faltam no zip** e os **Arquivos que não puderam ser lidos**. Em arquivos grandes, a simulação leva alguns minutos, e a tela se atualiza sozinha.
 5. Quando aparecer *"Simulação concluída. Nada foi gravado ainda."* e o relatório estiver como esperado, clique em **Aplicar importação**. A plataforma grava exatamente o que a simulação mostrou.
 6. Aguarde *"Importação aplicada."* Enquanto ela roda, você pode sair da página: a importação continua no servidor, e o andamento fica no histórico ([Tarefa 2](#tarefa-2-acompanhar-o-historico-de-importacoes)).
+7. As questões inseridas entram **pendentes de auditoria**. Para que apareçam no quiz e nos simulados, aprove-as na [Auditoria de Questões](auditoria-de-questoes.md).
 
 !!! warning "Não desfaça as correções feitas à mão"
     Deixe desmarcada a opção **Substituir também as questões corrigidas à mão pela moderação**, a menos que o zip traga uma versão melhor dessas questões. Marcada, ela sobrescreve as correções feitas pelos professores e pelos administradores. A simulação lista as questões protegidas em **Questões corrigidas pela moderação, que ficam como estão**.
@@ -41,6 +42,7 @@ A importação pelo painel faz o mesmo que a carga feita por linha de comando no
 - Uma questão sem a figura no zip entra, mas a figura não aparece. O relatório lista as imagens que faltam.
 - Os textos compartilhados por várias questões viram o texto de apoio de cada uma.
 - As questões importadas chegam sem resolução. Ela pode ser escrita depois, pela edição da questão.
+- As questões corrigidas pela importação mantêm a situação que tinham na auditoria: uma questão já aprovada continua aprovada.
 - Para corrigir questões que já estão no banco, o zip pode ter só os arquivos corrigidos, na pasta da respectiva prova.
 - Só uma importação roda por vez. O zip fica guardado por 24 horas; depois disso, ou se o servidor reiniciar, é preciso enviá-lo de novo para aplicar.
 - A importação nunca remove questões.
@@ -94,6 +96,7 @@ A importação pelo painel faz o mesmo que a carga feita por linha de comando no
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, opções, mensagens e histórico | Código do frontend do `ifvest-monorepo` (commit `73c9098`): Painel Administrativo, aba Importar Questões | out/2026 |
+| Tela, opções, mensagens e histórico | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Importar Questões | nov/2026 |
+| Situação das questões importadas na auditoria | `ifvest-backend/src/services/unicamp_seed_service.py` e `src/models/questions.py`, no `ifvest-monorepo` | nov/2026 |
 | Processo, limites e regras da importação | `docs/importar-questoes-pelo-painel.md`, no `ifvest-monorepo`, e [Descrição das Funcionalidades — Importar questões](../../funcionalidades.md#importar-questoes) | out/2026 |
 | Proteção das questões editadas à mão | `ifvest-backend/src/services/unicamp_question_update.py`, no `ifvest-monorepo` | out/2026 |

@@ -38,6 +38,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 - **Dica:** o botão **💡 Dica (Eliminar)** elimina uma alternativa errada, uma vez por questão. Ele não pode ser usado quando resta só uma vida.
 - Não há cronômetro, e cada acerto vale **20 pontos**. Os pontos aparecem durante a partida, mas são somados ao seu saldo só no fim do quiz.
 - As quantidades maiores que o número de questões disponíveis no filtro ficam desabilitadas.
+- O quiz e a Pergunta do Dia usam só questões já revisadas e aprovadas pela equipe da plataforma. As questões novas entram no quiz depois dessa revisão.
 - Não há escolha de dificuldade: o filtro foi retirado porque a dificuldade registrada nas questões ainda não reflete a real.
 - Se encontrar um erro numa questão, use o botão **🚩 Sinalizar** (ver [Simulados — Denunciar um erro numa questão](simulados.md#tarefa-8-denunciar-um-erro-numa-questao)).
 
@@ -228,8 +229,8 @@ O **Modo Competição** aparece na página do IFQuiz como **Em breve**, desabili
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): páginas do IFQuiz | out/2026 |
-| Regras de pontos, patentes, sequência, ranking e loja | [Descrição das Funcionalidades — IFQuiz](../../funcionalidades.md#ifquiz), conferida no código do backend | out/2026 |
+| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas do IFQuiz | nov/2026 |
+| Regras de pontos, patentes, sequência, ranking e loja | [Descrição das Funcionalidades — IFQuiz](../../funcionalidades.md#ifquiz), conferida no código do backend | nov/2026 |
 | Filtro de dificuldade retirado | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md`, no `ifvest-monorepo` | set/2026 |
 | Modo Competição | Levantamento de Funcionalidades e Regras de Negócio, entradas do IFQuiz | 20/10/2026 |
 

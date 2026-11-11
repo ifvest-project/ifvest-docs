@@ -7,6 +7,8 @@ No módulo de **Redação**, o professor publica as **propostas** sobre as quais
 | Criar, editar e excluir propostas | `create_essay_proposal_permission` |
 | Corrigir redações | `grade_essay_permission` |
 
+Na Área do Professor, as abas **Propostas de Redação** e **Fila de Correção** aparecem para todos que entram na área. Sem a permissão correspondente, a aba mostra o aviso **Acesso Bloqueado**, com o nome da permissão que falta. A fila e a tela de correção, abertas pelo endereço, mostram nesse caso o aviso **Acesso Restrito**, também com a permissão necessária.
+
 Escolher um tema, escrever e enviar uma redação funciona para você como para qualquer estudante, e está descrito no [Guia do Aluno — Redação](../aluno/redacao.md).
 
 ---
@@ -135,7 +137,10 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 | Situação | O que fazer |
 |---|---|
 | A Área do Professor mostra **Acesso Restrito** | A sua conta não tem nenhuma permissão de conteúdo ou de redação. Peça-a a um administrador |
-| *"Erro ao cadastrar a proposta de redação. Tente novamente."* | Confira se o tema tem ao menos 3 caracteres e se a sua conta tem a permissão `create_essay_proposal_permission`. A mesma mensagem aparece quando um administrador desligou a criação de propostas em **Módulos (Feature Flags)** |
+| A aba **Propostas de Redação** mostra **Acesso Bloqueado** | A sua conta não tem a permissão `create_essay_proposal_permission`. Peça-a a um administrador |
+| A aba **Fila de Correção** mostra **Acesso Bloqueado** | A sua conta não tem a permissão `grade_essay_permission`. Peça-a a um administrador |
+| A fila ou a correção mostram **Acesso Restrito** | Também falta a permissão `grade_essay_permission`. Clique em **Voltar ao Início** e peça-a a um administrador |
+| *"Erro ao cadastrar a proposta de redação. Tente novamente."* | Confira se o tema tem ao menos 3 caracteres. A mesma mensagem aparece quando um administrador desligou a criação de propostas em **Módulos (Feature Flags)** |
 | *"Erro ao atualizar a proposta de redação. Tente novamente."* | Só quem publicou a proposta, ou um administrador, pode editá-la. Se a proposta é sua, confira a conexão e tente de novo |
 | *"Erro ao excluir proposta de redação."* | Só quem publicou a proposta, ou um administrador, pode excluí-la. Se a proposta é sua, confira a conexão e tente de novo |
 | A figura do texto de apoio não aparece | O endereço não leva a uma imagem, ou o site de origem não permite exibi-la. Use o endereço do próprio arquivo de imagem, terminado em `.png` ou `.jpg`, por exemplo |
@@ -145,7 +150,7 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 | *"String should have at least 1 character"* | Um comentário de trecho está sem texto. Escreva o apontamento ou clique em **✕ Excluir** |
 | *"Um usuário não pode corrigir a sua própria redação."* | A redação é sua. Deixe-a para outro corretor |
 | *"Redacao ID … ja foi avaliada anteriormente."* | Outra pessoa corrigiu a redação antes de você. Volte à fila e escolha outra |
-| *"Não foi possível carregar a redação. Verifique suas permissões de corretor."* | A sua conta não tem a permissão de correção, ou a redação não existe mais — excluir a proposta apaga as redações |
+| *"Não foi possível carregar a redação. Verifique suas permissões de corretor."* | A redação não existe mais, porque excluir a proposta apaga as redações, ou a conexão falhou. Volte à fila e tente de novo |
 | A fila mostra "Em Breve" | Um administrador desligou a correção de redações. Tente mais tarde |
 
 ---
@@ -154,6 +159,6 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `73c9098`): Área do Professor e páginas de Redação | out/2026 |
-| Regras das propostas, da fila e da correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | out/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Área do Professor e páginas de Redação | nov/2026 |
+| Regras das propostas, da fila e da correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | nov/2026 |
 | Validação das notas e das correções | `ifvest-backend/src/schemas/essays.py` e `src/services/essays_service.py`, no `ifvest-monorepo` | out/2026 |

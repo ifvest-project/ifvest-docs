@@ -3,7 +3,7 @@
 Esta página apresenta a especificação completa da API REST do IFVest: todas as rotas, seus parâmetros, os formatos de requisição e resposta, e os esquemas de dados.
 
 !!! info "Sobre esta especificação"
-    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **66 rotas e 91 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
+    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **69 rotas e 93 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
 
     Em produção, a documentação interativa gerada pelo FastAPI está fechada de propósito. Esta versão é estática: permite consultar a API **sem expor o ambiente de produção**. Por isso, o botão de testar as chamadas não funciona aqui.
 
@@ -18,7 +18,7 @@ Todas as rotas estão sob o prefixo **`/api/v1`** e trocam dados em JSON. A exce
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja de avatares e histórico |
 | `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, envio de redações, fila de correção, correção e histórico do corretor |
-| `admin` | 7 | Painel de indicadores, moderação das denúncias de questões e importação de questões |
+| `admin` | 10 | Painel de indicadores, moderação das denúncias de questões, auditoria de questões e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e concessão e revogação de permissões |
 | `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncia de erros |
 | `features` | 3 | Consulta e alteração das feature flags |
@@ -46,7 +46,7 @@ Rotas de módulos desligados são recusadas pelo backend com o código **503**, 
 
 ### Paginação
 
-As listas que podem crescer muito — banco de questões, usuários, denúncias e histórico de simulados — são paginadas pelos parâmetros `limit` e `offset`. O total de itens, somando todas as páginas, vem no cabeçalho `X-Total-Count` da resposta.
+As listas que podem crescer muito — banco de questões, usuários, denúncias, auditoria de questões e histórico de simulados — são paginadas pelos parâmetros `limit` e `offset`. O total de itens, somando todas as páginas, vem no cabeçalho `X-Total-Count` da resposta.
 
 ---
 
@@ -75,5 +75,5 @@ O arquivo também pode ser **baixado** e importado em ferramentas como Postman o
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `73c9098`) pelo script de geração | out/2026 |
+| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `f98a6a0`) pelo script de geração | nov/2026 |
 | Rotas sem autenticação e paginação | `ifvest-backend/src/api/v1/` e `src/core/pagination.py` | set/2026 |
