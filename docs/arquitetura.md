@@ -239,7 +239,7 @@ As flags obedecem a uma **hierarquia**: desligar um módulo desliga automaticame
 
 O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503, as chamadas a módulos e funcionalidades desligados, e o frontend oculta as telas dos módulos desligados — e as da Pergunta do Dia, do Ranking e da Correção de redações —, exibindo uma página "Em Breve" no lugar. Nas demais funcionalidades, a tela continua visível e a ação é recusada pela API (ver [Descrição das Funcionalidades — Módulos desligados](funcionalidades.md#modulos-desligados)). Há três exceções:
 
-- o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador;
+- o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador ou, na auditoria de questões, a de auditoria;
 - o **caderno em PDF** e o **gabarito** dos simulados são montados no navegador, e a flag deles só esconde os botões que os geram;
 - **Flashcards** e **Revisão** ainda não têm rotas na API.
 
@@ -248,7 +248,9 @@ Nas rotas de um módulo, a verificação do módulo vem **antes de tudo**: um m�
 Se a consulta às flags falhar, o frontend **não presume que os módulos estão ligados**: no lugar do módulo, exibe um aviso com a opção de tentar de novo.
 
 !!! note "O que está ligado em produção"
-    O código define quais flags existem e seus valores padrão; **quais estão ativas é estado da produção**, configurado no banco e no ambiente. A lista acima descreve o que a plataforma é capaz de controlar, não o que está disponível neste momento. ⬜ *A registrar o estado em produção: a consulta pública `/api/v1/features` informa, para cada flag, se está ligada e se o valor vem do banco ou do padrão.*
+    O código define quais flags existem e seus valores padrão; **quais estão ativas é estado da produção**, configurado no banco e no ambiente. A lista acima descreve o que a plataforma é capaz de controlar, e a consulta pública `/api/v1/features` informa, para cada flag, se ela está ligada e se o valor vem do banco ou do padrão.
+
+    Na consulta de 11/11/2026, todos os módulos e funcionalidades estavam ligados, exceto Flashcards e Revisão. Redação e Simulados tinham o valor definido pelo painel, e as demais flags seguiam o padrão do servidor. O resultado coincide com os padrões do código.
 
 ---
 
@@ -434,6 +436,7 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 | Topologia, roteamento, segurança e backup | Configuração de produção (`deploy/docker-compose.prod.yml`, `deploy/Caddyfile`, `deploy/README.md`) | set/2026 |
 | Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026, revisto em nov/2026 |
 | Feature flags | `src/services/feature_flags_service.py`, `src/core/feature_guard.py`, `src/config.py` e `ifvest-frontend/src/core/features/` | set/2026, revisto em out/2026 |
+| Estado das flags em produção | Consulta pública `GET /api/v1/features` em `ifvest.com.br`, feita pelo responsável pela documentação | 11/11/2026 |
 | Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | nov/2026 |
 | Carga do banco de questões | `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | out/2026 |
 | Auditoria das questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py`, `question_bank_service.py`, `quiz_filters.py` e `src/api/v1/question_bank.py` | nov/2026 |
