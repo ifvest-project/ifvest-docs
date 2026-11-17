@@ -74,8 +74,7 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 | Situação | O que fazer |
 |---|---|
 | A aba **Admin** não aparece no cabeçalho | A sua conta não tem a permissão de administrador. Se ela foi concedida há pouco, recarregue a página |
-| O painel mostra **Acesso Restrito** | A sua conta não tem a permissão de administrador nem a de auditoria |
-| O painel mostra só a aba **Auditoria de Questões** | A sua conta tem a permissão `audit_question`, mas não a de administrador. A Visão Geral é exclusiva dos administradores |
+| O painel mostra **Acesso Restrito** | A sua conta não tem a permissão de administrador. Quem tem só a de auditoria aprova as questões pela aba **Auditoria** do cabeçalho (ver [Auditoria de Questões](auditoria-de-questoes.md)) |
 | *"Não foi possível carregar as métricas do painel. Tente novamente mais tarde."* | Recarregue a página. Se a mensagem continuar, avise quem mantém o servidor da plataforma |
 | O painel mostra a página **Em Breve** | O módulo **Admin** foi desligado em **Módulos (Feature Flags)**. Ver o aviso em [Ligar ou desligar um módulo](modulos.md#tarefa-1-ligar-ou-desligar-um-modulo-ou-funcionalidade) |
 
@@ -85,6 +84,6 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, indicadores e quadros | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Visão Geral | nov/2026 |
+| Tela, indicadores e quadros | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Visão Geral | nov/2026 |
 | Cálculo dos indicadores, da janela de 30 dias e dos avisos | `ifvest-backend/src/services/admin_service.py`, no `ifvest-monorepo` | nov/2026 |
 | O que o registro de auditoria guarda | [Descrição das Funcionalidades — Registro de auditoria](../../funcionalidades.md#registro-de-auditoria) | nov/2026 |

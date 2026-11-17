@@ -1,6 +1,6 @@
 # Guia do Administrador
 
-Este guia documenta as tarefas de **administração** do IFVest, todas feitas no **Painel Administrativo**: acompanhar os indicadores da plataforma, conceder e revogar permissões, moderar as denúncias de erro nas questões, aprovar as questões novas na auditoria, importar provas em lote e ligar e desligar os módulos.
+Este guia documenta as tarefas de **administração** do IFVest: acompanhar os indicadores da plataforma, conceder e revogar permissões, moderar as denúncias de erro nas questões, aprovar as questões novas na auditoria, importar provas em lote e ligar e desligar os módulos. Quase todas são feitas no **Painel Administrativo**; a auditoria das questões tem página própria.
 
 !!! info "Este guia complementa os guias do Aluno e do Professor"
     A permissão de administrador passa em todas as verificações de permissão da plataforma. Quem a tem usa o IFVest como qualquer estudante e faz também todas as tarefas do professor. Este guia cobre apenas o que se soma:
@@ -19,24 +19,25 @@ Quem administra a plataforma: a equipe que mantém o IFVest e as pessoas a quem 
 
 **Permissão:** `admin_permission`. Ela é atribuída automaticamente só à conta do administrador inicial, definida na configuração do servidor. As demais contas a recebem de um administrador, na aba **Usuários e Permissões** (ver [Conceder uma permissão](usuarios-e-permissoes.md#tarefa-2-conceder-uma-permissao)).
 
-A [Auditoria de Questões](auditoria-de-questoes.md) tem permissão própria, `audit_question`, que um administrador pode conceder a quem vai revisar as questões sem administrar a plataforma.
+A [Auditoria de Questões](auditoria-de-questoes.md) tem página e permissão próprias. A permissão, `audit_question`, pode ser concedida por um administrador a quem vai revisar as questões sem administrar a plataforma: essa pessoa usa a página de auditoria sem ter acesso ao Painel Administrativo.
 
 ---
 
 ## O Painel Administrativo
 
-Para abrir o painel, clique em **Admin** no cabeçalho (`/admin`). O link aparece para quem tem a permissão de administrador ou a de auditoria. Quem tem só a de auditoria vê o painel apenas com a aba **Auditoria de Questões**. Para os demais, o endereço do painel mostra o aviso **Acesso Restrito**.
+Para abrir o painel, clique em **Admin** no cabeçalho (`/admin`). O link aparece só para quem tem a permissão de administrador. Para os demais, o endereço do painel mostra o aviso **Acesso Restrito**.
 
-O painel tem seis abas:
+O painel tem cinco abas:
 
 | Aba | O que você faz nela | Página do guia |
 |---|---|---|
 | **Visão Geral** | Acompanhar os indicadores, os avisos e as modificações recentes | [Indicadores e Auditoria](indicadores-e-auditoria.md) |
 | **Usuários e Permissões** | Encontrar usuários e conceder e revogar permissões | [Usuários e Permissões](usuarios-e-permissoes.md) |
 | **Moderação de Questões** | Tratar as denúncias de erro e corrigir as questões denunciadas | [Moderação de Questões](moderacao-de-questoes.md) |
-| **Auditoria de Questões** | Conferir e aprovar as questões novas, que só então entram em uso | [Auditoria de Questões](auditoria-de-questoes.md) |
 | **Importar Questões** | Importar provas em lote, a partir de um arquivo `.zip` | [Importação de Questões](importacao-de-questoes.md) |
 | **Módulos (Feature Flags)** | Ligar e desligar os módulos e as funcionalidades | [Módulos](modulos.md) |
+
+A **Auditoria de Questões**, em que as questões novas são conferidas e aprovadas antes de entrar em uso, fica fora do painel: abre pela aba **Auditoria** do cabeçalho (`/auditoria`), para quem tem a permissão de auditoria ou a de administrador (ver [Auditoria de Questões](auditoria-de-questoes.md)).
 
 Os termos usados na plataforma estão explicados no [Glossário](../glossario.md).
 
@@ -50,14 +51,14 @@ Cada tarefa segue a estrutura explicada em [Como ler as tarefas](../index.md#com
 
 ## Estrutura do guia
 
-As páginas seguem a ordem das abas do painel.
+As páginas seguem a ordem das abas do painel. A Auditoria de Questões, que tem página própria, vem logo depois da Moderação, com que se relaciona.
 
 | Página | Conteúdo | Situação |
 |---|---|---|
 | [Indicadores e Auditoria](indicadores-e-auditoria.md) | Indicadores, avisos, modificações dos últimos 30 dias e últimas atualizações | ✅ Disponível |
 | [Usuários e Permissões](usuarios-e-permissoes.md) | Encontrar usuários, conceder e revogar permissões | ✅ Disponível |
 | [Moderação de Questões](moderacao-de-questoes.md) | Tratar as denúncias e corrigir as questões denunciadas | ✅ Disponível |
-| [Auditoria de Questões](auditoria-de-questoes.md) | Aprovar as questões novas, corrigi-las antes e consultar o histórico | ✅ Disponível |
+| [Auditoria de Questões](auditoria-de-questoes.md) | Encontrar as questões novas, aprová-las uma a uma ou em bloco, corrigi-las antes e consultar o histórico | ✅ Disponível |
 | [Importação de Questões](importacao-de-questoes.md) | Importar provas em lote e acompanhar o histórico | ✅ Disponível |
 | [Módulos](modulos.md) | Ligar e desligar módulos e funcionalidades | ✅ Disponível |
 

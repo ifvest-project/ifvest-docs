@@ -71,7 +71,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
     Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
-    Component(r_admin, "Rotas de Administração", "admin.py · 6 rotas", "Painel de indicadores,\nmoderação das denúncias\ne auditoria de questões")
+    Component(r_admin, "Rotas de Administração", "admin.py · 7 rotas", "Painel de indicadores,\nmoderação das denúncias\ne auditoria de questões,\ninclusive em bloco")
     Component(r_imp, "Rotas de Importação", "question_imports.py · 4 rotas", "Envio, simulação e aplicação\ndas importações de questões")
     Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
     Component(r_users, "Rotas de Usuário", "users.py · 6 rotas", "Perfil, lista de usuários\ne permissões")

@@ -13,7 +13,7 @@ O catálogo tem oito permissões:
 | `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
 | `create_essay_proposal_permission` | Criar, editar e excluir propostas de redação | Concedida por um administrador |
 | `grade_essay_permission` | Corrigir redações | Concedida por um administrador |
-| `audit_question` | Aprovar as questões pendentes na [Auditoria de Questões](auditoria-de-questoes.md) e editá-las antes da aprovação. Dá acesso ao Painel Administrativo, só com essa aba | Concedida por um administrador |
+| `audit_question` | Aprovar as questões pendentes na [Auditoria de Questões](auditoria-de-questoes.md) e editá-las antes da aprovação. Libera a aba **Auditoria** do cabeçalho, mas não o Painel Administrativo | Concedida por um administrador |
 
 As permissões automáticas são atribuídas só no **primeiro acesso** da conta. Depois disso, valem as concessões e revogações feitas no painel: uma permissão revogada não volta sozinha.
 
@@ -58,7 +58,7 @@ As permissões automáticas são atribuídas só no **primeiro acesso** da conta
 **Observações:**
 
 - A lista oferece só as permissões que a conta ainda não tem. Com todas concedidas, o cartão mostra *"Todas as permissões do sistema já atribuídas."*
-- A permissão vale na hora para as ações. Já as abas e os botões que ela libera, como a aba **Professor** ou, com `audit_question`, a aba **Admin**, aparecem para a pessoa quando ela recarrega a página ou entra de novo.
+- A permissão vale na hora para as ações. Já as abas e os botões que ela libera, como a aba **Professor** ou, com `audit_question`, a aba **Auditoria**, aparecem para a pessoa quando ela recarrega a página ou entra de novo.
 - Conceda a permissão de administrador só a quem vai administrar a plataforma: ela libera todas as outras. Para quem só vai aprovar questões, basta a `audit_question`.
 
 ---
@@ -105,6 +105,6 @@ As permissões automáticas são atribuídas só no **primeiro acesso** da conta
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Usuários e Permissões | nov/2026 |
+| Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Usuários e Permissões | nov/2026 |
 | Catálogo de permissões e regras de concessão e revogação | `ifvest-backend/src/core/permission_catalog.py`, `src/core/permissions.py` e `src/api/v1/users.py`, no `ifvest-monorepo` | nov/2026 |
 | Permissões automáticas | [Descrição do Sistema — Como as permissões são atribuídas](../../descricao-do-sistema.md#como-as-permissoes-sao-atribuidas) | out/2026 |

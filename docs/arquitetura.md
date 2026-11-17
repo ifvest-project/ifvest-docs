@@ -146,10 +146,11 @@ ifvest-frontend/src/
 
 A organização é **por funcionalidade**: cada módulo da plataforma tem sua própria pasta, com telas, componentes e testes, enquanto `core/` concentra o que é compartilhado.
 
-Duas áreas reúnem as tarefas de gestão:
+Três áreas reúnem as tarefas de gestão:
 
 - **Área do Professor** — banco de questões, propostas de redação e fila de correção. Aparece para quem tem ao menos uma das permissões de conteúdo ou de redação. As abas de redação aparecem para todos que entram na área, mas mostram o aviso "Acesso Bloqueado", com o nome da permissão que falta, a quem não pode usá-las.
-- **Painel Administrativo** — visão geral com indicadores, usuários e permissões, moderação das denúncias de questões, auditoria de questões, importação de questões e controle dos módulos. Restrito à permissão de administrador; quem tem apenas a permissão de auditoria entra no painel e vê só a aba de auditoria.
+- **Auditoria de Questões** — página própria (`/auditoria`), em que as questões novas são conferidas e aprovadas, uma a uma ou em bloco. Aparece como a aba "Auditoria" do cabeçalho para quem tem a permissão de auditoria ou a de administrador, e não depende do Painel Administrativo.
+- **Painel Administrativo** — visão geral com indicadores, usuários e permissões, moderação das denúncias de questões, importação de questões e controle dos módulos. Restrito à permissão de administrador.
 
 Em produção, o frontend é compilado em arquivos estáticos e servido pelo nginx. Não há renderização no servidor: toda a interface é montada no navegador.
 
@@ -239,7 +240,7 @@ As flags obedecem a uma **hierarquia**: desligar um módulo desliga automaticame
 
 O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503, as chamadas a módulos e funcionalidades desligados, e o frontend oculta as telas dos módulos desligados — e as da Pergunta do Dia, do Ranking e da Correção de redações —, exibindo uma página "Em Breve" no lugar. Nas demais funcionalidades, a tela continua visível e a ação é recusada pela API (ver [Descrição das Funcionalidades — Módulos desligados](funcionalidades.md#modulos-desligados)). Há três exceções:
 
-- o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador ou, na auditoria de questões, a de auditoria;
+- o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador ou, na auditoria de questões, a de auditoria. A página de auditoria, separada do painel, não depende da flag;
 - o **caderno em PDF** e o **gabarito** dos simulados são montados no navegador, e a flag deles só esconde os botões que os geram;
 - **Flashcards** e **Revisão** ainda não têm rotas na API.
 
@@ -299,9 +300,9 @@ As questões inseridas pela carga ou pela importação entram **pendentes de aud
 
 ### Auditoria das questões
 
-Toda questão nova, cadastrada à mão ou trazida pela carga, entra no banco como **pendente de auditoria**. Ela só passa a ser usada no quiz, na Pergunta do Dia e nos simulados depois de aprovada por alguém com a permissão `audit_question`. A regra é aplicada no backend, nas consultas desses módulos: a busca do banco de questões entrega as pendentes apenas a quem cadastra, edita ou audita questões; para os demais, só as auditadas.
+Toda questão nova, cadastrada à mão ou trazida pela carga, entra no banco como **pendente de auditoria**. Ela só passa a ser usada no quiz, na Pergunta do Dia e nos simulados depois de aprovada por alguém com a permissão `audit_question`. A regra é aplicada no backend, nas consultas desses módulos: a busca do banco de questões entrega as pendentes apenas a quem cadastra, edita ou audita questões; para os demais, só as auditadas. Na interface, a lista da Área do Professor pede só as auditadas, e as pendentes são tratadas na página de auditoria.
 
-A aprovação exige que a questão tenha gabarito e grava quem aprovou e quando. Cada aprovação também fica no registro de auditoria. Editar uma questão já aprovada, pela moderação, pelo banco ou pela carga, não a devolve à auditoria.
+A aprovação pode ser feita uma a uma ou em bloco, com até 100 questões por pedido. Ela exige que a questão tenha gabarito e grava quem aprovou e quando; no bloco, cada questão é avaliada à parte, e as que não podem ser aprovadas ficam de fora sem impedir as demais. Cada aprovação também fica no registro de auditoria. Editar uma questão já aprovada, pela moderação, pelo banco ou pela carga, não a devolve à auditoria.
 
 ### Migrations
 
@@ -331,14 +332,14 @@ Em produção, a criação automática de tabelas fica **desligada de propósito
 
 ## API
 
-A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **69 rotas**, contando cada combinação de método e caminho:
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **70 rotas**, contando cada combinação de método e caminho:
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja e histórico |
 | `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, redações e correções |
-| `admin` | 10 | Painel de indicadores, moderação das denúncias, auditoria e importação de questões |
+| `admin` | 11 | Painel de indicadores, moderação das denúncias, auditoria das questões, inclusive em bloco, e importação de questões |
 | `users` | 6 | Perfil do usuário, lista de usuários e permissões |
 | `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncias |
 | `features` | 3 | Consulta e alteração das feature flags |
@@ -439,7 +440,7 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 | Estado das flags em produção | Consulta pública `GET /api/v1/features` em `ifvest.com.br`, feita pelo responsável pela documentação | 11/11/2026 |
 | Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | nov/2026 |
 | Carga do banco de questões | `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | out/2026 |
-| Auditoria das questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py`, `question_bank_service.py`, `quiz_filters.py` e `src/api/v1/question_bank.py` | nov/2026 |
+| Auditoria das questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py`, `question_bank_service.py`, `quiz_filters.py` e `src/api/v1/question_bank.py` e `admin.py`; página `/auditoria` do frontend (commit `b0a5e5f`, de 17/11/2026) | nov/2026 |
 | API | Especificação OpenAPI gerada a partir do código-fonte | nov/2026 |
 | Qualidade e integração contínua | `.github/workflows/`, `.githooks/pre-push` e `docs/quality-gates-2026-09-27.md` | set/2026, revisto em out/2026 |
 | Implantação | Workflow `.github/workflows/cd.yml` | set/2026 |
