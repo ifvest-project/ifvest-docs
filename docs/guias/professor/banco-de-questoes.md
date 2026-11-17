@@ -4,10 +4,10 @@ O **banco de questões** reúne as questões de múltipla escolha usadas nos qui
 
 O acervo combina as **provas de vestibulares**, que entram em lote pela importação, e as **questões autorais**, cadastradas uma a uma pelos professores.
 
-Toda questão nova, autoral ou importada, entra **pendente de auditoria**. Ela aparece no banco com o selo **Pendente de Auditoria**, mas só passa a ser usada nos quizzes e nos simulados depois que alguém com a permissão de auditoria a aprova.
+Toda questão nova, autoral ou importada, entra **pendente de auditoria**. Ela só aparece na lista do banco e só passa a ser usada nos quizzes e nos simulados depois que alguém com a permissão de auditoria a aprova.
 
 !!! info "Moderação, auditoria e importação ficam no Guia do Administrador"
-    A moderação das denúncias de erro, a auditoria das questões e a importação de provas em lote ficam no Painel Administrativo. A moderação e a importação exigem a permissão de administrador; a auditoria, a permissão `audit_question`. As três estão no [Guia do Administrador](../administrador/index.md).
+    A moderação das denúncias de erro e a importação de provas em lote ficam no Painel Administrativo e exigem a permissão de administrador. A auditoria das questões tem página própria, aberta pela aba **Auditoria** do cabeçalho, e exige a permissão `audit_question`. As três estão no [Guia do Administrador](../administrador/index.md).
 
 ---
 
@@ -30,8 +30,8 @@ Toda questão nova, autoral ou importada, entra **pendente de auditoria**. Ela a
 **Observações:**
 
 - A lista mostra as questões **de todo o banco**, e não só as cadastradas por você.
-- Com permissão de cadastrar ou de editar questões, você vê também as **pendentes de auditoria**, com o selo **Pendente de Auditoria**. Com apenas permissões de simulados ou de redação, a lista mostra só as questões já auditadas.
-- As opções dos filtros de disciplina, assunto, banca e ano vêm apenas das questões auditadas. Para encontrar uma questão pendente de uma disciplina ou banca que ainda não aparece nos filtros, use a busca por título ou enunciado.
+- A lista mostra só as questões já **aprovadas na auditoria**. As pendentes, incluindo as que você acabou de cadastrar, ficam na página [Auditoria de Questões](../administrador/auditoria-de-questoes.md), para quem tem a permissão `audit_question`. Com permissão de cadastrar, editar ou auditar questões, você vê acima da busca o aviso **Questões com auditoria pendente**, com o número de questões que aguardam aprovação.
+- As opções de **Disciplina** e **Assunto** trazem toda a organização de conteúdos cadastrada, inclusive disciplinas e assuntos que ainda não têm questão aprovada: escolhidos, eles não trazem resultado. As de **Banca** e **Ano** vêm só das questões aprovadas.
 - Com a permissão `edit_question`, as alternativas vêm com o gabarito destacado, marcado com **✓ Gabarito**, e cada questão tem o botão **Editar** (ver [Tarefa 3](#tarefa-3-editar-uma-questao)). Se a questão estiver sem alternativa correta, ou com mais de uma, aparece o aviso *"Gabarito com problema: …"*.
 - Sem a permissão `edit_question`, a consulta não indica a alternativa correta.
 - Para avisar sobre um erro numa questão, use o botão **🚩 Sinalizar** (ver [Tarefa 4](#tarefa-4-sinalizar-um-erro-numa-questao)).
@@ -64,12 +64,12 @@ Toda questão nova, autoral ou importada, entra **pendente de auditoria**. Ela a
 
 3. Em **Alternativas (marque a opção correta)**, escreva o texto das alternativas de A a E e marque a correta.
 4. Se quiser, explique em **Resolução (Opcional)** por que a alternativa correta está certa. O estudante vê a resolução em **Por que essa alternativa?**, depois de responder à questão num simulado.
-5. Clique em **Cadastrar Questão**. A mensagem *"Questão "…" cadastrada com sucesso!"* confirma o cadastro, e a questão entra na lista com o selo **Pendente de Auditoria**.
+5. Clique em **Cadastrar Questão**. A mensagem *"Questão "…" cadastrada com sucesso!"* confirma o cadastro. A questão entra pendente de auditoria: ela ainda não aparece na lista, e o número do aviso **Questões com auditoria pendente** aumenta.
 
 Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 
 !!! warning "A disciplina, o assunto e o tópico são digitados"
-    Não há uma lista para escolher: se o nome digitado ainda não existir, a plataforma cria um **novo ramo** na organização dos conteúdos. Um erro de digitação — "Matematica" em vez de "Matemática", por exemplo — cria uma disciplina duplicada. Antes de cadastrar, confira na [consulta](#tarefa-1-consultar-o-banco-de-questoes) como os nomes já aparecem nos filtros e nas questões existentes.
+    No cadastro, não há uma lista para escolher: se o nome digitado ainda não existir, a plataforma cria um **novo ramo** na organização dos conteúdos. Um erro de digitação — "Matematica" em vez de "Matemática", por exemplo — cria uma disciplina duplicada. Antes de cadastrar, confira na [consulta](#tarefa-1-consultar-o-banco-de-questoes) como os nomes já aparecem nos filtros e nas questões existentes.
 
 **Observações:**
 
@@ -103,7 +103,7 @@ Para desistir, clique em **Cancelar**.
 
 - A edição exige ao menos duas alternativas, com letras diferentes, e **exatamente uma correta**.
 - Pela tela, não é possível incluir ou remover alternativas nem trocar as imagens, que são mantidas como estão.
-- Como no cadastro, a disciplina, o assunto e o tópico são digitados: um nome que ainda não existe cria um ramo novo.
+- Na edição, ao contrário do cadastro, a **Disciplina**, a **Matéria / Assunto** e o **Tópico** são escolhidos em listas, com os nomes já cadastrados. Ao trocar a disciplina, o assunto e o tópico passam para os primeiros da nova disciplina, em ordem alfabética; ao trocar o assunto, o tópico passa para o primeiro do novo assunto. Confira os três antes de salvar.
 - A edição vale para todos os quizzes e simulados que usam a questão: o vínculo é com a própria questão, e não com uma cópia. As tentativas já enviadas mantêm a nota que tiveram.
 - Uma questão editada fica protegida: uma importação posterior não desfaz a correção, a menos que o administrador peça para substituí-la.
 - A edição não muda a situação da questão na auditoria: uma pendente continua pendente, e uma aprovada continua aprovada.
@@ -143,8 +143,8 @@ Os passos são os mesmos da denúncia feita pelos estudantes, descrita em [Denun
 | O botão **Editar** não aparece nas questões | A sua conta não tem a permissão `edit_question`. Peça-a a um administrador ou [sinalize o erro](#tarefa-4-sinalizar-um-erro-numa-questao) |
 | *"Gabarito com problema: …"* | A questão está sem alternativa correta ou com mais de uma. Com a permissão `edit_question`, edite-a, marque a alternativa correta e salve |
 | *"Não foi possível salvar a questão. Tente novamente."* | Confira a conexão e tente de novo. Se a mensagem falar das alternativas, confira se há exatamente uma correta |
-| A questão que cadastrei não aparece no quiz nem nos simulados | Ela ainda está **Pendente de Auditoria**. Peça a aprovação a quem tem a permissão `audit_question` |
-| Cadastrei uma questão e a disciplina apareceu duplicada | O nome foi digitado de forma diferente da existente. Corrija a classificação da questão pela [edição](#tarefa-3-editar-uma-questao) |
+| A questão que cadastrei não aparece na lista, no quiz nem nos simulados | Ela ainda está pendente de auditoria. Peça a aprovação a quem tem a permissão `audit_question` |
+| Cadastrei uma questão e a disciplina apareceu duplicada | O nome foi digitado de forma diferente da existente. Na [edição](#tarefa-3-editar-uma-questao), escolha na lista a disciplina com o nome correto |
 | A fórmula do enunciado aparece como texto | A plataforma não formata LaTeX. Escreva a fórmula em texto simples ou use uma imagem, pela importação |
 
 ---
@@ -153,9 +153,9 @@ Os passos são os mesmos da denúncia feita pelos estudantes, descrita em [Denun
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Área do Professor | nov/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Área do Professor | nov/2026 |
 | Regras de cadastro, edição e denúncia | [Descrição das Funcionalidades — Banco de questões](../../funcionalidades.md#banco-de-questoes), conferida no código do backend | nov/2026 |
-| Questões pendentes de auditoria e opções dos filtros | `ifvest-backend/src/api/v1/question_bank.py` e `src/services/question_bank_service.py`, no `ifvest-monorepo` | nov/2026 |
+| Questões pendentes de auditoria, opções dos filtros e listas da edição | `ifvest-backend/src/api/v1/question_bank.py` e `src/services/question_bank_service.py`; `ifvest-frontend/src/features/admin/components/QuestionListAdmin.tsx` e `QuestionTaxonomyFields.tsx`, no `ifvest-monorepo` | nov/2026 |
 | Filtros, gabarito, edição e resolução no banco | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo`, seção 8.10, e commits de 30 e 31/10/2026 | out/2026 |
 
 !!! note "O que mudou em relação à versão anterior"

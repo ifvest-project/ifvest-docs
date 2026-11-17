@@ -19,7 +19,7 @@ Os interruptores são estes, com as funcionalidades agrupadas sob o módulo a qu
 | Exportar PDF | `mocktests_pdf_export` | Os botões **PDF** e **Gabarito** de "Meus simulados" |
 | **Flashcards** | `module_flashcards` | Módulo previsto, ainda não implementado |
 | **Revisão** | `module_revisao` | Módulo previsto, ainda não implementado |
-| **Admin** | `module_admin` | O próprio Painel Administrativo |
+| **Admin** | `module_admin` | O próprio Painel Administrativo. A página de Auditoria de Questões, separada do painel, não depende deste interruptor |
 | **Cadastrar Questões** | `mocktests_create_questions` | O cadastro de questões no banco, usado pelo IFQuiz e pelos Simulados |
 
 ---
@@ -105,6 +105,6 @@ A origem do valor de cada interruptor aparece ao lado do nome:
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, interruptores e mensagens | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Painel Administrativo, aba Módulos | nov/2026 |
+| Tela, interruptores e mensagens | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Módulos | nov/2026 |
 | Catálogo de interruptores e hierarquia | `ifvest-backend/src/services/feature_flags_service.py` e `src/api/v1/features.py`, no `ifvest-monorepo` | out/2026 |
 | O que os usuários veem com cada interruptor desligado | [Descrição das Funcionalidades — Módulos desligados](../../funcionalidades.md#modulos-desligados) e [Arquitetura — Feature flags](../../arquitetura.md#feature-flags) | out/2026 |

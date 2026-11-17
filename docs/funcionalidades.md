@@ -3,7 +3,7 @@
 Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada funcionalidade, quem pode usá-la, onde ela fica na interface e as regras que o sistema aplica. A visão geral dos módulos está na [Descrição do Sistema](descricao-do-sistema.md), e o contrato técnico de cada operação, na [Referência da API](api.md).
 
 !!! info "Levantada do código em produção"
-    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 11 de novembro de 2026 (commit `f98a6a0`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
+    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 17 de novembro de 2026 (commit `b0a5e5f`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
     Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
@@ -334,7 +334,8 @@ Busca por título ou enunciado, com filtros de disciplina, assunto, banca e ano,
 
 - Para quem tem a permissão `edit_question`, o gabarito vem destacado, com um aviso quando a questão está sem alternativa correta ou com mais de uma, e cada questão tem o botão "Editar". Para os demais, a alternativa correta não é indicada.
 - Cada questão tem também o botão "Sinalizar", para [denunciar um erro](#denuncia-de-erro).
-- Quem tem permissão de cadastrar, editar ou auditar questões vê também as pendentes de auditoria, com o selo "Pendente de Auditoria". Os demais veem só as auditadas.
+- Na Área do Professor, a lista mostra só as questões aprovadas na auditoria. Acima dela, quem tem permissão de cadastrar, editar ou auditar questões vê o aviso "Questões com auditoria pendente", com o número das que aguardam aprovação; as pendentes ficam na [auditoria de questões](#auditoria-de-questoes).
+- As opções dos filtros de disciplina e assunto vêm de toda a taxonomia cadastrada, inclusive ramos sem questão aprovada; as de banca e ano, das questões aprovadas.
 
 ### Cadastro de questões
 
@@ -348,10 +349,11 @@ Busca por título ou enunciado, com filtros de disciplina, assunto, banca e ano,
 
 ### Edição de questões
 
-**Acesso:** `edit_question`; pela auditoria, também `audit_question` · **Onde:** Área do Professor → "Banco de Questões" → "Editar"; também no Painel Administrativo → "Moderação de Questões" → "Editar questão" e "Auditoria de Questões" → "Editar Questão"
+**Acesso:** `edit_question`; pela auditoria, também `audit_question` · **Onde:** Área do Professor → "Banco de Questões" → "Editar"; também no Painel Administrativo → "Moderação de Questões" → "Editar questão" e na [auditoria de questões](#auditoria-de-questoes) → "Editar Questão"
 
 - O formulário mostra os campos, que aceitam Markdown, ao lado de uma **pré-visualização** de como a questão aparece na plataforma, atualizada enquanto se digita.
 - Pela interface, permite alterar os dados da questão, a resolução, o texto das alternativas existentes, o gabarito e o vínculo principal com a taxonomia. Pela tela, não é possível incluir ou remover alternativas nem trocar imagens.
+- Na edição, a disciplina, o assunto e o tópico são escolhidos em listas com a taxonomia já cadastrada, em cascata: trocar a disciplina leva o assunto e o tópico aos primeiros da nova disciplina, em ordem alfabética, e trocar o assunto leva o tópico ao primeiro do novo assunto. No cadastro, eles continuam digitados.
 - A edição exige ao menos duas alternativas, com letras distintas, e **exatamente uma correta**.
 - Uma questão editada fica protegida: as importações seguintes não a alteram, a menos que se peça para substituir as edições manuais.
 - Pela moderação, a edição pode resolver de uma vez as denúncias pendentes da questão; pelo banco de questões, as denúncias ficam como estão.
@@ -382,9 +384,25 @@ Reúne três abas: **Banco de Questões**, com a consulta, o cadastro e, para qu
 
 ---
 
+## Auditoria de questões
+
+**Acesso:** `audit_question` (ou `admin_permission`) · **Onde:** aba "Auditoria" do cabeçalho (`/auditoria`); o endereço antigo, `/admin?tab=audit`, leva à página
+
+Toda questão nova, seja cadastrada à mão, trazida pela carga no servidor ou importada pelo painel, entra **pendente de auditoria**. Só as questões aprovadas aqui são usadas no IFQuiz, na Pergunta do Dia e nos simulados.
+
+- **Questões Pendentes** — lista as questões não auditadas, em páginas de 20, com o total no botão da aba. Tem busca por título ou enunciado, filtros de disciplina, assunto, banca, ano e dificuldade, e ordenação por cadastro (das mais antigas, o padrão, ou das mais recentes), por ano ou por dificuldade. As opções de disciplina e assunto vêm de toda a taxonomia cadastrada; as de banca e ano, das questões já aprovadas. Cada questão mostra título, disciplina, assunto, dificuldade, banca, ano e número, o enunciado, o texto base e as alternativas, com o gabarito destacado.
+- **Aprovar** — "Aprovar Questão" exige alternativa correta. Sem ela, o botão fica desabilitado e a tela pede que a questão seja editada antes. A aprovação grava quem aprovou e quando, entra no registro de auditoria e não pode ser desfeita pela interface.
+- **Aprovar em bloco** — no "Modo de seleção múltipla", as questões são marcadas uma a uma ou todas as da página, e "Aprovar selecionadas" aprova até 100 de uma vez, sem pedido de confirmação. Questões sem alternativa correta não podem ser marcadas. A seleção continua ao trocar de página. Cada questão do bloco é avaliada à parte: as que não podem ser aprovadas — sem gabarito, já auditadas ou não encontradas — ficam de fora, as demais são aprovadas, e cada aprovação é registrada individualmente.
+- **Editar** — "Editar Questão" abre o formulário da [edição de questões](#edicao-de-questoes), com a pré-visualização.
+- **Histórico de Auditoria** — lista as aprovações, da mais recente para a mais antiga, com a questão, quem aprovou e quando.
+
+A página fica fora do Painel Administrativo e não depende da flag `module_admin`: quem tem `audit_question` sem ser administrador vê a aba "Auditoria" no cabeçalho, mas não a aba "Admin".
+
+---
+
 ## Painel Administrativo
 
-**Acesso:** `admin_permission`; com `audit_question`, só a aba [Auditoria de questões](#auditoria-de-questoes) · **Onde:** aba "Admin" do cabeçalho (`/admin`) · **Flag:** `module_admin`, verificada só na interface
+**Acesso:** `admin_permission` · **Onde:** aba "Admin" do cabeçalho (`/admin`) · **Flag:** `module_admin`, verificada só na interface
 
 ### Visão geral
 
@@ -402,19 +420,6 @@ Reúne três abas: **Banco de Questões**, com a consulta, o cadastro e, para qu
 
 - Lista as denúncias filtradas por situação: pendentes, que é o padrão, resolvidas, descartadas ou todas.
 - Cada denúncia pendente pode ser marcada como **resolvida** ou **descartada**. A questão denunciada pode ser **editada** ali mesmo, qualquer que seja a situação da denúncia, com a opção de resolver de uma vez todas as denúncias pendentes dela.
-
-### Auditoria de questões
-
-**Acesso:** `audit_question` · **Onde:** Painel Administrativo → "Auditoria de Questões" (`/admin?tab=audit`)
-
-Toda questão nova, seja cadastrada à mão, trazida pela carga no servidor ou importada pelo painel, entra **pendente de auditoria**. Só as questões aprovadas aqui são usadas no IFQuiz, na Pergunta do Dia e nos simulados.
-
-- **Questões Pendentes** — lista as questões não auditadas, da mais antiga para a mais nova, em páginas de 20, com o total no botão da aba. Cada questão mostra título, disciplina, assunto, dificuldade, banca, ano e número, o enunciado, o texto base e as alternativas, com o gabarito destacado.
-- **Aprovar** — "Aprovar Questão" exige alternativa correta. Sem ela, o botão fica desabilitado e a tela pede que a questão seja editada antes. A aprovação grava quem aprovou e quando, entra no registro de auditoria e não pode ser desfeita pela interface.
-- **Editar** — "Editar Questão" abre o formulário da [edição de questões](#edicao-de-questoes), com a pré-visualização.
-- **Histórico de Auditoria** — lista as aprovações, da mais recente para a mais antiga, com a questão, quem aprovou e quando.
-
-Quem tem `audit_question` sem ser administrador vê o link "Admin" no cabeçalho e, no painel, só esta aba.
 
 ### Importar questões
 
@@ -463,7 +468,7 @@ A regra de cada flag está em [Arquitetura — Feature flags](arquitetura.md#fea
 
 Quando falta uma permissão, a **API** recusa a ação e informa qual permissão está faltando: *"Você não tem a permissão '…' para concluir esta ação. Se você acha que isso é um erro, contate um administrador para solicitar a permissão."* Nas ações que aceitam mais de uma permissão, como a edição de questões, a mensagem lista as permissões possíveis.
 
-Na **interface**, a Área do Professor e o Painel Administrativo mostram a quem não tem acesso o aviso "Acesso Restrito", com o texto "Esta área é exclusiva para professores e administradores do IFVest.". A fila e a tela de correção de redações mostram o mesmo aviso, com a permissão necessária. As abas de redação da Área do Professor mostram "Acesso Bloqueado", também com a permissão que falta. Nas demais telas, o retorno varia: algumas exibem a mensagem da API, outras um erro genérico ou uma lista vazia.
+Na **interface**, a Área do Professor, a auditoria de questões e o Painel Administrativo mostram a quem não tem acesso o aviso "Acesso Restrito", com o texto "Esta área é exclusiva para professores e administradores do IFVest.". A fila e a tela de correção de redações mostram o mesmo aviso, com a permissão necessária. As abas de redação da Área do Professor mostram "Acesso Bloqueado", também com a permissão que falta. Nas demais telas, o retorno varia: algumas exibem a mensagem da API, outras um erro genérico ou uma lista vazia.
 
 ### Datas e horários
 
@@ -490,7 +495,7 @@ O que foi definido para os módulos previstos está na [Descrição do Sistema](
 |---|---|---|
 | Regras de negócio, acesso e flags de cada funcionalidade | Código do backend do `ifvest-monorepo` (`src/api/v1/`, `src/services/` e `src/core/`) | nov/2026 |
 | Telas, ações, mensagens e condições de exibição | Código do frontend do `ifvest-monorepo` (`src/router/`, `src/features/` e `src/core/`) | nov/2026 |
-| Auditoria de questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py` e `src/api/v1/admin.py`; `ifvest-frontend/src/features/admin/components/QuestionAuditAdmin.tsx` | nov/2026 |
+| Auditoria de questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py` e `src/api/v1/admin.py`; `ifvest-frontend/src/features/admin/pages/QuestionAuditPage.tsx`, `components/QuestionAuditAdmin.tsx` e `hooks/useAuditBatchSelection.ts` | nov/2026 |
 | Pontos, patentes, ranking e loja | `src/services/quiz_scoring.py`, `quiz_ranking.py`, `store_catalog.py` e `src/core/clock.py` | out/2026 |
 | Critério do ranking e da patente | `docs/auditoria-testes-2026-09-25.md`, seção 12 | set/2026 |
 | Seletor de dificuldade oculto | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md` | set/2026 |

@@ -100,7 +100,7 @@ Os detalhes estão em [Imprimir o caderno e o gabarito](../aluno/simulados.md#ta
 | A opção **Simulado institucional** não aparece | A sua conta não tem a permissão `create_institutional_mocktest`. Peça-a a um administrador |
 | Criei o simulado sem marcar a opção institucional | Ele ficou como simulado de treino, visível só para você. Crie outro com a opção marcada e, se quiser, exclua o anterior |
 | Preciso trocar uma questão de um simulado institucional | Não é possível acrescentar questões, só tirá-las. Se o problema estiver na própria questão, corrija-a no banco (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)): a correção vale para todos os simulados que a usam. Senão, crie outro simulado |
-| Uma questão do banco não aparece na montagem do simulado | Ela ainda está **Pendente de Auditoria**. Só as questões aprovadas podem entrar em simulados |
+| Uma questão do banco não aparece na montagem do simulado | Ela ainda está pendente de auditoria. Só as questões aprovadas podem entrar em simulados |
 | O botão **Editar** não aparece num simulado institucional | O simulado é de outra pessoa, e a sua conta não tem a permissão `manage_mocktests`. Peça-a a um administrador |
 | Quero ver as notas dos estudantes num simulado institucional | A plataforma não mostra ao professor os resultados dos estudantes: cada um vê apenas a própria nota e a própria revisão |
 

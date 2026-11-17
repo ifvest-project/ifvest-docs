@@ -4440,6 +4440,15 @@
             }
           },
           {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/QuestionSortOrder",
+              "default": "id"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "required": false,
@@ -4554,6 +4563,71 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/QuestionAuditApproveResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/questions/bulk-approve": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Bulk Approve Audit Questions",
+        "description": "Aprova questões em lote na auditoria e retorna o status de cada item.",
+        "operationId": "bulk_approve_audit_questions_api_v1_admin_questions_bulk_approve_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionBulkAuditRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionBulkAuditResponse"
                 }
               }
             }
@@ -7470,6 +7544,33 @@
         "title": "QuestionAuditHistoryItem",
         "description": "Item do histórico de auditoria de questões."
       },
+      "QuestionBankDisciplineFilter": {
+        "properties": {
+          "nome": {
+            "type": "string",
+            "title": "Nome"
+          },
+          "total_questoes": {
+            "type": "integer",
+            "title": "Total Questoes"
+          },
+          "assuntos": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionBankSubjectFilter"
+            },
+            "type": "array",
+            "title": "Assuntos"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nome",
+          "total_questoes",
+          "assuntos"
+        ],
+        "title": "QuestionBankDisciplineFilter",
+        "description": "Disciplina cadastrada no banco de questões e seus assuntos."
+      },
       "QuestionBankFilterOptionsResponse": {
         "properties": {
           "total_questoes": {
@@ -7478,7 +7579,7 @@
           },
           "disciplinas": {
             "items": {
-              "$ref": "#/components/schemas/QuizDisciplineFilter"
+              "$ref": "#/components/schemas/QuestionBankDisciplineFilter"
             },
             "type": "array",
             "title": "Disciplinas"
@@ -7507,6 +7608,113 @@
         ],
         "title": "QuestionBankFilterOptionsResponse",
         "description": "Opções de filtro do banco de questões (GET /mocktests/questions/filters)."
+      },
+      "QuestionBankSubjectFilter": {
+        "properties": {
+          "nome": {
+            "type": "string",
+            "title": "Nome"
+          },
+          "total_questoes": {
+            "type": "integer",
+            "title": "Total Questoes"
+          },
+          "topicos": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Topicos"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nome",
+          "total_questoes"
+        ],
+        "title": "QuestionBankSubjectFilter",
+        "description": "Assunto cadastrado no banco de questões, incluindo seus tópicos em ordem alfabética."
+      },
+      "QuestionBulkAuditItemResult": {
+        "properties": {
+          "question_id": {
+            "type": "integer",
+            "title": "Question Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "success": {
+            "type": "boolean",
+            "title": "Success"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_id",
+          "title",
+          "success"
+        ],
+        "title": "QuestionBulkAuditItemResult",
+        "description": "Resultado individual de auditoria para cada questão do lote."
+      },
+      "QuestionBulkAuditRequest": {
+        "properties": {
+          "question_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Question Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question_ids"
+        ],
+        "title": "QuestionBulkAuditRequest",
+        "description": "Payload para auditoria/aprovação em lote de questões."
+      },
+      "QuestionBulkAuditResponse": {
+        "properties": {
+          "approved_count": {
+            "type": "integer",
+            "title": "Approved Count"
+          },
+          "failed_count": {
+            "type": "integer",
+            "title": "Failed Count"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionBulkAuditItemResult"
+            },
+            "type": "array",
+            "title": "Results"
+          }
+        },
+        "type": "object",
+        "required": [
+          "approved_count",
+          "failed_count",
+          "results"
+        ],
+        "title": "QuestionBulkAuditResponse",
+        "description": "Resultado agregado de auditoria em lote."
       },
       "QuestionCreate": {
         "properties": {
@@ -8366,8 +8574,11 @@
         "type": "string",
         "enum": [
           "id",
+          "id_desc",
           "year_desc",
-          "year_asc"
+          "year_asc",
+          "difficulty_asc",
+          "difficulty_desc"
         ],
         "title": "QuestionSortOrder",
         "description": "Ordem da listagem do banco de questoes (GET /mocktests/questions?sort=...)."

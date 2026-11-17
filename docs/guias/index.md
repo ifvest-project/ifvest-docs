@@ -22,7 +22,7 @@ Os termos usados na plataforma estão no [Glossário](glossario.md).
 ## Qual versão da plataforma estes guias descrevem
 
 !!! info "IFVest V3, em produção"
-    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em novembro de 2026 (commit `f98a6a0`, de 11/11/2026).
+    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em novembro de 2026 (commit `b0a5e5f`, de 17/11/2026).
 
     Eles foram escritos antes da entrega do V3, a partir dos relatórios do subprojeto de frontend, e revisados depois dela. Por isso, cada página registra também o que o design previa e não foi implementado. Os módulos **Revisão de Conteúdo** e **Flashcards** ainda não existem na plataforma: as páginas deles continuam nos guias, com um aviso no início, como registro do que foi planejado.
 

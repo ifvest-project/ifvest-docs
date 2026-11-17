@@ -3,7 +3,7 @@
 Esta página apresenta a especificação completa da API REST do IFVest: todas as rotas, seus parâmetros, os formatos de requisição e resposta, e os esquemas de dados.
 
 !!! info "Sobre esta especificação"
-    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **69 rotas e 93 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
+    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **70 rotas e 98 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
 
     Em produção, a documentação interativa gerada pelo FastAPI está fechada de propósito. Esta versão é estática: permite consultar a API **sem expor o ambiente de produção**. Por isso, o botão de testar as chamadas não funciona aqui.
 
@@ -75,5 +75,5 @@ O arquivo também pode ser **baixado** e importado em ferramentas como Postman o
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `f98a6a0`) pelo script de geração | nov/2026 |
+| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `b0a5e5f`, de 17/11/2026) pelo script de geração | nov/2026 |
 | Rotas sem autenticação e paginação | `ifvest-backend/src/api/v1/` e `src/core/pagination.py` | set/2026 |

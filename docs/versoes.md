@@ -238,8 +238,8 @@ No código, a aplicação se identifica como versão **0.1.0**, numeração pró
 - Simulados de treino, visíveis só a quem os cria, e institucionais, visíveis a todos; manuais ou aleatórios, com resolução na plataforma, caderno e gabarito para impressão e registro das tentativas, com a resposta de cada questão e a revisão de cada tentativa
 - Módulo de Redação: propostas com textos de apoio, envio de redações e correção pelas cinco competências do ENEM, com comentários em trechos do texto
 - Banco de questões com filtros, cadastro, edição com pré-visualização, resolução das questões e denúncia de erros, e importação de provas em lote pelo painel administrativo, com simulação antes de gravar
-- Auditoria das questões: as novas só entram no quiz e nos simulados depois de aprovadas por quem tem a permissão de auditoria
-- Painel administrativo com indicadores, gestão de permissões, moderação das denúncias, auditoria das questões e controle dos módulos por *feature flags*
+- Auditoria das questões, em página própria: as novas só entram no quiz e nos simulados depois de aprovadas por quem tem a permissão de auditoria, uma a uma ou em bloco, com busca, filtros e ordenação
+- Painel administrativo com indicadores, gestão de permissões, moderação das denúncias, importação de questões e controle dos módulos por *feature flags*
 - Registro de auditoria de cadastros, edições e aprovações de questões, denúncias, propostas de redação, permissões e módulos, além das cargas e importações de questões
 
 O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
@@ -291,7 +291,7 @@ Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já t�
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Stack e versão declarada no código | `ifvest-backend/pyproject.toml`, `ifvest-frontend/package.json` e configuração de produção do `ifvest-monorepo` | out/2026 |
-| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `f98a6a0`, de 11/11/2026 | nov/2026 |
+| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `b0a5e5f`, de 17/11/2026 | nov/2026 |
 | Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | nov/2026 |
 | Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |
 | Responsáveis e tipo | Lista dos projetos vinculados ao IFVest em 2026 e atas das reuniões dos grupos de trabalho | 2026 |
