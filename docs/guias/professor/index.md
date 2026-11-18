@@ -10,7 +10,7 @@ Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest
     - **Administração** — a moderação das denúncias, a auditoria das questões, a importação de provas, as permissões e os módulos ficam no [Guia do Administrador](../administrador/index.md).
 
 !!! info "Versão documentada"
-    O guia descreve o **IFVest V3**, em produção, conferido no código em novembro de 2026. As páginas de **Flashcards** e **Materiais de Revisão** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
+    O guia descreve o **IFVest V3**, em produção, conferido no código em novembro de 2026. A página de **Materiais de Revisão** registra um módulo ainda indisponível, com um aviso no início. A de **Flashcards** traz a gestão dos cartões como pendência, a confirmar com a equipe. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
 
 ---
 
@@ -44,7 +44,7 @@ As permissões automáticas são atribuídas no **primeiro acesso**. Se você en
 | **Redação** | Área do Professor e página de Redação | Publicar propostas e corrigir redações | ✅ Disponível |
 | **Moderação e importação** | Painel Administrativo (aba **Admin**) | Tratar as denúncias de erro e importar provas em lote — ver [Guia do Administrador](../administrador/index.md) | ✅ Disponível, só para administradores |
 | **Auditoria das questões** | Página Auditoria de Questões (aba **Auditoria**) | Aprovar as questões novas, que só então aparecem no quiz e nos simulados — ver [Auditoria de Questões](../administrador/auditoria-de-questoes.md) | ✅ Disponível, com `audit_question` |
-| **Flashcards** | — | Criar os cartões de estudo | 🔵 Previsto |
+| **Flashcards** | Flashcards → **Criar ou editar flashcards** | Criar, editar e remover os cartões de estudo | ⬜ A confirmar com a equipe |
 | **Materiais de revisão** | — | Escrever os materiais de cada tópico | 🔵 Previsto |
 
 A **Área do Professor** (`/area_professor`) aparece como a aba **Professor** do cabeçalho para quem tem qualquer uma das permissões de conteúdo ou de redação. Ela reúne três abas: **Banco de Questões**, **Propostas de Redação** e **Fila de Correção**. As três aparecem para todos que entram na área. Sem a permissão de propostas ou a de correção, a aba correspondente mostra o aviso **Acesso Bloqueado**, com o nome da permissão que falta.
@@ -74,7 +74,7 @@ As páginas estão na ordem sugerida de leitura: primeiro o banco de questões, 
 | [Banco de Questões](banco-de-questoes.md) | Consultar, cadastrar, editar e sinalizar questões | ✅ Disponível |
 | [Simulados](simulados.md) | Criar simulados institucionais e gerenciar os de outras pessoas | ✅ Disponível |
 | [Redação](redacao.md) | Criar e gerenciar propostas, corrigir redações e consultar as correções feitas | ✅ Disponível |
-| [Flashcards](flashcards.md) | Registro do módulo planejado | 🔵 Módulo previsto |
+| [Flashcards](flashcards.md) | Gerenciar os cartões de estudo | ⬜ A confirmar com a equipe |
 | [Materiais de Revisão](materiais-de-revisao.md) | Registro do módulo planejado | 🔵 Módulo previsto |
 
 ---

@@ -2,10 +2,10 @@
 
 O módulo de **Revisão** (`/revisao`) reúne os materiais de estudo teóricos da plataforma: textos escritos pelos professores, organizados por assunto, com suporte a fórmulas matemáticas. É o ponto de partida para estudar a teoria antes de praticar nos demais módulos.
 
-!!! warning "Módulo ainda não disponível no IFVest V3"
-    O módulo de **Revisão** ainda não foi implementado no IFVest V3, a versão em produção. O item **Revisão** do cabeçalho e da página **Início** fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
+!!! warning "Módulo implementado no código, ainda desligado na plataforma"
+    As telas de **Revisão** do estudante já existem no código do IFVest V3, mas o módulo continua desligado na plataforma em produção. O item **Revisão** do cabeçalho e da página **Início** fica desabilitado, e o endereço `/revisao` mostra a tela **Em Breve**. Esta página será reescrita a partir do código quando o módulo for ligado.
 
-    Esta página fica como **registro do que foi planejado**, a título de curiosidade:
+    Até lá, ela fica como **registro do que foi planejado**, a título de curiosidade:
 
     - as tarefas com status **✅ Atual** descrevem o módulo da **versão anterior** da plataforma, que não existe mais. Nesta página, "plataforma atual", "versão atual" e "hoje" se referem a ela;
     - a tarefa com status **🟡 Refatorado (em design)** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado.
@@ -135,5 +135,6 @@ Conforme o critério desta documentação, cada camada tem origem rastreável:
 | Fluxos da versão anterior (Tarefas 1–3) | Descrição das Funcionalidades, na versão de jun/2026, que descrevia a plataforma anterior — módulo Revisão, derivada do código-fonte (rotas `/revisao/*`, repositório IFVEST-main) | jun/2026 |
 | Interface futura (blocos "Na versão refatorada") | Relatórios 1 e 3 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
 | Progresso de estudo (Tarefa 4) | Relatórios 1 e 3 — Maria Luiza (mesmo subprojeto) | abr/2026 |
+| Situação do módulo no V3 | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): rotas `/revisao`; flag `module_revisao`, na consulta pública `GET /api/v1/features` em `ifvest.com.br` | 18/11/2026 |
 
 Os Relatórios 2 e 4 do mesmo subprojeto tratam da área do professor e não afetam as tarefas do aluno nesta página.

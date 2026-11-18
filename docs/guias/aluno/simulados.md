@@ -29,17 +29,17 @@ Para abrir o módulo, clique em **Simulados** no cabeçalho. A página do módul
     === "Selecionar questões"
 
         1. Clique em **Selecionar questões**.
-        2. Busque por um termo do título ou do enunciado e use os filtros de **Disciplina**, **Assunto**, **Banca** e **Ano**. O assunto só pode ser escolhido depois da disciplina. **Limpar filtros** desfaz a busca e os filtros.
-        3. Se quiser, mude a ordem da lista em **Ordenar por**: **Ordem de cadastro**, **Ano mais recente** ou **Ano mais antigo**.
-        4. Marque as questões desejadas. Cada uma mostra o título, a banca e o ano, o número na prova, a disciplina, o assunto e o enunciado. **Ver questão completa** mostra também o texto de apoio e as alternativas.
-        5. Acompanhe a contagem acima da lista — por exemplo, "2 de 10 selecionadas · faltam 8". Ao atingir a quantidade, as demais questões ficam travadas: para trocar uma questão, desmarque outra antes.
-        6. Clique em **Salvar simulado**.
+        2. Na coluna da esquerda, digite em **Buscar** uma palavra-chave do título ou do enunciado e use os filtros de **Disciplina**, **Tipo de questões**, **Assunto**, **Banca** e **Ano**. O assunto só pode ser escolhido depois da disciplina. **Limpar filtros** desfaz a busca e os filtros.
+        3. À direita, a lista mostra quantas questões foram encontradas. Se quiser, mude a ordem em **Ordenar por**: **Ordem de cadastro**, **Ano mais recente** ou **Ano mais antigo**.
+        4. Marque as questões desejadas. Cada uma mostra o título, a disciplina, o assunto, a banca e o ano, o número na prova — nas provas do ENEM, o do caderno azul —, a dificuldade e o início do enunciado. **Ver questão completa** mostra o texto de apoio, o enunciado e as alternativas; **Ocultar** fecha a questão.
+        5. Acompanhe, abaixo dos filtros, o total de **Selecionadas** e o progresso — por exemplo, "2 de 10 selecionadas · faltam 8". Ao atingir a quantidade, as demais questões ficam travadas: para trocar uma questão, desmarque outra antes.
+        6. Clique em **Confirmar seleção**.
 
     === "Aleatório"
 
         1. Clique em **Aleatório**.
-        2. Se quiser, escolha a **Disciplina**, o **Assunto**, a **Banca** e o **Ano**. Sem filtro, a plataforma sorteia entre todas as questões do banco.
-        3. Confira, abaixo dos filtros, quantas questões atendem à escolha.
+        2. Se quiser, escolha a **Disciplina**, o **Assunto**, a **Banca** e o **Ano**. Sem filtro, a plataforma sorteia entre todas as questões do banco. **Limpar filtros** desfaz a escolha.
+        3. Confira, abaixo dos filtros, em **Disponíveis**, quantas questões atendem à escolha.
         4. Clique em **Gerar simulado**. A plataforma sorteia as questões.
 
 4. A confirmação **Simulado criado com sucesso!** mostra o nome, o modo e o número de questões gravados. Clique em **Ver meus simulados** para resolvê-lo ou em **Criar outro**.
@@ -48,6 +48,7 @@ Para abrir o módulo, clique em **Simulados** no cabeçalho. A página do módul
 
 - A quantidade vale para os dois modos. No modo de seleção, ela é o limite de questões marcadas: você pode salvar com menos, mas não com mais.
 - No modo de seleção, a lista vem em páginas de 25 questões, e as questões marcadas continuam selecionadas quando você troca de página ou de filtro.
+- Em **Ver questão completa**, as alternativas aparecem sem indicar a correta.
 - No modo aleatório, se os filtros tiverem menos questões do que a quantidade pedida, a tela avisa e **Gerar simulado** fica travado.
 - Para mudar o nome ou a quantidade depois de escolher o modo, use a seta **Voltar**, no topo da tela. Se você diminuir a quantidade, continuam marcadas só as primeiras questões escolhidas, até o novo limite.
 - Enquanto o simulado é gravado, a tela mostra **Criando simulado...** e não aceita outro clique.
@@ -267,11 +268,11 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas e componentes de Simulados | nov/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): páginas e componentes de Simulados | nov/2026 |
 | Regras de acesso, nota, tentativas, revisão e estatísticas | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | nov/2026 |
 | Mudanças de outubro no módulo | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo`, seções 8.6 a 8.10 | out/2026 |
 
 !!! note "O que mudou em relação ao planejado"
-    A versão anterior desta página descrevia os simulados da plataforma anterior, com questões objetivas e dissertativas, e o design proposto pelo subprojeto de frontend. Parte do design não foi implementada no V3: a opção de **salvar um simulado em andamento**, a **descrição** do simulado e a escolha do **tipo de questão**. O **tipo de simulado** virou a combinação de filtros do modo aleatório, e a **explicação da resposta** depende da resolução cadastrada em cada questão. Também não há questões dissertativas: o banco do V3 tem só questões de múltipla escolha.
+    A versão anterior desta página descrevia os simulados da plataforma anterior, com questões objetivas e dissertativas, e o design proposto pelo subprojeto de frontend. Parte do design não foi implementada no V3: a opção de **salvar um simulado em andamento** e a **descrição** do simulado. A escolha do **tipo de questão** entrou em novembro de 2026 como o filtro **Tipo de questões** da seleção manual, que tem só **Múltipla escolha**, o único tipo do banco. O **tipo de simulado** virou a combinação de filtros do modo aleatório, e a **explicação da resposta** depende da resolução cadastrada em cada questão. Também não há questões dissertativas: o banco do V3 tem só questões de múltipla escolha.
 
     *Fontes: Relatórios 2 e 3 — Isabella Pereira e Fluxograma sugerido, subprojeto Refatoração para React e Redesign do IFVest (mar–abr/2026); `docs/auditoria-simulados-2026-10-10.md`, seção 8.10.*

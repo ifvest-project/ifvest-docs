@@ -17,8 +17,8 @@ Os interruptores são estes, com as funcionalidades agrupadas sob o módulo a qu
 | **Simulados** | `module_mocktests` | O módulo inteiro de Simulados |
 | Simulado Aleatório | `mocktests_random` | O modo aleatório da montagem de simulados |
 | Exportar PDF | `mocktests_pdf_export` | Os botões **PDF** e **Gabarito** de "Meus simulados" |
-| **Flashcards** | `module_flashcards` | Módulo previsto, ainda não implementado |
-| **Revisão** | `module_revisao` | Módulo previsto, ainda não implementado |
+| **Flashcards** | `module_flashcards` | O módulo inteiro de Flashcards |
+| **Revisão** | `module_revisao` | Módulo em construção: as telas do estudante existem, mas a API ainda não tem as rotas dos materiais |
 | **Admin** | `module_admin` | O próprio Painel Administrativo. A página de Auditoria de Questões, separada do painel, não depende deste interruptor |
 | **Cadastrar Questões** | `mocktests_create_questions` | O cadastro de questões no banco, usado pelo IFQuiz e pelos Simulados |
 
@@ -55,7 +55,7 @@ Os interruptores são estes, com as funcionalidades agrupadas sob o módulo a qu
 
 - Com um módulo desligado, as funcionalidades dele também ficam desligadas, e os interruptores delas ficam desabilitados.
 - A mudança vale na hora no servidor. Quem está com a plataforma aberta vê a tela atualizada ao recarregar a página.
-- Ligar **Flashcards** ou **Revisão** não disponibiliza esses módulos: eles ainda não foram implementados, e a tela continua **Em Breve**.
+- Ligar **Revisão** mostra aos estudantes as telas do módulo, que ainda dependem de rotas que a API não tem (ver [Guia do Aluno — Revisão](../aluno/revisao.md)).
 - **Cadastrar Questões** não fica sob Simulados porque o banco de questões serve também o IFQuiz.
 - Toda alteração fica no registro de auditoria, com a descrição *"Módulo '…' ativado."* ou *"Módulo '…' desativado."* (ver [Indicadores e Auditoria](indicadores-e-auditoria.md#tarefa-2-acompanhar-as-modificacoes-recentes)).
 
@@ -96,7 +96,7 @@ A origem do valor de cada interruptor aparece ao lado do nome:
 | *"Erro ao alterar o status do módulo."* | Recarregue a página e tente de novo |
 | *"Erro ao restaurar o módulo."* | Recarregue a página e tente de novo |
 | *"Não foi possível verificar quais módulos estão ativos. Tente de novo em instantes."* | A lista de interruptores não carregou. Clique em **Tentar de novo** |
-| Liguei um módulo, mas os usuários ainda veem **Em Breve** | Peça que recarreguem a página. Se for Flashcards ou Revisão, os módulos ainda não existem |
+| Liguei um módulo, mas os usuários ainda veem **Em Breve** | Peça que recarreguem a página |
 | O interruptor de uma funcionalidade está cinza e não responde | O módulo a que ela pertence está desligado. Ligue o módulo primeiro |
 
 ---
@@ -105,6 +105,7 @@ A origem do valor de cada interruptor aparece ao lado do nome:
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Tela, interruptores e mensagens | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Módulos | nov/2026 |
+| Tela, interruptores e mensagens | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): Painel Administrativo, aba Módulos | nov/2026 |
+| Telas que cada módulo liga | Rotas de `ifvest-frontend/src/router/AppRouter.tsx` (commit `0335118`) | nov/2026 |
 | Catálogo de interruptores e hierarquia | `ifvest-backend/src/services/feature_flags_service.py` e `src/api/v1/features.py`, no `ifvest-monorepo` | out/2026 |
 | O que os usuários veem com cada interruptor desligado | [Descrição das Funcionalidades — Módulos desligados](../../funcionalidades.md#modulos-desligados) e [Arquitetura — Feature flags](../../arquitetura.md#feature-flags) | out/2026 |

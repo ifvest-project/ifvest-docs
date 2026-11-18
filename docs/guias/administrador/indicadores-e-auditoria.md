@@ -27,7 +27,7 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
     | **Permissões** | O total de permissões concedidas, somando todas as contas | **Configurar**, que abre [Usuários e Permissões](usuarios-e-permissoes.md) |
 
 3. Em **Avisos**, aparecem os pontos que pedem atenção: as denúncias aguardando moderação e o banco de questões vazio. Sem pendências, o quadro não aparece.
-4. O quadro **Ranking Geral - IFQuiz** mostra os três estudantes com mais pontos ganhos no IFQuiz, pelo mesmo critério do [ranking geral](../aluno/ifquiz.md#tarefa-6-ver-o-ranking).
+4. O quadro **Ranking Geral - IFQuiz** mostra os três estudantes com mais pontos ganhos no IFQuiz, pelo mesmo critério do [ranking geral](../aluno/ifquiz.md#tarefa-7-ver-o-ranking).
 
 **Observações:**
 

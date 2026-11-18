@@ -36,6 +36,7 @@ Os simulados são montados com as questões do [Banco de Questões](banco-de-que
 - Na lista **Ver meus simulados**, o simulado aparece com o selo **Institucional**. Um nome claro, que indique o vestibular ou o conteúdo, ajuda os estudantes a encontrá-lo.
 - O simulado aparece também para os outros professores.
 - Só as questões já aprovadas na auditoria podem entrar num simulado. As que você acabou de cadastrar ficam disponíveis depois da aprovação (ver [Cadastrar uma questão](banco-de-questoes.md#tarefa-2-cadastrar-uma-questao)).
+- Na seleção de questões, **Ver questão completa** destaca a alternativa correta para quem tem `create_question`, `edit_question`, `audit_question` ou `admin_permission`. Para os estudantes, as alternativas aparecem sem o gabarito.
 
 !!! warning "O gabarito fica disponível para todos"
     Todo estudante que vê o simulado pode abrir o **Gabarito** na lista e conferir a resposta de cada questão ao resolvê-lo na plataforma. Leve isso em conta antes de usar um simulado institucional como avaliação.
@@ -110,7 +111,8 @@ Os detalhes estão em [Imprimir o caderno e o gabarito](../aluno/simulados.md#ta
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas de Simulados | nov/2026 |
+| Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): páginas de Simulados | nov/2026 |
+| Gabarito na seleção de questões | Código do backend do `ifvest-monorepo` (commit `0335118`): `STAFF_QUESTION_PERMISSIONS`, em `ifvest-backend/src/api/v1/question_bank.py` | nov/2026 |
 | Regras de acesso, criação, edição e exclusão | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | nov/2026 |
 | Simulados institucionais e de treino | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo` | out/2026 |
 

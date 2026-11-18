@@ -3,7 +3,7 @@
 Este guia ensina, tarefa por tarefa, como usar o IFVest para estudar: praticar no IFQuiz e nos Simulados, treinar redação, acompanhar o seu desempenho e cuidar da sua conta.
 
 !!! info "Versão documentada"
-    O guia descreve o **IFVest V3**, em produção, conferido no código em outubro de 2026. As páginas de **Revisão de Conteúdo** e **Flashcards** registram módulos que ainda não foram implementados, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
+    O guia descreve o **IFVest V3**, em produção, conferido no código em novembro de 2026. A página de **Revisão de Conteúdo** registra um módulo que já tem telas no código, mas segue desligado na plataforma, com um aviso no início. Ver [Qual versão da plataforma estes guias descrevem](../index.md#qual-versao-da-plataforma-estes-guias-descrevem).
 
 ---
 
@@ -24,8 +24,8 @@ Visão rápida do que o estudante encontra no IFVest:
 | **IFQuiz** | Jogar quizzes, responder à Pergunta do Dia, ganhar pontos e patentes, disputar o ranking | ✅ Disponível |
 | **Simulados** | Montar, resolver e revisar simulados, imprimir o caderno e o gabarito, acompanhar as estatísticas | ✅ Disponível |
 | **Redação** | Escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM | ✅ Disponível |
-| **Revisão** | Ler materiais de estudo organizados por tópico | 🔵 Previsto |
-| **Flashcards** | Estudar com cartões e repetição espaçada | 🔵 Previsto |
+| **Flashcards** | Estudar com cartões de pergunta e resposta, por disciplina, assunto e subassunto | ✅ Disponível |
+| **Revisão** | Ler materiais de estudo organizados por tópico | 🔵 Implementado, ainda desligado |
 
 Os termos usados na plataforma — disciplina, assunto, tópico, patente, sequência diária, simulado institucional — estão explicados no [Glossário](../glossario.md).
 
@@ -52,8 +52,8 @@ Antes de começar, as tarefas de conta são comuns a todos: [Acesso e Conta](../
 | [IFQuiz](ifquiz.md) | Montar e jogar quizzes, Pergunta do Dia, sequência, patentes, ranking e loja | ✅ Disponível |
 | [Simulados](simulados.md) | Montar, resolver, revisar e imprimir simulados; acompanhar o desempenho; denunciar erros | ✅ Disponível |
 | [Redação](redacao.md) | Escolher um tema, escrever e enviar a redação, acompanhar a correção | ✅ Disponível |
-| [Revisão de Conteúdo](revisao.md) | Registro do módulo planejado | 🔵 Módulo previsto |
-| [Flashcards](flashcards.md) | Registro do módulo planejado | 🔵 Módulo previsto |
+| [Flashcards](flashcards.md) | Escolher o que estudar e estudar os cartões | ✅ Disponível |
+| [Revisão de Conteúdo](revisao.md) | Registro do módulo planejado | 🔵 Implementado, ainda desligado |
 | [Glossário](../glossario.md) | Termos da plataforma e organização dos conteúdos | ✅ Disponível |
 
 ---

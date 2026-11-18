@@ -138,6 +138,7 @@ ifvest-frontend/src/
 │   └── types/             # tipos compartilhados
 ├── features/              # uma pasta por módulo
 │   ├── auth/  home/  quiz/  essays/  mocktests/
+│   ├── flashcards/  review/
 │   ├── professor/         # área do professor
 │   ├── admin/             # painel administrativo
 │   └── underDevelopment/  # tela exibida para módulos ainda desativados
@@ -232,8 +233,8 @@ Os módulos da plataforma são ligados e desligados por **feature flags**, sem n
 | **Redação** | Correção de redações, criação de propostas |
 | **Simulados** | Simulado aleatório, caderno em PDF e gabarito |
 | **Cadastro de questões** | — *(flag própria: o banco de questões é compartilhado pelos Simulados e pelo IFQuiz)* |
-| **Flashcards** | — *(em construção)* |
-| **Revisão** | — *(em construção)* |
+| **Flashcards** | — |
+| **Revisão** | — |
 | **Administração** | — |
 
 As flags obedecem a uma **hierarquia**: desligar um módulo desliga automaticamente todas as suas funcionalidades. O estado de cada flag pode vir do banco de dados, quando alterado pelo painel administrativo, ou do valor padrão, definido por variável de ambiente. Sem alteração, valem os padrões do código: todos os módulos ligados, exceto Flashcards e Revisão. Toda alteração feita pelo painel fica no registro de auditoria.
@@ -242,7 +243,7 @@ O controle é aplicado **nas duas pontas**: o backend recusa, com o código 503,
 
 - o **painel administrativo** é controlado só pelo frontend — as rotas de administração não consultam a flag e continuam exigindo a permissão de administrador ou, na auditoria de questões, a de auditoria. A página de auditoria, separada do painel, não depende da flag;
 - o **caderno em PDF** e o **gabarito** dos simulados são montados no navegador, e a flag deles só esconde os botões que os geram;
-- **Flashcards** e **Revisão** ainda não têm rotas na API.
+- **Flashcards** e **Revisão** ainda não têm rotas na API, e a flag deles controla só as telas. Os cartões dos Flashcards vêm de um catálogo mantido no próprio frontend.
 
 Nas rotas de um módulo, a verificação do módulo vem **antes de tudo**: um módulo desligado responde 503 antes mesmo de identificar o usuário. Depois vêm a identificação, a permissão exigida e, por último, a flag da funcionalidade específica, quando houver.
 
@@ -251,7 +252,7 @@ Se a consulta às flags falhar, o frontend **não presume que os módulos estão
 !!! note "O que está ligado em produção"
     O código define quais flags existem e seus valores padrão; **quais estão ativas é estado da produção**, configurado no banco e no ambiente. A lista acima descreve o que a plataforma é capaz de controlar, e a consulta pública `/api/v1/features` informa, para cada flag, se ela está ligada e se o valor vem do banco ou do padrão.
 
-    Na consulta de 11/11/2026, todos os módulos e funcionalidades estavam ligados, exceto Flashcards e Revisão. Redação e Simulados tinham o valor definido pelo painel, e as demais flags seguiam o padrão do servidor. O resultado coincide com os padrões do código.
+    Na consulta de 18/11/2026, todos os módulos e funcionalidades estavam ligados, exceto a Revisão. Flashcards, Redação e Simulados tinham o valor definido pelo painel, e as demais flags seguiam o padrão do servidor. O resultado difere dos padrões do código só nos Flashcards, ligados pelo painel.
 
 ---
 
@@ -332,11 +333,11 @@ Em produção, a criação automática de tabelas fica **desligada de propósito
 
 ## API
 
-A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **70 rotas**, contando cada combinação de método e caminho:
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **71 rotas**, contando cada combinação de método e caminho:
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
-| `quiz` | 18 | Partidas, pergunta do dia, filtros de montagem, ranking, loja e histórico |
+| `quiz` | 19 | Partidas e retomada das partidas em aberto, pergunta do dia, filtros de montagem, ranking, loja e histórico |
 | `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
 | `essays` | 11 | Propostas, redações e correções |
 | `admin` | 11 | Painel de indicadores, moderação das denúncias, auditoria das questões, inclusive em bloco, e importação de questões |
@@ -416,19 +417,6 @@ Ao final, o workflow confere se a página inicial, a verificação de disponibil
 
 ---
 
-## Pontos de atenção
-
-Itens identificados na análise do repositório, relevantes para a evolução da plataforma:
-
-| Ponto | Situação |
-|---|---|
-| ⬜ **Verificações não obrigatórias** | A integração contínua só impede a entrada de código na `main` se a proteção da branch estiver configurada no GitHub, o que depende do plano da organização. No levantamento da equipe de 27/09/2026, essa proteção ainda não havia sido confirmada; sem ela, os resultados funcionam como aviso, e o hook de pre-push pode ser pulado. |
-| ⬜ **Painel administrativo pode se trancar** | Desligar o módulo Administração pelo próprio painel esconde o painel — inclusive a aba em que ele seria religado —, porque essa flag é verificada só no frontend. A volta só é possível pela API (`/api/v1/features/module_admin`) ou pelo banco. |
-| ⬜ **Origem das provas e extrator de questões por IA** | O banco é alimentado por arquivos JSON mantidos fora do repositório, carregados no servidor ou importados pelo painel no formato em que saem da extração das provas. O repositório não documenta o extrator em si nem prevê uma integração direta com ele: os arquivos chegam à plataforma enviados pela equipe. |
-| ⬜ **Importação limitada a um processo** | Só uma importação de questões roda por vez, garantido por uma trava na memória da API. A trava funciona porque a API roda num único processo; se passar a rodar com vários, ela precisa ir para o banco de dados, como a própria equipe registrou no guia da importação. |
-
----
-
 ## Fontes desta página
 
 | Conteúdo | Fonte | Data |
@@ -437,7 +425,7 @@ Itens identificados na análise do repositório, relevantes para a evolução da
 | Topologia, roteamento, segurança e backup | Configuração de produção (`deploy/docker-compose.prod.yml`, `deploy/Caddyfile`, `deploy/README.md`) | set/2026 |
 | Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026, revisto em nov/2026 |
 | Feature flags | `src/services/feature_flags_service.py`, `src/core/feature_guard.py`, `src/config.py` e `ifvest-frontend/src/core/features/` | set/2026, revisto em out/2026 |
-| Estado das flags em produção | Consulta pública `GET /api/v1/features` em `ifvest.com.br`, feita pelo responsável pela documentação | 11/11/2026 |
+| Estado das flags em produção | Consulta pública `GET /api/v1/features` em `ifvest.com.br`, feita pelo responsável pela documentação | 18/11/2026 |
 | Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | nov/2026 |
 | Carga do banco de questões | `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | out/2026 |
 | Auditoria das questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py`, `question_bank_service.py`, `quiz_filters.py` e `src/api/v1/question_bank.py` e `admin.py`; página `/auditoria` do frontend (commit `b0a5e5f`, de 17/11/2026) | nov/2026 |

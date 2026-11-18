@@ -2,7 +2,7 @@
 
 O **IFQuiz** (`/quiz`) é o módulo de prática rápida do IFVest, com elementos de jogo: quizzes montados por você com as questões do banco da plataforma, uma **Pergunta do Dia** igual para todos, **pontos**, **patentes**, **ranking** e uma **loja de avatares**. Diferente dos [Simulados](simulados.md), o foco aqui é o treino curto e o retorno imediato.
 
-Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módulo na página **Início**. A página do IFQuiz reúne os seus indicadores — saldo de pontos, dias de sequência, taxa de acertos e posição no ranking geral —, os modos de jogo, uma prévia da Pergunta do Dia, os três primeiros do ranking da semana e a tabela de patentes.
+Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módulo na página **Início**. A página do IFQuiz reúne os seus indicadores — saldo de pontos, dias de sequência, taxa de acertos e posição no ranking geral —, o quiz que você deixou em andamento, quando houver, os modos de jogo, uma prévia da Pergunta do Dia, os três primeiros do ranking da semana e a tabela de patentes.
 
 ---
 
@@ -25,26 +25,52 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
     | **Nome** | Opcional. Sem nome, o quiz se chama "Quiz Geral" ou "Quiz de" e o nome da disciplina |
     | **Disciplina** | "Geral", que reúne todas, ou uma das disciplinas com questões no banco |
     | **Assunto / Tópico** | Opcional. Você pode escolher vários assuntos da disciplina |
-    | **Quantidade de questões** | 5, 10, 15 ou 20 |
+    | **Quantidade de questões** | 5, 10, 15 ou 20. Quando o filtro tem menos de 5 questões, a lista oferece também esse número |
 
 3. Confira a **prévia do quiz**, com o tempo estimado — 2 minutos por questão — e os pontos possíveis, e clique em **Iniciar Quiz →**.
 4. As questões aparecem uma de cada vez, com a posição no quiz — "Questão 3 de 10" — e, quando registradas, a banca e o ano da prova de origem, como "UNICAMP 2023". O texto de apoio vem antes do enunciado, quando a questão tem um. Escolha uma alternativa e clique em **Confirmar resposta**.
 5. A tela mostra na hora se você acertou e qual é a alternativa correta. Clique em **Próxima questão →** para seguir.
-6. O quiz termina quando você responde a todas as questões ou perde as três vidas. Clique em **Ver resultado 🏆** (ver [Tarefa 2](#tarefa-2-ver-o-resultado-e-revisar-as-questoes)).
+6. O quiz termina quando você responde a todas as questões ou perde as três vidas. Clique em **Ver resultado 🏆** (ver [Tarefa 3](#tarefa-3-ver-o-resultado-e-revisar-as-questoes)).
 
 **Observações:**
 
 - **Vidas:** você começa com 3. Cada erro custa uma, e o quiz termina no terceiro erro.
 - **Dica:** o botão **💡 Dica (Eliminar)** elimina uma alternativa errada, uma vez por questão. Ele não pode ser usado quando resta só uma vida.
 - Não há cronômetro, e cada acerto vale **20 pontos**. Os pontos aparecem durante a partida, mas são somados ao seu saldo só no fim do quiz.
-- As quantidades maiores que o número de questões disponíveis no filtro ficam desabilitadas.
+- O topo da tela mostra as vidas, os pontos da partida e, depois de um acerto, o **🔥 Combo**, que conta os acertos seguidos. O combo não muda a pontuação.
+- Abaixo da quantidade, a tela mostra quantas questões o filtro tem. As quantidades maiores que esse número ficam desabilitadas; quando o filtro tem menos de 5 questões, a lista inclui o próprio número, para você jogar com todas elas.
+- Você pode sair no meio do quiz e continuar depois (ver [Tarefa 2](#tarefa-2-sair-de-um-quiz-e-continuar-depois)).
 - O quiz e a Pergunta do Dia usam só questões já revisadas e aprovadas pela equipe da plataforma. As questões novas entram no quiz depois dessa revisão.
 - Não há escolha de dificuldade: o filtro foi retirado porque a dificuldade registrada nas questões ainda não reflete a real.
 - Se encontrar um erro numa questão, use o botão **🚩 Sinalizar** (ver [Simulados — Denunciar um erro numa questão](simulados.md#tarefa-8-denunciar-um-erro-numa-questao)).
 
 ---
 
-## Tarefa 2 — Ver o resultado e revisar as questões
+## Tarefa 2 — Sair de um quiz e continuar depois
+
+**Status:** ✅ Disponível  
+**Acesso:** com conta
+
+**Objetivo:** interromper um quiz e retomá-lo de onde parou, sem perder as respostas.
+
+**Pré-requisitos:** ter começado um quiz ([Tarefa 1](#tarefa-1-montar-e-jogar-um-quiz)).
+
+**Como fazer:**
+
+1. Durante o quiz, clique na seta de voltar, no topo da tela **Quiz em Andamento**. Se você já respondeu a alguma questão, a plataforma pergunta *"Sair do quiz?"* e avisa que as respostas ficam salvas.
+2. Clique em **Sair do quiz** para voltar à página do IFQuiz, ou em **Continuar respondendo** para seguir no quiz.
+3. Para retomar, abra a página do IFQuiz. O cartão **Quiz em andamento** mostra o nome do quiz, quantas questões você já respondeu, as vidas e os pontos. Clique em **Continuar quiz**.
+4. O quiz segue a partir da questão seguinte às que você já respondeu, com as vidas, os pontos e o combo de antes.
+
+**Observações:**
+
+- Cada resposta é gravada quando você a confirma. Por isso o quiz fica em aberto mesmo que você saia por outro caminho, como os links do cabeçalho; nesse caso, a plataforma não pede confirmação.
+- O cartão da página do IFQuiz mostra o quiz em aberto mais recente. Todos os quizzes em aberto aparecem no **Histórico de quizzes** do seu [perfil](../conta/perfil.md#tarefa-3-acompanhar-a-sua-atividade) como **Em andamento**, com o botão **Continuar**.
+- Os pontos do quiz entram no seu saldo só quando ele termina.
+
+---
+
+## Tarefa 3 — Ver o resultado e revisar as questões
 
 **Status:** ✅ Disponível  
 **Acesso:** com conta
@@ -55,7 +81,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 **Como fazer:**
 
-1. Ao fim do quiz, a tela **Resultado do Quiz** mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#tarefa-5-ganhar-pontos-e-subir-de-patente).
+1. Ao fim do quiz, a tela **Resultado do Quiz** mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#tarefa-6-ganhar-pontos-e-subir-de-patente).
 2. Para rever as questões, clique em **🔍 Ver Gabarito e Resoluções Detalhadas →**. A revisão lista as questões respondidas, com a disciplina, a banca e o ano, a alternativa que você escolheu e o gabarito oficial.
 3. Para continuar, clique em **Jogar novamente**, que abre a montagem de um novo quiz, ou em **Voltar ao IFQuiz**.
 
@@ -65,7 +91,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 ---
 
-## Tarefa 3 — Responder à Pergunta do Dia
+## Tarefa 4 — Responder à Pergunta do Dia
 
 **Status:** ✅ Disponível  
 **Acesso:** com conta
@@ -78,7 +104,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 1. Na página do IFQuiz, clique em **Pergunta do dia** ou em **Responder pergunta do dia** (`/quiz/pergunta-do-dia`).
 2. Leia a questão. Acima dela aparecem a disciplina, a banca e o ano da prova, quando registrados, e a dificuldade; o texto de apoio vem antes do enunciado, quando houver. Escolha uma alternativa e clique em **Confirmar resposta**.
-3. O resultado mostra a alternativa correta, a sua [sequência diária](#tarefa-4-manter-a-sequencia-diaria) e o **desempenho da comunidade**: o percentual de acerto de todos que responderam e a distribuição das respostas por alternativa.
+3. O resultado mostra a alternativa correta, a sua [sequência diária](#tarefa-5-manter-a-sequencia-diaria) e o **desempenho da comunidade**: o percentual de acerto de todos que responderam e a distribuição das respostas por alternativa.
 4. Para continuar praticando, clique em **Jogar Quiz Rápido**, que começa direto um quiz de 5 questões de todas as disciplinas.
 
 **Observações:**
@@ -89,14 +115,14 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 ---
 
-## Tarefa 4 — Manter a sequência diária
+## Tarefa 5 — Manter a sequência diária
 
 **Status:** ✅ Disponível  
 **Acesso:** com conta
 
 **Objetivo:** acompanhar quantos dias seguidos você respondeu à Pergunta do Dia.
 
-**Pré-requisitos:** ter respondido à [Pergunta do Dia](#tarefa-3-responder-a-pergunta-do-dia) ao menos uma vez.
+**Pré-requisitos:** ter respondido à [Pergunta do Dia](#tarefa-4-responder-a-pergunta-do-dia) ao menos uma vez.
 
 **Como fazer:**
 
@@ -111,7 +137,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 ---
 
-## Tarefa 5 — Ganhar pontos e subir de patente
+## Tarefa 6 — Ganhar pontos e subir de patente
 
 **Status:** ✅ Disponível  
 **Acesso:** com conta
@@ -137,11 +163,11 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 **Observações:**
 
-- O saldo diminui quando você compra um avatar na [loja](#tarefa-7-comprar-e-equipar-avatares), e por isso a patente **pode cair depois de uma compra**. O ranking não é afetado, porque considera os pontos ganhos, e não o saldo.
+- O saldo diminui quando você compra um avatar na [loja](#tarefa-8-comprar-e-equipar-avatares), e por isso a patente **pode cair depois de uma compra**. O ranking não é afetado, porque considera os pontos ganhos, e não o saldo.
 
 ---
 
-## Tarefa 6 — Ver o ranking
+## Tarefa 7 — Ver o ranking
 
 **Status:** ✅ Disponível  
 **Acesso:** com conta
@@ -165,7 +191,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 ---
 
-## Tarefa 7 — Comprar e equipar avatares
+## Tarefa 8 — Comprar e equipar avatares
 
 **Status:** ✅ Disponível  
 **Acesso:** com conta
@@ -194,11 +220,11 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 **Observações:**
 
 - Cada avatar é comprado uma única vez. O gratuito pode ser equipado sem compra.
-- A compra diminui o saldo e pode baixar a sua [patente](#tarefa-5-ganhar-pontos-e-subir-de-patente).
+- A compra diminui o saldo e pode baixar a sua [patente](#tarefa-6-ganhar-pontos-e-subir-de-patente).
 
 ---
 
-## Tarefa 8 — Jogar no Modo Competição
+## Tarefa 9 — Jogar no Modo Competição
 
 **Status:** 🔵 Prevista  
 **Acesso:** com conta
@@ -216,6 +242,8 @@ O **Modo Competição** aparece na página do IFQuiz como **Em breve**, desabili
 | Situação | O que fazer |
 |---|---|
 | Uma quantidade de questões está desabilitada | Não há questões suficientes para a disciplina e os assuntos escolhidos. Escolha uma quantidade menor ou amplie o filtro |
+| A tela diz *"Esse filtro não tem questões."* | Não há questões aprovadas para a disciplina e os assuntos escolhidos. Escolha outra disciplina ou outros assuntos |
+| Saí do quiz no meio | As respostas ficam salvas. Na página do IFQuiz, clique em **Continuar quiz**, ou use **Continuar** no Histórico de quizzes do perfil |
 | A dica não funciona | Ela pode ser usada uma vez por questão e não funciona quando resta só uma vida |
 | Não consigo responder à Pergunta do Dia | Você já respondeu hoje. A próxima pergunta abre à meia-noite, no horário de Brasília |
 | A minha sequência voltou a zero | Houve um dia sem resposta à Pergunta do Dia. Jogar quizzes não mantém a sequência |
@@ -229,7 +257,8 @@ O **Modo Competição** aparece na página do IFQuiz como **Em breve**, desabili
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas do IFQuiz | nov/2026 |
+| Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): páginas do IFQuiz | nov/2026 |
+| Saída e retomada do quiz | Código do `ifvest-monorepo` (commit `0335118`): rota `GET /api/v1/quiz/active-session` e `ifvest-backend/src/services/quiz_session_resume.py` | nov/2026 |
 | Regras de pontos, patentes, sequência, ranking e loja | [Descrição das Funcionalidades — IFQuiz](../../funcionalidades.md#ifquiz), conferida no código do backend | nov/2026 |
 | Filtro de dificuldade retirado | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md`, no `ifvest-monorepo` | set/2026 |
 | Modo Competição | Levantamento de Funcionalidades e Regras de Negócio, entradas do IFQuiz | 20/10/2026 |

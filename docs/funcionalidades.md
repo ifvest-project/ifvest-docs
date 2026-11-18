@@ -3,7 +3,7 @@
 Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada funcionalidade, quem pode usá-la, onde ela fica na interface e as regras que o sistema aplica. A visão geral dos módulos está na [Descrição do Sistema](descricao-do-sistema.md), e o contrato técnico de cada operação, na [Referência da API](api.md).
 
 !!! info "Levantada do código em produção"
-    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 17 de novembro de 2026 (commit `b0a5e5f`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
+    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 17 de novembro de 2026 (commit `0335118`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
     Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
@@ -29,6 +29,8 @@ Cada funcionalidade traz, logo abaixo do título, três informações:
 | Redação | Escrita e envio, minhas redações | Com conta |
 | Redação | Propostas de redação | `create_essay_proposal_permission` |
 | Redação | Correção de redações | `grade_essay_permission` |
+| Flashcards | Estudo com cartões de pergunta e resposta | Com conta |
+| Flashcards | Gerenciamento dos cartões | Quem tem acesso à Área do Professor |
 | Banco de questões | Consulta e denúncia de erro | Com conta |
 | Banco de questões | Cadastro de questões | `create_question` |
 | Banco de questões | Edição de questões | `edit_question` ou `audit_question` |
@@ -69,7 +71,7 @@ Em telas de até 900 px de largura, como as de celular, as abas do cabeçalho fi
 - Mostra o apelido, o e-mail e três indicadores: **pontos** (o saldo atual), **dias consecutivos** (a [sequência diária](#sequencia-diaria)) e **permissões ativas**.
 - O **apelido** pode ser editado. É o nome exibido no ranking; sem apelido, o ranking mostra a parte do e-mail antes do `@`.
 - **Atividade na Pergunta do Dia** — mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
-- **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos, e as ações *Revisar*, que abre o gabarito, e *Refazer*, que abre a montagem com os mesmos filtros.
+- **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos, e as ações *Revisar*, que abre o gabarito, e *Refazer*, que abre a montagem com os mesmos filtros. Um quiz em aberto aparece como *Em andamento*, e o *Continuar* o retoma de onde parou.
 - **Histórico de simulados** — as tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota, e as ações *Revisar*, que abre a [revisão da tentativa](#revisao-da-tentativa), e *Refazer*, que abre o simulado de novo. Não aparece com o módulo Simulados desligado.
 
 Não há foto de perfil nem exclusão de conta.
@@ -80,7 +82,7 @@ Não há foto de perfil nem exclusão de conta.
 
 Módulo de prática rápida com elementos de jogo. **Flag do módulo:** `module_quiz`.
 
-A página do módulo (`/quiz`) reúne os indicadores do estudante — saldo de pontos, dias de sequência, taxa de acertos e posição no ranking geral —, o acesso aos modos de jogo, uma prévia da Pergunta do Dia, os três primeiros do ranking da semana e a tabela de patentes.
+A página do módulo (`/quiz`) reúne os indicadores do estudante — saldo de pontos, dias de sequência, taxa de acertos e posição no ranking geral —, o quiz em andamento, quando houver, o acesso aos modos de jogo, uma prévia da Pergunta do Dia, os três primeiros do ranking da semana e a tabela de patentes.
 
 O quiz e a Pergunta do Dia usam apenas as questões aprovadas na [auditoria](#auditoria-de-questoes).
 
@@ -93,9 +95,9 @@ O quiz e a Pergunta do Dia usam apenas as questões aprovadas na [auditoria](#au
 - **Nome** — opcional; sem nome, o quiz se chama "Quiz Geral" ou "Quiz de {disciplina}".
 - **Disciplina** — "Geral", que reúne todas, ou uma das disciplinas que têm questões auditadas no banco, com a contagem de cada uma.
 - **Assuntos** — opcionais, vários ao mesmo tempo, dentro da disciplina escolhida.
-- **Quantidade** — 5, 10, 15 ou 20 questões. As opções maiores que o número de questões disponíveis no filtro ficam desabilitadas.
+- **Quantidade** — 5, 10, 15 ou 20 questões. A tela mostra quantas questões o filtro tem, e as opções maiores que esse número ficam desabilitadas. Quando o filtro tem de 1 a 4 questões, a lista oferece também esse número.
 
-Não há escolha de dificuldade: o seletor foi ocultado por decisão da equipe, porque a dificuldade registrada nas questões ainda não reflete a real (ver [Modelo de Dados — Pontos de atenção](modelo-de-dados.md#pontos-de-atencao-do-modelo)). Antes de começar, uma prévia mostra o tempo estimado, de 2 minutos por questão, e os pontos possíveis.
+Não há escolha de dificuldade: o seletor foi ocultado por decisão da equipe, porque a dificuldade registrada nas questões ainda não reflete a real (ver [Modelo de Dados — Notas sobre o modelo](modelo-de-dados.md#notas-sobre-o-modelo)). Antes de começar, uma prévia mostra o tempo estimado, de 2 minutos por questão, e os pontos possíveis.
 
 **Partida.**
 
@@ -108,6 +110,8 @@ Não há escolha de dificuldade: o seletor foi ocultado por decisão da equipe, 
 **Resultado e revisão.** Ao final, os pontos — **20 por acerto** — são somados ao saldo. A tela de resultado mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#pontos-e-patentes). A revisão lista as questões respondidas, com a banca e o ano, a alternativa escolhida e o gabarito oficial.
 
 Durante a partida, o botão "Sinalizar" permite [denunciar um erro](#denuncia-de-erro) na questão.
+
+**Saída e retomada.** Cada resposta é gravada quando o estudante a confirma, e o quiz fica em aberto até terminar. Ao sair pelo botão de voltar com respostas dadas, a tela pede confirmação ("Sair do quiz?") e avisa que as respostas ficam salvas. O quiz em aberto mais recente aparece na página do IFQuiz, com as questões respondidas, as vidas e os pontos, e o botão "Continuar quiz"; no [Perfil](#perfil), o histórico mostra cada quiz em aberto como "Em andamento", com o botão "Continuar". A partida retomada segue com as vidas, os pontos e o *combo* calculados a partir das respostas gravadas (`GET /quiz/active-session`).
 
 ### Pergunta do Dia
 
@@ -204,7 +208,7 @@ As duas disciplinas são calculadas a partir da resposta dada em cada questão, 
 
 O estudante dá um nome ao simulado, de até 120 caracteres, define a quantidade de questões, de 10 por padrão, e escolhe uma de duas formas de montá-lo:
 
-- **Selecionar questões** — busca no banco por título ou enunciado, com filtros de disciplina, assunto, banca e ano e ordenação por ordem de cadastro ou por ano, em páginas de 25 questões. Cada questão mostra banca, ano, número, disciplina e assunto, e "Ver questão completa" mostra o texto de apoio e as alternativas. A quantidade é o limite da seleção: atingida, as demais questões ficam travadas. É preciso selecionar ao menos uma questão, e a seleção é mantida ao trocar de página ou de filtro.
+- **Selecionar questões** — busca no banco por título ou enunciado, com filtros de disciplina, tipo de questão, assunto, banca e ano e ordenação por ordem de cadastro ou por ano, em páginas de 25 questões. O filtro de tipo tem só "Múltipla escolha", o único tipo do banco. Cada questão mostra banca, ano, número, disciplina, assunto e dificuldade, e "Ver questão completa" mostra o texto de apoio e as alternativas. A alternativa correta só vem destacada para quem tem `create_question`, `edit_question`, `audit_question` ou `admin_permission`: para os demais, a API omite o gabarito. A quantidade é o limite da seleção: atingida, as demais questões ficam travadas. É preciso selecionar ao menos uma questão, e a seleção é mantida ao trocar de página ou de filtro.
 - **Aleatório** (flag `mocktests_random`) — sorteia a quantidade pedida entre as questões que atendem aos filtros de disciplina, assunto, banca e ano. A tela mostra quantas questões atendem aos filtros e trava a geração quando são menos do que a quantidade pedida. A API aceita também o filtro por dificuldade, que a interface não oferece.
 
 Nas duas formas, só entram questões aprovadas na [auditoria](#auditoria-de-questoes).
@@ -317,6 +321,31 @@ Sem a permissão, a fila e a tela de correção mostram o aviso "Acesso Restrito
 
 - Cada redação recebe **uma única correção**, e ela não pode ser alterada depois de enviada.
 - **Ninguém corrige a própria redação**: a fila mostra também as do corretor, mas o envio é recusado.
+
+---
+
+## Flashcards
+
+Cartões de estudo no formato pergunta e resposta. **Flag do módulo:** `module_flashcards`.
+
+O módulo ainda não tem rotas na API: os cartões vêm de um catálogo mantido no próprio frontend, e nada do estudo é gravado.
+
+### Estudo dos cartões
+
+**Acesso:** com conta · **Onde:** aba "Flashcards" do cabeçalho ou cartão da página Início (`/flashcards`)
+
+- As disciplinas aparecem agrupadas em cinco áreas: Linguagens e Códigos, Ciências Humanas, Ciências da Natureza, Exatas e Matemática, e Outros e Atualidades.
+- Cada disciplina (`/flashcards/{disciplina}`) lista os seus assuntos, e cada assunto, os seus subassuntos. A organização é própria do módulo e não segue a do [banco de questões](#banco-de-questoes).
+- O subassunto (`/flashcards/{disciplina}/{subassunto}`) abre os cartões, um de cada vez, com a dificuldade — Fácil, Médio ou Difícil — e o contador da posição. O estudante vira o cartão para ver a resposta e avança ou volta pelas setas.
+- Os cartões seguem sempre a mesma ordem, e o módulo não registra o que o estudante já estudou nem o seu desempenho.
+
+### Gerenciamento dos cartões
+
+**Acesso:** quem tem acesso à [Área do Professor](#area-do-professor) · **Onde:** Flashcards → "Criar ou editar flashcards" (`/flashcards/gerenciar`)
+
+Quem tem acesso vê, no topo da página de Flashcards, a seção "Criação de Flashcards", que leva à tela "Gerenciar Flashcards", em que os cartões de cada subassunto são criados, editados e removidos. Os demais usuários que abrem o endereço são levados de volta à página de Flashcards.
+
+⬜ *A confirmar com a equipe: a disponibilização dos cartões criados para os estudantes. O gerenciamento será descrito depois da confirmação.*
 
 ---
 
@@ -480,8 +509,7 @@ A Pergunta do Dia, a sequência diária e o ranking semanal seguem o **horário 
 
 | Item | Situação |
 |---|---|
-| Flashcards | Módulo previsto. A tela mostra "Em Breve" mesmo com a flag ligada, e não há rotas na API |
-| Revisão de Conteúdo | Módulo previsto. A tela mostra "Em Breve" mesmo com a flag ligada, e não há rotas na API. As telas em que o administrador cuida dos materiais (`/admin/revisao`) já estão no frontend, mas não aparecem no menu e dependem de rotas que a API ainda não tem |
+| Revisão de Conteúdo | Módulo em construção e desligado. As telas do estudante (`/revisao`) entraram no frontend em 17/11/2026, e as da administração dos materiais (`/admin/revisao`) já estavam lá, sem aparecer no menu. As duas dependem de rotas que a API ainda não tem |
 | Modo Competição do IFQuiz | Aparece na página do IFQuiz como "Em breve", desabilitado |
 | Envio de redação por arquivo | Aba "Enviar arquivo (Em breve)", desabilitada: a extração do texto por OCR não faz parte da primeira versão |
 
@@ -495,6 +523,8 @@ O que foi definido para os módulos previstos está na [Descrição do Sistema](
 |---|---|---|
 | Regras de negócio, acesso e flags de cada funcionalidade | Código do backend do `ifvest-monorepo` (`src/api/v1/`, `src/services/` e `src/core/`) | nov/2026 |
 | Telas, ações, mensagens e condições de exibição | Código do frontend do `ifvest-monorepo` (`src/router/`, `src/features/` e `src/core/`) | nov/2026 |
+| Flashcards | `ifvest-frontend/src/features/flashcards/` e rotas `/flashcards` em `src/router/AppRouter.tsx` (commit `0335118`) | nov/2026 |
+| Saída e retomada do quiz | `src/services/quiz_session_resume.py` e `src/api/v1/quiz.py`; `ifvest-frontend/src/features/quiz/` (commit `0335118`) | nov/2026 |
 | Auditoria de questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py` e `src/api/v1/admin.py`; `ifvest-frontend/src/features/admin/pages/QuestionAuditPage.tsx`, `components/QuestionAuditAdmin.tsx` e `hooks/useAuditBatchSelection.ts` | nov/2026 |
 | Pontos, patentes, ranking e loja | `src/services/quiz_scoring.py`, `quiz_ranking.py`, `store_catalog.py` e `src/core/clock.py` | out/2026 |
 | Critério do ranking e da patente | `docs/auditoria-testes-2026-09-25.md`, seção 12 | set/2026 |

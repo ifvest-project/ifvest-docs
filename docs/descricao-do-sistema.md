@@ -4,7 +4,7 @@
 
 O **IFVest** é uma plataforma web educacional gratuita voltada à preparação de estudantes para o **ENEM** e para os principais vestibulares do país, desenvolvida no âmbito acadêmico do **IFSP Campus Jacareí**.
 
-A plataforma reúne, em um único ambiente, as ferramentas de prática que o estudante usa para estudar e os recursos de gestão pedagógica que o educador usa para produzir e curar conteúdo — questões, simulados, propostas e correção de redações e, nas próximas versões, materiais de revisão e flashcards.
+A plataforma reúne, em um único ambiente, as ferramentas de prática que o estudante usa para estudar e os recursos de gestão pedagógica que o educador usa para produzir e curar conteúdo — questões, simulados, propostas e correção de redações e, nas próximas versões, materiais de revisão.
 
 !!! info "Esta documentação descreve o IFVest V3"
     A plataforma foi reconstruída em 2026, com nova arquitetura, novo modelo de dados e nova organização de perfis. O histórico das versões anteriores está no [Registro de Versões](versoes.md), e o contexto da transição, no [Planejamento da Documentação](planejamento.md).
@@ -60,7 +60,7 @@ Cada funcionalidade se associa a essa árvore de uma forma distinta:
 
 - **Questões** vinculam-se **estritamente a tópicos**, podendo abranger mais de um ao mesmo tempo. A disciplina e o assunto são herdados automaticamente pela árvore, e não informados separadamente.
 - **Simulados** e **quizzes** não guardam vínculo fixo com a taxonomia — usam a árvore como **filtro de busca** no momento de reunir as questões.
-- **Flashcards**, previstos para as próximas versões, terão associação flexível: poderão ser vinculados a um tópico específico, a um assunto inteiro ou a uma disciplina completa.
+- **Flashcards** seguem, por enquanto, uma organização própria, por disciplina, assunto e subassunto, sem vínculo com a árvore do banco. A definição da equipe prevê uma associação flexível: a um tópico específico, a um assunto inteiro ou a uma disciplina completa.
 
 ---
 
@@ -97,8 +97,8 @@ Quando alguém tenta executar uma ação para a qual não tem permissão, a API 
 | Quizzes e gamificação (IFQuiz) | Implementado |
 | Simulados | Implementado |
 | Redação | Implementado |
-| Revisão de Conteúdo | Previsto, em construção |
-| Flashcards | Previsto, em construção |
+| Revisão de Conteúdo | Em construção: telas no frontend, ainda sem rotas na API; desligado |
+| Flashcards | Implementado em novembro de 2026, com os cartões mantidos no frontend |
 
 Cada módulo pode ser ligado e desligado sem alterar o código. Ver [Arquitetura — Feature flags](arquitetura.md#feature-flags).
 
@@ -125,7 +125,7 @@ Cada redação recebe uma única correção, e ninguém corrige a própria reda�
 
 ### Revisão de Conteúdo
 
-*Módulo previsto, ainda sem implementação. A descrição registra o que foi definido pela equipe.*
+*Módulo em construção: as telas do estudante e as da administração dos materiais já estão no frontend, mas a API ainda não tem as rotas dos materiais, e o módulo está desligado. A descrição registra o que foi definido pela equipe.*
 
 Cada tópico da taxonomia terá um **material didático único**, escrito em Markdown, com **autoria colaborativa** e histórico de alterações comparáveis entre si, no estilo de um sistema de controle de versão.
 
@@ -133,7 +133,11 @@ A edição feita por um professor **entrará no ar imediatamente**, mas o materi
 
 ### Flashcards
 
-*Módulo previsto, ainda sem implementação. A descrição registra o que foi definido pela equipe.*
+Cartões de pergunta e resposta, organizados por disciplina, assunto e subassunto. O estudante escolhe o subassunto e percorre os cartões um a um, virando cada um para ver a resposta. Os cartões vêm de um catálogo mantido no frontend: o módulo ainda não tem rotas na API e não registra o estudo de cada estudante. Ver [Descrição das Funcionalidades — Flashcards](funcionalidades.md#flashcards).
+
+O código tem também uma tela de gerenciamento dos cartões, para quem tem acesso à Área do Professor. ⬜ *A confirmar com a equipe: a disponibilização dos cartões criados para os estudantes.*
+
+**O que a equipe definiu e ainda não foi implementado:**
 
 Baralhos de cartões, públicos ou privados, com agendamento de revisões por **repetição espaçada**: o intervalo até a próxima aparição de cada cartão será calculado a partir da dificuldade que o estudante relata ao respondê-lo.
 
@@ -174,7 +178,6 @@ O detalhamento da estrutura interna, das dependências e das integrações está
 - A criação e a edição de conteúdo dependem de **permissões específicas**, não do tipo de conta.
 - A atribuição automática de permissões docentes depende de cadastro com **e-mail institucional do IFSP**.
 - O acervo de questões depende do trabalho de **curadoria e extração** conduzido pelas frentes do projeto; a plataforma não gera questões automaticamente.
-- **Não há limites de uso** definidos no código: o envio de redações, por exemplo, não tem limite por período. Ver [Arquitetura — Pontos de atenção](arquitetura.md#pontos-de-atencao).
 
 ---
 
@@ -198,12 +201,13 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 | Proposta de valor, escopo, público-alvo e taxonomia | Documentação do repositório do backend (README — Visão de Negócio) | set/2026 |
 | Módulos implementados e suas regras | Código-fonte do backend e do frontend do `ifvest-monorepo` | set/2026, revisto em out/2026 |
 | Módulos previstos (Revisão e Flashcards) | Documentação do repositório do backend (README — Visão de Negócio) e documento de onboarding | set/2026 |
+| Flashcards e Revisão no V3 | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026) e consulta pública `GET /api/v1/features` em `ifvest.com.br` | 18/11/2026 |
 | Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026, revisto em nov/2026 |
 | Banco de questões e carga das provas | Modelos do backend, `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | set/2026, revisto em out/2026 |
 | Stack e hospedagem | Configuração de produção do `ifvest-monorepo` | set/2026 |
 
 !!! note "Escopo da primeira versão — divergência resolvida"
-    O documento de onboarding e o roadmap do repositório do backend divergiam sobre quais módulos entrariam primeiro. O **código em produção resolve a questão**: ele define os módulos por meio de *feature flags*, com **Quiz, Redação e Simulados** implementados e **Revisão e Flashcards** marcados como em construção — o que confirma o onboarding. Ver [Arquitetura — Feature flags](arquitetura.md#feature-flags).
+    O documento de onboarding e o roadmap do repositório do backend divergiam sobre quais módulos entrariam primeiro. O **código em produção resolve a questão**: ele define os módulos por meio de *feature flags*, com **Quiz, Redação e Simulados** implementados e **Revisão e Flashcards** marcados como em construção — o que confirma o onboarding. Os Flashcards entraram depois, em novembro de 2026. Ver [Arquitetura — Feature flags](arquitetura.md#feature-flags).
 
 !!! note "Divergências entre o README do backend e o código"
     A visão de negócio do README do backend descreve alguns comportamentos de forma diferente do que o código implementa. Esta página adota o código:

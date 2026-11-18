@@ -234,8 +234,9 @@ No código, a aplicação se identifica como versão **0.1.0**, numeração pró
 
 - Entrada com a conta Google, com criação da conta no primeiro acesso
 - Permissões granulares, concedidas e revogadas por administradores
-- IFQuiz com questões do banco próprio: quiz personalizado, Pergunta do Dia, sequência diária, patentes, ranking geral e semanal e loja de avatares
+- IFQuiz com questões do banco próprio: quiz personalizado, que pode ser interrompido e retomado, Pergunta do Dia, sequência diária, patentes, ranking geral e semanal e loja de avatares
 - Simulados de treino, visíveis só a quem os cria, e institucionais, visíveis a todos; manuais ou aleatórios, com resolução na plataforma, caderno e gabarito para impressão e registro das tentativas, com a resposta de cada questão e a revisão de cada tentativa
+- Flashcards, com cartões de pergunta e resposta organizados por disciplina, assunto e subassunto
 - Módulo de Redação: propostas com textos de apoio, envio de redações e correção pelas cinco competências do ENEM, com comentários em trechos do texto
 - Banco de questões com filtros, cadastro, edição com pré-visualização, resolução das questões e denúncia de erros, e importação de provas em lote pelo painel administrativo, com simulação antes de gravar
 - Auditoria das questões, em página própria: as novas só entram no quiz e nos simulados depois de aprovadas por quem tem a permissão de auditoria, uma a uma ou em bloco, com busca, filtros e ordenação
@@ -271,7 +272,7 @@ O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 | Questões objetivas e dissertativas | Apenas questões de múltipla escolha |
 | Áreas de conhecimento e tópicos, com assuntos em árvore | Hierarquia Disciplina → Assunto → Tópico |
 | IFQuiz com questões da API externa `enem.dev` e placar dos cinco melhores | IFQuiz com questões do banco próprio, pontos, patentes, ranking e loja |
-| Flashcards e Revisão de Conteúdo em funcionamento | Previstos, ainda não disponíveis |
+| Flashcards e Revisão de Conteúdo em funcionamento | Flashcards com os cartões mantidos no frontend, desde novembro de 2026; Revisão em construção, ainda não disponível |
 | Verificação de questões semelhantes por IA (Gemini) | Não existe |
 | Impressão de simulado por modelo próprio do servidor | Caderno de questões montado pelo navegador |
 | Foto de perfil e exclusão de conta | Não existem |
@@ -282,7 +283,7 @@ O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 
 ## Próximos passos
 
-Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já têm *feature flags*, desligadas por padrão. Flashcards ainda não tem implementação. Da Revisão, já estão no frontend as telas em que o administrador cuida dos materiais, mas elas ainda não têm backend nem aparecem no menu. As frentes de trabalho em andamento estão em [Subprojetos Ativos](subprojetos/index.md).
+O módulo de **Revisão de Conteúdo** está em construção e segue desligado: já estão no frontend as telas do estudante e as que o administrador usa para cuidar dos materiais, mas elas ainda não têm backend, e as da administração não aparecem no menu. Os **Flashcards** entraram em novembro de 2026, com os cartões mantidos no próprio frontend, ainda sem rotas na API. As frentes de trabalho em andamento estão em [Subprojetos Ativos](subprojetos/index.md).
 
 ---
 
@@ -291,7 +292,7 @@ Os módulos **Flashcards** e **Revisão de Conteúdo** estão previstos e já t�
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Stack e versão declarada no código | `ifvest-backend/pyproject.toml`, `ifvest-frontend/package.json` e configuração de produção do `ifvest-monorepo` | out/2026 |
-| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `b0a5e5f`, de 17/11/2026 | nov/2026 |
+| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `0335118`, de 17/11/2026 | nov/2026 |
 | Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | nov/2026 |
 | Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |
 | Responsáveis e tipo | Lista dos projetos vinculados ao IFVest em 2026 e atas das reuniões dos grupos de trabalho | 2026 |

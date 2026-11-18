@@ -5,7 +5,7 @@ O módulo de **Revisão** (`/revisao`) reúne os conteúdos teóricos da platafo
 Os materiais são escritos em **Markdown**, com suporte a fórmulas matemáticas, e ficam vinculados a um ponto da organização de conteúdos da plataforma.
 
 !!! warning "Módulo ainda não disponível no IFVest V3"
-    O módulo de **Revisão** ainda não está disponível no IFVest V3, a versão em produção: a API não tem rotas para os materiais, e as telas que já existem não estão ligadas a ela. O item **Revisão** do cabeçalho fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
+    O módulo de **Revisão** ainda não está disponível no IFVest V3, a versão em produção: a API não tem rotas para os materiais, e as telas que já existem não estão ligadas a ela. O módulo segue desligado, e o item **Revisão** do cabeçalho fica desabilitado. As telas do estudante entraram no código em 17/11/2026 (ver [Guia do Aluno — Revisão](../aluno/revisao.md)).
 
     Esta página fica como **registro do que foi planejado**, a título de curiosidade:
 
@@ -13,7 +13,7 @@ Os materiais são escritos em **Markdown**, com suporte a fórmulas matemáticas
     - a tarefa com status **🟡 Refatorado (em design)** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado;
     - o campo **Perfil** e a marca 🔄 vêm da época em que a divisão de tarefas entre professor e administrador estava em discussão. No V3, o que cada conta pode fazer depende das [permissões](index.md#para-quem-e-este-guia).
 
-    Em 10/11/2026, entraram no `main` do `ifvest-monorepo` duas telas de administração da Revisão. A primeira é a página de administração, com a lista de materiais, o histórico de acessos e um carrossel de matérias. A segunda é a criação de materiais, com o título, a matéria, o link de uma vídeo-aula, o texto e exercícios de fixação escolhidos no banco de questões. As duas ficam em `/admin/revisao`, mas não aparecem no menu e ainda não estão ligadas ao backend, que não tem as rotas de materiais. Por isso, o módulo continua indisponível.
+    Em 10/11/2026, entraram no `main` do `ifvest-monorepo` duas telas de administração da Revisão. A primeira é a página de administração, com a lista de materiais, o histórico de acessos e um carrossel de matérias. A segunda é a criação de materiais, com o título, a matéria, o link de uma vídeo-aula, o texto e exercícios de fixação escolhidos no banco de questões. As duas ficam em `/admin/revisao`, mas não aparecem no menu. Desde 17/11/2026, a criação lista como matérias e tópicos as disciplinas e os assuntos do banco de questões, mas os materiais ainda não podem ser gravados, porque o backend não tem as rotas de materiais. Por isso, o módulo continua indisponível.
 
     Os termos de organização dos conteúdos usados aqui — área e tópico — são os da versão anterior. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
 
@@ -245,7 +245,7 @@ Haverá **dois modos** de montar o questionário, que podem ser combinados:
 | Interface futura | Criação, Meus Materiais, carrossel e componentes: Relatório 2 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
 | Interface futura (Tarefas 1, 2, 4 e 5) | Criação detalhada, exercícios de fixação, Meus Materiais e edição: Relatório 4 — Maria Luiza, mesmo subprojeto | mai/2026 |
 | Redistribuição de perfis | Entre professor e administrador: atas de reunião do subprojeto de frontend, 22/05/2026 | mai/2026 |
-| Telas de administração da Revisão | Página de administração e tela de criação de materiais, incorporadas ao `main` em 10/11/2026 pelos ramos `feat/tela-revisao-conteudo` e `feat/admin-criar-material`: código do frontend do `ifvest-monorepo` (commit `f98a6a0`), conferido com as rotas do backend | nov/2026 |
+| Telas de administração da Revisão | Página de administração e tela de criação de materiais, incorporadas ao `main` em 10/11/2026 pelos ramos `feat/tela-revisao-conteudo` e `feat/admin-criar-material`: código do frontend do `ifvest-monorepo` (commits `f98a6a0` e `0335118`, de 17/11/2026), conferido com as rotas do backend | nov/2026 |
 
 !!! note "Sobre a ordem das fontes"
     O Relatório 4 (17/05) descreve as telas do professor em detalhe; a ata de 22/05, cinco dias depois, redistribui parte dessas telas entre professor e administrador. Esta página documenta o design do relatório **e** a decisão posterior, sinalizando em cada tarefa qual das duas prevalece — o design permanece útil, mas a atribuição de perfil mudou.

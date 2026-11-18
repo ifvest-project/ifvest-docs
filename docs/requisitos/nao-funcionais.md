@@ -67,8 +67,6 @@ Relacionados ao subprojeto de [Testes Funcionais e Mutantes](../subprojetos/qual
 | RNFG13 | **Migrations.** Toda mudança no modelo de dados deve vir com uma migration aplicável e reversível, correspondente aos modelos. | ✅ Atendido | Verificado sobre PostgreSQL. |
 | RNFG14 | **Testes de ponta a ponta.** As jornadas principais da plataforma devem ter testes de ponta a ponta, executados sobre PostgreSQL, todos passando. | ✅ Atendido | Com o Playwright, num navegador real. |
 
-⬜ *Verificação não obrigatória: a integração contínua só impede a entrada de código fora destes limites se a proteção da branch principal estiver configurada no GitHub, o que ainda não foi confirmado. Ver [Arquitetura — Pontos de atenção](../arquitetura.md#pontos-de-atencao).*
-
 ---
 
 ## Requisitos por módulo

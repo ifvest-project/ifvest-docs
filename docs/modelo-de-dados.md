@@ -533,7 +533,7 @@ erDiagram
 
 ---
 
-## Pontos de atenção do modelo
+## Notas sobre o modelo
 
 **Taxonomia e questões.** As questões se vinculam **apenas a tópicos**, por meio da tabela associativa `question_topics`, que permite a uma mesma questão pertencer a vários tópicos. Disciplina e assunto não são gravados na questão: são obtidos percorrendo a árvore `topics → subjects → disciplines`.
 

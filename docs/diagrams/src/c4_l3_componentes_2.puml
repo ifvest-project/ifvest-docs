@@ -6,7 +6,7 @@ title Componentes — API IFVest (C4 L3 · Rotas e Serviços)
 LAYOUT_LEFT_RIGHT()
 
 Container_Boundary(api, "API — FastAPI") {
-    Component(r_quiz, "Rotas de Quiz", "quiz.py · 18 rotas", "Partidas, pergunta do dia,\nfiltros, ranking, loja e histórico")
+    Component(r_quiz, "Rotas de Quiz", "quiz.py · 19 rotas", "Partidas e retomada, pergunta do dia,\nfiltros, ranking, loja e histórico")
     Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
     Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")

@@ -1,110 +1,63 @@
 # Flashcards
 
-O módulo de **Flashcards** (`/flashcards`) oferece cartões de estudo no formato pergunta-e-resposta: a frente do cartão traz a pergunta e o verso, a resposta. A plataforma controla **quando** cada cartão volta a aparecer para você ([repetição espaçada](../glossario.md#termos-dos-modulos-previstos-e-da-versao-anterior)), priorizando o que está há mais tempo sem revisão. Hoje, os cartões são criados pelos professores; a versão refatorada prevê também a criação de cartões próprios pelo aluno.
-
-!!! warning "Módulo ainda não disponível no IFVest V3"
-    O módulo de **Flashcards** ainda não foi implementado no IFVest V3, a versão em produção. O item **Flashcards** do cabeçalho e da página **Início** fica desabilitado e, se um administrador ativar o módulo, leva à tela **Em Breve**.
-
-    Esta página fica como **registro do que foi planejado**, a título de curiosidade:
-
-    - as tarefas com status **✅ Atual** descrevem o módulo da **versão anterior** da plataforma, que não existe mais. Nesta página, "plataforma atual", "versão atual" e "hoje" se referem a ela;
-    - as tarefas com status **🟡 Refatorado (em design)** e **🔵 Em deliberação** e os blocos *"Na versão refatorada"* descrevem o design proposto pelo subprojeto de frontend, que pode não ser o adotado quando o módulo for implementado.
-
-    Os termos de organização dos conteúdos usados aqui — área, tópico, assunto e subassunto — são os da versão anterior e do redesign. A organização do V3 está no [Glossário](../glossario.md#como-os-conteudos-sao-organizados).
+O módulo de **Flashcards** (`/flashcards`) reúne cartões de estudo no formato pergunta e resposta: a frente do cartão traz a pergunta, e o verso, a resposta. Os cartões ficam organizados por disciplina, assunto e subassunto, e você os percorre um a um, no seu ritmo.
 
 ---
 
-## Tarefa 1 — Estudar com flashcards
+## Tarefa 1 — Escolher o que estudar
 
-**Status:** ✅ Atual
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** revisar um conjunto de cartões de pergunta e resposta sobre o conteúdo que você está estudando.
-
-**Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-1-entrar-na-plataforma) (o histórico de revisão é registrado por usuário).
-
-**Como fazer:**
-
-1. Acesse o módulo **Flashcards** (`/flashcards`).
-2. Se quiser, aplique os filtros opcionais de **Área**, **Tópico** e **Dificuldade** (Fácil, Médio ou Difícil) para delimitar o que revisar.
-3. A plataforma exibe **até 10 cartões por vez**, escolhidos conforme os filtros e o seu histórico de revisão (ver nota abaixo).
-4. Leia a pergunta na frente do cartão e tente responder mentalmente.
-5. **Vire o cartão** para conferir a resposta.
-
-!!! note "Como a plataforma escolhe os cartões (repetição espaçada)"
-    Cada vez que você visualiza um cartão, a plataforma registra a data. Na seleção seguinte, os cartões são agrupados por urgência de revisão — há quanto tempo você não os vê (1, 3, 7, 15 ou mais de 15 dias) — e os **não vistos ou vistos há mais tempo têm prioridade**. Você não precisa configurar nada: basta estudar, e o sistema traz de volta o que está para ser esquecido.
-
-!!! abstract "Na versão refatorada"
-    A área de Flashcards passa a ser dividida em **duas abas**: *Meus Flashcards*, com os cartões pré-definidos pelos professores/administradores, e *Criar Flashcards*, para os seus próprios cartões (ver [Tarefa 4](#tarefa-4-criar-seus-proprios-flashcards)).
-
-    O caminho até os cartões também muda: em *Meus Flashcards*, você seleciona a **disciplina**, abre **"Ver todos os assuntos de flashcards"**, escolhe o **subassunto** em um menu expansível e é levado aos cartões. Em cada cartão, o botão **"Ver resposta"** vira o componente e exibe a resposta.
-
-    *Fonte: Relatório 4 — Isabella Pereira (frontend), figs. 2.0 a 2.1.6. Design em andamento, sujeito a alteração.*
-
-    ⬜ Captura de tela pendente (aguardando estabilização da interface).
-
----
-
-## Tarefa 2 — Revisar cartões por tempo (grupos)
-
-**Status:** ✅ Atual
-
-**Objetivo:** ver os cartões organizados pelo tempo desde a sua última revisão, para decidir por onde recomeçar.
+**Objetivo:** chegar aos cartões de um conteúdo específico.
 
 **Pré-requisitos:** [estar logado](../conta/acesso.md#tarefa-1-entrar-na-plataforma).
 
 **Como fazer:**
 
-1. Acesse **`/flashcards/grupos`**.
-2. Os cartões aparecem agrupados por intervalo de tempo desde a última visualização (os mesmos grupos da repetição espaçada).
-3. Escolha um grupo e revise os cartões correspondentes.
+1. No cabeçalho ou na página **Início**, clique em **Flashcards**.
+2. As disciplinas aparecem agrupadas por área do conhecimento:
+
+    | Área | Disciplinas |
+    |---|---|
+    | **Linguagens e Códigos** | Língua portuguesa, Artes, Inglês, Espanhol e Educação física |
+    | **Ciências Humanas** | História, Geografia, Filosofia e Sociologia |
+    | **Ciências da Natureza** | Biologia, Química e Física |
+    | **Exatas e Matemática** | Matemática e Raciocínio lógico |
+    | **Outros e Atualidades** | Outros |
+
+3. Clique na disciplina. A página dela lista os assuntos; o primeiro já vem aberto.
+4. Clique num assunto para abrir ou fechar a lista dos subassuntos dele.
+5. Clique no subassunto. Os cartões dele se abrem ([Tarefa 2](#tarefa-2-estudar-os-cartoes)).
+
+Para voltar à lista de disciplinas, use a seta no topo da página.
 
 **Observações:**
 
-- O subprojeto de frontend registrou que, na interface atual, essa revisão por grupos **não fica intuitiva** para o aluno. ⬜ O tratamento dessa visão no redesign ainda não foi detalhado nos relatórios — a documentar quando definido.
+- A organização dos flashcards em assuntos e subassuntos é própria do módulo e não segue a do banco de questões.
 
 ---
 
-## Tarefa 3 — Continuar de onde parou
+## Tarefa 2 — Estudar os cartões
 
-**Status:** 🟡 Refatorado (em design)
+**Status:** ✅ Disponível  
+**Acesso:** com conta
 
-**Objetivo:** retomar o estudo de uma lista de flashcards do ponto em que você a interrompeu.
+**Objetivo:** responder mentalmente a cada pergunta e conferir a resposta.
 
-!!! warning "Disponível apenas a partir da versão refatorada"
-    A plataforma atual não possui esse recurso. Esta tarefa descreve uma capacidade nova, prevista no redesign.
+**Pré-requisitos:** ter escolhido um subassunto ([Tarefa 1](#tarefa-1-escolher-o-que-estudar)).
 
-**Como funcionará (conforme o design):**
+**Como fazer:**
 
-- Ao terminar uma lista de flashcards, ela é marcada como **concluída**.
-- A partir daí, a opção **"Continuar de onde parei"** fica disponível, permitindo retomar o estudo sem recomeçar a lista do zero.
+1. Leia a pergunta na frente do cartão. No rodapé, uma etiqueta mostra a dificuldade: **Fácil**, **Médio** ou **Difícil**.
+2. Tente responder antes de virar o cartão.
+3. Clique em **Ver resposta**. O cartão vira e mostra a **Resposta:**. Para voltar à pergunta, clique em **Ver pergunta**.
+4. Passe ao próximo cartão pela seta da direita (**Próximo flashcard**) e volte pela seta da esquerda (**Flashcard anterior**). Abaixo do cartão, o contador mostra em que posição você está, como "3 / 10".
 
-*Fonte: Relatório 4 — Isabella Pereira (frontend), fig. 2.1.6 e texto subsequente. Design em andamento, sujeito a alteração.*
+**Observações:**
 
-⬜ O comportamento exato da retomada (o que é salvo e por quanto tempo) ainda não está especificado — a documentar quando definido.
-
----
-
-## Tarefa 4 — Criar seus próprios flashcards
-
-**Status:** 🔵 Em deliberação
-
-**Objetivo:** montar cartões de estudo personalizados, com as suas próprias perguntas e respostas.
-
-!!! warning "Esta funcionalidade ainda não foi decidida"
-    Hoje, **apenas professores criam flashcards** — o aluno estuda com os cartões do acervo da plataforma. O subprojeto de frontend desenhou a criação pelo próprio aluno, mas **ainda avalia se ela será implementada**.
-
-    O funcionamento abaixo está documentado porque o design existe — não porque a funcionalidade esteja confirmada. ⬜ *A atualizar quando a decisão for tomada.*
-
-**Como funcionará (conforme o design):**
-
-- A aba **"Criar Flashcards"** permitirá que você monte seus próprios cartões.
-- Os cartões criados por você serão **visíveis somente na sua conta** — eles não são adicionados às disciplinas originais da plataforma.
-
-O que define a visibilidade de um flashcard é **o perfil de quem o criou**: os cartões de professores e administradores compõem o acervo da plataforma e ficam disponíveis a todos os alunos; os criados por um aluno permanecem restritos à conta dele.
-
-*Fonte: Relatório 4 — Isabella Pereira (frontend), fig. 2.2 e texto introdutório. Design em andamento, sujeito a alteração.*
-
-⬜ Os campos do formulário de criação (e se haverá área/dificuldade como nos cartões dos professores) ainda não estão detalhados — a documentar quando definido.
+- Os cartões aparecem sempre na mesma ordem. O módulo não registra quais você já estudou nem o seu desempenho: para repetir um subassunto, abra-o de novo.
+- Ao passar para outro cartão, ele começa pela pergunta.
 
 ---
 
@@ -112,18 +65,14 @@ O que define a visibilidade de um flashcard é **o perfil de quem o criou**: os 
 
 | Situação | O que fazer |
 |---|---|
-| Nenhum cartão aparece para os filtros escolhidos | O acervo pode ainda não ter cartões daquela combinação (os cartões são cadastrados pelos professores). Amplie ou remova os filtros |
-| Os mesmos cartões se repetem com frequência | É o comportamento esperado da repetição espaçada: cartões não vistos ou vistos há mais tempo voltam primeiro |
-| ⬜ Mensagens de erro específicas | As mensagens exatas exibidas pela plataforma serão documentadas junto com as capturas de tela, quando a interface refatorada estabilizar |
+| O item **Flashcards** aparece desabilitado ou a página mostra **Em Breve** | O módulo está desligado. Ele é ligado e desligado pela administração da plataforma (ver [Módulos](../administrador/modulos.md)) |
+| A seta de um lado não responde | Você está no primeiro ou no último cartão do subassunto |
 
 ---
 
 ## Fontes desta página
 
-| Camada | Fonte | Data |
+| Conteúdo | Fonte | Data |
 |---|---|---|
-| Fluxos da versão anterior (Tarefas 1–2) | Descrição das Funcionalidades, na versão de jun/2026, que descrevia a plataforma anterior — módulo Flashcards, derivada do código-fonte (rotas `/flashcards/*`, repositório IFVEST-main) | jun/2026 |
-| Interface futura (Tarefa 1) e novas capacidades (Tarefas 3–4) | Relatório 4 — Isabella Pereira, subprojeto *Refatoração para React e Redesign do IFVest* | abr/2026 |
-| Observação sobre a revisão por grupos (Tarefa 2) | Relatório 4 — Isabella Pereira, observações sobre o estado atual | abr/2026 |
-
-Os Relatórios 2 e 3 de Isabella tratam do módulo Simulados, e os relatórios de Maria Luiza cobrem Revisão, autenticação e perfil — nenhum deles afeta as tarefas desta página.
+| Telas, botões e fluxo | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): `ifvest-frontend/src/features/flashcards/` e rotas `/flashcards` | nov/2026 |
+| Disponibilidade do módulo | Flag `module_flashcards`; consulta pública `GET /api/v1/features` em `ifvest.com.br` | 18/11/2026 |

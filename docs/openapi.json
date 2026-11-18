@@ -3437,6 +3437,69 @@
         }
       }
     },
+    "/api/v1/quiz/active-session": {
+      "get": {
+        "tags": [
+          "quiz"
+        ],
+        "summary": "Fetch Active Quiz Session",
+        "description": "Sessao de quiz em aberto do estudante, para retomar; null quando nao ha nenhuma.",
+        "operationId": "fetch_active_quiz_session_api_v1_quiz_active_session_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/ActiveQuizSessionResponse"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Response Fetch Active Quiz Session Api V1 Quiz Active Session Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/quiz/answer": {
       "post": {
         "tags": [
@@ -5025,6 +5088,50 @@
   },
   "components": {
     "schemas": {
+      "ActiveQuizSessionResponse": {
+        "properties": {
+          "quiz_id": {
+            "type": "integer",
+            "title": "Quiz Id"
+          },
+          "sessao_id": {
+            "type": "string",
+            "title": "Sessao Id"
+          },
+          "nome": {
+            "type": "string",
+            "title": "Nome"
+          },
+          "respondidas": {
+            "type": "integer",
+            "title": "Respondidas"
+          },
+          "total_questoes": {
+            "type": "integer",
+            "title": "Total Questoes"
+          },
+          "vidas_restantes": {
+            "type": "integer",
+            "title": "Vidas Restantes"
+          },
+          "pontos": {
+            "type": "integer",
+            "title": "Pontos"
+          }
+        },
+        "type": "object",
+        "required": [
+          "quiz_id",
+          "sessao_id",
+          "nome",
+          "respondidas",
+          "total_questoes",
+          "vidas_restantes",
+          "pontos"
+        ],
+        "title": "ActiveQuizSessionResponse",
+        "description": "Sessão de quiz em aberto que o estudante pode retomar."
+      },
       "AdmDashboardResponse": {
         "properties": {
           "user_name": {
@@ -7405,6 +7512,11 @@
               }
             ],
             "title": "Image Url"
+          },
+          "is_correct": {
+            "type": "boolean",
+            "title": "Is Correct",
+            "default": false
           }
         },
         "type": "object",
@@ -8980,6 +9092,11 @@
               }
             ],
             "title": "Dificuldade"
+          },
+          "em_andamento": {
+            "type": "boolean",
+            "title": "Em Andamento",
+            "default": false
           }
         },
         "type": "object",
@@ -9159,6 +9276,18 @@
               }
             ],
             "title": "Dica Eliminar"
+          },
+          "vidas_restantes": {
+            "type": "integer",
+            "title": "Vidas Restantes"
+          },
+          "pontuacao_atual": {
+            "type": "integer",
+            "title": "Pontuacao Atual"
+          },
+          "combo": {
+            "type": "integer",
+            "title": "Combo"
           }
         },
         "type": "object",
@@ -9171,7 +9300,10 @@
           "disciplina",
           "dificuldade",
           "enunciado",
-          "alternativas"
+          "alternativas",
+          "vidas_restantes",
+          "pontuacao_atual",
+          "combo"
         ],
         "title": "QuizQuestionResponse",
         "description": "Questão corrente dentro de uma sessão ativa de quiz."
@@ -9440,7 +9572,14 @@
             "title": "Usuario"
           },
           "avatar": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Avatar"
           },
           "patente": {
@@ -9465,7 +9604,6 @@
         "required": [
           "posicao",
           "usuario",
-          "avatar",
           "patente",
           "streak",
           "pontos"

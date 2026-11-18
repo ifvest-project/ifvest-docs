@@ -141,9 +141,9 @@ flowchart TD
     A referência à API **não é pré-requisito** desta fase: ela documenta o sistema para quem desenvolve, enquanto os guias documentam o uso da plataforma para quem estuda e ensina. As duas seguem em paralelo.
 
 !!! note "Os guias foram revisados com a interface entregue"
-    Os guias foram escritos antes da entrega do IFVest V3, com o material de design da frente de interface como base da **camada de interface** de cada tarefa (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)). Em outubro de 2026, foram revisados com base no código da interface entregue: telas, botões e mensagens passaram a ser os da plataforma em produção, e o que o design previa e não foi implementado ficou registrado em cada página. Em novembro de 2026, ganharam as páginas de Redação e o Guia do Administrador, escritos já a partir do código.
+    Os guias foram escritos antes da entrega do IFVest V3, com o material de design da frente de interface como base da **camada de interface** de cada tarefa (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)). Em outubro de 2026, foram revisados com base no código da interface entregue: telas, botões e mensagens passaram a ser os da plataforma em produção, e o que o design previa e não foi implementado ficou registrado em cada página. Em novembro de 2026, ganharam as páginas de Redação e o Guia do Administrador, escritos já a partir do código, e as páginas de Flashcards foram reescritas a partir do código do módulo.
 
-    As páginas dos módulos ainda não implementados — Revisão de Conteúdo e Flashcards — continuam nos guias, com um aviso no início, como registro do que foi planejado.
+    As páginas da Revisão de Conteúdo, módulo ainda desligado, continuam nos guias, com um aviso no início, como registro do que foi planejado.
 
 | Item | Descrição | Status |
 |------|-----------|--------|

@@ -17,7 +17,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 !!! note "A organização mudou em relação à versão anterior"
     Na versão anterior da plataforma, os níveis eram **Área → Tópico → Assunto**: o tópico ficava no meio, e o assunto era o nível mais específico. No V3, a ordem se inverteu — o **assunto** fica no meio, e o **tópico** é o nível mais específico.
 
-    As páginas de [Revisão de Conteúdo](aluno/revisao.md) e [Flashcards](aluno/flashcards.md), que registram módulos ainda não implementados, usam o vocabulário anterior e o dos relatórios do redesign (ver [Termos dos módulos previstos e da versão anterior](#termos-dos-modulos-previstos-e-da-versao-anterior)).
+    A página de [Revisão de Conteúdo](aluno/revisao.md), que registra um módulo ainda desligado, usa o vocabulário anterior e o dos relatórios do redesign (ver [Termos dos módulos previstos e da versão anterior](#termos-dos-modulos-previstos-e-da-versao-anterior)).
 
 ---
 
@@ -31,11 +31,13 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Auditoria de questões** — a conferência e a aprovação de cada questão nova antes que ela seja usada no quiz e nos simulados. Até ser aprovada, a questão fica **pendente de auditoria** e não aparece na lista do banco. A aprovação é feita na página aberta pela aba **Auditoria** do cabeçalho. Não confundir com o **registro de auditoria**. Ver [Auditoria de Questões](administrador/auditoria-de-questoes.md).
 
-- **Avatar** — a figura que aparece ao lado do seu nome no ranking do IFQuiz, comprada com pontos na loja. Ver [IFQuiz](aluno/ifquiz.md#tarefa-7-comprar-e-equipar-avatares).
+- **Avatar** — a figura que aparece ao lado do seu nome no ranking do IFQuiz, comprada com pontos na loja. Ver [IFQuiz](aluno/ifquiz.md#tarefa-8-comprar-e-equipar-avatares).
 
 - **Banca** — a instituição responsável pela prova de onde a questão saiu, como ENEM, FUVEST, UNICAMP ou IFSP. Serve de filtro na montagem de simulados.
 
 - **Caderno** — a versão do simulado para impressão, com as questões e uma folha de respostas. Ver [Simulados](aluno/simulados.md#tarefa-6-imprimir-o-caderno-e-o-gabarito).
+
+- **Combo** — no IFQuiz, a contagem de acertos seguidos numa partida, mostrada no topo da tela como **🔥 Combo**. Não muda a pontuação. Ver [IFQuiz](aluno/ifquiz.md#tarefa-1-montar-e-jogar-um-quiz).
 
 - **Competência** — cada um dos cinco critérios da correção de redação do ENEM, de C1 a C5, com nota de 0 a 200. Na plataforma, os rótulos são Norma culta, Tema e repertório, Argumentação, Coesão textual e Intervenção social. Ver [Redação](aluno/redacao.md#tarefa-3-acompanhar-a-correcao).
 
@@ -47,7 +49,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Disciplina** — a maior divisão dos conteúdos, como Matemática, Português ou Biologia.
 
-- **Em Breve** — a tela exibida no lugar de um módulo ainda não disponível, como Revisão e Flashcards, ou desativado por um administrador. O mesmo selo marca o Modo Competição do IFQuiz.
+- **Em Breve** — a tela exibida no lugar de um módulo ainda não disponível, como a Revisão, ou desativado por um administrador. O mesmo selo marca o Modo Competição do IFQuiz.
 
 - **Espelho de correção** — a tela com a correção de uma redação: a nota total, as notas por competência, o parecer e os comentários nos trechos do texto. Ver [Redação](aluno/redacao.md#tarefa-3-acompanhar-a-correcao).
 
@@ -55,7 +57,9 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Fila de correção** — a lista das redações que aguardam correção, para quem tem a permissão de corrigir. Ver [Guia do Professor — Redação](professor/redacao.md#tarefa-3-corrigir-uma-redacao).
 
-- **Gabarito** — a relação das respostas corretas. Nos simulados, é uma folha à parte, para imprimir ([Simulados](aluno/simulados.md#tarefa-6-imprimir-o-caderno-e-o-gabarito)); no IFQuiz, aparece na revisão do quiz ([IFQuiz](aluno/ifquiz.md#tarefa-2-ver-o-resultado-e-revisar-as-questoes)); no banco de questões, aparece destacado para quem pode editar as questões.
+- **Flashcard** — cartão de estudo com uma pergunta na frente e a resposta no verso. No módulo de Flashcards, os cartões ficam organizados por disciplina, assunto e subassunto. Ver [Flashcards](aluno/flashcards.md).
+
+- **Gabarito** — a relação das respostas corretas. Nos simulados, é uma folha à parte, para imprimir ([Simulados](aluno/simulados.md#tarefa-6-imprimir-o-caderno-e-o-gabarito)); no IFQuiz, aparece na revisão do quiz ([IFQuiz](aluno/ifquiz.md#tarefa-3-ver-o-resultado-e-revisar-as-questoes)); no banco de questões, aparece destacado para quem pode editar as questões.
 
 - **IFQuiz** — o módulo de prática rápida, com quizzes, Pergunta do Dia, pontos, patentes e ranking. Ver [IFQuiz](aluno/ifquiz.md).
 
@@ -75,9 +79,9 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Parecer** — a devolutiva geral do corretor sobre uma redação, obrigatória em toda correção.
 
-- **Patente** — o nível do IFQuiz, definido pelo saldo de pontos, de Bronze a Lenda do IF. Ver [IFQuiz](aluno/ifquiz.md#tarefa-5-ganhar-pontos-e-subir-de-patente).
+- **Patente** — o nível do IFQuiz, definido pelo saldo de pontos, de Bronze a Lenda do IF. Ver [IFQuiz](aluno/ifquiz.md#tarefa-6-ganhar-pontos-e-subir-de-patente).
 
-- **Pergunta do Dia** — a questão diária do IFQuiz, a mesma para todos. O acerto vale 100 pontos. Ver [IFQuiz](aluno/ifquiz.md#tarefa-3-responder-a-pergunta-do-dia).
+- **Pergunta do Dia** — a questão diária do IFQuiz, a mesma para todos. O acerto vale 100 pontos. Ver [IFQuiz](aluno/ifquiz.md#tarefa-4-responder-a-pergunta-do-dia).
 
 - **Permissão** — a autorização dada a uma conta para uma ação específica, como cadastrar questões ou corrigir redações. No V3, as permissões substituem os perfis fixos de aluno e professor. Ver [Guia do Professor](professor/index.md#para-quem-e-este-guia) e [Usuários e Permissões](administrador/usuarios-e-permissoes.md).
 
@@ -91,7 +95,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Quiz** — uma rodada de 5 a 20 questões no IFQuiz, montada por você a partir de uma disciplina e, se quiser, de assuntos. Ver [IFQuiz](aluno/ifquiz.md#tarefa-1-montar-e-jogar-um-quiz).
 
-- **Ranking** — a classificação dos estudantes pelos pontos ganhos no IFQuiz, na semana ou em todo o histórico. Ver [IFQuiz](aluno/ifquiz.md#tarefa-6-ver-o-ranking).
+- **Ranking** — a classificação dos estudantes pelos pontos ganhos no IFQuiz, na semana ou em todo o histórico. Ver [IFQuiz](aluno/ifquiz.md#tarefa-7-ver-o-ranking).
 
 - **Rascunho** — na Redação, a cópia do texto que a plataforma salva sozinha no navegador enquanto você escreve, por até 10 minutos. Ver [Redação](aluno/redacao.md#tarefa-2-escrever-e-enviar-uma-redacao).
 
@@ -101,7 +105,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Resolução** — a explicação de por que a alternativa correta de uma questão está certa, escrita pelo professor no cadastro ou na edição. Aparece em **Por que essa alternativa?**, depois de responder à questão num simulado. Não confundir com *resolver* um simulado.
 
-- **Sequência diária** — quantos dias seguidos você respondeu à Pergunta do Dia. No perfil, aparece como **Dias Consecutivos**. Ver [IFQuiz](aluno/ifquiz.md#tarefa-4-manter-a-sequencia-diaria).
+- **Sequência diária** — quantos dias seguidos você respondeu à Pergunta do Dia. No perfil, aparece como **Dias Consecutivos**. Ver [IFQuiz](aluno/ifquiz.md#tarefa-5-manter-a-sequencia-diaria).
 
 - **Sessão** — o período em que você fica identificado na plataforma depois de entrar. Fechar a aba não a encerra: para isso, use **Sair**. Ver [Acesso e Conta](conta/acesso.md#tarefa-2-sair-da-plataforma).
 
@@ -127,19 +131,15 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 ## Termos dos módulos previstos e da versão anterior
 
-Estes termos aparecem nas páginas de [Revisão de Conteúdo](aluno/revisao.md), [Flashcards](aluno/flashcards.md) e [Materiais de Revisão](professor/materiais-de-revisao.md), que registram módulos ainda não implementados, e nos relatórios do redesign.
+Estes termos aparecem nas páginas de [Revisão de Conteúdo](aluno/revisao.md) e [Materiais de Revisão](professor/materiais-de-revisao.md), que registram um módulo ainda indisponível, e nos relatórios do redesign.
 
 - **Área** — a maior divisão dos conteúdos na versão anterior da plataforma, equivalente à disciplina do V3.
-
-- **Flashcard** — cartão de estudo com uma pergunta na frente e a resposta no verso. Módulo previsto; ver [Flashcards](aluno/flashcards.md).
 
 - **Matéria** — termo dos relatórios do redesign para as grandes divisões dos conteúdos, como a disciplina. No cadastro de questões do V3, aparece no campo **Matéria / Assunto**.
 
 - **Material de estudo** (ou **material de revisão**) — texto teórico escrito pelos professores sobre um conteúdo. Módulo previsto; ver [Revisão de Conteúdo](aluno/revisao.md).
 
-- **Repetição espaçada** — método de estudo em que o conteúdo revisado há mais tempo volta a aparecer primeiro. Previsto para o módulo de Flashcards.
-
-- **Subassunto** — subdivisão de um assunto, prevista no redesign dos módulos de Revisão e Flashcards.
+- **Subassunto** — subdivisão de um assunto, prevista no redesign da Revisão. No módulo de Flashcards, é o nível em que os cartões ficam.
 
 ---
 
@@ -147,7 +147,7 @@ Estes termos aparecem nas páginas de [Revisão de Conteúdo](aluno/revisao.md),
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `b0a5e5f`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | nov/2026 |
+| Termos e organização dos conteúdos do V3 | Código do `ifvest-monorepo` (commit `0335118`) e [Modelo de Dados — Taxonomia](../modelo-de-dados.md#taxonomia) | nov/2026 |
 | Funcionamento dos módulos | [Descrição das Funcionalidades](../funcionalidades.md) | out/2026 |
 | Organização da versão anterior | Versão anterior deste glossário, derivada do código da plataforma anterior | jun/2026 |
 | Vocabulário do redesign (matéria, subassunto) | Relatórios do subprojeto de frontend — Isabella Pereira e Maria Luiza | mar–abr/2026 |
