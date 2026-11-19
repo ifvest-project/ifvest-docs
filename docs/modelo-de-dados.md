@@ -5,7 +5,7 @@ Esta página apresenta a estrutura do banco de dados do IFVest: as tabelas, suas
 !!! info "Gerado a partir do código em produção"
     Os diagramas abaixo foram gerados **diretamente dos modelos do backend**, e não desenhados à mão. São as mesmas definições que o Alembic compara com o banco, o que garante que correspondem ao esquema em uso. Para regenerá-los após alterações nos modelos, ver [Como atualizar esta página](#como-atualizar-esta-pagina).
 
-    Ao adotar o Alembic, a equipe conferiu o banco de produção e registrou **21 tabelas e 27 chaves estrangeiras**. As tabelas e chaves a mais que aparecem abaixo vieram das migrations seguintes: controle dos módulos (`feature_flags`), denúncias de questões (`question_reports`), registro de auditoria (`audit_logs`), respostas das tentativas de simulado (`user_mocktest_answers`), importações de questões (`question_imports`) e auditoria das questões (a chave `audited_by_id`, em `multiple_choice_questions`).
+    Ao adotar o Alembic, a equipe conferiu o banco de produção e registrou **21 tabelas e 27 chaves estrangeiras**. As tabelas e chaves a mais que aparecem abaixo vieram das migrations seguintes: controle dos módulos (`feature_flags`), denúncias de questões (`question_reports`), registro de auditoria (`audit_logs`), respostas das tentativas de simulado (`user_mocktest_answers`), importações de questões (`question_imports`), auditoria das questões (a chave `audited_by_id`, em `multiple_choice_questions`) e registro de acessos (`access_logs`).
 
 ---
 
@@ -13,22 +13,23 @@ Esta página apresenta a estrutura do banco de dados do IFVest: as tabelas, suas
 
 ## Visão geral dos relacionamentos
 
-O esquema tem **26 tabelas** e **35 chaves estrangeiras**. O diagrama abaixo mostra apenas as tabelas e como se relacionam, sem as colunas. A tabela `feature_flags` não aparece por não ter relacionamento com as demais.
+O esquema tem **27 tabelas** e **36 chaves estrangeiras**. O diagrama abaixo mostra apenas as tabelas e como se relacionam, sem as colunas. A tabela `feature_flags` não aparece por não ter relacionamento com as demais.
 
 ```mermaid
 erDiagram
+    users |o--o{ access_logs : ""
     multiple_choice_questions ||--o{ alternatives : ""
     users |o--o{ audit_logs : ""
     essays ||--o{ essay_annotations : ""
-    users ||--o{ essay_annotations : ""
+    users |o--o{ essay_annotations : ""
     users ||--o{ essays : ""
     proposals ||--o{ essays : ""
     users |o--o{ fixed_mocktests : ""
     essays ||--o| gradings : ""
-    users ||--o{ gradings : ""
+    users |o--o{ gradings : ""
     users |o--o{ items : ""
     users |o--o{ multiple_choice_questions : ""
-    users ||--o{ proposals : ""
+    users |o--o{ proposals : ""
     multiple_choice_questions ||--o{ question_history : ""
     users ||--o{ question_history : ""
     quiz_history |o--o{ question_history : ""
@@ -88,6 +89,12 @@ erDiagram
         date last_daily_date
         varchar nickname
         varchar avatar
+        bool is_active
+        bool show_in_ranking
+        timestamptz terms_accepted_at
+        varchar terms_version
+        bool is_minor
+        varchar guardian_email
         timestamp created_at
         timestamp updated_at
     }
@@ -198,6 +205,12 @@ erDiagram
         date last_daily_date
         varchar nickname
         varchar avatar
+        bool is_active
+        bool show_in_ranking
+        timestamptz terms_accepted_at
+        varchar terms_version
+        bool is_minor
+        varchar guardian_email
         timestamp created_at
         timestamp updated_at
     }
@@ -275,6 +288,12 @@ erDiagram
         date last_daily_date
         varchar nickname
         varchar avatar
+        bool is_active
+        bool show_in_ranking
+        timestamptz terms_accepted_at
+        varchar terms_version
+        bool is_minor
+        varchar guardian_email
         timestamp created_at
         timestamp updated_at
     }
@@ -360,6 +379,12 @@ erDiagram
         date last_daily_date
         varchar nickname
         varchar avatar
+        bool is_active
+        bool show_in_ranking
+        timestamptz terms_accepted_at
+        varchar terms_version
+        bool is_minor
+        varchar guardian_email
         timestamp created_at
         timestamp updated_at
     }
@@ -440,16 +465,22 @@ erDiagram
         date last_daily_date
         varchar nickname
         varchar avatar
+        bool is_active
+        bool show_in_ranking
+        timestamptz terms_accepted_at
+        varchar terms_version
+        bool is_minor
+        varchar guardian_email
         timestamp created_at
         timestamp updated_at
     }
     essays ||--o{ essay_annotations : ""
-    users ||--o{ essay_annotations : ""
+    users |o--o{ essay_annotations : ""
     users ||--o{ essays : ""
     proposals ||--o{ essays : ""
     essays ||--o| gradings : ""
-    users ||--o{ gradings : ""
-    users ||--o{ proposals : ""
+    users |o--o{ gradings : ""
+    users |o--o{ proposals : ""
     proposals ||--o{ support_texts : ""
 ```
 
@@ -457,6 +488,15 @@ erDiagram
 
 ```mermaid
 erDiagram
+    access_logs {
+        int id PK
+        int user_id FK
+        varchar event_type
+        varchar ip_address
+        varchar user_agent
+        varchar request_id
+        timestamptz created_at
+    }
     audit_logs {
         int log_id PK
         int user_id FK
@@ -507,9 +547,16 @@ erDiagram
         date last_daily_date
         varchar nickname
         varchar avatar
+        bool is_active
+        bool show_in_ranking
+        timestamptz terms_accepted_at
+        varchar terms_version
+        bool is_minor
+        varchar guardian_email
         timestamp created_at
         timestamp updated_at
     }
+    users |o--o{ access_logs : ""
     users |o--o{ audit_logs : ""
     users |o--o{ multiple_choice_questions : ""
     multiple_choice_questions ||--o{ question_reports : ""
@@ -553,7 +600,9 @@ erDiagram
 
 **Uma correção por redação.** A coluna `essay_id` de `gradings` não se repete: cada redação recebe no máximo uma correção, e a API recusa uma segunda.
 
-**Moderação e auditoria.** Uma denúncia (`question_reports`) fica `pending` até ser marcada como `resolved` ou `dismissed` por um administrador. O registro de auditoria (`audit_logs`) guarda quem cadastrou, editou, denunciou e aprovou questões, quem mudou a situação das denúncias, quem criou, editou e excluiu propostas de redação, quem concedeu e revogou permissões e quem alterou os módulos ativos, além das questões atualizadas pela carga a partir da fonte e das importações aplicadas pelo painel. Se o autor de um registro for excluído, o registro permanece, sem a referência ao usuário.
+**Moderação e auditoria.** Uma denúncia (`question_reports`) fica `pending` até ser marcada como `resolved` ou `dismissed` por um administrador. O registro de auditoria (`audit_logs`) guarda quem cadastrou, editou, denunciou e aprovou questões, quem mudou a situação das denúncias, quem criou, editou e excluiu propostas de redação, quem concedeu e revogou permissões e quem alterou os módulos ativos, além das questões atualizadas pela carga a partir da fonte e das importações aplicadas pelo painel. Desde o commit `e4d7eef`, de 18/11/2026, entram também as correções de redação e a criação, a edição e a exclusão de simulados. Se o autor de um registro for excluído, o registro permanece, sem a referência ao usuário.
+
+**Privacidade (LGPD).** Em `users`, `terms_accepted_at` e `terms_version` guardam quando e qual versão dos termos o usuário aceitou, no cadastro do primeiro acesso; `is_minor` e `guardian_email`, a faixa etária informada e o e-mail do responsável, para menores de 18 anos; `show_in_ranking`, se ele aparece no ranking; e `is_active`, se a conta pode entrar — uma conta desativada é recusada no login. A tabela `access_logs` registra as entradas, as exportações de dados e as exclusões de conta, com o endereço IP, o navegador e a data; a rotina de login apaga os registros com mais de 180 dias. Na exclusão de uma conta, os dados do usuário são apagados, e as chaves que apontam para ele nas propostas de redação (`proposals.user_id`), nas correções (`gradings.evaluator_id` e `essay_annotations.evaluator_id`), nos simulados, nas importações, nos itens da loja e nos registros de auditoria e de acesso ficam vazias, para que o trabalho feito para outras pessoas não se perca.
 
 ---
 
@@ -584,3 +633,4 @@ O script não mexe na Arquitetura, que é escrita à mão. A cada migration nova
 | Auditoria das questões | Migration `d3e4f5a6b7c8` (`ifvest-backend/alembic/versions/`) e `ifvest-backend/src/services/question_audit_service.py` | nov/2026 |
 | Ranking, simulados e tentativas | `ifvest-backend/src/services/quiz_ranking.py` e `mocktest_attempts.py`; `src/api/v1/mocktests.py` | out/2026 |
 | Importações de questões | `docs/importar-questoes-pelo-painel.md` e `ifvest-backend/src/models/question_imports.py` | out/2026 |
+| Privacidade e registro de acessos | Migration `e4f5a6b7c8d9`; `ifvest-backend/src/services/user_lgpd_service.py`, `access_log_service.py`, `essays_service.py` e `mocktests_service.py` (commit `e4d7eef`, de 18/11/2026) | nov/2026 |

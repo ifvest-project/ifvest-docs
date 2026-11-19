@@ -9,7 +9,7 @@ Person(usuario, "Usuário", "Qualquer perfil")
 
 Container_Boundary(web, "Aplicação Web — React + Vite") {
     Component(router, "Roteador", "React Router 7", "Define as rotas e aplica o\ncontrole de módulos a cada tela")
-    Component(layout, "Layout", "core/layout", "Estrutura visual comum\na todas as telas")
+    Component(layout, "Layout", "core/layout · core/theme", "Estrutura visual comum\na todas as telas e\nalto contraste")
 
     Component(f_home, "Início", "features/home", "Página inicial e navegação\nentre os módulos")
     Component(f_quiz, "Quiz", "features/quiz", "Partidas, pergunta do dia,\nranking e loja")
@@ -17,7 +17,8 @@ Container_Boundary(web, "Aplicação Web — React + Vite") {
     Component(f_essays, "Redação", "features/essays", "Envio de redações,\ncorreção e consulta")
     Component(f_prof, "Área do Professor", "features/professor", "Banco de questões, propostas\nde redação e fila de correção")
     Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação, auditoria,\nimportação de questões\ne módulos")
-    Component(f_auth, "Autenticação e Perfil", "features/auth", "Entrada com a conta Google\ne perfil do usuário")
+    Component(f_auth, "Autenticação e Perfil", "features/auth", "Entrada com a conta Google,\ncadastro do primeiro acesso\ne perfil, com a privacidade")
+    Component(f_legal, "Páginas Legais", "features/legal", "Política de Privacidade\ne Termos de Uso")
     Component(f_dev, "Em Desenvolvimento", "features/underDevelopment", "Tela exibida no lugar dos\nmódulos desligados")
 
     Component(c_api, "Cliente HTTP", "core/api", "Chamadas à API com o token,\npor caminhos relativos")
@@ -35,6 +36,7 @@ Rel_D(router, c_feat, "Consulta antes\nde exibir o módulo")
 Rel_D(c_feat, f_dev, "Módulo desligado")
 
 Rel_D(layout, f_home, "Exibe")
+Rel_D(layout, f_legal, "Exibe")
 Rel_D(layout, f_quiz, "Exibe")
 Rel_D(layout, f_mock, "Exibe")
 Rel_D(layout, f_essays, "Exibe")

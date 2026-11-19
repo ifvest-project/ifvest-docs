@@ -51,7 +51,7 @@ Relacionados aos subprojetos de [Acessibilidade](../subprojetos/qualidade-e-test
 
 | ID | Requisito | Situação no V3 | Observação |
 |---|---|---|---|
-| RNFG07 | **Acessibilidade.** A interface deve atingir ao menos 90 de 100 pontos em ferramentas de auditoria automatizada de acessibilidade, como o Axe Core e o Lighthouse. | ❔ A verificar | Sem auditoria registrada. O repositório da plataforma não inclui essas ferramentas. |
+| RNFG07 | **Acessibilidade.** A interface deve atingir ao menos 90 de 100 pontos em ferramentas de auditoria automatizada de acessibilidade, como o Axe Core e o Lighthouse. | ❔ A verificar | Sem auditoria registrada. O repositório da plataforma não inclui essas ferramentas. Desde o commit `e4d7eef`, de 18/11/2026, a interface tem o modo de alto contraste, o link para pular ao conteúdo e ajustes para uso pelo teclado. |
 | RNFG08 | **Estética e design.** O sistema deve seguir o guia de estilos e componentes definido no Figma, com consistência visual entre os módulos. | ❔ A verificar | O repositório da plataforma não faz referência ao guia. |
 | RNFG09 | **Apreensibilidade.** Um novo usuário deve conseguir fazer o primeiro simulado ou quiz sem consultar manuais. | ❔ A verificar | Sem teste de usabilidade registrado. |
 

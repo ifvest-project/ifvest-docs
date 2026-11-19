@@ -10,8 +10,8 @@ Esta é a documentação de usuário do IFVest: como usar a plataforma, tarefa p
 
 **Todos** usam as mesmas páginas de conta:
 
-- [Acesso e Conta](conta/acesso.md) — entrar com a conta Google e sair
-- [Perfil e Seus Dados](conta/perfil.md) — apelido, indicadores e históricos de quizzes e simulados
+- [Acesso e Conta](conta/acesso.md) — entrar com a conta Google, completar o cadastro, sair e ligar o alto contraste
+- [Perfil e Seus Dados](conta/perfil.md) — apelido, indicadores, históricos de quizzes e simulados e privacidade: ranking, exportação dos dados e exclusão da conta
 
 O que cada pessoa pode fazer depende das **permissões** da conta, e não de um perfil escolhido no cadastro: um professor é, para a plataforma, alguém que tem as permissões de conteúdo. Ver [Descrição do Sistema — Perfis e permissões](../descricao-do-sistema.md#perfis-e-permissoes).
 
@@ -22,7 +22,7 @@ Os termos usados na plataforma estão no [Glossário](glossario.md).
 ## Qual versão da plataforma estes guias descrevem
 
 !!! info "IFVest V3, em produção"
-    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em novembro de 2026 (commit `0335118`, de 17/11/2026).
+    Os guias descrevem a plataforma em produção, o **IFVest V3**, conferida no código em novembro de 2026 (commit `e4d7eef`, de 18/11/2026).
 
     Eles foram escritos antes da entrega do V3, a partir dos relatórios do subprojeto de frontend, e revisados depois dela. Por isso, cada página registra também o que o design previa e não foi implementado. O módulo **Flashcards** entrou na plataforma em novembro de 2026 e está documentado a partir do código. A **Revisão de Conteúdo** já tem telas no código, mas segue desligada: as páginas dela continuam nos guias, com um aviso no início, como registro do que foi planejado.
 
@@ -54,6 +54,10 @@ Os nomes de telas, botões e mensagens foram conferidos no código da plataforma
 ## Acessibilidade da plataforma
 
 Os ajustes de acessibilidade feitos pelo subprojeto responsável em 2025 — uso só com o teclado e com leitor de tela nos módulos de Simulados, Flashcards e IFQuiz, verificados num teste com um usuário cego, usando o NVDA — foram aplicados na **versão anterior** da plataforma. A interface do IFVest V3 foi reconstruída do zero, e não há avaliação de acessibilidade registrada sobre ela (ver [Requisitos Não-Funcionais — Usabilidade e acessibilidade](../requisitos/nao-funcionais.md#usabilidade-e-acessibilidade)).
+
+Desde 18/11/2026, a interface do V3 oferece o modo de **alto contraste**, ligado pelo botão **◐ Alto Contraste** do cabeçalho (ver [Ligar o alto contraste](conta/acesso.md#tarefa-4-ligar-o-alto-contraste)), o link **Pular para o conteúdo principal**, alcançado pela tecla `Tab`, e o uso pelo teclado na correção de redações e nas janelas do quiz e da redação. Esses recursos estão no código; a avaliação deles ainda não foi registrada.
+
+*Fonte: código do frontend do `ifvest-monorepo` (commit `e4d7eef`, de 18/11/2026).*
 
 *Fonte: relatório final do subprojeto de acessibilidade (2025).*
 

@@ -65,8 +65,8 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 
 **Observações:**
 
-- O registro de auditoria guarda o cadastro, a edição e a denúncia de questões, a aprovação delas na [Auditoria de Questões](auditoria-de-questoes.md), as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações dos módulos, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel.
-- Não são registrados as correções de redação, os simulados e as compras na loja do IFQuiz.
+- O registro de auditoria guarda o cadastro, a edição e a denúncia de questões, a aprovação delas na [Auditoria de Questões](auditoria-de-questoes.md), as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações dos módulos, as questões atualizadas pela carga a partir da fonte, as importações aplicadas pelo painel, as correções de redação, com a nota total, e a criação, a edição e a exclusão de simulados, inclusive os de treino dos estudantes.
+- Não são registradas as compras na loja do IFQuiz.
 - As denúncias dos estudantes aparecem em **Últimas atualizações**, mas não contam como modificação.
 - **Questões removidas** fica em zero, porque a plataforma não tem exclusão de questões.
 - O painel mostra só esse resumo: não há consulta ao registro completo pela interface.
@@ -90,5 +90,5 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 |---|---|---|
 | Tela, indicadores e quadros | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Visão Geral | nov/2026 |
 | Cálculo dos indicadores, da janela de 30 dias e dos avisos | `ifvest-backend/src/services/admin_service.py`, no `ifvest-monorepo` | nov/2026 |
-| O que o registro de auditoria guarda | [Descrição das Funcionalidades — Registro de auditoria](../../funcionalidades.md#registro-de-auditoria) | nov/2026 |
+| O que o registro de auditoria guarda | [Descrição das Funcionalidades — Registro de auditoria](../../funcionalidades.md#registro-de-auditoria), conferida no código do backend (commit `e4d7eef`, de 18/11/2026) | nov/2026 |
 | Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

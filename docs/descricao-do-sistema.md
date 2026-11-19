@@ -74,10 +74,11 @@ Na prática, o que um usuário pode fazer é a soma das permissões que possui �
 
 | Situação | Permissões recebidas |
 |---|---|
-| Cadastro com **e-mail institucional** (`@ifsp.edu.br`) | Conjunto docente: cadastrar e editar questões, criar simulados institucionais — que aparecem para todos — e gerenciar os simulados de outras pessoas |
-| Cadastro com e-mail comum | Nenhuma permissão especial — acesso aos recursos de estudo |
+| Cadastro de qualquer conta | Nenhuma permissão especial — acesso aos recursos de estudo |
 | **Administrador inicial**, definido na configuração do sistema | Todas as permissões |
-| Concessão individual por um administrador | Permissões específicas, como corrigir redações ou publicar propostas de redação |
+| Concessão individual por um administrador | Permissões específicas, como as docentes — cadastrar e editar questões, criar simulados institucionais e gerenciar os simulados de outras pessoas —, corrigir redações ou publicar propostas de redação |
+
+Até 18/11/2026, as contas criadas com **e-mail institucional** (`@ifsp.edu.br`) recebiam automaticamente o conjunto docente; desde o commit `e4d7eef`, as permissões docentes também são concedidas por um administrador, e as contas criadas antes mantêm as que receberam.
 
 As permissões automáticas valem só na criação da conta: o que um administrador conceder ou revogar depois permanece nos acessos seguintes. O catálogo completo está em [Arquitetura — Permissões](arquitetura.md#permissoes).
 
@@ -176,7 +177,8 @@ O detalhamento da estrutura interna, das dependências e das integrações está
 
 - O uso da plataforma **exige conta e sessão ativa**, autenticada pelo Firebase. Respondem sem login apenas a consulta às propostas de redação e a situação dos módulos.
 - A criação e a edição de conteúdo dependem de **permissões específicas**, não do tipo de conta.
-- A atribuição automática de permissões docentes depende de cadastro com **e-mail institucional do IFSP**.
+- As permissões docentes dependem de **concessão por um administrador**.
+- O uso das telas internas depende do **aceite dos Termos de Uso e da Política de Privacidade**, pedido no primeiro acesso.
 - O acervo de questões depende do trabalho de **curadoria e extração** conduzido pelas frentes do projeto; a plataforma não gera questões automaticamente.
 
 ---
@@ -202,7 +204,8 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
 | Módulos implementados e suas regras | Código-fonte do backend e do frontend do `ifvest-monorepo` | set/2026, revisto em out/2026 |
 | Módulos previstos (Revisão e Flashcards) | Documentação do repositório do backend (README — Visão de Negócio) e documento de onboarding | set/2026 |
 | Flashcards e Revisão no V3 | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026) e consulta pública `GET /api/v1/features` em `ifvest.com.br` | 18/11/2026 |
-| Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`) | set/2026, revisto em nov/2026 |
+| Regras de atribuição de permissões e mensagens de restrição | Código-fonte do backend (`src/core/permission_catalog.py` e `src/core/permissions.py`, commit `e4d7eef`, de 18/11/2026) | set/2026, revisto em nov/2026 |
+| Aceite dos termos no primeiro acesso | Código do frontend (`LgpdOnboardingModal.tsx` e `AppLayout.tsx`, commit `e4d7eef`) | nov/2026 |
 | Banco de questões e carga das provas | Modelos do backend, `docs/atualizar-questoes-na-vps.md` e `docs/importar-questoes-pelo-painel.md` | set/2026, revisto em out/2026 |
 | Stack e hospedagem | Configuração de produção do `ifvest-monorepo` | set/2026 |
 
@@ -219,3 +222,4 @@ O detalhamento está em [Subprojetos Ativos](subprojetos/index.md).
     | Pergunta do Dia | Sorteada a cada dia | Definida pela data, a mesma para todos |
     | Histórico de simulados | Tempo gasto, respostas fornecidas e pontuação | Número de questões, respondidas, acertos, nota e resposta de cada questão, sem o tempo gasto |
     | Questões autorais | Identificadas como "Banca IFVest" | A banca é um campo livre do cadastro |
+    | Permissões docentes | Atribuídas automaticamente a quem se cadastra com e-mail institucional, como `@ifsp.edu.br` | Concedidas por um administrador, desde o commit `e4d7eef` |

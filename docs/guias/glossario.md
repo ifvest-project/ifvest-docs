@@ -23,7 +23,9 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 ## Termos
 
-- **Apelido** — o nome que você escolhe no perfil. Aparece na saudação da página **Início** e no ranking. Ver [Perfil e Seus Dados](conta/perfil.md#tarefa-2-alterar-o-seu-apelido).
+- **Alto contraste** — o modo de cores que facilita a leitura, ligado pelo botão **◐ Alto Contraste** do cabeçalho. Ver [Acesso e Conta](conta/acesso.md#tarefa-4-ligar-o-alto-contraste).
+
+- **Apelido** — o nome que você escolhe no perfil. Aparece na saudação da página **Início** e no ranking. As contas novas começam com o apelido **Estudante**. Ver [Perfil e Seus Dados](conta/perfil.md#tarefa-2-alterar-o-seu-apelido).
 
 - **Área do Professor** — a página aberta pela aba **Professor** do cabeçalho, com o banco de questões, as propostas de redação e a fila de correção. Aparece para quem tem permissão de conteúdo ou de redação. Ver [Guia do Professor](professor/index.md).
 
@@ -97,7 +99,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Ranking** — a classificação dos estudantes pelos pontos ganhos no IFQuiz, na semana ou em todo o histórico. Ver [IFQuiz](aluno/ifquiz.md#tarefa-7-ver-o-ranking).
 
-- **Rascunho** — na Redação, a cópia do texto que a plataforma salva sozinha no navegador enquanto você escreve, por até 10 minutos. Ver [Redação](aluno/redacao.md#tarefa-2-escrever-e-enviar-uma-redacao).
+- **Rascunho** — na Redação, a cópia do texto que a plataforma salva sozinha no navegador enquanto você escreve, por até 10 minutos. É apagada quando você sai da plataforma. Ver [Redação](aluno/redacao.md#tarefa-2-escrever-e-enviar-uma-redacao).
 
 - **Redação** — o módulo para escrever redações sobre as propostas publicadas e receber a correção pelas competências do ENEM. Ver [Guia do Aluno — Redação](aluno/redacao.md) e [Guia do Professor — Redação](professor/redacao.md).
 
@@ -107,7 +109,7 @@ Não há uma lista fixa: a organização cresce junto com o banco de questões. 
 
 - **Sequência diária** — quantos dias seguidos você respondeu à Pergunta do Dia. No perfil, aparece como **Dias Consecutivos**. Ver [IFQuiz](aluno/ifquiz.md#tarefa-5-manter-a-sequencia-diaria).
 
-- **Sessão** — o período em que você fica identificado na plataforma depois de entrar. Fechar a aba não a encerra: para isso, use **Sair**. Ver [Acesso e Conta](conta/acesso.md#tarefa-2-sair-da-plataforma).
+- **Sessão** — o período em que você fica identificado na plataforma depois de entrar. Fechar a aba não a encerra: para isso, use **Sair**. Ver [Acesso e Conta](conta/acesso.md#tarefa-3-sair-da-plataforma).
 
 - **Simulado** — conjunto de questões do banco para resolver na plataforma ou no papel, como numa prova. Pode ser de treino ou institucional. Ver [Simulados](aluno/simulados.md).
 

@@ -3,7 +3,7 @@
 Esta página descreve o que a plataforma faz hoje, módulo por módulo: cada funcionalidade, quem pode usá-la, onde ela fica na interface e as regras que o sistema aplica. A visão geral dos módulos está na [Descrição do Sistema](descricao-do-sistema.md), e o contrato técnico de cada operação, na [Referência da API](api.md).
 
 !!! info "Levantada do código em produção"
-    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 17 de novembro de 2026 (commit `0335118`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
+    O conteúdo foi conferido no código do `ifvest-monorepo` — backend e frontend — na versão de 18 de novembro de 2026 (commit `e4d7eef`). Quando a interface e a API se comportam de formas diferentes, a página descreve as duas e indica a diferença.
 
     Os requisitos da plataforma e de cada módulo, com a situação de cada um, estão nos [Requisitos Funcionais](requisitos/funcionais.md).
 
@@ -21,7 +21,8 @@ Cada funcionalidade traz, logo abaixo do título, três informações:
 
 | Módulo | Funcionalidade | Acesso |
 |---|---|---|
-| Conta | Entrar com a conta Google, sair, página inicial e perfil | Com conta |
+| Conta | Política de Privacidade, Termos de Uso e alto contraste | Pública |
+| Conta | Entrar com a conta Google, cadastro no primeiro acesso, sair, página inicial e perfil, com as opções de privacidade | Com conta |
 | IFQuiz | Quiz personalizado, Pergunta do Dia, sequência diária, pontos e patentes, ranking e loja de avatares | Com conta |
 | Simulados | Simulado de treino, manual ou aleatório; lista, resolução, revisão das tentativas, caderno e gabarito, estatísticas e histórico | Com conta |
 | Simulados | Simulado institucional, visível a todos | `create_institutional_mocktest` |
@@ -50,11 +51,25 @@ A entrada é feita exclusivamente com a **conta Google**, numa janela do Google 
 
 No **primeiro acesso**, a plataforma cria a conta a partir do e-mail da conta Google e atribui as permissões iniciais conforme esse e-mail — as regras estão em [Descrição do Sistema — Como as permissões são atribuídas](descricao-do-sistema.md#como-as-permissoes-sao-atribuidas). Nos acessos seguintes, a conta é reconhecida pelo mesmo e-mail. Depois de entrar, o usuário é levado à página Início.
 
+### Cadastro no primeiro acesso
+
+**Acesso:** com conta · **Onde:** janela "Bem-vindo ao IFVest! Complete seu cadastro", sobre as telas internas
+
+- Aparece para quem ainda não aceitou os termos: as contas novas e, uma vez, as que já existiam antes de o aceite ser implantado. Não aparece nas páginas públicas (página inicial, entrada, Política de Privacidade e Termos de Uso).
+- Pede o **apelido**, opcional, que vem preenchido com "Estudante", o apelido dado às contas novas; a **faixa etária** — 18 anos ou mais, ou menor de 18 com ciência dos responsáveis, caso em que o **e-mail do responsável legal** é obrigatório; a escolha de **aparecer no ranking**; e o **aceite dos Termos de Uso e da Política de Privacidade**, obrigatório.
+- A janela não tem botão de fechar: continua sobre as telas até o aceite. A plataforma grava a data e a versão dos termos aceitos.
+
+### Política de Privacidade e Termos de Uso
+
+**Acesso:** pública · **Onde:** rodapé das páginas públicas e links da janela de cadastro (`/privacidade` e `/termos`)
+
+Textos da plataforma sobre os dados coletados, a finalidade, o tratamento de dados de menores de 18 anos, os prazos de guarda, os direitos do titular e as regras de uso. Indicam os canais de contato do projeto para assuntos de privacidade.
+
 ### Sair
 
 **Acesso:** com conta · **Onde:** botão "Sair", no canto direito do cabeçalho, ao lado de "Usuário"
 
-Encerra a sessão no navegador e volta para a página inicial pública.
+Encerra a sessão no navegador, apaga os [rascunhos de redação](#escrever-e-enviar-redacao) guardados nele e volta para a página inicial pública.
 
 ### Início
 
@@ -69,12 +84,17 @@ Em telas de até 900 px de largura, como as de celular, as abas do cabeçalho fi
 **Acesso:** com conta · **Onde:** "Usuário", no canto direito do cabeçalho (`/perfil`)
 
 - Mostra o apelido, o e-mail e três indicadores: **pontos** (o saldo atual), **dias consecutivos** (a [sequência diária](#sequencia-diaria)) e **permissões ativas**.
-- O **apelido** pode ser editado. É o nome exibido no ranking; sem apelido, o ranking mostra a parte do e-mail antes do `@`.
+- O **apelido** pode ser editado. É o nome exibido no ranking. As contas novas começam com o apelido "Estudante"; nas contas antigas sem apelido, o ranking mostra a parte do e-mail antes do `@`.
 - **Atividade na Pergunta do Dia** — mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
 - **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos, e as ações *Revisar*, que abre o gabarito, e *Refazer*, que abre a montagem com os mesmos filtros. Um quiz em aberto aparece como *Em andamento*, e o *Continuar* o retoma de onde parou.
 - **Histórico de simulados** — as tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota, e as ações *Revisar*, que abre a [revisão da tentativa](#revisao-da-tentativa), e *Refazer*, que abre o simulado de novo. Não aparece com o módulo Simulados desligado.
 
-Não há foto de perfil nem exclusão de conta.
+- **Privacidade e Dados Pessoais (LGPD)** — reúne três ações:
+    - *Exibir meu perfil no Ranking público*, que tira ou devolve o usuário ao [ranking](#ranking);
+    - *Exportar meus dados (JSON)*, que baixa o arquivo `ifvest-meus-dados.json` com os dados da conta, as redações e suas correções, as tentativas de simulado, os quizzes e as compras na loja;
+    - *Excluir minha conta permanentemente*, com confirmação. Apaga a conta, as permissões, as redações e suas correções, as tentativas de simulado, os quizzes, as respostas da Pergunta do Dia, as compras e as denúncias, e encerra a sessão. Propostas de redação, correções feitas, simulados e importações criados pelo usuário continuam na plataforma, sem a autoria.
+
+Não há tela para enviar foto de perfil: a API recebe a foto, mas a interface não oferece o envio.
 
 ---
 
@@ -157,7 +177,8 @@ Como depende do saldo, a patente **pode cair quando o estudante compra na loja**
 
 - Dois períodos: **geral**, com todo o histórico, e **semanal**, contado a partir de segunda-feira à 0h, no horário de Brasília.
 - A classificação usa os **pontos ganhos** — quizzes concluídos e acertos da Pergunta do Dia —, e não o saldo: compras na loja não fazem o estudante perder posição.
-- Só entra quem tem pontos no período. Empates dividem a mesma posição.
+- Só entra quem tem pontos no período e não saiu do ranking pelo perfil. Empates dividem a mesma posição.
+- Quem saiu do ranking continua vendo a própria posição, mas não aparece para os outros.
 - A tela mostra a posição do próprio estudante, o pódio com os três primeiros, quando há ao menos três classificados, e a tabela com avatar, patente e sequência de cada um. A interface exibe apenas os dez primeiros colocados.
 
 ### Loja de avatares
@@ -283,8 +304,8 @@ Treino de redação com propostas temáticas e correção pela grade do ENEM. **
 
 - A tela apresenta o tema, as instruções e os textos de apoio, escritos ou em imagem, com a fonte de cada um.
 - O editor conta as linhas digitadas, as palavras e as **linhas estimadas no papel**, sobre o limite de 30 da folha do ENEM, a partir de uma média de caracteres por linha que o estudante pode ajustar.
-- **Rascunho automático** — o texto é salvo no navegador um segundo depois de cada alteração e restaurado ao voltar à tela, se o rascunho tiver menos de 10 minutos. O rascunho fica só naquele navegador.
-- **Envio** — exige ao menos 10 caracteres e não tem limite máximo. A redação entra na fila de correção, como aguardando correção.
+- **Rascunho automático** — o texto é salvo no navegador um segundo depois de cada alteração e restaurado ao voltar à tela, se o rascunho tiver menos de 10 minutos. O rascunho fica só naquele navegador e é apagado quando o usuário sai da plataforma.
+- **Envio** — exige de 10 a 25.000 caracteres. A redação entra na fila de correção, como aguardando correção.
 - Depois do primeiro envio, o tema passa a levar à lista de redações do estudante, e a interface não oferece um novo envio. A API aceita mais de uma redação por tema, sem limite.
 - O envio de redação por arquivo, com reconhecimento do texto (OCR), aparece como "Em breve" e está desabilitado.
 
@@ -313,7 +334,7 @@ Sem a permissão, a fila e a tela de correção mostram o aviso "Acesso Restrito
 **Tela de correção.**
 
 - Mostra os textos de apoio da proposta e o texto do estudante.
-- Ao selecionar um trecho com o mouse, o corretor pode **comentá-lo**, indicando a competência: C1 – Norma Culta, C2 – Tema e Repertório, C3 – Argumentação, C4 – Coesão Textual ou C5 – Intervenção Social.
+- Ao selecionar um trecho, o corretor pode **comentá-lo** — pelo botão que aparece junto da seleção, pelo botão "Comentar trecho selecionado" ou pela tecla Enter —, indicando a competência: C1 – Norma Culta, C2 – Tema e Repertório, C3 – Argumentação, C4 – Coesão Textual ou C5 – Intervenção Social.
 - Cada competência recebe uma nota **de 0 a 200, de 20 em 20**; o formulário começa em 120. A nota total é a soma, de 0 a 1.000.
 - O parecer geral é obrigatório na interface.
 
@@ -467,9 +488,9 @@ Liga e desliga cada *feature flag*. Com um módulo desligado, os interruptores d
 
 ### Registro de auditoria
 
-São registrados o cadastro, a edição, a denúncia e a aprovação de questões na auditoria, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações das flags, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel. Correções de redação, simulados e compras na loja não são registrados.
+São registrados o cadastro, a edição, a denúncia e a aprovação de questões na auditoria, as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações das flags, as questões atualizadas pela carga a partir da fonte, as importações aplicadas pelo painel, as correções de redação, com a nota total, e a criação, a edição e a exclusão de simulados. Compras na loja não são registradas.
 
-O painel mostra o resumo dos últimos 30 dias e as cinco atualizações mais recentes; não há consulta ao registro completo.
+O painel mostra o resumo dos últimos 30 dias e as cinco atualizações mais recentes. A API oferece a consulta ao registro completo, com filtro por tipo de ação, mas o painel não tem tela para ela.
 
 ---
 
@@ -477,7 +498,7 @@ O painel mostra o resumo dos últimos 30 dias e as cinco atualizações mais rec
 
 ### Sessão
 
-A interface não exige login para abrir as telas internas, mas os dados só carregam para quem entrou: sem sessão, a API recusa as chamadas, e as telas aparecem com zeros ou listas vazias. Funcionam sem conta apenas os [temas de redação](#temas-de-redacao) e a consulta à situação dos módulos.
+A interface não exige login para abrir as telas internas, mas os dados só carregam para quem entrou: sem sessão, a API recusa as chamadas, e as telas aparecem com zeros ou listas vazias. Funcionam sem conta apenas os [temas de redação](#temas-de-redacao), a consulta à situação dos módulos, a [Política de Privacidade e os Termos de Uso](#politica-de-privacidade-e-termos-de-uso) e o [alto contraste](#acessibilidade).
 
 As abas "Professor" e "Admin" do cabeçalho aparecem depois que a plataforma carrega as permissões do usuário.
 
@@ -498,6 +519,12 @@ A regra de cada flag está em [Arquitetura — Feature flags](arquitetura.md#fea
 Quando falta uma permissão, a **API** recusa a ação e informa qual permissão está faltando: *"Você não tem a permissão '…' para concluir esta ação. Se você acha que isso é um erro, contate um administrador para solicitar a permissão."* Nas ações que aceitam mais de uma permissão, como a edição de questões, a mensagem lista as permissões possíveis.
 
 Na **interface**, a Área do Professor, a auditoria de questões e o Painel Administrativo mostram a quem não tem acesso o aviso "Acesso Restrito", com o texto "Esta área é exclusiva para professores e administradores do IFVest.". A fila e a tela de correção de redações mostram o mesmo aviso, com a permissão necessária. As abas de redação da Área do Professor mostram "Acesso Bloqueado", também com a permissão que falta. Nas demais telas, o retorno varia: algumas exibem a mensagem da API, outras um erro genérico ou uma lista vazia.
+
+### Acessibilidade
+
+- **Alto contraste** — o botão "◐ Alto Contraste", no cabeçalho, com ou sem login, troca as cores da interface. A escolha fica guardada no navegador.
+- **Pular para o conteúdo** — o primeiro item alcançado pela tecla Tab é o link "Pular para o conteúdo principal", que leva direto ao conteúdo da página.
+- **Teclado** — as janelas de envio de redação, de fim de quiz e de denúncia de questão fecham com Esc, e os trechos comentados da correção podem ser abertos pelo teclado.
 
 ### Datas e horários
 
@@ -524,6 +551,8 @@ O que foi definido para os módulos previstos está na [Descrição do Sistema](
 | Regras de negócio, acesso e flags de cada funcionalidade | Código do backend do `ifvest-monorepo` (`src/api/v1/`, `src/services/` e `src/core/`) | nov/2026 |
 | Telas, ações, mensagens e condições de exibição | Código do frontend do `ifvest-monorepo` (`src/router/`, `src/features/` e `src/core/`) | nov/2026 |
 | Flashcards | `ifvest-frontend/src/features/flashcards/` e rotas `/flashcards` em `src/router/AppRouter.tsx` (commit `0335118`) | nov/2026 |
+| Cadastro no primeiro acesso, privacidade do perfil e páginas legais | `src/api/v1/auth.py`, `src/api/v1/users.py` e `src/services/user_lgpd_service.py`; `ifvest-frontend/src/features/auth/components/LgpdOnboardingModal.tsx` e `LgpdPrivacySection.tsx`, `src/features/legal/` e `src/core/layout/` (commit `e4d7eef`) | nov/2026 |
+| Acessibilidade | `ifvest-frontend/src/core/theme/useHighContrast.ts`, `src/core/layout/AppLayout.tsx` e componentes do quiz e da redação (commit `e4d7eef`) | nov/2026 |
 | Saída e retomada do quiz | `src/services/quiz_session_resume.py` e `src/api/v1/quiz.py`; `ifvest-frontend/src/features/quiz/` (commit `0335118`) | nov/2026 |
 | Auditoria de questões | Migration `d3e4f5a6b7c8`; `src/services/question_audit_service.py` e `src/api/v1/admin.py`; `ifvest-frontend/src/features/admin/pages/QuestionAuditPage.tsx`, `components/QuestionAuditAdmin.tsx` e `hooks/useAuditBatchSelection.ts` | nov/2026 |
 | Pontos, patentes, ranking e loja | `src/services/quiz_scoring.py`, `quiz_ranking.py`, `store_catalog.py` e `src/core/clock.py` | out/2026 |

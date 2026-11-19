@@ -55,9 +55,9 @@ Para abrir o módulo, clique em **Redação** no cabeçalho ou no cartão do mó
 
 **Observações:**
 
-- **Rascunho automático:** um segundo depois de cada alteração, o texto é salvo **neste navegador**, e a tela mostra **✓ Rascunho salvo localmente**. Se você sair e voltar ao mesmo tema em até 10 minutos, o texto volta sozinho, com um aviso. Depois desse prazo, ou em outro navegador ou aparelho, o rascunho não volta.
+- **Rascunho automático:** um segundo depois de cada alteração, o texto é salvo **neste navegador**, e a tela mostra **✓ Rascunho salvo localmente**. Se você sair e voltar ao mesmo tema em até 10 minutos, o texto volta sozinho, com um aviso. Depois desse prazo, ou em outro navegador ou aparelho, o rascunho não volta. Ao clicar em **Sair**, a plataforma apaga os rascunhos deste navegador.
 - **Estimativa no papel:** a conta usa uma média de caracteres por linha manuscrita, que vem em 70. Se a sua letra for maior ou menor, ajuste o número em **Métrica**, entre 30 e 120.
-- A redação precisa ter ao menos 10 caracteres para ser enviada, e não há limite máximo.
+- A redação precisa ter de 10 a 25.000 caracteres para ser enviada.
 - Depois do envio, a redação não pode ser alterada. O tema passa a mostrar **✓ FEITO** e o botão **Ver minha redação**, no lugar de **Escrever redação**.
 - A aba **Enviar arquivo (Em breve)**, para redações escritas à mão, ainda não está disponível (ver [Tarefa 4](#tarefa-4-enviar-uma-redacao-escrita-a-mao)).
 
@@ -121,7 +121,7 @@ A aba **Enviar arquivo (Em breve)**, na tela de escrita, aparece desabilitada. O
 | *"A redação deve ter no mínimo 10 caracteres para ser enviada."* | Escreva mais antes de enviar |
 | *"Credenciais de autenticacao ausentes ou invalidas."* ao enviar | Você não entrou na plataforma, ou a sua sessão terminou. Entre e volte ao tema: o rascunho continua salvo no navegador por até 10 minutos |
 | *"Falha ao enviar a redação. Verifique sua conexão e tente novamente."* | Confira a conexão e clique de novo em **Enviar para correção**. O texto continua no campo |
-| O rascunho não voltou | Ele fica só no navegador em que foi escrito e dura 10 minutos |
+| O rascunho não voltou | Ele fica só no navegador em que foi escrito, dura 10 minutos e é apagado quando você sai da plataforma |
 | A lista de temas ou **Minhas redações** aparece vazia | Pode não haver propostas publicadas ou redações enviadas, ou a plataforma não conseguiu carregá-las. Confira se você entrou com a mesma conta usada no envio e recarregue a página |
 | A página mostra "Em Breve" no lugar da Redação | O módulo foi desligado temporariamente por um administrador. Tente mais tarde |
 
@@ -132,6 +132,7 @@ A aba **Enviar arquivo (Em breve)**, na tela de escrita, aparece desabilitada. O
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas de Redação | nov/2026 |
+| Rascunhos apagados ao sair | Código do frontend (commit `e4d7eef`, de 18/11/2026): `src/features/essays/utils/draftStorage.ts` e `src/core/auth/AuthContext.tsx` | nov/2026 |
 | Regras de envio, rascunho e correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | out/2026 |
 | Envio de redação manuscrita | [Requisitos Funcionais — Envio de redação por imagem e OCR](../../requisitos/funcionais.md#envio-de-redacao-por-imagem-e-ocr) | out/2026 |
 | Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

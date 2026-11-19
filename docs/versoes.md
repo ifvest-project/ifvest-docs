@@ -232,7 +232,8 @@ No código, a aplicação se identifica como versão **0.1.0**, numeração pró
 
 **Funcionalidades entregues:**
 
-- Entrada com a conta Google, com criação da conta no primeiro acesso
+- Entrada com a conta Google, com criação da conta no primeiro acesso e aceite dos Termos de Uso e da Política de Privacidade, publicados na própria plataforma
+- Privacidade no perfil, conforme a LGPD: saída do ranking, exportação dos dados e exclusão da conta
 - Permissões granulares, concedidas e revogadas por administradores
 - IFQuiz com questões do banco próprio: quiz personalizado, que pode ser interrompido e retomado, Pergunta do Dia, sequência diária, patentes, ranking geral e semanal e loja de avatares
 - Simulados de treino, visíveis só a quem os cria, e institucionais, visíveis a todos; manuais ou aleatórios, com resolução na plataforma, caderno e gabarito para impressão e registro das tentativas, com a resposta de cada questão e a revisão de cada tentativa
@@ -241,7 +242,9 @@ No código, a aplicação se identifica como versão **0.1.0**, numeração pró
 - Banco de questões com filtros, cadastro, edição com pré-visualização, resolução das questões e denúncia de erros, e importação de provas em lote pelo painel administrativo, com simulação antes de gravar
 - Auditoria das questões, em página própria: as novas só entram no quiz e nos simulados depois de aprovadas por quem tem a permissão de auditoria, uma a uma ou em bloco, com busca, filtros e ordenação
 - Painel administrativo com indicadores, gestão de permissões, moderação das denúncias, importação de questões e controle dos módulos por *feature flags*
-- Registro de auditoria de cadastros, edições e aprovações de questões, denúncias, propostas de redação, permissões e módulos, além das cargas e importações de questões
+- Registro de auditoria de cadastros, edições e aprovações de questões, denúncias, propostas de redação, correções de redação, simulados, permissões e módulos, além das cargas e importações de questões
+- Registro dos acessos à plataforma, guardado por seis meses, conforme o Marco Civil da Internet
+- Modo de alto contraste e ajustes para uso pelo teclado
 
 O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 
@@ -262,6 +265,7 @@ O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 | 2026-10-15 | Tabela `question_imports`, das importações de questões pelo painel |
 | 2026-10-28 | Coluna `explanation`, com a resolução das questões |
 | 2026-11-09 | Colunas da auditoria das questões (`is_audited`, `audited_at` e `audited_by_id`) e permissão `audit_question` |
+| 2026-11-18 | Colunas do aceite dos termos e das preferências de privacidade em `users`, tabela `access_logs` e autoria opcional nas propostas e correções de redação (migration criada em 31/10/2026, na branch de segurança e LGPD) |
 
 **O que mudou em relação à versão anterior:**
 
@@ -275,8 +279,8 @@ O detalhamento está na [Descrição das Funcionalidades](funcionalidades.md).
 | Flashcards e Revisão de Conteúdo em funcionamento | Flashcards com os cartões mantidos no frontend, desde novembro de 2026; Revisão em construção, ainda não disponível |
 | Verificação de questões semelhantes por IA (Gemini) | Não existe |
 | Impressão de simulado por modelo próprio do servidor | Caderno de questões montado pelo navegador |
-| Foto de perfil e exclusão de conta | Não existem |
-| Página de Política de Privacidade | Não existe |
+| Foto de perfil e exclusão de conta | Exclusão da conta e exportação dos dados pelo perfil, desde 18/11/2026; foto de perfil sem tela de envio |
+| Página de Política de Privacidade | Política de Privacidade e Termos de Uso, com aceite obrigatório no primeiro acesso, desde 18/11/2026 |
 | — | Módulo de Redação, denúncias com moderação, registro de auditoria e *feature flags* |
 
 ---
@@ -292,7 +296,7 @@ O módulo de **Revisão de Conteúdo** está em construção e segue desligado: 
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Stack e versão declarada no código | `ifvest-backend/pyproject.toml`, `ifvest-frontend/package.json` e configuração de produção do `ifvest-monorepo` | out/2026 |
-| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `0335118`, de 17/11/2026 | nov/2026 |
+| Funcionalidades | Código do backend e do frontend do `ifvest-monorepo`, até o commit `e4d7eef`, de 18/11/2026 | nov/2026 |
 | Migrations e adoção do Alembic | `ifvest-backend/alembic/versions/` e `deploy/README.md` | nov/2026 |
 | Comparação com a versão anterior | Versão 2 desta documentação, preservada na etiqueta `legado-v2` | out/2026 |
 | Responsáveis e tipo | Lista dos projetos vinculados ao IFVest em 2026 e atas das reuniões dos grupos de trabalho | 2026 |

@@ -3,7 +3,7 @@
 Esta página apresenta a especificação completa da API REST do IFVest: todas as rotas, seus parâmetros, os formatos de requisição e resposta, e os esquemas de dados.
 
 !!! info "Sobre esta especificação"
-    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **71 rotas e 99 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
+    A especificação segue o padrão **OpenAPI 3.1** e foi **gerada a partir do código-fonte em produção**, e não escrita à mão. Ela reflete exatamente as rotas implementadas: **80 rotas e 104 esquemas de dados**. Cada rota é uma combinação de método e caminho — `GET` e `PUT` em `/features/{flag_key}`, por exemplo, contam como duas.
 
     Em produção, a documentação interativa gerada pelo FastAPI está fechada de propósito. Esta versão é estática: permite consultar a API **sem expor o ambiente de produção**. Por isso, o botão de testar as chamadas não funciona aqui.
 
@@ -11,15 +11,15 @@ Esta página apresenta a especificação completa da API REST do IFVest: todas a
 
 ## Visão geral
 
-Todas as rotas estão sob o prefixo **`/api/v1`** e trocam dados em JSON. A exceção é o envio do arquivo `.zip` da importação de questões, feito como formulário (`multipart/form-data`) e limitado a 300 MB: acima disso, a API responde **413** sem gravar o arquivo.
+Todas as rotas estão sob o prefixo **`/api/v1`** e trocam dados em JSON. As exceções são os envios de arquivo, feitos como formulário (`multipart/form-data`): o `.zip` da importação de questões, limitado a 300 MB — acima disso, a API responde **413** sem gravar o arquivo —, e a foto de perfil, que ainda não tem tela na interface.
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 19 | Partidas e retomada das partidas em aberto, pergunta do dia, filtros de montagem, ranking, loja de avatares e histórico |
+| `users` | 14 | Perfil do usuário, aceite dos termos, exportação dos dados e exclusão da conta, foto de perfil, lista de usuários e concessão e revogação de permissões |
 | `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
+| `admin` | 12 | Painel de indicadores, moderação das denúncias de questões, auditoria de questões, inclusive em bloco, importação de questões e consulta ao registro de auditoria |
 | `essays` | 11 | Propostas, envio de redações, fila de correção, correção e histórico do corretor |
-| `admin` | 11 | Painel de indicadores, moderação das denúncias de questões, auditoria de questões, inclusive em bloco, e importação de questões |
-| `users` | 6 | Perfil do usuário, lista de usuários e concessão e revogação de permissões |
 | `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncia de erros |
 | `features` | 3 | Consulta e alteração das feature flags |
 | `auth` | 2 | Sessão do usuário |
@@ -75,5 +75,5 @@ O arquivo também pode ser **baixado** e importado em ferramentas como Postman o
 
 | Conteúdo | Fonte | Data |
 |---|---|---|
-| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `0335118`, de 17/11/2026) pelo script de geração | nov/2026 |
+| Especificação OpenAPI | Gerada a partir do código-fonte do `ifvest-monorepo` (`ifvest-backend/src/`, commit `e4d7eef`, de 18/11/2026) pelo script de geração | nov/2026 |
 | Rotas sem autenticação e paginação | `ifvest-backend/src/api/v1/` e `src/core/pagination.py` | set/2026 |

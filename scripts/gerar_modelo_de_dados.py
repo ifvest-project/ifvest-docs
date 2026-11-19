@@ -39,7 +39,7 @@ DOMINIOS: dict[str, list[str]] = {
         "items", "multiple_choice_questions", "question_history", "quiz_history", "transactions", "users",
     ],
     "Redação": ["essay_annotations", "essays", "gradings", "proposals", "support_texts", "users"],
-    "Moderação e auditoria": ["audit_logs", "multiple_choice_questions", "question_reports", "users"],
+    "Moderação e auditoria": ["access_logs", "audit_logs", "multiple_choice_questions", "question_reports", "users"],
     "Plataforma": ["feature_flags"],
 }
 

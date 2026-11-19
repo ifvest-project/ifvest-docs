@@ -174,14 +174,18 @@ sequenceDiagram
     F-->>W: token de identidade
     W->>A: POST /auth/login com o token no cabeçalho
     A->>F: verifica a assinatura do token
-    A->>D: busca o usuário pelo e-mail (cria no primeiro acesso)
+    A->>D: busca o usuário pelo e-mail (cria no primeiro acesso) e registra o acesso
     A-->>W: perfil e permissões
     W->>A: demais requisições, sempre com o token
 ```
 
 O backend **nunca recebe a senha do usuário**. Ele recebe apenas o token emitido pelo Firebase, verifica sua autenticidade com o SDK administrativo e, a partir do e-mail contido nele, carrega as permissões do usuário no banco.
 
-O login é feito **com a conta Google**, único método oferecido pela aplicação web. No primeiro acesso, a chamada a `/auth/login` cria o registro do usuário e atribui as permissões iniciais; até lá, as demais rotas protegidas respondem que o usuário não existe.
+O login é feito **com a conta Google**, único método oferecido pela aplicação web. No primeiro acesso, a chamada a `/auth/login` cria o registro do usuário, com o apelido "Estudante", e atribui as permissões iniciais; até lá, as demais rotas protegidas respondem que o usuário não existe.
+
+Cada entrada fica no **registro de acessos** (`access_logs`), com a data e a hora, o endereço IP e o navegador, guardado por 180 dias, conforme o Marco Civil da Internet: a própria rotina de login apaga os registros mais antigos. A exportação dos dados e a exclusão da conta pelo usuário também entram nesse registro; na exclusão, sem o vínculo com a conta apagada.
+
+Antes de usar as telas internas, o usuário precisa aceitar os Termos de Uso e a Política de Privacidade, na janela de cadastro do primeiro acesso. A data e a versão do aceite ficam gravadas na conta.
 
 O frontend não bloqueia telas por falta de sessão: quem abre uma tela sem ter entrado não recebe os dados, porque a API recusa as chamadas às rotas protegidas.
 
@@ -210,8 +214,9 @@ As permissões iniciais são atribuídas no primeiro acesso, conforme o e-mail d
 | E-mail | Permissões atribuídas |
 |---|---|
 | Administrador inicial, definido na configuração | Todas as oito |
-| Domínio `@ifsp.edu.br` | As quatro de conteúdo: cadastrar e editar questões, criar simulados institucionais e gerenciar os simulados de outras pessoas |
 | Demais | Nenhuma permissão especial |
+
+Até o commit `e4d7eef`, de 18/11/2026, as contas do domínio `@ifsp.edu.br` recebiam também, na criação, as quatro permissões de conteúdo. Desde então, elas são concedidas por um administrador, e as contas criadas antes mantêm as que receberam.
 
 As permissões iniciais valem **só na criação da conta**: as concessões e revogações feitas depois por um administrador permanecem nos acessos seguintes. A permissão de administrador do administrador inicial não pode ser revogada, e toda concessão e revogação fica no registro de auditoria.
 
@@ -258,7 +263,7 @@ Se a consulta às flags falhar, o frontend **não presume que os módulos estão
 
 ## Dados
 
-O banco de dados tem **26 tabelas e 35 chaves estrangeiras**, organizadas em oito domínios:
+O banco de dados tem **27 tabelas e 36 chaves estrangeiras**, organizadas em oito domínios:
 
 | Domínio | Tabelas |
 |---|---|
@@ -268,7 +273,7 @@ O banco de dados tem **26 tabelas e 35 chaves estrangeiras**, organizadas em oit
 | Simulados | `fixed_mocktests`, `questions_mocktests`, `user_mocktests`, `user_mocktest_answers` |
 | Quiz e gamificação | `quiz_history`, `question_history`, `items`, `transactions` |
 | Redação | `proposals`, `support_texts`, `essays`, `gradings`, `essay_annotations` |
-| Moderação e auditoria | `question_reports`, `audit_logs` |
+| Moderação e auditoria | `question_reports`, `audit_logs`, `access_logs` |
 | Plataforma | `feature_flags` |
 
 O diagrama completo, com colunas e relacionamentos por domínio, está em **[Modelo de Dados](modelo-de-dados.md)**.
@@ -307,7 +312,7 @@ A aprovação pode ser feita uma a uma ou em bloco, com até 100 questões por p
 
 ### Migrations
 
-A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há treze:
+A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelos gera uma migration versionada, aplicada automaticamente na implantação. Atualmente há catorze:
 
 | Migration | Alteração |
 |---|---|
@@ -324,6 +329,7 @@ A estrutura do banco é controlada pelo **Alembic**. Cada alteração nos modelo
 | Importações de questões | Tabela das importações feitas pelo painel, com as opções, a situação e o relatório |
 | Resolução das questões | Coluna opcional com a resolução de cada questão, mostrada nos simulados em "Por que essa alternativa?" |
 | Auditoria das questões | Colunas que indicam se a questão foi aprovada na auditoria, quando e por quem, e a permissão `audit_question` |
+| LGPD e registro de acessos | Colunas do aceite dos termos e das preferências de privacidade em `users`, tabela `access_logs` e autoria opcional nas propostas e correções de redação, para que a exclusão de uma conta não apague o trabalho de outras pessoas |
 
 As duas migrations das permissões de conteúdo seguem o padrão **expandir e contrair**: a primeira só acrescenta, para que a versão anterior da API continue funcionando durante a implantação; a segunda, aplicada numa implantação seguinte, remove o que deixou de ser usado.
 
@@ -333,15 +339,15 @@ Em produção, a criação automática de tabelas fica **desligada de propósito
 
 ## API
 
-A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **71 rotas**, contando cada combinação de método e caminho:
+A API segue o padrão **REST**, com troca de dados em JSON, e está versionada sob o prefixo `/api/v1`. Ela expõe **80 rotas**, contando cada combinação de método e caminho:
 
 | Grupo | Rotas | Cobre |
 |---|---|---|
 | `quiz` | 19 | Partidas e retomada das partidas em aberto, pergunta do dia, filtros de montagem, ranking, loja e histórico |
+| `users` | 14 | Perfil do usuário, aceite dos termos, exportação dos dados e exclusão da conta, foto de perfil, lista de usuários e permissões |
 | `mocktests` | 13 | Montagem, resolução e correção de simulados, revisão das tentativas, gabarito, histórico e estatísticas |
+| `admin` | 12 | Painel de indicadores, moderação das denúncias, auditoria das questões, inclusive em bloco, importação de questões e consulta ao registro de auditoria |
 | `essays` | 11 | Propostas, redações e correções |
-| `admin` | 11 | Painel de indicadores, moderação das denúncias, auditoria das questões, inclusive em bloco, e importação de questões |
-| `users` | 6 | Perfil do usuário, lista de usuários e permissões |
 | `question-bank` | 6 | Busca e filtros, cadastro e edição de questões, e denúncias |
 | `features` | 3 | Consulta e alteração das feature flags |
 | `auth` | 2 | Sessão do usuário |
@@ -424,6 +430,7 @@ Ao final, o workflow confere se a página inicial, a verificação de disponibil
 | Stack, organização e dependências | Código-fonte do `ifvest-monorepo` (`requirements.txt`, `package.json`, estrutura de `src/`) | set/2026, revisto em out/2026 |
 | Topologia, roteamento, segurança e backup | Configuração de produção (`deploy/docker-compose.prod.yml`, `deploy/Caddyfile`, `deploy/README.md`) | set/2026 |
 | Autenticação e permissões | `src/core/security.py`, `firebase.py`, `permissions.py` e `permission_catalog.py`; `ifvest-frontend/src/core/auth/` | set/2026, revisto em nov/2026 |
+| Registro de acessos e aceite dos termos | Migration `e4f5a6b7c8d9`; `src/api/v1/auth.py`, `src/services/access_log_service.py` e `user_lgpd_service.py` (commit `e4d7eef`, de 18/11/2026); Política de Privacidade da plataforma (`/privacidade`) | nov/2026 |
 | Feature flags | `src/services/feature_flags_service.py`, `src/core/feature_guard.py`, `src/config.py` e `ifvest-frontend/src/core/features/` | set/2026, revisto em out/2026 |
 | Estado das flags em produção | Consulta pública `GET /api/v1/features` em `ifvest.com.br`, feita pelo responsável pela documentação | 18/11/2026 |
 | Modelo de dados e migrations | Metadados dos modelos SQLAlchemy e migrations do Alembic, lidos diretamente do código | nov/2026 |

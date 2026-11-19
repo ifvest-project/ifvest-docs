@@ -7,15 +7,17 @@ O catálogo tem oito permissões:
 | Permissão | O que permite | Como se obtém |
 |---|---|---|
 | `admin_permission` | Usar o Painel Administrativo. Passa em todas as verificações de permissão da plataforma | Automática só para o administrador inicial |
-| `create_question` | Cadastrar questões no banco | Automática para e-mails `@ifsp.edu.br` |
-| `edit_question` | Editar questões existentes e ver o gabarito no banco de questões | Automática para e-mails `@ifsp.edu.br` |
-| `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos | Automática para e-mails `@ifsp.edu.br` |
-| `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
+| `create_question` | Cadastrar questões no banco | Concedida por um administrador |
+| `edit_question` | Editar questões existentes e ver o gabarito no banco de questões | Concedida por um administrador |
+| `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos | Concedida por um administrador |
+| `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Concedida por um administrador |
 | `create_essay_proposal_permission` | Criar, editar e excluir propostas de redação | Concedida por um administrador |
 | `grade_essay_permission` | Corrigir redações | Concedida por um administrador |
 | `audit_question` | Aprovar as questões pendentes na [Auditoria de Questões](auditoria-de-questoes.md) e editá-las antes da aprovação. Libera a aba **Auditoria** do cabeçalho, mas não o Painel Administrativo | Concedida por um administrador |
 
-As permissões automáticas são atribuídas só no **primeiro acesso** da conta. Depois disso, valem as concessões e revogações feitas no painel: uma permissão revogada não volta sozinha.
+Só o administrador inicial recebe permissões automaticamente, no **primeiro acesso** da conta; as demais contas começam sem nenhuma. Até 18/11/2026, as contas `@ifsp.edu.br` recebiam na criação as quatro permissões de conteúdo — `create_question`, `edit_question`, `create_institutional_mocktest` e `manage_mocktests` — e as que foram criadas antes mantêm essas permissões. Depois do primeiro acesso, valem as concessões e revogações feitas no painel: uma permissão revogada não volta sozinha.
+
+Por isso, cada professor novo precisa que um administrador lhe conceda as permissões de conteúdo (ver [Tarefa 2](#tarefa-2-conceder-uma-permissao)).
 
 ---
 
@@ -109,5 +111,5 @@ As permissões automáticas são atribuídas só no **primeiro acesso** da conta
 |---|---|---|
 | Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Usuários e Permissões | nov/2026 |
 | Catálogo de permissões e regras de concessão e revogação | `ifvest-backend/src/core/permission_catalog.py`, `src/core/permissions.py` e `src/api/v1/users.py`, no `ifvest-monorepo` | nov/2026 |
-| Permissões automáticas | [Descrição do Sistema — Como as permissões são atribuídas](../../descricao-do-sistema.md#como-as-permissoes-sao-atribuidas) | out/2026 |
+| Permissões automáticas | [Descrição do Sistema — Como as permissões são atribuídas](../../descricao-do-sistema.md#como-as-permissoes-sao-atribuidas), conferida no código do backend (commit `e4d7eef`, de 18/11/2026): `src/core/permissions.py` | nov/2026 |
 | Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

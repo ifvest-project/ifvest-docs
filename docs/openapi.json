@@ -11,7 +11,7 @@
           "auth"
         ],
         "summary": "Login",
-        "description": "Autentica o usuario; na primeira vez cria o registro com as permissoes padrao.",
+        "description": "Autentica o usuario, registra log de acesso e expurga registros antigos (Marco Civil).",
         "operationId": "login_api_v1_auth_login_post",
         "security": [
           {
@@ -121,7 +121,7 @@
           "users"
         ],
         "summary": "List Available Permissions",
-        "description": "Catalogo de permissoes do sistema (fonte unica: core/permission_catalog.py).\n\nAntes juntava as linhas da tabela permissions, entao nomes digitados errado ou\nantigos continuavam aparecendo para concessao.",
+        "description": "Catalogo de permissoes do sistema (fonte unica: core/permission_catalog.py).",
         "operationId": "list_available_permissions_api_v1_users_permissions_available_get",
         "security": [
           {
@@ -180,7 +180,7 @@
           "users"
         ],
         "summary": "List All Users",
-        "description": "Usuarios e permissoes, paginados (total em X-Total-Count), com busca opcional.\n\nA busca procura no e-mail, no apelido e no nome das permissoes. Antes a tela filtrava\nso os 50 usuarios carregados, e quem estava alem deles nao aparecia na busca.",
+        "description": "Usuarios e permissoes, paginados (total em X-Total-Count), com busca opcional.",
         "operationId": "list_all_users_api_v1_users_get",
         "security": [
           {
@@ -374,6 +374,497 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update My Profile",
+        "description": "Atualiza dados cadastrais do usuario autenticado.",
+        "operationId": "update_my_profile_api_v1_users_me_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfileUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete My Account",
+        "description": "Exclui permanentemente a conta e dados pessoais do usuário autenticado.",
+        "operationId": "delete_my_account_api_v1_users_me_delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Delete My Account Api V1 Users Me Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/onboarding": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Complete Onboarding",
+        "description": "Registra o aceite formal de termos LGPD e preferências de privacidade.",
+        "operationId": "complete_onboarding_api_v1_users_me_onboarding_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserOnboardingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/export": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Export My Data",
+        "description": "Exporta todos os dados pessoais do usuário autenticado (Art. 18 LGPD).",
+        "operationId": "export_my_data_api_v1_users_me_export_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDataExportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/avatar": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get My Avatar",
+        "description": "Retorna o avatar do usuario autenticado.",
+        "operationId": "get_my_avatar_api_v1_users_me_avatar_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Upload My Avatar",
+        "description": "Upload de avatar para o usuario autenticado.",
+        "operationId": "upload_my_avatar_api_v1_users_me_avatar_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_my_avatar_api_v1_users_me_avatar_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "title": "Response Upload My Avatar Api V1 Users Me Avatar Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{user_id}/avatar": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get User Avatar",
+        "description": "Retorna a foto de perfil do usuario com headers de seguranca.",
+        "operationId": "get_user_avatar_api_v1_users__user_id__avatar_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Upload User Avatar",
+        "description": "Upload de avatar com higienizacao EXIF e bloqueio de SVG.",
+        "operationId": "upload_user_avatar_api_v1_users__user_id__avatar_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_user_avatar_api_v1_users__user_id__avatar_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "title": "Response Upload User Avatar Api V1 Users  User Id  Avatar Post"
                 }
               }
             }
@@ -4392,6 +4883,104 @@
         }
       }
     },
+    "/api/v1/admin/audit-logs": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "List Audit Logs",
+        "description": "Lista eventos da trilha de auditoria com filtros e paginação.",
+        "operationId": "list_audit_logs_api_v1_admin_audit_logs_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Action"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditLogResponse"
+                  },
+                  "title": "Response List Audit Logs Api V1 Admin Audit Logs Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/admin/questions/unaudited": {
       "get": {
         "tags": [
@@ -5358,6 +5947,65 @@
         "title": "AlternativeCreate",
         "description": "Payload para criação de alternativa em questão."
       },
+      "AuditLogResponse": {
+        "properties": {
+          "log_id": {
+            "type": "integer",
+            "title": "Log Id"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "log_id",
+          "user_id",
+          "action",
+          "entity_type",
+          "entity_id",
+          "description",
+          "created_at"
+        ],
+        "title": "AuditLogResponse",
+        "description": "Schema de saída para item de auditoria."
+      },
       "AuthUserResponse": {
         "properties": {
           "user_id": {
@@ -5408,6 +6056,56 @@
             "type": "array",
             "title": "Permissions",
             "default": []
+          },
+          "show_in_ranking": {
+            "type": "boolean",
+            "title": "Show In Ranking",
+            "default": true
+          },
+          "terms_accepted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terms Accepted At"
+          },
+          "terms_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terms Version"
+          },
+          "is_minor": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Minor"
+          },
+          "guardian_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Guardian Email"
           }
         },
         "type": "object",
@@ -5488,6 +6186,34 @@
           "file"
         ],
         "title": "Body_simulate_import_api_v1_admin_question_imports_post"
+      },
+      "Body_upload_my_avatar_api_v1_users_me_avatar_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_my_avatar_api_v1_users_me_avatar_post"
+      },
+      "Body_upload_user_avatar_api_v1_users__user_id__avatar_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_user_avatar_api_v1_users__user_id__avatar_post"
       },
       "BuyItemRequest": {
         "properties": {
@@ -5580,8 +6306,10 @@
           },
           "num_questoes": {
             "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
             "title": "Num Questoes",
-            "default": 5
+            "default": 10
           }
         },
         "type": "object",
@@ -5961,7 +6689,14 @@
             "title": "Essay Id"
           },
           "evaluator_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Evaluator Id"
           },
           "start_offset": {
@@ -5990,7 +6725,6 @@
         "required": [
           "annotation_id",
           "essay_id",
-          "evaluator_id",
           "start_offset",
           "end_offset",
           "competency",
@@ -6121,6 +6855,7 @@
         "properties": {
           "submitted_text": {
             "type": "string",
+            "maxLength": 25000,
             "minLength": 10,
             "title": "Submitted Text",
             "description": "Texto redigido pelo estudante"
@@ -6222,7 +6957,14 @@
             "title": "Essay Id"
           },
           "evaluator_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Evaluator Id"
           },
           "c1_score": {
@@ -6275,7 +7017,6 @@
         "required": [
           "grading_id",
           "essay_id",
-          "evaluator_id",
           "c1_score",
           "c2_score",
           "c3_score",
@@ -6363,6 +7104,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "answers": {
@@ -6453,6 +7195,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "total_questions": {
@@ -6529,6 +7272,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "question_type": {
@@ -6569,6 +7313,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "total_questions": {
@@ -6640,6 +7385,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "question_type": {
@@ -6823,6 +7569,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "question_type": {
@@ -6856,6 +7603,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "total_questions": {
@@ -6920,6 +7668,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "supplementary_text": {
@@ -7311,7 +8060,14 @@
             "title": "Proposal Id"
           },
           "user_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "User Id"
           },
           "title": {
@@ -7357,7 +8113,6 @@
         "type": "object",
         "required": [
           "proposal_id",
-          "user_id",
           "title",
           "created_at"
         ],
@@ -7370,7 +8125,14 @@
             "title": "Proposal Id"
           },
           "user_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "User Id"
           },
           "title": {
@@ -7416,7 +8178,6 @@
         "type": "object",
         "required": [
           "proposal_id",
-          "user_id",
           "title",
           "created_at"
         ],
@@ -7832,6 +8593,7 @@
         "properties": {
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "supplementary_text": {
@@ -7973,6 +8735,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "supplementary_text": {
@@ -8476,6 +9239,7 @@
           },
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "supplementary_text": {
@@ -8699,6 +9463,7 @@
         "properties": {
           "title": {
             "type": "string",
+            "maxLength": 255,
             "title": "Title"
           },
           "supplementary_text": {
@@ -9649,8 +10414,10 @@
           },
           "num_questoes": {
             "type": "integer",
+            "maximum": 50.0,
+            "minimum": 1.0,
             "title": "Num Questoes",
-            "default": 5
+            "default": 10
           },
           "quantidade_questoes": {
             "anyOf": [
@@ -9891,6 +10658,116 @@
         ],
         "title": "SupportTextResponse"
       },
+      "UserDataExportResponse": {
+        "properties": {
+          "exported_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Exported At"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserProfileResponse"
+          },
+          "essays": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Essays"
+          },
+          "mocktests": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Mocktests"
+          },
+          "quiz_sessions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Quiz Sessions"
+          },
+          "transactions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Transactions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "exported_at",
+          "user",
+          "essays",
+          "mocktests",
+          "quiz_sessions",
+          "transactions"
+        ],
+        "title": "UserDataExportResponse",
+        "description": "Payload de exportacao completa de dados pessoais do usuario (Art. 18 LGPD)."
+      },
+      "UserOnboardingRequest": {
+        "properties": {
+          "nickname": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nickname"
+          },
+          "accept_terms": {
+            "type": "boolean",
+            "title": "Accept Terms"
+          },
+          "terms_version": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Terms Version",
+            "default": "1.0"
+          },
+          "is_minor": {
+            "type": "boolean",
+            "title": "Is Minor",
+            "default": false
+          },
+          "guardian_email": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Guardian Email"
+          },
+          "show_in_ranking": {
+            "type": "boolean",
+            "title": "Show In Ranking",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "accept_terms"
+        ],
+        "title": "UserOnboardingRequest",
+        "description": "Payload para aceite de termos LGPD e configuracao inicial de perfil."
+      },
       "UserProfileResponse": {
         "properties": {
           "user_id": {
@@ -9912,6 +10789,17 @@
             ],
             "title": "Nickname"
           },
+          "avatar": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar"
+          },
           "points": {
             "type": "integer",
             "title": "Points",
@@ -9928,6 +10816,56 @@
             },
             "type": "array",
             "title": "Permissions"
+          },
+          "show_in_ranking": {
+            "type": "boolean",
+            "title": "Show In Ranking",
+            "default": true
+          },
+          "terms_accepted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terms Accepted At"
+          },
+          "terms_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Terms Version"
+          },
+          "is_minor": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Minor"
+          },
+          "guardian_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Guardian Email"
           }
         },
         "type": "object",
@@ -9943,13 +10881,37 @@
           "nickname": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 100
               },
               {
                 "type": "null"
               }
             ],
             "title": "Nickname"
+          },
+          "avatar": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Avatar"
+          },
+          "show_in_ranking": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Show In Ranking"
           }
         },
         "type": "object",

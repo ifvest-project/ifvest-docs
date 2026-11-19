@@ -5,7 +5,7 @@ Este guia documenta as tarefas de **criação e gestão de conteúdo** do IFVest
 !!! info "Este guia complementa o Guia do Aluno"
     Quem tem as permissões de professor usa a plataforma como qualquer estudante, com tarefas a mais. Este guia cobre apenas o que se soma:
 
-    - **Conta e perfil** — entrar, sair e consultar o perfil ficam na [seção Conta](../conta/acesso.md), comum a todos.
+    - **Conta e perfil** — entrar, completar o cadastro, sair e consultar o perfil ficam na [seção Conta](../conta/acesso.md), comum a todos.
     - **Tarefas de estudo** — jogar o IFQuiz, montar e resolver simulados e escrever redações funcionam para você como para o estudante, e estão no [Guia do Aluno](../aluno/index.md).
     - **Administração** — a moderação das denúncias, a auditoria das questões, a importação de provas, as permissões e os módulos ficam no [Guia do Administrador](../administrador/index.md).
 
@@ -22,16 +22,16 @@ Professores e educadores que produzem e mantêm o conteúdo do IFVest. Nenhum co
 
 | Permissão | O que permite | Como se obtém |
 |---|---|---|
-| `create_question` | Cadastrar questões no banco | Automática para e-mails `@ifsp.edu.br` |
-| `edit_question` | Editar questões existentes e ver o gabarito no banco de questões (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)) | Automática para e-mails `@ifsp.edu.br` |
-| `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos | Automática para e-mails `@ifsp.edu.br` |
-| `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Automática para e-mails `@ifsp.edu.br` |
+| `create_question` | Cadastrar questões no banco | Concedida por um administrador |
+| `edit_question` | Editar questões existentes e ver o gabarito no banco de questões (ver [Editar uma questão](banco-de-questoes.md#tarefa-3-editar-uma-questao)) | Concedida por um administrador |
+| `create_institutional_mocktest` | Criar simulados institucionais, que aparecem para todos | Concedida por um administrador |
+| `manage_mocktests` | Editar e excluir simulados criados por outras pessoas | Concedida por um administrador |
 | `create_essay_proposal_permission` | Criar, editar e excluir propostas de redação | Concedida por um administrador |
 | `grade_essay_permission` | Corrigir redações | Concedida por um administrador |
 | `audit_question` | Aprovar as questões novas antes de entrarem em uso, na página Auditoria de Questões, aberta pela aba **Auditoria** do cabeçalho (ver [Guia do Administrador — Auditoria de Questões](../administrador/auditoria-de-questoes.md)) | Concedida por um administrador |
 | `admin_permission` | Administrar a plataforma, no Painel Administrativo (ver [Guia do Administrador](../administrador/index.md)). Passa em todas as verificações de permissão | Concedida por um administrador |
 
-As permissões automáticas são atribuídas no **primeiro acesso**. Se você entrou com outro e-mail, ou precisa de uma permissão que não tem, peça-a a um administrador. As suas permissões ativas aparecem no seu [perfil](../conta/perfil.md#tarefa-1-consultar-o-seu-perfil).
+Toda conta nova começa sem permissões: peça a um administrador as que o seu trabalho exige. As contas `@ifsp.edu.br` criadas antes de 18/11/2026 receberam automaticamente as quatro permissões de conteúdo e as mantêm. As suas permissões ativas aparecem no seu [perfil](../conta/perfil.md#tarefa-1-consultar-o-seu-perfil).
 
 ---
 
@@ -69,8 +69,8 @@ As páginas estão na ordem sugerida de leitura: primeiro o banco de questões, 
 
 | Página | Conteúdo | Situação |
 |---|---|---|
-| [Acesso e Conta](../conta/acesso.md) | Entrar com a conta Google e sair | ✅ Comum a todos |
-| [Perfil e Seus Dados](../conta/perfil.md) | Apelido, indicadores e históricos | ✅ Comum a todos |
+| [Acesso e Conta](../conta/acesso.md) | Entrar com a conta Google, completar o cadastro, sair e ligar o alto contraste | ✅ Comum a todos |
+| [Perfil e Seus Dados](../conta/perfil.md) | Apelido, indicadores, históricos e privacidade: ranking, exportação dos dados e exclusão da conta | ✅ Comum a todos |
 | [Banco de Questões](banco-de-questoes.md) | Consultar, cadastrar, editar e sinalizar questões | ✅ Disponível |
 | [Simulados](simulados.md) | Criar simulados institucionais e gerenciar os de outras pessoas | ✅ Disponível |
 | [Redação](redacao.md) | Criar e gerenciar propostas, corrigir redações e consultar as correções feitas | ✅ Disponível |

@@ -104,7 +104,7 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
     ![Tela Fila de Correção com as abas Aguardando Correção e Histórico de Correções Realizadas e uma redação na fila, com o tema, a data de envio e o botão Avaliar redação](../img/professor-redacao-03-fila.png){ .captura loading=lazy }
 
 3. A tela **Avaliação de Redação** mostra os textos de apoio da proposta e, em **Texto do Estudante**, a redação.
-4. Para comentar um trecho, selecione-o com o mouse e clique em **✍️ Comentar trecho**. O comentário entra em **Comentários por Trecho**: escolha a competência, de **C1 - Norma Culta** a **C5 - Intervenção Social**, e escreva o apontamento para o estudante. **✕ Excluir** retira o comentário.
+4. Para comentar um trecho, selecione-o com o mouse e clique em **✍️ Comentar trecho**. Também é possível selecionar o trecho e apertar `Enter` ou clicar em **✍️ Comentar trecho selecionado**, acima do texto, o que permite comentar usando só o teclado. O comentário entra em **Comentários por Trecho**: escolha a competência, de **C1 - Norma Culta** a **C5 - Intervenção Social**, e escreva o apontamento para o estudante. **✕ Excluir** retira o comentário.
 5. Em **Critérios de Correção (ENEM)**, dê a nota de cada competência, de **Competência 1** a **Competência 5**: de 0 a 200, de 20 em 20. Os campos começam em 120, e a **Nota Total**, de 0 a 1.000, é a soma das cinco.
 
     ![Tela Avaliação de Redação com os textos de apoio, o Texto do Estudante à esquerda e, à direita, as notas das cinco competências, a Nota Total, o Parecer Pedagógico Geral, os Comentários por Trecho e o botão Finalizar Correção](../img/professor-redacao-04-corrigir.png){ .captura loading=lazy }
@@ -122,6 +122,7 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 - A fila e a tela de correção não mostram quem escreveu a redação.
 - Todo comentário de trecho precisa ter texto. Um comentário vazio impede o envio da correção.
 - A fila mostra até 20 redações por vez, das mais antigas para as mais recentes.
+- Cada correção enviada fica no registro de auditoria, com a nota total.
 
 ---
 
@@ -178,4 +179,5 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 | Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Área do Professor e páginas de Redação | nov/2026 |
 | Regras das propostas, da fila e da correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | nov/2026 |
 | Validação das notas e das correções | `ifvest-backend/src/schemas/essays.py` e `src/services/essays_service.py`, no `ifvest-monorepo` | out/2026 |
+| Comentário pelo teclado e registro da correção | Código do `ifvest-monorepo` (commit `e4d7eef`, de 18/11/2026): `GradingSubmissionPage.tsx` e `src/services/essays_service.py` | nov/2026 |
 | Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

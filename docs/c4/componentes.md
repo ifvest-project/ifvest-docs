@@ -26,9 +26,9 @@ Container_Boundary(api, "API — FastAPI") {
     Component(seguranca, "Segurança", "security.py · firebase.py", "Extrai e verifica o token,\nidentifica o usuário")
     Component(permissoes, "Permissões", "permission_catalog.py\npermissions.py", "Catálogo das permissões, atribuição\ninicial e autorização de cada ação")
     Component(flags, "Feature Flags", "feature_guard.py\nfeature_flags_service.py", "Liga e desliga módulos\ne funcionalidades")
-    Component(servicos, "Serviços de Domínio", "quiz · mocktests · question_bank · essays\nadmin · question_audit · question_editing\nquestion_import · seed", "Regras de negócio de cada módulo")
+    Component(servicos, "Serviços de Domínio", "quiz · mocktests · question_bank · essays\nadmin · question_audit · question_editing\nquestion_import · seed · user_lgpd · access_log", "Regras de negócio de cada módulo")
     Component(esquemas, "Esquemas", "Pydantic", "Valida entradas e formata\nas respostas da API")
-    Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 26 tabelas\ndo banco de dados")
+    Component(modelos, "Modelos", "SQLAlchemy 2.0", "Mapeamento das 27 tabelas\ndo banco de dados")
 }
 
 ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
@@ -71,10 +71,10 @@ Container_Boundary(api, "API — FastAPI") {
     Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
     Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
-    Component(r_admin, "Rotas de Administração", "admin.py · 7 rotas", "Painel de indicadores,\nmoderação das denúncias\ne auditoria de questões,\ninclusive em bloco")
+    Component(r_admin, "Rotas de Administração", "admin.py · 8 rotas", "Painel de indicadores,\nmoderação das denúncias,\nauditoria de questões,\ninclusive em bloco, e\nregistro de auditoria")
     Component(r_imp, "Rotas de Importação", "question_imports.py · 4 rotas", "Envio, simulação e aplicação\ndas importações de questões")
     Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
-    Component(r_users, "Rotas de Usuário", "users.py · 6 rotas", "Perfil, lista de usuários\ne permissões")
+    Component(r_users, "Rotas de Usuário", "users.py · 14 rotas", "Perfil, privacidade,\nlista de usuários\ne permissões")
     Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Login e dados\ndo usuário atual")
 
     Component(s_quiz, "Serviços do Quiz", "quiz_service.py e módulos quiz_*\nstore_catalog.py · daily_streak.py", "Partidas, pontuação, ranking,\nloja e sequência diária")
@@ -86,6 +86,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(s_flags, "Serviço de Flags", "feature_flags_service.py", "Estado e hierarquia\ndas flags")
     Component(s_imp, "Serviço de Importação", "question_import_service.py\ne módulos question_import_*", "Valida e guarda o .zip e\nexecuta a carga em segundo plano")
     Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Dados de teste e\ncarga das provas")
+    Component(s_lgpd, "Serviços de Privacidade", "user_lgpd_service.py\naccess_log_service.py", "Aceite dos termos, exportação\ne exclusão da conta e\nregistro de acessos")
 }
 
 ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
@@ -100,6 +101,8 @@ Rel_R(r_admin, s_admin, "Delega")
 Rel_R(r_feat, s_flags, "Delega")
 Rel_R(r_imp, s_imp, "Delega")
 Rel_D(s_imp, s_seed, "Executa a carga")
+Rel_R(r_users, s_lgpd, "Privacidade")
+Rel_R(r_auth, s_lgpd, "Registra o acesso")
 
 Rel_D(s_quiz, db, "Lê e escreve", "SQL")
 Rel_D(s_mock, db, "Lê e escreve", "SQL")
@@ -110,6 +113,7 @@ Rel_D(s_admin, db, "Lê e escreve", "SQL")
 Rel_D(s_flags, db, "Lê e escreve", "SQL")
 Rel_D(s_imp, db, "Registra as importações", "SQL")
 Rel_D(s_seed, db, "Popula", "SQL")
+Rel_D(s_lgpd, db, "Lê, escreve e apaga", "SQL")
 Rel_D(r_users, db, "Lê e escreve", "SQL")
 Rel_D(r_auth, db, "Busca e cria usuários", "SQL")
 
@@ -117,7 +121,9 @@ SHOW_LEGEND()
 @enduml
 ```
 
-O **Serviço de Administração** também aprova as questões na auditoria e guarda o registro de auditoria: as rotas que cadastram, editam e aprovam questões, mexem em propostas de redação, concedem ou revogam permissões e alteram módulos registram ali o que foi feito. As questões atualizadas pela carga e as importações aplicadas também entram no registro, gravadas pelos próprios serviços de carga e de importação.
+O **Serviço de Administração** também aprova as questões na auditoria e guarda o registro de auditoria: as rotas que cadastram, editam e aprovam questões, mexem em propostas de redação, concedem ou revogam permissões e alteram módulos registram ali o que foi feito. As questões atualizadas pela carga, as importações aplicadas, as correções de redação e a criação, a edição e a exclusão de simulados também entram no registro, gravadas pelos próprios serviços de carga, de importação, de redação e de simulados.
+
+Os **Serviços de Privacidade** gravam o aceite dos termos, montam a exportação dos dados do usuário, executam a exclusão da conta — apagando os dados pessoais e desvinculando a autoria do que a pessoa criou para os outros — e mantêm o registro de acessos, usado também pela rota de sessão a cada entrada.
 
 Os **Serviços de Carga** rodam por scripts, para popular o ambiente de desenvolvimento ou carregar provas no banco de produção, e também a partir do **Serviço de Importação**, quando um administrador importa provas pelo painel: a carga é a mesma nos dois caminhos.
 
@@ -181,7 +187,7 @@ Person(usuario, "Usuário", "Qualquer perfil")
 
 Container_Boundary(web, "Aplicação Web — React + Vite") {
     Component(router, "Roteador", "React Router 7", "Define as rotas e aplica o\ncontrole de módulos a cada tela")
-    Component(layout, "Layout", "core/layout", "Estrutura visual comum\na todas as telas")
+    Component(layout, "Layout", "core/layout · core/theme", "Estrutura visual comum\na todas as telas e\nalto contraste")
 
     Component(f_home, "Início", "features/home", "Página inicial e navegação\nentre os módulos")
     Component(f_quiz, "Quiz", "features/quiz", "Partidas, pergunta do dia,\nranking e loja")
@@ -189,7 +195,8 @@ Container_Boundary(web, "Aplicação Web — React + Vite") {
     Component(f_essays, "Redação", "features/essays", "Envio de redações,\ncorreção e consulta")
     Component(f_prof, "Área do Professor", "features/professor", "Banco de questões, propostas\nde redação e fila de correção")
     Component(f_admin, "Painel Administrativo", "features/admin", "Indicadores, permissões,\nmoderação, auditoria,\nimportação de questões\ne módulos")
-    Component(f_auth, "Autenticação e Perfil", "features/auth", "Entrada com a conta Google\ne perfil do usuário")
+    Component(f_auth, "Autenticação e Perfil", "features/auth", "Entrada com a conta Google,\ncadastro do primeiro acesso\ne perfil, com a privacidade")
+    Component(f_legal, "Páginas Legais", "features/legal", "Política de Privacidade\ne Termos de Uso")
     Component(f_dev, "Em Desenvolvimento", "features/underDevelopment", "Tela exibida no lugar dos\nmódulos desligados")
 
     Component(c_api, "Cliente HTTP", "core/api", "Chamadas à API com o token,\npor caminhos relativos")
@@ -207,6 +214,7 @@ Rel_D(router, c_feat, "Consulta antes\nde exibir o módulo")
 Rel_D(c_feat, f_dev, "Módulo desligado")
 
 Rel_D(layout, f_home, "Exibe")
+Rel_D(layout, f_legal, "Exibe")
 Rel_D(layout, f_quiz, "Exibe")
 Rel_D(layout, f_mock, "Exibe")
 Rel_D(layout, f_essays, "Exibe")
@@ -252,5 +260,6 @@ SHOW_LEGEND()
 | Conteúdo | Fonte | Data |
 |---|---|---|
 | Componentes da API e contagem de rotas | `ifvest-backend/src/` e especificação OpenAPI gerada do código | set/2026, revisto em nov/2026 |
+| Serviços de privacidade e páginas legais | `src/services/user_lgpd_service.py` e `access_log_service.py`; `ifvest-frontend/src/features/legal/` e `src/core/theme/` (commit `e4d7eef`, de 18/11/2026) | nov/2026 |
 | Componentes transversais e ordem das verificações | `src/core/feature_guard.py`, `security.py`, `firebase.py`, `permission_catalog.py`, `permissions.py` e `src/services/feature_flags_service.py`; ordem conferida executando a API | set/2026 |
 | Componentes do frontend | `ifvest-frontend/src/core/`, `src/features/` e `src/router/` | set/2026, revisto em nov/2026 |

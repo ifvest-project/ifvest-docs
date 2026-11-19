@@ -10,10 +10,10 @@ Container_Boundary(api, "API — FastAPI") {
     Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
     Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
     Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
-    Component(r_admin, "Rotas de Administração", "admin.py · 7 rotas", "Painel de indicadores,\nmoderação das denúncias\ne auditoria de questões,\ninclusive em bloco")
+    Component(r_admin, "Rotas de Administração", "admin.py · 8 rotas", "Painel de indicadores,\nmoderação das denúncias,\nauditoria de questões,\ninclusive em bloco, e\nregistro de auditoria")
     Component(r_imp, "Rotas de Importação", "question_imports.py · 4 rotas", "Envio, simulação e aplicação\ndas importações de questões")
     Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
-    Component(r_users, "Rotas de Usuário", "users.py · 6 rotas", "Perfil, lista de usuários\ne permissões")
+    Component(r_users, "Rotas de Usuário", "users.py · 14 rotas", "Perfil, privacidade,\nlista de usuários\ne permissões")
     Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Login e dados\ndo usuário atual")
 
     Component(s_quiz, "Serviços do Quiz", "quiz_service.py e módulos quiz_*\nstore_catalog.py · daily_streak.py", "Partidas, pontuação, ranking,\nloja e sequência diária")
@@ -25,6 +25,7 @@ Container_Boundary(api, "API — FastAPI") {
     Component(s_flags, "Serviço de Flags", "feature_flags_service.py", "Estado e hierarquia\ndas flags")
     Component(s_imp, "Serviço de Importação", "question_import_service.py\ne módulos question_import_*", "Valida e guarda o .zip e\nexecuta a carga em segundo plano")
     Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Dados de teste e\ncarga das provas")
+    Component(s_lgpd, "Serviços de Privacidade", "user_lgpd_service.py\naccess_log_service.py", "Aceite dos termos, exportação\ne exclusão da conta e\nregistro de acessos")
 }
 
 ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
@@ -39,6 +40,8 @@ Rel_R(r_admin, s_admin, "Delega")
 Rel_R(r_feat, s_flags, "Delega")
 Rel_R(r_imp, s_imp, "Delega")
 Rel_D(s_imp, s_seed, "Executa a carga")
+Rel_R(r_users, s_lgpd, "Privacidade")
+Rel_R(r_auth, s_lgpd, "Registra o acesso")
 
 Rel_D(s_quiz, db, "Lê e escreve", "SQL")
 Rel_D(s_mock, db, "Lê e escreve", "SQL")
@@ -49,6 +52,7 @@ Rel_D(s_admin, db, "Lê e escreve", "SQL")
 Rel_D(s_flags, db, "Lê e escreve", "SQL")
 Rel_D(s_imp, db, "Registra as importações", "SQL")
 Rel_D(s_seed, db, "Popula", "SQL")
+Rel_D(s_lgpd, db, "Lê, escreve e apaga", "SQL")
 Rel_D(r_users, db, "Lê e escreve", "SQL")
 Rel_D(r_auth, db, "Busca e cria usuários", "SQL")
 

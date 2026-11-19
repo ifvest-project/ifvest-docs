@@ -196,7 +196,7 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 **Objetivo:** comparar a sua pontuação com a dos outros estudantes.
 
-**Pré-requisitos:** nenhum. Para aparecer no ranking, é preciso ter ganhado pontos no período.
+**Pré-requisitos:** nenhum. Para aparecer no ranking, é preciso ter ganhado pontos no período e não ter saído do ranking no perfil.
 
 **Como fazer:**
 
@@ -211,7 +211,8 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 - A classificação usa os **pontos ganhos** no período — nos quizzes e na Pergunta do Dia —, e não o saldo: comprar na loja não faz você perder posição.
 - Empates dividem a mesma posição.
 - A tabela mostra os dez primeiros colocados.
-- O nome exibido é o seu [apelido](../conta/perfil.md#tarefa-2-alterar-o-seu-apelido); sem ele, aparece a parte do seu e-mail antes do `@`.
+- O nome exibido é o seu [apelido](../conta/perfil.md#tarefa-2-alterar-o-seu-apelido); nas contas antigas sem apelido, aparece a parte do e-mail antes do `@`.
+- Quem não quer aparecer pode sair do ranking no perfil (ver [Sair do ranking ou voltar a ele](../conta/perfil.md#tarefa-4-sair-do-ranking-ou-voltar-a-ele)). Fora dele, você continua vendo a sua própria posição, mas os outros não veem o seu apelido na tabela.
 
 ---
 
@@ -286,6 +287,7 @@ O **Modo Competição** aparece na página do IFQuiz como **Em breve**, desabili
 | Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): páginas do IFQuiz | nov/2026 |
 | Saída e retomada do quiz | Código do `ifvest-monorepo` (commit `0335118`): rota `GET /api/v1/quiz/active-session` e `ifvest-backend/src/services/quiz_session_resume.py` | nov/2026 |
 | Regras de pontos, patentes, sequência, ranking e loja | [Descrição das Funcionalidades — IFQuiz](../../funcionalidades.md#ifquiz), conferida no código do backend | nov/2026 |
+| Saída do ranking | Código do backend do `ifvest-monorepo` (commit `e4d7eef`, de 18/11/2026): `src/services/quiz_ranking.py` | nov/2026 |
 | Filtro de dificuldade retirado | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md`, no `ifvest-monorepo` | set/2026 |
 | Modo Competição | Levantamento de Funcionalidades e Regras de Negócio, entradas do IFQuiz | 20/10/2026 |
 | Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |
