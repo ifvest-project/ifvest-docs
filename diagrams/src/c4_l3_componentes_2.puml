@@ -1,0 +1,60 @@
+@startuml C4_Componentes_API_Dominios
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Componentes — API IFVest (C4 L3 · Rotas e Serviços)
+
+LAYOUT_LEFT_RIGHT()
+
+Container_Boundary(api, "API — FastAPI") {
+    Component(r_quiz, "Rotas de Quiz", "quiz.py · 19 rotas", "Partidas e retomada, pergunta do dia,\nfiltros, ranking, loja e histórico")
+    Component(r_mock, "Rotas de Simulados", "mocktests.py · 13 rotas", "Montagem, resolução,\ncorreção e revisão de simulados")
+    Component(r_bank, "Rotas do Banco de Questões", "question_bank.py · 6 rotas", "Busca, filtros, cadastro,\nedição e denúncia de questões")
+    Component(r_essays, "Rotas de Redação", "essays.py · 11 rotas", "Propostas, redações\ne correções")
+    Component(r_admin, "Rotas de Administração", "admin.py · 8 rotas", "Painel de indicadores,\nmoderação das denúncias,\nauditoria de questões,\ninclusive em bloco, e\nregistro de auditoria")
+    Component(r_imp, "Rotas de Importação", "question_imports.py · 4 rotas", "Envio, simulação e aplicação\ndas importações de questões")
+    Component(r_feat, "Rotas de Flags", "features.py · 3 rotas", "Consulta e alteração\ndas feature flags")
+    Component(r_users, "Rotas de Usuário", "users.py · 14 rotas", "Perfil, privacidade,\nlista de usuários\ne permissões")
+    Component(r_auth, "Rotas de Sessão", "auth.py · 2 rotas", "Login e dados\ndo usuário atual")
+
+    Component(s_quiz, "Serviços do Quiz", "quiz_service.py e módulos quiz_*\nstore_catalog.py · daily_streak.py", "Partidas, pontuação, ranking,\nloja e sequência diária")
+    Component(s_mock, "Serviços de Simulados", "mocktests_service.py\nmocktest_attempts.py\nmocktest_attempt_review.py", "Montagem, edição e correção\ndos simulados, tentativas,\nrevisão e estatísticas")
+    Component(s_bank, "Serviço do Banco de Questões", "question_bank_service.py", "Busca, filtros\ne cadastro de questões")
+    Component(s_edit, "Edição de Questões", "question_editing.py", "Leitura com gabarito\ne edição de questões")
+    Component(s_essays, "Serviço de Redação", "essays_service.py", "Propostas e correção por\ncompetências do ENEM")
+    Component(s_admin, "Serviço de Administração", "admin_service.py e\nquestion_audit_service.py", "Indicadores, denúncias,\nauditoria de questões\ne registro de auditoria")
+    Component(s_flags, "Serviço de Flags", "feature_flags_service.py", "Estado e hierarquia\ndas flags")
+    Component(s_imp, "Serviço de Importação", "question_import_service.py\ne módulos question_import_*", "Valida e guarda o .zip e\nexecuta a carga em segundo plano")
+    Component(s_seed, "Serviços de Carga", "seed_service.py\nunicamp_seed_service.py", "Dados de teste e\ncarga das provas")
+    Component(s_lgpd, "Serviços de Privacidade", "user_lgpd_service.py\naccess_log_service.py", "Aceite dos termos, exportação\ne exclusão da conta e\nregistro de acessos")
+}
+
+ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Persistência")
+
+Rel_R(r_quiz, s_quiz, "Delega")
+Rel_R(r_mock, s_mock, "Delega")
+Rel_R(r_bank, s_bank, "Busca, filtros\ne cadastro")
+Rel_R(r_bank, s_edit, "Edição")
+Rel_R(r_bank, s_admin, "Denúncias")
+Rel_R(r_essays, s_essays, "Delega")
+Rel_R(r_admin, s_admin, "Delega")
+Rel_R(r_feat, s_flags, "Delega")
+Rel_R(r_imp, s_imp, "Delega")
+Rel_D(s_imp, s_seed, "Executa a carga")
+Rel_R(r_users, s_lgpd, "Privacidade")
+Rel_R(r_auth, s_lgpd, "Registra o acesso")
+
+Rel_D(s_quiz, db, "Lê e escreve", "SQL")
+Rel_D(s_mock, db, "Lê e escreve", "SQL")
+Rel_D(s_bank, db, "Lê e escreve", "SQL")
+Rel_D(s_edit, db, "Lê e escreve", "SQL")
+Rel_D(s_essays, db, "Lê e escreve", "SQL")
+Rel_D(s_admin, db, "Lê e escreve", "SQL")
+Rel_D(s_flags, db, "Lê e escreve", "SQL")
+Rel_D(s_imp, db, "Registra as importações", "SQL")
+Rel_D(s_seed, db, "Popula", "SQL")
+Rel_D(s_lgpd, db, "Lê, escreve e apaga", "SQL")
+Rel_D(r_users, db, "Lê e escreve", "SQL")
+Rel_D(r_auth, db, "Busca e cria usuários", "SQL")
+
+SHOW_LEGEND()
+@enduml
