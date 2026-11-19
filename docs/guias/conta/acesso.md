@@ -19,8 +19,13 @@ O IFVest **não tem senha própria**: a entrada é feita com a **conta Google**.
 
 1. Na página inicial do IFVest (`ifvest.com.br`), clique em **Entrar**, no cabeçalho, ou em **Quero acessar a plataforma!**.
 2. Na tela de entrada (`/login`), clique em **Entrar ou Cadastrar com Google**. O mesmo botão serve para o primeiro acesso e para os seguintes.
+
+    ![Tela de entrada do IFVest, com a mensagem Bem-vindo ao IFVest! e o botão Entrar ou Cadastrar com Google no centro](../img/conta-acesso-01-entrada.png){ .captura loading=lazy }
+
 3. Na janela do Google, escolha a conta e confirme.
 4. Você é levado à página **Início** (`/inicio`), com uma saudação pelo seu apelido e um cartão para cada módulo.
+
+    ![Página Início com a saudação Olá seguida do apelido, o cabeçalho com os módulos e um cartão para cada módulo; o cartão Revisão aparece como Temporariamente desabilitado](../img/conta-acesso-02-inicio.png){ .captura loading=lazy }
 
 **Observações:**
 
@@ -78,3 +83,4 @@ Os requisitos dessas funcionalidades continuam registrados como não atendidos e
 | Telas, botões e fluxos | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): página inicial, tela de entrada, cabeçalho e sessão | nov/2026 |
 | Criação da conta e permissões iniciais | [Descrição das Funcionalidades — Conta e acesso](../../funcionalidades.md#conta-e-acesso), conferida no código do backend | out/2026 |
 | Design anterior: cadastro por formulário e recuperação de senha | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, itens 2 e 3 | abr/2026 |
+| Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

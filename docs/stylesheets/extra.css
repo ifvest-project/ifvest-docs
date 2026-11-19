@@ -178,3 +178,11 @@
 [data-md-color-scheme="slate"] .md-typeset h4 {
   color: hsla(0, 0%, 100%, 0.90);
 } 
+
+/* Capturas de tela dos guias: borda leve para separar a tela do fundo da página */
+.md-typeset img.captura {
+  display: block;
+  margin: 0.8em 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.3rem;
+}

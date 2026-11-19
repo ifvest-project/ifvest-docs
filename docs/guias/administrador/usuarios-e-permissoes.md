@@ -34,6 +34,8 @@ As permissões automáticas são atribuídas só no **primeiro acesso** da conta
 2. Busque em **Pesquisar usuário por email, apelido ou permissão...**. A lista vem em páginas de 20 usuários.
 3. Cada usuário mostra o apelido — ou **Sem apelido** —, o e-mail, os pontos e a sequência diária do IFQuiz e, em **Permissões**, as permissões que tem, ou **Nenhuma permissão especial**.
 
+    ![Aba Usuários e Permissões com a busca e o cartão de um usuário de teste, com o e-mail, os pontos, a sequência, nenhuma permissão especial, a lista + Conceder nova permissão... e o botão Conceder](../img/admin-usuarios-01-cartao.png){ .captura loading=lazy }
+
 **Observações:**
 
 - Para listar quem tem uma permissão, busque pelo nome dela — por exemplo, `grade_essay_permission`.
@@ -108,3 +110,4 @@ As permissões automáticas são atribuídas só no **primeiro acesso** da conta
 | Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Usuários e Permissões | nov/2026 |
 | Catálogo de permissões e regras de concessão e revogação | `ifvest-backend/src/core/permission_catalog.py`, `src/core/permissions.py` e `src/api/v1/users.py`, no `ifvest-monorepo` | nov/2026 |
 | Permissões automáticas | [Descrição do Sistema — Como as permissões são atribuídas](../../descricao-do-sistema.md#como-as-permissoes-sao-atribuidas) | out/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

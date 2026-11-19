@@ -26,8 +26,13 @@ O módulo de **Flashcards** (`/flashcards`) reúne cartões de estudo no formato
     | **Exatas e Matemática** | Matemática e Raciocínio lógico |
     | **Outros e Atualidades** | Outros |
 
+    ![Página de Flashcards com as disciplinas em cartões, agrupadas nas áreas Linguagens e Códigos, Ciências Humanas, Ciências da Natureza, Exatas e Matemática, e Outros e Atualidades](../img/aluno-flashcards-01-disciplinas.png){ .captura loading=lazy }
+
 3. Clique na disciplina. A página dela lista os assuntos; o primeiro já vem aberto.
 4. Clique num assunto para abrir ou fechar a lista dos subassuntos dele.
+
+    ![Página da disciplina Biologia com a lista de assuntos; o assunto Citologia está aberto e mostra os seus subassuntos](../img/aluno-flashcards-02-assuntos.png){ .captura loading=lazy }
+
 5. Clique no subassunto. Os cartões dele se abrem ([Tarefa 2](#tarefa-2-estudar-os-cartoes)).
 
 Para voltar à lista de disciplinas, use a seta no topo da página.
@@ -50,8 +55,14 @@ Para voltar à lista de disciplinas, use a seta no topo da página.
 **Como fazer:**
 
 1. Leia a pergunta na frente do cartão. No rodapé, uma etiqueta mostra a dificuldade: **Fácil**, **Médio** ou **Difícil**.
+
+    ![Cartão de um subassunto mostrando a pergunta, a etiqueta de dificuldade Médio, o botão Ver resposta, as setas para os lados e o contador 1 / 3](../img/aluno-flashcards-03-pergunta.png){ .captura loading=lazy }
+
 2. Tente responder antes de virar o cartão.
 3. Clique em **Ver resposta**. O cartão vira e mostra a **Resposta:**. Para voltar à pergunta, clique em **Ver pergunta**.
+
+    ![O mesmo cartão virado, com a Resposta e o botão Ver pergunta](../img/aluno-flashcards-04-resposta.png){ .captura loading=lazy }
+
 4. Passe ao próximo cartão pela seta da direita (**Próximo flashcard**) e volte pela seta da esquerda (**Flashcard anterior**). Abaixo do cartão, o contador mostra em que posição você está, como "3 / 10".
 
 **Observações:**
@@ -76,3 +87,4 @@ Para voltar à lista de disciplinas, use a seta no topo da página.
 |---|---|---|
 | Telas, botões e fluxo | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): `ifvest-frontend/src/features/flashcards/` e rotas `/flashcards` | nov/2026 |
 | Disponibilidade do módulo | Flag `module_flashcards`; consulta pública `GET /api/v1/features` em `ifvest.com.br` | 18/11/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

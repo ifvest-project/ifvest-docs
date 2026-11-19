@@ -26,6 +26,8 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
     | **Questões sinalizadas** | As denúncias de erro ainda pendentes | **Corrigir questões**, que abre a [Moderação de Questões](moderacao-de-questoes.md) |
     | **Permissões** | O total de permissões concedidas, somando todas as contas | **Configurar**, que abre [Usuários e Permissões](usuarios-e-permissoes.md) |
 
+    ![Aba Visão Geral do Painel Administrativo com os indicadores de usuários, questões no banco, simulados, questões sinalizadas e permissões, os quadros de modificações e últimas atualizações e o pódio do Ranking Geral do IFQuiz](../img/admin-indicadores-01-visao-geral.png){ .captura loading=lazy }
+
 3. Em **Avisos**, aparecem os pontos que pedem atenção: as denúncias aguardando moderação e o banco de questões vazio. Sem pendências, o quadro não aparece.
 4. O quadro **Ranking Geral - IFQuiz** mostra os três estudantes com mais pontos ganhos no IFQuiz, pelo mesmo critério do [ranking geral](../aluno/ifquiz.md#tarefa-7-ver-o-ranking).
 
@@ -59,6 +61,8 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 2. Em **Relatório mais recente**, leia a descrição da última alteração.
 3. O quadro **Últimas atualizações** lista os cinco registros mais recentes, com a descrição e a data.
 
+    ![Quadros Modificações - Últimos 30 dias, com os totais e o relatório mais recente, e Últimas atualizações, com as cinco alterações mais recentes e as datas](../img/admin-indicadores-02-modificacoes.png){ .captura loading=lazy }
+
 **Observações:**
 
 - O registro de auditoria guarda o cadastro, a edição e a denúncia de questões, a aprovação delas na [Auditoria de Questões](auditoria-de-questoes.md), as mudanças de situação das denúncias, a criação, a edição e a exclusão de propostas de redação, a concessão e a revogação de permissões, as alterações dos módulos, as questões atualizadas pela carga a partir da fonte e as importações aplicadas pelo painel.
@@ -87,3 +91,4 @@ A aba **Visão Geral** é a primeira do Painel Administrativo. Ela reúne os ind
 | Tela, indicadores e quadros | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Visão Geral | nov/2026 |
 | Cálculo dos indicadores, da janela de 30 dias e dos avisos | `ifvest-backend/src/services/admin_service.py`, no `ifvest-monorepo` | nov/2026 |
 | O que o registro de auditoria guarda | [Descrição das Funcionalidades — Registro de auditoria](../../funcionalidades.md#registro-de-auditoria) | nov/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

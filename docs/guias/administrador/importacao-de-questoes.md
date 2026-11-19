@@ -26,8 +26,13 @@ A importação pelo painel faz o mesmo que a carga feita por linha de comando no
     | **Corrigir as questões que já estão no site** | Marcada | Atualiza com o conteúdo do zip as questões que já existem, identificadas pela banca, pelo ano, pelo número e pela prova. Desmarcada, só as questões novas entram |
     | **Substituir também as questões corrigidas à mão pela moderação** | Desmarcada | Aplica o zip também às questões editadas à mão, na moderação ou no banco de questões. Só pode ser marcada junto com a anterior |
 
+    ![Aba Importar Questões com as instruções, o campo do arquivo .zip, as opções Corrigir as questões que já estão no site e Substituir também as questões corrigidas à mão pela moderação, o botão Enviar e simular e o Histórico vazio](../img/admin-importacao-01-envio.png){ .captura loading=lazy }
+
 4. Clique em **Enviar e simular**. A plataforma lê o zip e mostra o que **aconteceria**, sem gravar nada: quantas questões **Serão inseridas** e quantas **Serão corrigidas**, o que mudaria em cada questão corrigida, as **Questões com problema, que ficam de fora**, as **Imagens que faltam no zip** e os **Arquivos que não puderam ser lidos**. Em arquivos grandes, a simulação leva alguns minutos, e a tela se atualiza sozinha.
 5. Quando aparecer *"Simulação concluída. Nada foi gravado ainda."* e o relatório estiver como esperado, clique em **Aplicar importação**. A plataforma grava exatamente o que a simulação mostrou.
+
+    ![Relatório da simulação com a mensagem Simulação concluída. Nada foi gravado ainda., os totais de questões no zip, a inserir, a corrigir, sem mudança, com problema e discursivas, o botão Aplicar importação e o Histórico](../img/admin-importacao-02-relatorio.png){ .captura loading=lazy }
+
 6. Aguarde *"Importação aplicada."* Enquanto ela roda, você pode sair da página: a importação continua no servidor, e o andamento fica no histórico ([Tarefa 2](#tarefa-2-acompanhar-o-historico-de-importacoes)).
 7. As questões inseridas entram **pendentes de auditoria**. Para que apareçam no quiz e nos simulados, aprove-as na [Auditoria de Questões](auditoria-de-questoes.md).
 
@@ -72,6 +77,8 @@ A importação pelo painel faz o mesmo que a carga feita por linha de comando no
     | **Enviado por** | Quem enviou |
     | **Relatório** | O botão **Ver relatório #**, que reabre o relatório |
 
+    ![Aba Importar Questões depois de aplicar uma importação, com o resumo Importação aplicada. e a tabela do Histórico com a simulação e a aplicação, a data, o arquivo, o tipo, a situação, quem enviou e o link Ver relatório](../img/admin-importacao-03-historico.png){ .captura loading=lazy }
+
 2. Clique em **Ver relatório #…** para rever os números e as listas daquela importação. Numa simulação concluída que ainda não foi aplicada, e cujo zip continua guardado, o relatório traz de novo o botão **Aplicar importação**.
 
 **Observações:**
@@ -100,3 +107,4 @@ A importação pelo painel faz o mesmo que a carga feita por linha de comando no
 | Situação das questões importadas na auditoria | `ifvest-backend/src/services/unicamp_seed_service.py` e `src/models/questions.py`, no `ifvest-monorepo` | nov/2026 |
 | Processo, limites e regras da importação | `docs/importar-questoes-pelo-painel.md`, no `ifvest-monorepo`, e [Descrição das Funcionalidades — Importar questões](../../funcionalidades.md#importar-questoes) | out/2026 |
 | Proteção das questões editadas à mão | `ifvest-backend/src/services/unicamp_question_update.py`, no `ifvest-monorepo` | out/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

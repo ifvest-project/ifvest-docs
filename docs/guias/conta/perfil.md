@@ -26,6 +26,8 @@ Para abrir o perfil, clique em **Usuário**, no canto direito do cabeçalho.
     | **Dias Consecutivos** | A sua [sequência diária](../aluno/ifquiz.md#tarefa-5-manter-a-sequencia-diaria) na Pergunta do Dia |
     | **Permissões Ativas** | Quantas permissões a sua conta tem, como as de professor |
 
+    ![Perfil com o apelido, o botão Editar, o e-mail da conta e os indicadores Pontos Totais, Dias Consecutivos e Permissões Ativas](../img/conta-perfil-01-perfil.png){ .captura loading=lazy }
+
 ---
 
 ## Tarefa 2 — Alterar o seu apelido
@@ -65,6 +67,8 @@ Abaixo dos indicadores, o perfil reúne três quadros:
 - **Atividade na Pergunta do Dia** — um mapa de calor do ano, com um quadrado por dia: verde para acerto, vermelho para erro e cinza para os dias sem resposta. Mostra os totais de acertos e erros e permite trocar o ano.
 - **Histórico de quizzes** — os dez quizzes iniciados mais recentemente, com acertos e pontos. **Revisar** abre o gabarito do quiz, e **Refazer** abre a montagem com os mesmos filtros. Um quiz que você deixou no meio aparece como **Em andamento**, e o botão **Continuar** o retoma de onde parou (ver [IFQuiz — Sair de um quiz e continuar depois](../aluno/ifquiz.md#tarefa-2-sair-de-um-quiz-e-continuar-depois)).
 - **Histórico de Simulados** — as suas tentativas de simulado, da mais recente para a mais antiga, cinco por página, com o título, as disciplinas, a data, os acertos e a nota. **Revisar** abre a revisão das questões daquela tentativa (ver [Simulados — Revisar as questões de uma tentativa](../aluno/simulados.md#tarefa-5-revisar-as-questoes-de-uma-tentativa)), e **Refazer** abre o simulado de novo.
+
+![Perfil com o mapa de calor da Atividade na Pergunta do Dia, o Histórico de Quizzes com um quiz marcado como Em andamento e os botões Continuar e Refazer, e o Histórico de Simulados](../img/conta-perfil-02-atividade.png){ .captura loading=lazy }
 
 **Observações:**
 
@@ -112,3 +116,4 @@ Da sua conta Google, o IFVest guarda **apenas o e-mail**, que identifica a sua c
 | Telas, indicadores e históricos | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): página de perfil e quadros de histórico | nov/2026 |
 | Dados guardados pela plataforma | [Modelo de Dados](../../modelo-de-dados.md) | out/2026 |
 | Tarefas previstas no design | Relatório 1 — Maria Luiza, subprojeto *Refatoração para React e Redesign do IFVest*, item 4 | abr/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

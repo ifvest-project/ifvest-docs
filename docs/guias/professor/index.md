@@ -92,6 +92,7 @@ Este guia integra, junto com o [Guia do Aluno](../aluno/index.md), o [Guia do Ad
 | Mensagens de erro (textos exatos) | Nas tabelas de erros, conferidas no código | 🟡 Aplicado onde há mensagem definida |
 | Informação de referência | Coberta fora do guia pela [Descrição das Funcionalidades](../../funcionalidades.md) | ✅ Coberto pela Fase 3 |
 | Glossário | [Glossário](../glossario.md), comum aos guias | ✅ Aplicado |
-| Acessibilidade | [Seção comum aos guias](../index.md#acessibilidade-da-plataforma) | 🟡 Normas de referência identificadas e convenções definidas; a interface do V3 ainda não foi avaliada |
+| Ilustrações | Capturas de tela nas tarefas | ✅ Aplicado: telas do V3, capturadas em novembro de 2026 |
+| Acessibilidade | [Seção comum aos guias](../index.md#acessibilidade-da-plataforma) | 🟡 Convenções aplicadas, com texto alternativo nas capturas; a interface do V3 ainda não foi avaliada |
 | Atribuição de permissões | Campo **Acesso** em cada tarefa + tabela de permissões | ✅ Aplicado |
 | Validação com usuários | Prevista conforme a **ISO/IEC/IEEE 26513** | ⬜ Pendente — possível agora que a interface foi entregue |

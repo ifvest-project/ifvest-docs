@@ -4,6 +4,8 @@ O **IFQuiz** (`/quiz`) é o módulo de prática rápida do IFVest, com elementos
 
 Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módulo na página **Início**. A página do IFQuiz reúne os seus indicadores — saldo de pontos, dias de sequência, taxa de acertos e posição no ranking geral —, o quiz que você deixou em andamento, quando houver, os modos de jogo, uma prévia da Pergunta do Dia, os três primeiros do ranking da semana e a tabela de patentes.
 
+![Página do IFQuiz com os botões Jogar agora e Pergunta do dia, os indicadores de pontos, sequência, acertos e posição no ranking, os modos Prática Livre e Modo Competição (Em breve), a prévia da Pergunta do Dia, o Ranking Semanal, o Meu Perfil e as patentes](../img/aluno-ifquiz-01-pagina.png){ .captura loading=lazy }
+
 ---
 
 ## Tarefa 1 — Montar e jogar um quiz
@@ -27,8 +29,13 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
     | **Assunto / Tópico** | Opcional. Você pode escolher vários assuntos da disciplina |
     | **Quantidade de questões** | 5, 10, 15 ou 20. Quando o filtro tem menos de 5 questões, a lista oferece também esse número |
 
+    ![Tela Monte seu Quiz Personalizado com os campos Nome do Quiz, Disciplina, Assunto / Tópico e Quantidade de questões, a indicação de questões disponíveis com o filtro e a prévia do quiz](../img/aluno-ifquiz-02-montar.png){ .captura loading=lazy }
+
 3. Confira a **prévia do quiz**, com o tempo estimado — 2 minutos por questão — e os pontos possíveis, e clique em **Iniciar Quiz →**.
 4. As questões aparecem uma de cada vez, com a posição no quiz — "Questão 3 de 10" — e, quando registradas, a banca e o ano da prova de origem, como "UNICAMP 2023". O texto de apoio vem antes do enunciado, quando a questão tem um. Escolha uma alternativa e clique em **Confirmar resposta**.
+
+    ![Tela Quiz em Andamento com as três vidas e os pontos no topo, a Questão 1 de 5 com as alternativas e os botões Dica (Eliminar), Sinalizar e Confirmar resposta](../img/aluno-ifquiz-03-partida.png){ .captura loading=lazy }
+
 5. A tela mostra na hora se você acertou e qual é a alternativa correta. Clique em **Próxima questão →** para seguir.
 6. O quiz termina quando você responde a todas as questões ou perde as três vidas. Clique em **Ver resultado 🏆** (ver [Tarefa 3](#tarefa-3-ver-o-resultado-e-revisar-as-questoes)).
 
@@ -58,8 +65,14 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 **Como fazer:**
 
 1. Durante o quiz, clique na seta de voltar, no topo da tela **Quiz em Andamento**. Se você já respondeu a alguma questão, a plataforma pergunta *"Sair do quiz?"* e avisa que as respostas ficam salvas.
+
+    ![Janela Sair do quiz? sobre a questão em andamento, avisando que as respostas ficam salvas, com os botões Sair do quiz e Continuar respondendo](../img/aluno-ifquiz-09-sair.png){ .captura loading=lazy }
+
 2. Clique em **Sair do quiz** para voltar à página do IFQuiz, ou em **Continuar respondendo** para seguir no quiz.
 3. Para retomar, abra a página do IFQuiz. O cartão **Quiz em andamento** mostra o nome do quiz, quantas questões você já respondeu, as vidas e os pontos. Clique em **Continuar quiz**.
+
+    ![Página do IFQuiz com o cartão Quiz em andamento, que mostra o nome do quiz, 2 de 10 respondidas, as vidas e os pontos, e o botão Continuar quiz](../img/aluno-ifquiz-10-continuar.png){ .captura loading=lazy }
+
 4. O quiz segue a partir da questão seguinte às que você já respondeu, com as vidas, os pontos e o combo de antes.
 
 **Observações:**
@@ -82,6 +95,9 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 **Como fazer:**
 
 1. Ao fim do quiz, a tela **Resultado do Quiz** mostra os pontos ganhos, os acertos, os erros, as vidas restantes e o progresso até a próxima [patente](#tarefa-6-ganhar-pontos-e-subir-de-patente).
+
+    ![Tela Resultado do Quiz com os pontos ganhos, os acertos, os erros e as vidas finais, o progresso até a próxima patente e os botões Ver Gabarito e Resoluções Detalhadas, Jogar novamente e Voltar ao IFQuiz](../img/aluno-ifquiz-04-resultado.png){ .captura loading=lazy }
+
 2. Para rever as questões, clique em **🔍 Ver Gabarito e Resoluções Detalhadas →**. A revisão lista as questões respondidas, com a disciplina, a banca e o ano, a alternativa que você escolheu e o gabarito oficial.
 3. Para continuar, clique em **Jogar novamente**, que abre a montagem de um novo quiz, ou em **Voltar ao IFQuiz**.
 
@@ -104,7 +120,13 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 
 1. Na página do IFQuiz, clique em **Pergunta do dia** ou em **Responder pergunta do dia** (`/quiz/pergunta-do-dia`).
 2. Leia a questão. Acima dela aparecem a disciplina, a banca e o ano da prova, quando registrados, e a dificuldade; o texto de apoio vem antes do enunciado, quando houver. Escolha uma alternativa e clique em **Confirmar resposta**.
+
+    ![Tela Pergunta do Dia com a pontuação de +100 pts, a disciplina, a banca, o ano e a dificuldade acima da questão, as alternativas e o botão Confirmar resposta](../img/aluno-ifquiz-05-pergunta-do-dia.png){ .captura loading=lazy }
+
 3. O resultado mostra a alternativa correta, a sua [sequência diária](#tarefa-5-manter-a-sequencia-diaria) e o **desempenho da comunidade**: o percentual de acerto de todos que responderam e a distribuição das respostas por alternativa.
+
+    ![Resultado da Pergunta do Dia com o aviso de resposta errada e a alternativa correta, a sequência de dias, o Desempenho da Comunidade com a porcentagem de cada alternativa e a Resolução Comentada](../img/aluno-ifquiz-06-pergunta-respondida.png){ .captura loading=lazy }
+
 4. Para continuar praticando, clique em **Jogar Quiz Rápido**, que começa direto um quiz de 5 questões de todas as disciplinas.
 
 **Observações:**
@@ -182,6 +204,8 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
 2. Escolha o período na aba **Semanal**, contado a partir de segunda-feira à 0h, no horário de Brasília, ou **Geral**, com todo o histórico.
 3. A tela mostra a sua posição, o pódio com os três primeiros e a tabela com o avatar, a patente e a sequência de cada estudante.
 
+    ![Tela Classificação Semanal com as abas Semanal e Geral, o período contado desde segunda-feira e o cartão com a sua posição, a patente, a sequência e os pontos na semana](../img/aluno-ifquiz-07-ranking.png){ .captura loading=lazy }
+
 **Observações:**
 
 - A classificação usa os **pontos ganhos** no período — nos quizzes e na Pergunta do Dia —, e não o saldo: comprar na loja não faz você perder posição.
@@ -213,6 +237,8 @@ Para abrir o módulo, clique em **IFQuiz** no cabeçalho ou no cartão do módul
     | ⚡ Mente Rápida | 600 pontos |
     | 💎 Mestre da Física | 800 pontos |
     | 👑 Rei do Quiz | 1.200 pontos |
+
+    ![Loja de Avatares com o saldo atual no topo e seis avatares, cada um com o preço; o avatar inicial tem o botão Equipar, e os demais mostram quantos pontos faltam](../img/aluno-ifquiz-08-loja.png){ .captura loading=lazy }
 
 3. Clique em **Comprar**, que mostra o preço. Sem saldo suficiente, o botão mostra quantos pontos faltam.
 4. Depois de comprado, clique em **Equipar**. O avatar equipado aparece marcado como **✓ Equipado** e passa a aparecer no ranking.
@@ -262,6 +288,7 @@ O **Modo Competição** aparece na página do IFQuiz como **Em breve**, desabili
 | Regras de pontos, patentes, sequência, ranking e loja | [Descrição das Funcionalidades — IFQuiz](../../funcionalidades.md#ifquiz), conferida no código do backend | nov/2026 |
 | Filtro de dificuldade retirado | `docs/decisoes/0001-ocultar-seletor-de-dificuldade-do-quiz.md`, no `ifvest-monorepo` | set/2026 |
 | Modo Competição | Levantamento de Funcionalidades e Regras de Negócio, entradas do IFQuiz | 20/10/2026 |
+| Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |
 
 !!! note "O que mudou em relação à versão anterior"
     A versão anterior desta página descrevia o IFQuiz da plataforma anterior: quizzes com questões de um serviço externo do ENEM e um placar com os cinco melhores resultados. O IFQuiz do V3 foi reconstruído pelo subprojeto do módulo, usa as questões do banco da própria plataforma e acrescentou a Pergunta do Dia, a sequência diária, as patentes, o ranking e a loja.

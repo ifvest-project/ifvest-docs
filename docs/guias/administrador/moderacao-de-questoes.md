@@ -26,6 +26,9 @@ As denúncias podem vir dos estudantes, durante um quiz ou um simulado, e dos pr
 1. No Painel Administrativo, abra a aba **Moderação de Questões**. Na **Visão Geral**, o botão **Corrigir questões** leva à mesma aba.
 2. A lista começa nas denúncias **Pendentes**, em páginas de 20. Os botões **Resolvidas**, **Descartadas** e **Todas** mostram as demais.
 3. Cada denúncia mostra o número da questão e o motivo — por exemplo, "Questão #12: Gabarito incorreto" —, a situação, a descrição escrita por quem denunciou, quando houver, e o número da denúncia.
+
+    ![Aba Moderação de Questões com os filtros Pendentes, Resolvidas, Descartadas e Todas e uma denúncia pendente, com o motivo e os botões Editar questão, Marcar como Resolvida e Descartar](../img/admin-moderacao-01-denuncias.png){ .captura loading=lazy }
+
 4. Confira a questão. Se houver erro, corrija-a pela [Tarefa 2](#tarefa-2-corrigir-uma-questao-denunciada), que pode resolver as denúncias ao salvar.
 5. Para encerrar a denúncia sem editar a questão, clique em **Marcar como Resolvida** ou, se não houver erro, em **Descartar**. A mensagem *"Denúncia #… atualizada para …"* confirma.
 
@@ -51,6 +54,9 @@ As denúncias podem vir dos estudantes, durante um quiz ou um simulado, e dos pr
 1. Na aba **Moderação de Questões**, localize a denúncia e clique em **Editar questão**. O formulário **Editar Questão #…** se abre logo abaixo da denúncia, com os mesmos campos do cadastro, já preenchidos.
 2. Altere o que for preciso: os dados da questão, o texto das alternativas, a alternativa correta, a resolução e a classificação, cuja disciplina, assunto e tópico são escolhidos em listas. À direita dos campos, a **Pré-visualização (como aparece na aplicação)** mostra a questão como os estudantes vão vê-la e se atualiza enquanto você digita.
 3. Se a questão tiver denúncias pendentes, o formulário traz, já marcada, a caixa que as marca como resolvidas ao salvar — por exemplo, *"Marcar as 2 denúncias pendentes desta questão como resolvidas"*. Desmarque-a se quiser tratá-las depois.
+
+    ![Formulário Editar Questão aberto a partir de uma denúncia, com a pré-visualização e, no fim, a caixa marcada Marcar a denúncia pendente desta questão como resolvida e os botões Cancelar e Salvar alterações](../img/admin-moderacao-02-editar.png){ .captura loading=lazy }
+
 4. Clique em **Salvar alterações**. A mensagem informa a questão atualizada e quantas denúncias foram resolvidas — por exemplo, *"Questão #12 atualizada e 2 denúncia(s) resolvida(s)."*
 
 Para desistir, clique em **Cancelar**.
@@ -82,3 +88,4 @@ Para desistir, clique em **Cancelar**.
 |---|---|---|
 | Tela, ações e mensagens | Código do frontend do `ifvest-monorepo` (commit `b0a5e5f`, de 17/11/2026): Painel Administrativo, aba Moderação de Questões | nov/2026 |
 | Regras das denúncias e da edição | [Descrição das Funcionalidades — Moderação de questões](../../funcionalidades.md#moderacao-de-questoes) e [Edição de questões](../../funcionalidades.md#edicao-de-questoes), conferidas no código do backend | out/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

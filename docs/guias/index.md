@@ -26,8 +26,6 @@ Os termos usados na plataforma estão no [Glossário](glossario.md).
 
     Eles foram escritos antes da entrega do V3, a partir dos relatórios do subprojeto de frontend, e revisados depois dela. Por isso, cada página registra também o que o design previa e não foi implementado. O módulo **Flashcards** entrou na plataforma em novembro de 2026 e está documentado a partir do código. A **Revisão de Conteúdo** já tem telas no código, mas segue desligada: as páginas dela continuam nos guias, com um aviso no início, como registro do que foi planejado.
 
-⬜ *Capturas de tela pendentes, a acrescentar com texto alternativo.*
-
 ---
 
 ## Como ler as tarefas
@@ -79,7 +77,7 @@ A acessibilidade da plataforma é avaliada com base em dois referenciais adotado
 
 ### Convenções de acessibilidade destes guias
 
-- Toda captura de tela terá **texto alternativo** descritivo.
+- Toda captura de tela tem **texto alternativo** descritivo, que diz o que a tela mostra e o que importa nela para a tarefa.
 - Os marcadores de status **nunca dependem apenas de símbolo ou cor**: vêm sempre acompanhados da palavra correspondente — Disponível, Prevista, Pendência.
 - A hierarquia de títulos é consistente (página → tarefa) para permitir navegação por leitores de tela.
 

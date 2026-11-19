@@ -36,6 +36,8 @@ No banco de questões da Área do Professor, a lista mostra só as questões apr
 3. Confira o total à direita dos filtros, como "35 questões encontradas". **Limpar filtros** desfaz a busca, os filtros e a ordem. A lista vem em páginas de 20 questões.
 4. Cada questão mostra o título, a disciplina, o assunto, a dificuldade, a banca, o ano e o número, o enunciado, o **Texto base**, quando houver, e as alternativas. A alternativa correta aparece destacada, com **✓ Gabarito**.
 
+    ![Página Auditoria de Questões em Questões Pendentes (5), com a busca, os filtros, Ordenar por, o botão Modo de seleção múltipla, o total encontrado e a primeira questão com o gabarito e os botões Editar Questão e Aprovar Questão](../img/admin-auditoria-01-pendentes.png){ .captura loading=lazy }
+
 **Observações:**
 
 - As opções de **Disciplina** e **Assunto** trazem toda a organização de conteúdos cadastrada. As de **Banca** e **Ano** vêm das questões já aprovadas: para encontrar uma questão pendente de uma banca ou de um ano que ainda não aparece nos filtros, use a busca por título ou enunciado.
@@ -82,6 +84,9 @@ No banco de questões da Área do Professor, a lista mostra só as questões apr
 
 1. Em **Questões Pendentes**, clique em **Modo de seleção múltipla**. Cada questão ganha a caixa **Selecionar para auditoria em bloco**, e aparece a barra **Modo de seleção múltipla**, com o número de questões selecionadas.
 2. Marque as questões que quer aprovar, ou clique em **Selecionar todos da página** para marcar de uma vez as questões da página. O mesmo botão, como **Desmarcar todos da página**, desfaz a marcação.
+
+    ![Modo de seleção múltipla ligado, com duas questões marcadas como Selecionada e a barra com os botões Desmarcar todos da página, Aprovar selecionadas (2), Limpar seleção e Fechar modo de seleção](../img/admin-auditoria-03-selecao.png){ .captura loading=lazy }
+
 3. Clique em **Aprovar selecionadas (…)**, com o número de questões entre parênteses. A mensagem *"… questão(ões) aprovada(s) com sucesso na auditoria!"* confirma, e as questões saem da lista.
 
 Para desmarcar todas, clique em **Limpar seleção**. Para esconder as caixas, clique em **Fechar modo de seleção** ou em **Sair da seleção múltipla**.
@@ -138,6 +143,9 @@ Para desistir, clique em **Cancelar**.
 
 1. Na página **Auditoria de Questões**, clique em **Histórico de Auditoria**.
 2. Cada registro mostra o número da questão, a descrição da aprovação — no formato *"Questão #… ('título') aprovada na auditoria por …"* — e a linha **Auditado por … em …**, com a data e a hora.
+
+    ![Histórico de Auditoria com um registro de aprovação, que mostra o número e o título da questão, quem a aprovou e a data e a hora](../img/admin-auditoria-02-historico.png){ .captura loading=lazy }
+
 3. A lista vem da aprovação mais recente para a mais antiga, em páginas de 20.
 
 **Observações:**
@@ -171,3 +179,4 @@ Para desistir, clique em **Cancelar**.
 | Regras da auditoria e da aprovação em bloco | `ifvest-backend/src/services/question_audit_service.py`, `src/api/v1/admin.py` e a migration `d3e4f5a6b7c8`, no `ifvest-monorepo` | nov/2026 |
 | Opções dos filtros | `ifvest-backend/src/services/question_bank_service.py`, no `ifvest-monorepo` | nov/2026 |
 | Onde as questões auditadas são usadas | `ifvest-backend/src/services/question_bank_service.py`, `quiz_filters.py`, `quiz_service.py` e `mocktests_service.py` | nov/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

@@ -37,6 +37,9 @@ Os interruptores são estes, com as funcionalidades agrupadas sob o módulo a qu
 
 1. No Painel Administrativo, abra a aba **Módulos (Feature Flags)**. A tela **Gerenciamento de Módulos (Feature Flags)** lista os módulos, cada um com as suas funcionalidades logo abaixo.
 2. Cada linha mostra o nome, a origem do valor — **database** ou **environment** (ver [Tarefa 2](#tarefa-2-devolver-um-interruptor-ao-valor-padrao)) —, a chave entre parênteses, a descrição e o interruptor.
+
+    ![Tela Gerenciamento de Módulos (Feature Flags) com cada módulo e as suas funcionalidades, a origem do valor (environment ou database), o nome da flag, a descrição e o interruptor; Flashcards aparece ligado, com origem database e o botão Reset, e Revisão aparece desligado](../img/admin-modulos-01-lista.png){ .captura loading=lazy }
+
 3. Clique no interruptor para ligar ou desligar. A lista se atualiza com o novo estado.
 
 !!! danger "Não desligue o módulo Admin"
@@ -109,3 +112,4 @@ A origem do valor de cada interruptor aparece ao lado do nome:
 | Telas que cada módulo liga | Rotas de `ifvest-frontend/src/router/AppRouter.tsx` (commit `0335118`) | nov/2026 |
 | Catálogo de interruptores e hierarquia | `ifvest-backend/src/services/feature_flags_service.py` e `src/api/v1/features.py`, no `ifvest-monorepo` | out/2026 |
 | O que os usuários veem com cada interruptor desligado | [Descrição das Funcionalidades — Módulos desligados](../../funcionalidades.md#modulos-desligados) e [Arquitetura — Feature flags](../../arquitetura.md#feature-flags) | out/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

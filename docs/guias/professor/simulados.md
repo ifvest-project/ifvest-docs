@@ -26,6 +26,9 @@ Os simulados são montados com as questões do [Banco de Questões](banco-de-que
 1. No cabeçalho, clique em **Simulados** e, na página do módulo, em **Criar novo simulado**.
 2. Preencha o **Nome do simulado**, com até 120 caracteres, e a **Quantidade de questões**. O nome é o que os estudantes verão na lista.
 3. Marque **Simulado institucional**. A opção só aparece para quem tem a permissão.
+
+    ![Tela Criando simulado com o nome e a quantidade de questões preenchidos, a opção Simulado institucional marcada e os botões Aleatório e Selecionar questões](../img/professor-simulados-01-institucional.png){ .captura loading=lazy }
+
 4. Escolha como montar o simulado — **Aleatório**, para sortear, ou **Selecionar questões**, para escolher no banco — e siga os mesmos passos do [simulado de treino](../aluno/simulados.md#tarefa-1-montar-um-simulado-de-treino).
 5. A confirmação **Simulado criado com sucesso!** traz a mensagem *"O simulado institucional foi gerado e já aparece para todos os usuários."* Se a mensagem falar em *"seus materiais de estudo"*, o simulado foi criado como de treino.
 
@@ -55,6 +58,9 @@ Os simulados são montados com as questões do [Banco de Questões](banco-de-que
 **Como fazer:**
 
 1. Na página de Simulados, clique em **Ver meus simulados** e, no simulado, em **Editar**.
+
+    ![Tela Meus simulados com dois simulados institucionais, cada um com o selo Institucional e os botões Resolver, Editar, PDF e Gabarito](../img/professor-simulados-02-lista.png){ .captura loading=lazy }
+
 2. Para renomear, em **1. Renomear simulado**, digite o novo nome, com até 120 caracteres, e clique em **Salvar novo nome**.
 3. Para tirar questões, em **2. Questões**, clique em **Remover** em cada questão que vai sair e depois em **Salvar questões**.
 4. Para excluir, em **3. Excluir simulado**, clique em **Excluir este simulado** e, em seguida, em **Confirmar exclusão**.
@@ -82,6 +88,9 @@ Os simulados são montados com as questões do [Banco de Questões](banco-de-que
 **Como fazer:**
 
 1. Em **Ver meus simulados**, clique em **PDF** para abrir o caderno, com campos para os dados do candidato, instruções, as questões em duas colunas e uma folha de respostas.
+
+    ![Caderno do simulado com o botão IMPRIMIR / SALVAR CADERNO EM PDF, o cabeçalho com nome do candidato, simulado, data de emissão e total de questões, as instruções e as questões em duas colunas](../img/aluno-simulados-08-caderno.png){ .captura loading=lazy }
+
 2. Clique em **IMPRIMIR / SALVAR CADERNO EM PDF** para imprimir ou salvar o arquivo.
 3. Para a correção, clique em **Gabarito**, na mesma lista, e em **IMPRIMIR / SALVAR GABARITO EM PDF**.
 
@@ -115,6 +124,7 @@ Os detalhes estão em [Imprimir o caderno e o gabarito](../aluno/simulados.md#ta
 | Gabarito na seleção de questões | Código do backend do `ifvest-monorepo` (commit `0335118`): `STAFF_QUESTION_PERMISSIONS`, em `ifvest-backend/src/api/v1/question_bank.py` | nov/2026 |
 | Regras de acesso, criação, edição e exclusão | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | nov/2026 |
 | Simulados institucionais e de treino | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo` | out/2026 |
+| Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |
 
 !!! note "O que mudou em relação ao planejado"
     A versão anterior desta página descrevia a criação de simulados da plataforma anterior, restrita aos professores, com **descrição** obrigatória, escolha do **tipo** — objetivo, dissertativo ou aleatório — e telas para **adicionar e remover questões** depois da criação. No V3, qualquer pessoa monta simulados de treino, o professor publica os institucionais, e depois da criação as questões podem ser retiradas, mas não acrescentadas.

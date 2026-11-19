@@ -19,6 +19,9 @@ Para abrir o módulo, clique em **Redação** no cabeçalho ou no cartão do mó
 
 1. Clique em **Redação** no cabeçalho. A página **Temas de Redação** lista as propostas publicadas.
 2. No topo, em destaque, fica o **TEMA DA SEMANA**, escolhido pelos professores.
+
+    ![Página Temas de Redação com a busca, os filtros de assuntos, o botão Minhas redações, o TEMA DA SEMANA em destaque com o botão Escrever sobre este tema e os demais temas com o selo DISPONÍVEL e o botão Escrever redação](../img/aluno-redacao-01-temas.png){ .captura loading=lazy }
+
 3. Para encontrar outro tema, use a busca **Pesquisar temas de redação...**, que procura no tema e nas instruções, ou filtre pelos **Assuntos** — as etiquetas que os professores dão às propostas. Para ver primeiro as propostas antigas, troque **Mais recentes primeiro** por **Mais antigas primeiro**.
 4. Cada tema mostra o título, as etiquetas, as instruções e o selo **DISPONÍVEL** ou, se você já enviou uma redação para ele, **✓ FEITO**.
 5. Clique em **Escrever redação** — no tema da semana, **Escrever sobre este tema** — para começar a escrever (ver [Tarefa 2](#tarefa-2-escrever-e-enviar-uma-redacao)).
@@ -45,6 +48,9 @@ Para abrir o módulo, clique em **Redação** no cabeçalho ou no cartão do mó
 1. No tema, clique em **Escrever redação**. A tela **Escrever Redação** mostra o tema, as instruções e os textos de apoio — escritos ou em imagem —, com a fonte de cada um.
 2. Na aba **Digitar**, escreva a redação no campo de texto.
 3. Acompanhe, acima do campo, as **Linhas digitadas**, as **Palavras** e a **Estimativa no papel**: quantas das 30 linhas da folha de redação o texto ocuparia se fosse escrito à mão.
+
+    ![Tela Escrever Redação com o tema, as instruções e os textos de apoio, a aba Digitar, os contadores de linhas, palavras e estimativa no papel, o campo de texto e o botão Enviar para correção](../img/aluno-redacao-02-escrever.png){ .captura loading=lazy }
+
 4. Clique em **Enviar para correção**. A mensagem **Redação Enviada!** confirma o envio. Clique em **Ver Minhas Redações** para acompanhar a correção (ver [Tarefa 3](#tarefa-3-acompanhar-a-correcao)).
 
 **Observações:**
@@ -69,6 +75,9 @@ Para abrir o módulo, clique em **Redação** no cabeçalho ou no cartão do mó
 **Como fazer:**
 
 1. Na página de Redação, clique em **Minhas redações** (`/redacao/minhas-redacoes`). As redações ficam separadas em **Aguardando Correção** e **Redações Corrigidas**, com o tema, a data de envio e, nas corrigidas, a nota.
+
+    ![Tela Minhas Redações com as seções Aguardando correção e Redações corrigidas; a redação corrigida mostra a nota 600 / 1000 e o botão Ver espelho da correção](../img/aluno-redacao-03-minhas-redacoes.png){ .captura loading=lazy }
+
 2. Para reler uma redação que ainda não foi corrigida, clique em **Ver minha redação**.
 3. Numa redação corrigida, clique em **Ver espelho da correção**. O **Espelho de Correção** mostra:
 
@@ -79,6 +88,8 @@ Para abrir o módulo, clique em **Redação** no cabeçalho ou no cartão do mó
     | **Parecer do Corretor** | A devolutiva geral sobre a redação |
     | **Sua Redação Avaliada** | O seu texto, com os trechos comentados destacados na cor da competência |
     | **Comentários Pontuais do Corretor** | Cada comentário, com a competência e o trecho a que se refere |
+
+    ![Janela Espelho de Correção com a nota total, a nota de cada uma das cinco competências e o Parecer do Corretor](../img/aluno-redacao-04-espelho.png){ .captura loading=lazy }
 
 4. Clique em **Fechar** para voltar à lista.
 
@@ -123,3 +134,4 @@ A aba **Enviar arquivo (Em breve)**, na tela de escrita, aparece desabilitada. O
 | Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): páginas de Redação | nov/2026 |
 | Regras de envio, rascunho e correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | out/2026 |
 | Envio de redação manuscrita | [Requisitos Funcionais — Envio de redação por imagem e OCR](../../requisitos/funcionais.md#envio-de-redacao-por-imagem-e-ocr) | out/2026 |
+| Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

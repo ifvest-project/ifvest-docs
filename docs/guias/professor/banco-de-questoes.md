@@ -27,6 +27,8 @@ Toda questão nova, autoral ou importada, entra **pendente de auditoria**. Ela s
 3. Confira o total abaixo dos filtros, como "1.164 questões encontradas". **Limpar filtros** desfaz a busca e os filtros. A lista vem em páginas de 20 questões.
 4. Cada questão mostra o título, a disciplina, o assunto, a dificuldade, a banca, o ano e o número, além do enunciado e do texto base, quando houver. Para ver as alternativas, clique em **Ver Alternativas** — o número entre parênteses indica quantas são.
 
+    ![Aba Banco de Questões da Área do Professor com a mensagem de cadastro, o aviso Questões com auditoria pendente: 3, a busca, os filtros, o total de questões e uma questão com as alternativas abertas e o Gabarito destacado](../img/professor-banco-01-lista.png){ .captura loading=lazy }
+
 **Observações:**
 
 - A lista mostra as questões **de todo o banco**, e não só as cadastradas por você.
@@ -64,6 +66,9 @@ Toda questão nova, autoral ou importada, entra **pendente de auditoria**. Ela s
 
 3. Em **Alternativas (marque a opção correta)**, escreva o texto das alternativas de A a E e marque a correta.
 4. Se quiser, explique em **Resolução (Opcional)** por que a alternativa correta está certa. O estudante vê a resolução em **Por que essa alternativa?**, depois de responder à questão num simulado.
+
+    ![Formulário Nova Questão de Múltipla Escolha preenchido com uma questão de teste: título, disciplina, assunto, tópico, banca, ano, número, dificuldade, texto de apoio, enunciado, cinco alternativas com a correta marcada e os botões Cancelar e Cadastrar Questão](../img/professor-banco-02-nova-questao.png){ .captura loading=lazy }
+
 5. Clique em **Cadastrar Questão**. A mensagem *"Questão "…" cadastrada com sucesso!"* confirma o cadastro. A questão entra pendente de auditoria: ela ainda não aparece na lista, e o número do aviso **Questões com auditoria pendente** aumenta.
 
 Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
@@ -94,6 +99,9 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 
 1. Na aba **Banco de Questões** da Área do Professor, encontre a questão (ver [Tarefa 1](#tarefa-1-consultar-o-banco-de-questoes)).
 2. Clique em **Editar**. O formulário **Editar Questão #…** se abre logo abaixo da questão, com os mesmos campos do cadastro, já preenchidos. À direita dos campos, a **Pré-visualização (como aparece na aplicação)** mostra a questão como os estudantes vão vê-la e se atualiza enquanto você digita.
+
+    ![Formulário Editar Questão aberto abaixo da questão, com os campos à esquerda, as listas de Disciplina, Matéria / Assunto e Tópico, a Pré-visualização à direita e os botões Cancelar e Salvar alterações](../img/professor-banco-03-editar.png){ .captura loading=lazy }
+
 3. Altere o que for preciso: os dados da questão, o texto das alternativas, a alternativa correta, a resolução e a classificação. Na edição, a dificuldade aceita também **Não definida**.
 4. Clique em **Salvar alterações**. O formulário se fecha, e a questão aparece atualizada na lista.
 
@@ -157,6 +165,7 @@ Os passos são os mesmos da denúncia feita pelos estudantes, descrita em [Denun
 | Regras de cadastro, edição e denúncia | [Descrição das Funcionalidades — Banco de questões](../../funcionalidades.md#banco-de-questoes), conferida no código do backend | nov/2026 |
 | Questões pendentes de auditoria, opções dos filtros e listas da edição | `ifvest-backend/src/api/v1/question_bank.py` e `src/services/question_bank_service.py`; `ifvest-frontend/src/features/admin/components/QuestionListAdmin.tsx` e `QuestionTaxonomyFields.tsx`, no `ifvest-monorepo` | nov/2026 |
 | Filtros, gabarito, edição e resolução no banco | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo`, seção 8.10, e commits de 30 e 31/10/2026 | out/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |
 
 !!! note "O que mudou em relação à versão anterior"
     A versão anterior desta página descrevia o banco de questões da plataforma anterior. No V3, não há questões dissertativas, a tela **Minhas questões** com as questões de cada professor, a **exclusão** de questões, a tela de **tópicos** nem a **verificação de similaridade** por inteligência artificial. O editor de equações em LaTeX também não existe: o conteúdo das questões usa Markdown.

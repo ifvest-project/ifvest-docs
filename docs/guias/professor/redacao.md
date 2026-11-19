@@ -9,6 +9,8 @@ No módulo de **Redação**, o professor publica as **propostas** sobre as quais
 
 Na Área do Professor, as abas **Propostas de Redação** e **Fila de Correção** aparecem para todos que entram na área. Sem a permissão correspondente, a aba mostra o aviso **Acesso Bloqueado**, com o nome da permissão que falta. A fila e a tela de correção, abertas pelo endereço, mostram nesse caso o aviso **Acesso Restrito**, também com a permissão necessária.
 
+![Aviso Acesso Restrito na fila de correção, com o texto de que a conta não tem permissão, a permissão necessária grade_essay_permission e o botão Voltar ao Início](../img/professor-redacao-06-acesso-bloqueado.png){ .captura loading=lazy }
+
 Escolher um tema, escrever e enviar uma redação funciona para você como para qualquer estudante, e está descrito no [Guia do Aluno — Redação](../aluno/redacao.md).
 
 ---
@@ -25,6 +27,9 @@ Escolher um tema, escrever e enviar uma redação funciona para você como para 
 **Como fazer:**
 
 1. No cabeçalho, clique em **Professor** e abra a aba **Propostas de Redação** (`/area_professor?tab=essays`). O botão **+ Criar nova proposta**, na página de Redação, leva à mesma aba.
+
+    ![Aba Propostas de Redação da Área do Professor com o botão + Criar nova proposta, a busca e a lista de propostas, cada uma com as etiquetas, o número de textos de apoio e os botões Editar e Excluir](../img/professor-redacao-01-propostas.png){ .captura loading=lazy }
+
 2. Clique em **+ Criar nova proposta**. O formulário **Nova Proposta de Redação** se abre no lugar da lista.
 3. Preencha os campos:
 
@@ -41,6 +46,8 @@ Escolher um tema, escrever e enviar uma redação funciona para você como para 
     - **Fonte (Opcional)**.
 
     Clique em **Adicionar Texto de Apoio**. O texto entra na lista do formulário, e **Remover** o retira. Repita para cada texto de apoio.
+
+    ![Formulário Nova Proposta de Redação preenchido, com o tema, as tags, a opção Marcar como Tema da Semana, as instruções e um texto de apoio sendo criado, e os botões Adicionar Texto de Apoio e Criar Proposta](../img/professor-redacao-02-nova-proposta.png){ .captura loading=lazy }
 
 5. Clique em **Criar Proposta**. A mensagem *"Proposta "…" criada com sucesso!"* confirma a publicação.
 
@@ -93,9 +100,15 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 
 1. Na página de Redação, clique em **Fila de correção** (`/redacao/fila-correcao`). Pela Área do Professor, abra a aba **Fila de Correção** e clique em **Acessar Fila de Correção →**.
 2. A aba **Aguardando Correção** lista as redações, das mais antigas para as mais recentes, com o tema e a data de envio. Clique em **Avaliar redação**.
+
+    ![Tela Fila de Correção com as abas Aguardando Correção e Histórico de Correções Realizadas e uma redação na fila, com o tema, a data de envio e o botão Avaliar redação](../img/professor-redacao-03-fila.png){ .captura loading=lazy }
+
 3. A tela **Avaliação de Redação** mostra os textos de apoio da proposta e, em **Texto do Estudante**, a redação.
 4. Para comentar um trecho, selecione-o com o mouse e clique em **✍️ Comentar trecho**. O comentário entra em **Comentários por Trecho**: escolha a competência, de **C1 - Norma Culta** a **C5 - Intervenção Social**, e escreva o apontamento para o estudante. **✕ Excluir** retira o comentário.
 5. Em **Critérios de Correção (ENEM)**, dê a nota de cada competência, de **Competência 1** a **Competência 5**: de 0 a 200, de 20 em 20. Os campos começam em 120, e a **Nota Total**, de 0 a 1.000, é a soma das cinco.
+
+    ![Tela Avaliação de Redação com os textos de apoio, o Texto do Estudante à esquerda e, à direita, as notas das cinco competências, a Nota Total, o Parecer Pedagógico Geral, os Comentários por Trecho e o botão Finalizar Correção](../img/professor-redacao-04-corrigir.png){ .captura loading=lazy }
+
 6. Escreva o **Parecer Pedagógico Geral**, obrigatório, com a devolutiva para o estudante.
 7. Clique em **Finalizar Correção**. A janela **Correção Concluída com Sucesso!** mostra a nota total e o número de anotações. Clique em **Ir para a Fila de Correção** ou em **Permanecer nesta página**.
 
@@ -124,6 +137,9 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 **Como fazer:**
 
 1. Na **Fila de Correção**, abra a aba **Histórico de Correções Realizadas**. A lista **Minhas Correções Finalizadas** mostra cada redação que você corrigiu, com o tema, a data de envio e a nota atribuída.
+
+    ![Aba Histórico de Correções Realizadas com a lista Minhas Correções Finalizadas; a redação corrigida mostra a data de envio, a nota atribuída e o botão Ver avaliação](../img/professor-redacao-05-historico.png){ .captura loading=lazy }
+
 2. Clique em **Ver avaliação**. A correção abre no modo de visualização, com o aviso *"Redação já avaliada anteriormente. Modo de visualização ativo."*, e o botão **Redação Já Avaliada** fica desabilitado.
 
 **Observações:**
@@ -162,3 +178,4 @@ Para desistir, clique em **Cancelar** ou em **Fechar Formulário**.
 | Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `f98a6a0`): Área do Professor e páginas de Redação | nov/2026 |
 | Regras das propostas, da fila e da correção | [Descrição das Funcionalidades — Redação](../../funcionalidades.md#redacao), conferida no código do backend | nov/2026 |
 | Validação das notas e das correções | `ifvest-backend/src/schemas/essays.py` e `src/services/essays_service.py`, no `ifvest-monorepo` | out/2026 |
+| Capturas de tela | Ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |

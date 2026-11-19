@@ -23,6 +23,9 @@ Para abrir o módulo, clique em **Simulados** no cabeçalho. A página do módul
 **Como fazer:**
 
 1. Na página de Simulados, clique em **Criar novo simulado** (`/simulados/novo`).
+
+    ![Página de Simulados com o quadro de acertos, melhor pontuação e disciplina a revisar, e os botões Ver meus simulados e Criar novo simulado](../img/aluno-simulados-01-pagina.png){ .captura loading=lazy }
+
 2. Preencha o **Nome do simulado**, com até 120 caracteres, e a **Quantidade de questões**, que vem em 10.
 3. Escolha como montar o simulado:
 
@@ -35,12 +38,16 @@ Para abrir o módulo, clique em **Simulados** no cabeçalho. A página do módul
         5. Acompanhe, abaixo dos filtros, o total de **Selecionadas** e o progresso — por exemplo, "2 de 10 selecionadas · faltam 8". Ao atingir a quantidade, as demais questões ficam travadas: para trocar uma questão, desmarque outra antes.
         6. Clique em **Confirmar seleção**.
 
+        ![Tela Criando simulado com questões selecionadas: à esquerda, a busca, os filtros, o total de Selecionadas e o botão Confirmar seleção; à direita, a lista de questões, duas marcadas e uma aberta em Ver questão completa](../img/aluno-simulados-02-selecionar.png){ .captura loading=lazy }
+
     === "Aleatório"
 
         1. Clique em **Aleatório**.
         2. Se quiser, escolha a **Disciplina**, o **Assunto**, a **Banca** e o **Ano**. Sem filtro, a plataforma sorteia entre todas as questões do banco. **Limpar filtros** desfaz a escolha.
         3. Confira, abaixo dos filtros, em **Disponíveis**, quantas questões atendem à escolha.
         4. Clique em **Gerar simulado**. A plataforma sorteia as questões.
+
+        ![Tela Criando simulado com questões aleatórias, com os filtros Disciplina, Assunto, Banca e Ano, o total de questões Disponíveis e o botão Gerar simulado](../img/aluno-simulados-03-aleatorio.png){ .captura loading=lazy }
 
 4. A confirmação **Simulado criado com sucesso!** mostra o nome, o modo e o número de questões gravados. Clique em **Ver meus simulados** para resolvê-lo ou em **Criar outro**.
 
@@ -78,6 +85,8 @@ Para abrir o módulo, clique em **Simulados** no cabeçalho. A página do módul
     | **Ações** | **Resolver**, **PDF** e **Gabarito**, e **Editar** nos simulados que você pode alterar |
     | **Nota** | A nota da sua última tentativa, ou "—" se você ainda não o resolveu |
 
+    ![Tela Meus simulados com a busca por nome e a lista com título, tipo, número de questões, selo Institucional e os botões Resolver, PDF e Gabarito, ao lado do quadro de acertos](../img/aluno-simulados-04-lista.png){ .captura loading=lazy }
+
 3. Para encontrar um simulado, use o campo **Pesquisar simulado por nome**.
 
 As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as suas estatísticas, as mesmas da página de Simulados.
@@ -97,6 +106,9 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 
 1. Na lista, clique em **Resolver**.
 2. As questões aparecem uma de cada vez. Acima de cada uma, a tela mostra a posição no simulado, como **Questão 3/10**, e a origem: o número da questão na prova, a disciplina, a banca e o ano — por exemplo, "Questão 12 de Física · UNICAMP 2023". O cartão da questão traz a dificuldade, quando cadastrada — Fácil, Média ou Difícil —, e o texto de apoio e as figuras junto com o enunciado.
+
+    ![Resolução de um simulado na Questão 3/5, com a origem da questão, a barra de navegação numerada, a alternativa escolhida destacada e os botões Limpar seleção, Confirmar resposta e Finalizar simulado](../img/aluno-simulados-05-resolver.png){ .captura loading=lazy }
+
 3. Escolha uma alternativa. Para desfazer a escolha, clique de novo nela ou em **Limpar seleção**.
 4. Se quiser conferir a resposta na hora, clique em **Confirmar resposta**: a tela mostra se ela está certa e destaca a alternativa correta. Depois de confirmada, a resposta não pode ser alterada.
 5. Quando a questão tem resolução cadastrada, aparece, depois de confirmar, o botão **Por que essa alternativa?**, com a explicação da resposta. Se você errou, a explicação já abre sozinha.
@@ -124,6 +136,9 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 **Como fazer:**
 
 1. Ao finalizar, a tela **Simulado concluído!** mostra a nota, de 0 a 100%, e quantas questões você acertou. Clique em **Revisar respostas** para rever as questões (ver [Tarefa 5](#tarefa-5-revisar-as-questoes-de-uma-tentativa)) ou em **Ver meus simulados** para voltar à lista.
+
+    ![Janela Simulado concluído! com a nota de 20% e o texto Você acertou 1 de 5 questões, e os botões Revisar respostas e Ver meus simulados](../img/aluno-simulados-06-resultado.png){ .captura loading=lazy }
+
 2. Na página de Simulados, o quadro de estatísticas mostra, em todos os simulados enviados:
 
     | Indicador | O que mostra |
@@ -156,6 +171,9 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
     - a qualquer momento, no **Histórico de Simulados** do seu [perfil](../conta/perfil.md#tarefa-3-acompanhar-a-sua-atividade), em **Revisar**, na tentativa que você quer rever.
 2. No topo da revisão ficam a nota, os acertos e quantas questões você respondeu.
 3. Cada questão traz a origem — banca e ano, número na prova e disciplina —, o selo **Acertou**, **Errou** ou **Sem resposta**, o enunciado e as alternativas, com a correta e a que você marcou destacadas. Abaixo, uma frase resume a resposta, como *"Você marcou B; gabarito C."*
+
+    ![Revisão de um simulado com a nota no topo e cada questão com a origem, o selo Sem resposta ou Acertou, as alternativas com a correta destacada e o gabarito](../img/aluno-simulados-07-revisao.png){ .captura loading=lazy }
+
 4. Quando a questão tem resolução cadastrada, ela aparece em **Por que essa alternativa?**.
 
 **Observações:**
@@ -179,6 +197,9 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 **Como fazer:**
 
 1. Na lista de simulados, clique em **PDF**. O caderno abre numa nova janela, com campos para os dados do candidato, a data de emissão, instruções, as questões em duas colunas e uma folha de respostas.
+
+    ![Caderno do simulado com o botão IMPRIMIR / SALVAR CADERNO EM PDF, o cabeçalho com nome do candidato, simulado, data de emissão e total de questões, as instruções e as questões em duas colunas](../img/aluno-simulados-08-caderno.png){ .captura loading=lazy }
+
 2. Clique em **IMPRIMIR / SALVAR CADERNO EM PDF**. A janela de impressão do navegador permite imprimir ou salvar o arquivo em PDF.
 3. Para conferir as respostas, clique em **Gabarito**, na mesma lista. A folha traz a letra correta de cada questão, na mesma numeração do caderno, com o botão **IMPRIMIR / SALVAR GABARITO EM PDF**.
 
@@ -203,6 +224,9 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 **Como fazer:**
 
 1. Na lista de simulados, clique em **Editar**. A janela **Editar simulado** tem três partes.
+
+    ![Janela Editar simulado com as partes 1. Renomear simulado, 2. Questões, com o botão Remover em cada questão, e 3. Excluir simulado, além do botão Fechar](../img/aluno-simulados-09-editar.png){ .captura loading=lazy }
+
 2. Para renomear, em **1. Renomear simulado**, digite o novo nome, com até 120 caracteres, e clique em **Salvar novo nome**.
 3. Para tirar questões, em **2. Questões**, clique em **Remover** em cada questão que vai sair — **Desfazer** a devolve — e depois em **Salvar questões**. O número entre parênteses indica com quantas questões o simulado vai ficar.
 4. Para excluir, em **3. Excluir simulado**, clique em **Excluir este simulado** e, em seguida, em **Confirmar exclusão**.
@@ -234,6 +258,9 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 
 1. Na questão com problema, clique em **🚩 Sinalizar**, no canto do cartão da questão.
 2. Em **Motivo do problema**, escolha **Erro no enunciado**, **Gabarito incorreto**, **Alternativas duplicadas**, **Imagem ilegível ou ausente** ou **Outro problema**.
+
+    ![Janela Sinalizar Questão com a lista Motivo do problema, o campo Detalhes adicionais (opcional) e os botões Cancelar e Enviar Denúncia](../img/aluno-simulados-10-sinalizar.png){ .captura loading=lazy }
+
 3. Se quiser, descreva o problema em **Detalhes adicionais (opcional)**, com até 2.000 caracteres.
 4. Clique em **Enviar Denúncia**. A mensagem *"Agradecemos sua colaboração! Nossa equipe pedagógica irá analisar a questão."* confirma o envio; clique em **Concluir**.
 
@@ -271,6 +298,7 @@ As ações estão descritas nas tarefas seguintes. Ao lado da lista ficam as sua
 | Telas, botões, mensagens e fluxos | Código do frontend do `ifvest-monorepo` (commit `0335118`, de 17/11/2026): páginas e componentes de Simulados | nov/2026 |
 | Regras de acesso, nota, tentativas, revisão e estatísticas | [Descrição das Funcionalidades — Simulados](../../funcionalidades.md#simulados), conferida no código do backend | nov/2026 |
 | Mudanças de outubro no módulo | `docs/auditoria-simulados-2026-10-10.md`, no `ifvest-monorepo`, seções 8.6 a 8.10 | out/2026 |
+| Capturas de tela | Plataforma em produção (`ifvest.com.br`), com conta de teste, e ambiente local da equipe (`ifvest-monorepo`, commit `0335118`), com login de teste e dados de exemplo | nov/2026 |
 
 !!! note "O que mudou em relação ao planejado"
     A versão anterior desta página descrevia os simulados da plataforma anterior, com questões objetivas e dissertativas, e o design proposto pelo subprojeto de frontend. Parte do design não foi implementada no V3: a opção de **salvar um simulado em andamento** e a **descrição** do simulado. A escolha do **tipo de questão** entrou em novembro de 2026 como o filtro **Tipo de questões** da seleção manual, que tem só **Múltipla escolha**, o único tipo do banco. O **tipo de simulado** virou a combinação de filtros do modo aleatório, e a **explicação da resposta** depende da resolução cadastrada em cada questão. Também não há questões dissertativas: o banco do V3 tem só questões de múltipla escolha.

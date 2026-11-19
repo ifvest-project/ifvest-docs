@@ -77,5 +77,6 @@ Este guia integra, junto com o [Guia do Aluno](../aluno/index.md), o [Guia do Pr
 | Solução de problemas | Seção "Erros e situações comuns" de cada página | ✅ Aplicado |
 | Mensagens de erro (textos exatos) | Nas tabelas de erros, conferidas no código | 🟡 Aplicado onde há mensagem definida |
 | Informação de referência | Coberta fora do guia pela [Descrição das Funcionalidades](../../funcionalidades.md#painel-administrativo) e pela [Arquitetura](../../arquitetura.md#feature-flags) | ✅ Coberto |
+| Ilustrações | Capturas de tela nas tarefas, com texto alternativo | ✅ Aplicado: telas do V3, capturadas em novembro de 2026 |
 | Glossário | [Glossário](../glossario.md), comum aos guias | ✅ Aplicado |
 | Validação com usuários | Prevista conforme a **ISO/IEC/IEEE 26513** | ⬜ Pendente |

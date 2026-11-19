@@ -141,14 +141,14 @@ flowchart TD
     A referência à API **não é pré-requisito** desta fase: ela documenta o sistema para quem desenvolve, enquanto os guias documentam o uso da plataforma para quem estuda e ensina. As duas seguem em paralelo.
 
 !!! note "Os guias foram revisados com a interface entregue"
-    Os guias foram escritos antes da entrega do IFVest V3, com o material de design da frente de interface como base da **camada de interface** de cada tarefa (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)). Em outubro de 2026, foram revisados com base no código da interface entregue: telas, botões e mensagens passaram a ser os da plataforma em produção, e o que o design previa e não foi implementado ficou registrado em cada página. Em novembro de 2026, ganharam as páginas de Redação e o Guia do Administrador, escritos já a partir do código, e as páginas de Flashcards foram reescritas a partir do código do módulo.
+    Os guias foram escritos antes da entrega do IFVest V3, com o material de design da frente de interface como base da **camada de interface** de cada tarefa (ver [Separação entre o estado atual e o estado previsto](#separacao-entre-o-estado-atual-e-o-estado-previsto)). Em outubro de 2026, foram revisados com base no código da interface entregue: telas, botões e mensagens passaram a ser os da plataforma em produção, e o que o design previa e não foi implementado ficou registrado em cada página. Em novembro de 2026, ganharam as páginas de Redação e o Guia do Administrador, escritos já a partir do código, e as páginas de Flashcards foram reescritas a partir do código do módulo. No mesmo mês, os guias ganharam as capturas de tela, tiradas na plataforma em produção e no ambiente local da equipe, cada uma com texto alternativo.
 
     As páginas da Revisão de Conteúdo, módulo ainda desligado, continuam nos guias, com um aviso no início, como registro do que foi planejado.
 
 | Item | Descrição | Status |
 |------|-----------|--------|
 | Conta e Perfil | Tarefas comuns a todos: entrar com a conta Google, sair, consultar o perfil e alterar o apelido. Seção única, referenciada pelos demais guias. | ✅ Concluído |
-| Guias por módulo | Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver. IFQuiz, Simulados, Redação, Banco de Questões e Painel Administrativo documentados para o IFVest V3; faltam as capturas de tela e a validação com usuários. | 🟡 Em andamento |
+| Guias por módulo | Passo a passo das ações de cada módulo, organizadas por objetivo do usuário e com indicação da permissão exigida, quando houver. IFQuiz, Simulados, Redação, Flashcards, Banco de Questões e Painel Administrativo documentados para o IFVest V3, com capturas de tela; falta a validação com usuários. | 🟡 Em andamento |
 | Glossário | Termos da plataforma e explicação de como os conteúdos e as permissões estão organizados. | ✅ Concluído |
 
 !!! note "A estrutura dos guias acompanha o modelo de permissões"

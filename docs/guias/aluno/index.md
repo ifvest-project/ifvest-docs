@@ -67,13 +67,14 @@ Ambas as normas permitem **adaptação ao contexto do projeto** (*tailoring*), d
 | Elemento da 26514 | Onde está | Situação |
 |---|---|---|
 | Análise de público-alvo e tarefas | Seção "Para quem é" + inventário de tarefas por módulo | ✅ Aplicado |
-| Informação instrucional (tarefas passo a passo) | Corpo das páginas de módulo | ✅ Aplicado: IFQuiz, Simulados, Redação e conta, conferidos no código do V3 |
+| Informação instrucional (tarefas passo a passo) | Corpo das páginas de módulo | ✅ Aplicado: IFQuiz, Simulados, Redação, Flashcards e conta, conferidos no código do V3 |
 | Informação conceitual (o que cada módulo é) | "Mapa da plataforma" + introdução de cada página | ✅ Aplicado |
 | Solução de problemas | Seção "Erros e situações comuns" de cada página | ✅ Aplicado |
 | Mensagens de erro (textos exatos) | Nas tabelas de erros, conferidas no código | 🟡 Aplicado onde há mensagem definida |
 | Informação de referência | Coberta fora do guia pela [Descrição das Funcionalidades](../../funcionalidades.md) | ✅ Coberto pela Fase 3 |
 | Glossário | Página [Glossário](../glossario.md) | ✅ Aplicado |
 | Informação de acessibilidade da plataforma | [Seção comum aos guias](../index.md#acessibilidade-da-plataforma) | 🟡 Normas de referência identificadas; a interface do V3 ainda não foi avaliada |
-| Acessibilidade da documentação | [Convenções comuns aos guias](../index.md#convencoes-de-acessibilidade-destes-guias) | 🟡 Convenções definidas; textos alternativos pendentes com as capturas |
+| Ilustrações | Capturas de tela nas tarefas | ✅ Aplicado: telas do V3, capturadas em novembro de 2026 |
+| Acessibilidade da documentação | [Convenções comuns aos guias](../index.md#convencoes-de-acessibilidade-destes-guias) | ✅ Aplicado: capturas com texto alternativo e marcadores sempre com a palavra |
 | Tarefas de conta e perfil | [Seção Conta](../conta/acesso.md), comum a todos | ✅ Aplicado |
 | Validação com usuários | Prevista conforme a **ISO/IEC/IEEE 26513** (testes e revisão de documentação) | ⬜ Pendente — possível agora que a interface foi entregue |
